@@ -1,0 +1,29 @@
+angular.module('Hartville_io').controller(
+	'MainController', ['$scope',function($scope){
+		$scope.navbar = [
+		{
+			display:"home",
+			url:"index.html",
+		},
+		{
+			display:"about",
+			url:"about.html",
+		},
+		{
+			display:"blog",
+			url:"blog.html",
+		},
+		{
+			display:"spotlight",
+			url:"spotlight.html",
+		},
+		{
+			display:"events",
+			url:"events.html",
+		},
+		{
+			display:"community",
+			url:"community.html",
+		},
+        ];
+	}]);
