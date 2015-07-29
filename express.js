@@ -2,15 +2,17 @@
 
 var fs = require('fs');
 var express = require('express');
-var url = require('url');
+//var url = require('url');
 var app = express();
 
 app.set("view engine", "ejs");
 
 function anyHandler(request, response) {
-	var myUrl = url.parse(request.url).pathname//.substring(1);
-	
-	if(myUrl === "") {
+	//var myUrl = url.parse(request.url).pathname;
+	var myUrl = request.params[0];
+    console.log(myUrl);
+    console.log(__dirname + myUrl);
+	if(myUrl === "/") {
 		response.redirect("views/index.html");
 		return;
 	};
