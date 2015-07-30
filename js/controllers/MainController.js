@@ -7,7 +7,7 @@ angular.module('Hartville_io').controller(
 		},
 		{
 			display:"about",
-			url:"#/about/",
+			url:"#/blog/3",
 		},
 		{
 			display:"blog",

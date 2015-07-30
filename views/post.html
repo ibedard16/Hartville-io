@@ -1,0 +1,17 @@
+﻿<div class="title">
+    {{ post.title }}
+</div>
+<div class="author">
+    {{ post.author }}
+</div>
+<div class="date">
+    {{ post.date | date : 'EEE, MMM dd, y' }}
+</div>
+<div class="preview">
+    <p ng-repeat="paragraph in post.body">
+        {{ paragraph }}
+    </p>
+</div>
+<span class="tags" ng-repeat="tag in post.tags">
+    <a ng-href="#/blog/filter/{{ tag }}">#{{ tag }}</a>
+</span>
