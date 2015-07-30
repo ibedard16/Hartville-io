@@ -3,11 +3,11 @@ angular.module('Hartville_io').controller(
 		$scope.navbar = [
 		{
 			display:"home",
-			url:"index.html",
+			url:"#/",
 		},
 		{
 			display:"about",
-			url:"about.html",
+			url:"#/about/",
 		},
 		{
 			display:"blog",
@@ -15,15 +15,15 @@ angular.module('Hartville_io').controller(
 		},
 		{
 			display:"spotlight",
-			url:"spotlight.html",
+			url:"#/spotlight/",
 		},
 		{
 			display:"events",
-			url:"events.html",
+			url:"#/events/",
 		},
 		{
 			display:"community",
-			url:"community.html",
+			url:"#/community/",
 		},
         ];
 	}]);

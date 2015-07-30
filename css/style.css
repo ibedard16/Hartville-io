@@ -1,3 +1,7 @@
+img {
+    max-width: 865px;
+}
+
 #main {
 	margin: auto;
 	max-width: 865px;

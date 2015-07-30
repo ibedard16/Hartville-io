@@ -9,6 +9,6 @@ app.config(function ($routeProvider) {
             controller: 'BlogController'
         })
         .otherwise({
-            redirectTo: '/'
+            templateUrl: 'views/404.html'
         });
 });
