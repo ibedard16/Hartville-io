@@ -13,7 +13,7 @@ function anyHandler(request, response) {
     console.log(myUrl);
     console.log(__dirname + myUrl);
 	if(myUrl === "/") {
-		response.redirect("views/index.html");
+		response.redirect("index.html");
 		return;
 	};
 	

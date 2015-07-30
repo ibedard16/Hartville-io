@@ -11,7 +11,7 @@ angular.module('Hartville_io').controller(
 		},
 		{
 			display:"blog",
-			url:"blog.html",
+			url:"#/blog/",
 		},
 		{
 			display:"spotlight",

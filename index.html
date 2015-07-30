@@ -1,11 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-	<meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; URL='views/index.html'" />
+    <!-- This is a test-->
+    <title>Hartville.io</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.angularjs.org/1.4.3/angular.min.js"></script>
+    <script src="http://code.angularjs.org/1.4.3/angular-route.min.js"></script>
 </head>
-<body>
-
+<body ng-app="Hartville_io">
+    <div id=main ng-controller="MainController">
+        <opener></opener>
+        <div ng-view></div>
+    </div>
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+    <!-- Directives -->
+    <script src="js/directives/opener.js"></script>
 </body>
 </html>
