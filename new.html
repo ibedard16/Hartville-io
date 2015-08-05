@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="blog">
+<head>
+	<meta charset="utf-8">
+	<title>Hartville.io</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-controller="BlogController as blog">
+
+<website-navigation></website-navigation>
+
+<div class="container padded">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+			  <h1>New Post</h1>
+			</div>
+		</div>
+	</div>
+            <form action="/create" method="POST">
+			  <div class="form-group">
+			    <label>Title</label>
+			    <input type="text" name="title" class="form-control" placeholder="The title for your post">
+			  </div>
+			  <div class="form-group">
+			    <label>Author</label>
+			    <input type="text" name="author" class="form-control" placeholder="John Smith">
+			  </div>
+			  <div class="form-group">
+			    <label>Content</label>
+			    <textarea type="text" name="content" class="form-control" rows="5"></textarea>
+			  </div>
+			  <div class="form-group">
+			    <label>Tags</label>
+			    <input type="text" name="tags" class="form-control" placeholder="some, tags, about, your, post">
+			  </div>
+			  
+			  <button type="submit" class="btn btn-default">Submit</button>
+			</form>
+</div>
+
+<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/ui.bootstrap.js"></script>
+</body>
+</html>

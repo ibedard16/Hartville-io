@@ -1,24 +1,89 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html ng-app="blog">
 <head>
-    <!-- This is a test-->
-    <title>Hartville.io</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="http://code.angularjs.org/1.4.3/angular.min.js"></script>
-    <script src="http://code.angularjs.org/1.4.3/angular-route.min.js"></script>
+	<meta charset="utf-8">
+	<title>Hartville.io</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
 </head>
-<body ng-app="Hartville_io">
-    <div id=main ng-controller="MainController">
-        <opener></opener>
-        <div ng-view></div>
-    </div>
-    <!-- Modules -->
-    <script src="js/app.js"></script>
-    <!-- Controllers -->
-    <script src="js/controllers/MainController.js"></script>
-    <script src="js/controllers/BlogController.js"></script>
-    <!-- Directives -->
-    <script src="js/directives/opener.js"></script>
+<body ng-controller="BlogController as blog">
+
+<website-navigation></website-navigation>
+
+<div class="container padded">
+
+<div class="page-header">
+  <h1>Most Recent <small>Subtext for header</small></h1>
+</div>
+
+<div class="row">
+<div class="col-sm-6" ng-repeat="post in blog.post | limitTo:2 | orderBy: '-date'">
+	<ul class="list-group">
+		<li class="list-group">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="panel-heading">
+						<a href="{{post.link}}"><h2>{{post.title}}</h2></a>
+						<h5>By: <a href="#">{{post.author}}</a></h5>
+						<h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
+					</div>
+					<div class="panel-body">
+						<img ng-src="{{post.images[0].full}}" class="img-responsive"/><hr>
+						<p>{{post.content | limitTo:256}} ...</p>
+						<a href="{{post.link}}"><button class="btn btn-danger btn-sm pull-right">Continue Reading <span class="glyphicon glyphicon-menu-right"></span></button></a>
+					</div>
+					
+					<div class="panel-footer">
+						<ul class="small list-inline" ng-show="post.tags.length">
+							<li>tags:</li> <li ng-repeat="tag in post.tags"><a href="#">{{tag | lowercase}}</a></li>
+						</ul>
+					</div>
+				</div> <!-- end panel body -->
+			</div> <!-- end panel -->
+		</li>
+	</ul>
+</div> <!--end column-->
+</div> <!--end row-->
+
+<div class="page-header">
+  <h1>More News <small>Subtext for header</small></h1>
+</div>
+<div class="row">
+<div class="col-md-6 col-lg-3" ng-repeat="post in blog.post | limitTo:4 | orderBy: '-date'">
+	<ul class="list-group">
+		<li class="list-group">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="panel-heading">
+						<a href="{{post.link}}"><h2>{{post.title}}</h2></a>
+						<h5>By: <a href="#">{{post.author}}</a></h5>
+						<h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
+					</div>
+					<div class="panel-body">
+						<img ng-src="{{post.images[0].full}}" class="img-responsive"/><hr>
+						<p>{{post.content | limitTo:256}} ...</p>
+						<a href="{{post.link}}"><button class="btn btn-danger btn-sm pull-right">Continue Reading <span class="glyphicon glyphicon-menu-right"></span></button></a>
+					</div>
+					
+					<div class="panel-footer">
+						<ul class="small list-inline" ng-show="post.tags.length">
+							<li>tags:</li> <li ng-repeat="tag in post.tags"><a href="#">{{tag | lowercase}}</a></li>
+						</ul>
+					</div>
+				</div> <!-- end panel body -->
+			</div> <!-- end panel -->
+		</li>
+	</ul>
+</div> <!--end column-->
+</div> <!--end row-->
+</div> <!--end container -->
+
+<script type="text/javascript" src="../js/scripts.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/ui.bootstrap.js"></script>
 </body>
 </html>
