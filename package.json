@@ -16,7 +16,7 @@
     "url": "git+https://github.com/ibedard16/Hartville-io.git"
   },
   "author": "Isaac Bedard , Brent Miller",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ibedard16/Hartville-io/issues"
   },
