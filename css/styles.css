@@ -12,3 +12,15 @@ padded{
   padding: 10px 10px;
 }
 .panel{border:none;}
+.navbar-primary{
+	background-color: #d9534f;
+	color: #fff;
+	border-radius: 0px;
+}
+.navbar-brand, .navbar-brand:hover {color: #fff;}
+nav li a{color: #fff;}
+nav li a:hover{color: #fff;}
+
+.btn {
+	border-radius: 0px;
+}
