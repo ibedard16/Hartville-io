@@ -4,7 +4,7 @@
 	app.directive('websiteNavigation', function(){
 		return {
 			restrict: 'E',
-			templateUrl: '../website-navigation.html'
+			templateUrl: 'website-navigation.html'
 		};
 	});
 
