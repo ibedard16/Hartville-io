@@ -1,35 +1,20 @@
 "use strict";
+var fs = require('fs'),
+    express = require('express'),
+    path = require('path'),
+    http = require('http');
 
-var fs = require('fs');
-var express = require('express');
-//var url = require('url');
 var app = express();
+app.set('port', process.env.PORT || 8000);
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.set("view engine", "ejs");
 
 function anyHandler(request, response) {
-	//var myUrl = url.parse(request.url).pathname;
-	var myUrl = request.params[0];
-    console.log(myUrl);
-    console.log(__dirname + myUrl);
-	if(myUrl === "/") {
-		response.redirect("index.html");
-		return;
-	};
-	
-	//fs.createReadStream(myUrl)
-	response.sendFile(__dirname + myUrl)
-		/*.on('error', function(err) {
-			response.writeHead(500);
-			response.end('Error encountered (the file probably doesn\'t exist.) File accessed: ' + myUrl);
-		})*/
-	//.pipe(response);
+	response.sendFile(__dirname + request.params[0]);
 };
 
 app.get("*", anyHandler);
 
-function listener(){
-	console.log('app is listening on http://localhost:8000');
-};
-
-app.listen(8000, listener);
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Server listening on port ' + app.get('port'));
+});
