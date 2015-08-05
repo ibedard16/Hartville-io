@@ -1,13 +1,41 @@
 (function(){
-	var app = angular.module('blog', ['ui.bootstrap']);
+	var app = angular.module('blog', ['ui.bootstrap', 'ngRoute']);
 
-	app.directive('websiteNavigation', function(){
-		return {
-			restrict: 'E',
-			templateUrl: 'website-navigation.html'
-		};
+	app.config(function ($routeProvider) {
+	    $routeProvider
+            .when('/', {
+                templateUrl: 'views/index.html',
+            })
+            .when('/postExample/', {
+                templateUrl: 'views/postExample.html', 
+            })
+            .when('/new/', {
+                templateUrl: 'views/new.html',  
+            })
+            .when('/blog/', {
+                templateUrl: 'views/blog.html',
+                controller: 'BlogController'
+            })
+            .when('/blog/:id', {
+                templateUrl: 'views/post.html',
+                controller: 'BlogController'
+            })
+            .when('/blog/filter/:filter', {
+                templateUrl: 'views/blog.html',
+                controller: 'BlogController'
+            })
+            .otherwise({
+                templateUrl: 'views/404.html'
+            });
 	});
 
+	app.directive('websiteNavigation', function () {
+		return {
+			restrict: 'E',
+			templateUrl: 'views/website-navigation.html'
+		};
+	});
+    
 	app.controller('BlogController', function(){
 		this.post = info;
 	});
