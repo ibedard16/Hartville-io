@@ -8,7 +8,6 @@ var app = express();
 app.set('port', process.env.PORT || 8000);
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 function anyHandler(request, response) {
 	response.sendFile(__dirname + request.params[0]);
 };
