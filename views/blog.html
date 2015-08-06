@@ -1,0 +1,17 @@
+<div class="container padded">
+	<div class="row">
+		<div class="col-md-9" ng-repeat="post in posts | orderBy:date">
+		
+			<ul class="list-group">
+				<li class="list-group">
+					<h1>{{post.title}}</h1>
+					<hr>
+					<p>{{post.content}}</p>
+				</li>
+				<li><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
+				<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}} </li>
+			</ul>
+		</div> <!--end column-->
+		<website-sidebar></website-sidebar>
+	</div> <!--end row-->
+</div> <!--end container -->

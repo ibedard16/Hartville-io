@@ -1,0 +1,26 @@
+<div class="container padded">
+	<div class="row">
+		<div class="col-md-9">
+		
+			<ul class="list-group">
+				<li class="list-group">
+				    <img ng-src="{{content.images[0].full}}" class="img-responsive" />
+					<h1>{{content.title}}</h1>
+					<li class="list-group"><span class="glyphicon glyphicon-pencil"></span> By {{content.author}} | 
+				<span class="glyphicon glyphicon-time"></span> {{content.date | date:'MM/dd/yyyy @ h:mma'}} </li>
+					<hr>
+					<p>{{content.content}}</p>
+				</li>
+			</ul>
+			
+			<nav>
+              <ul class="pager">
+                <li><a href="#">Previous</a></li>
+                <li><a href="#">Next</a></li>
+              </ul>
+            </nav>
+		
+		</div> <!--end column-->
+		<website-sidebar></website-sidebar>
+	</div> <!--end row-->
+</div> <!--end container -->

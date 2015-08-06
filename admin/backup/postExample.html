@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="blog">
+<head>
+	<meta charset="utf-8">
+	<title>Hartville.io</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-controller="BlogController as blog">
+
+<website-navigation></website-navigation>
+
+<div class="container padded">
+<div class="row">
+<div class="col-md-12">
+
+	<ul class="list-group">
+		<li class="list-group">
+			<blockquote ng-repeat="post in blog.post">{{post.content}}</blockquote>
+		</li>
+	</ul>
+
+</div> <!--end column-->
+</div> <!--end row-->
+</div> <!--end container -->
+
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/ui.bootstrap.js"></script>
+</body>
+</html>

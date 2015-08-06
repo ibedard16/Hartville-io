@@ -1,0 +1,26 @@
+{
+  "name": "hartville-io",
+  "version": "0.2.0",
+  "description": "Website for Hartville.io",
+  "main": "express.js",
+  "dependencies": {
+    "angular": "1.4.3",
+    "angular-route": "1.4.3",
+    "express": "4.13.3",
+    "vary": "1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibedard16/Hartville-io.git"
+  },
+  "author": "Isaac Bedard , Brent Miller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibedard16/Hartville-io/issues"
+  },
+  "homepage": "https://github.com/ibedard16/Hartville-io#readme"
+}
