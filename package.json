@@ -6,6 +6,8 @@
   "dependencies": {
     "angular": "1.4.3",
     "angular-route": "1.4.3",
+    "angular-ui-bootstrap": "^0.13.2",
+    "bootstrap": "3.3.5",
     "express": "4.13.3",
     "vary": "1.0.1"
   },
