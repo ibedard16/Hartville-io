@@ -1,35 +1,61 @@
-angular.module('blog').controller(
-	'blogController', ['$scope', '$routeParams', function ($scope, $routeParams) {
-	    $scope.posts = [
-            {
-		        title: "Example Post 1",
-		        author: "Isaac Bedard",
-		        date: new Date(2015, 07, 24, 0, 0, 0, 0),
-		        body: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis ullamcorper augue, quis posuere quam convallis quis. Integer volutpat, nunc vel cursus pretium, erat dolor imperdiet nisl, in porttitor ligula enim eu mauris. Cras cursus at tellus et porttitor. Donec feugiat varius lorem, vel mattis risus vestibulum non. Phasellus volutpat egestas gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque vehicula sodales pellentesque. Ut velit nibh, dapibus in gravida a, varius eu sapien. Etiam ut sem convallis, rhoncus sapien vel, finibus quam. Donec in lorem a urna scelerisque vehicula. Fusce posuere dignissim eleifend. Pellentesque nec faucibus nisl. Donec ut ante et quam laoreet rhoncus non vel metus. Nam est lectus, cursus vitae posuere quis, condimentum quis velit. Duis sit amet rhoncus nunc. Quisque sed mauris gravida, pulvinar ante sit amet, elementum felis. ", " Praesent enim dolor, pulvinar nec eleifend vel, dignissim sit amet ante. Duis non auctor arcu. Morbi interdum faucibus pulvinar. Vivamus laoreet, dolor ut feugiat aliquet, dui lorem pretium lacus, nec bibendum velit quam eu erat. Nulla facilisi. Etiam rhoncus tellus vitae nibh blandit eleifend. Nulla hendrerit facilisis est nec tincidunt. Donec ut mattis erat, quis rhoncus arcu. Ut non mi ut ex pharetra luctus a ut nulla. Quisque iaculis id leo ut molestie. Praesent accumsan sollicitudin massa, eget pharetra nunc consequat in. Curabitur posuere, ipsum hendrerit vestibulum cursus, lacus magna euismod neque, et egestas lorem nisi sed nisi. Nunc luctus semper lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam quam augue, tempus vel lectus eget, consectetur maximus nisl. Nulla fringilla malesuada rutrum. ", " Nam sed laoreet augue, id iaculis dolor. Ut venenatis ipsum ac justo accumsan porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus felis lacus, euismod sit amet nulla in, feugiat rhoncus neque. Donec maximus tortor non massa porta tempus. Etiam lacus turpis, tincidunt vitae arcu quis, blandit blandit elit. Nulla semper magna congue enim aliquet, vitae iaculis augue pellentesque. Morbi nec ipsum scelerisque, pulvinar nunc id, tempus purus. Nunc fermentum ultrices enim, vel sollicitudin justo fermentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus et ex bibendum, dictum odio imperdiet, convallis ex. Nullam at magna in orci suscipit ullamcorper eget a diam. ", " Ut ligula nulla, efficitur quis nisl sed, venenatis volutpat urna. Donec nisi ex, facilisis et fermentum non, efficitur et urna. Ut imperdiet dignissim dignissim. Donec aliquet justo a nibh mollis, vitae lacinia nisl venenatis. Donec ac tincidunt orci. Phasellus a rhoncus neque, ut dignissim nisi. Nullam fermentum viverra mi quis laoreet. ", " Sed eu bibendum enim. Phasellus tristique orci velit, sit amet imperdiet tortor dapibus ac. Etiam egestas ligula non mi lobortis, ut consectetur arcu aliquet. Curabitur facilisis elit ut nisl tristique pretium. Donec purus enim, lobortis vel dolor nec, tempus ullamcorper nunc. Aliquam ac urna nec nisi pretium tempus ut in metus. Phasellus eget bibendum felis, sit amet condimentum mi."],
-		        tags: ["test1", "test2"]
-            },
-            {
-                title: "Example Post 2",
-                author: "Isaac Bedard",
-                date: new Date(2015, 07, 29, 0, 0, 0, 0),
-                body: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis ullamcorper augue, quis posuere quam convallis quis. Integer volutpat, nunc vel cursus pretium, erat dolor imperdiet nisl, in porttitor ligula enim eu mauris. Cras cursus at tellus et porttitor. Donec feugiat varius lorem, vel mattis risus vestibulum non. Phasellus volutpat egestas gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque vehicula sodales pellentesque. Ut velit nibh, dapibus in gravida a, varius eu sapien. Etiam ut sem convallis, rhoncus sapien vel, finibus quam. Donec in lorem a urna scelerisque vehicula. Fusce posuere dignissim eleifend. Pellentesque nec faucibus nisl. Donec ut ante et quam laoreet rhoncus non vel metus. Nam est lectus, cursus vitae posuere quis, condimentum quis velit. Duis sit amet rhoncus nunc. Quisque sed mauris gravida, pulvinar ante sit amet, elementum felis. ", " Praesent enim dolor, pulvinar nec eleifend vel, dignissim sit amet ante. Duis non auctor arcu. Morbi interdum faucibus pulvinar. Vivamus laoreet, dolor ut feugiat aliquet, dui lorem pretium lacus, nec bibendum velit quam eu erat. Nulla facilisi. Etiam rhoncus tellus vitae nibh blandit eleifend. Nulla hendrerit facilisis est nec tincidunt. Donec ut mattis erat, quis rhoncus arcu. Ut non mi ut ex pharetra luctus a ut nulla. Quisque iaculis id leo ut molestie. Praesent accumsan sollicitudin massa, eget pharetra nunc consequat in. Curabitur posuere, ipsum hendrerit vestibulum cursus, lacus magna euismod neque, et egestas lorem nisi sed nisi. Nunc luctus semper lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam quam augue, tempus vel lectus eget, consectetur maximus nisl. Nulla fringilla malesuada rutrum. ", " Nam sed laoreet augue, id iaculis dolor. Ut venenatis ipsum ac justo accumsan porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus felis lacus, euismod sit amet nulla in, feugiat rhoncus neque. Donec maximus tortor non massa porta tempus. Etiam lacus turpis, tincidunt vitae arcu quis, blandit blandit elit. Nulla semper magna congue enim aliquet, vitae iaculis augue pellentesque. Morbi nec ipsum scelerisque, pulvinar nunc id, tempus purus. Nunc fermentum ultrices enim, vel sollicitudin justo fermentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus et ex bibendum, dictum odio imperdiet, convallis ex. Nullam at magna in orci suscipit ullamcorper eget a diam. ", " Ut ligula nulla, efficitur quis nisl sed, venenatis volutpat urna. Donec nisi ex, facilisis et fermentum non, efficitur et urna. Ut imperdiet dignissim dignissim. Donec aliquet justo a nibh mollis, vitae lacinia nisl venenatis. Donec ac tincidunt orci. Phasellus a rhoncus neque, ut dignissim nisi. Nullam fermentum viverra mi quis laoreet. ", " Sed eu bibendum enim. Phasellus tristique orci velit, sit amet imperdiet tortor dapibus ac. Etiam egestas ligula non mi lobortis, ut consectetur arcu aliquet. Curabitur facilisis elit ut nisl tristique pretium. Donec purus enim, lobortis vel dolor nec, tempus ullamcorper nunc. Aliquam ac urna nec nisi pretium tempus ut in metus. Phasellus eget bibendum felis, sit amet condimentum mi."],
-                tags: ["test2", "test3"]
-            },
-            {
-                title: "Example Post 3",
-                author: "Isaac Bedard",
-                date: new Date(2015, 07, 23, 0, 0, 0, 0),
-                body: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis ullamcorper augue, quis posuere quam convallis quis. Integer volutpat, nunc vel cursus pretium, erat dolor imperdiet nisl, in porttitor ligula enim eu mauris. Cras cursus at tellus et porttitor. Donec feugiat varius lorem, vel mattis risus vestibulum non. Phasellus volutpat egestas gravida. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque vehicula sodales pellentesque. Ut velit nibh, dapibus in gravida a, varius eu sapien. Etiam ut sem convallis, rhoncus sapien vel, finibus quam. Donec in lorem a urna scelerisque vehicula. Fusce posuere dignissim eleifend. Pellentesque nec faucibus nisl. Donec ut ante et quam laoreet rhoncus non vel metus. Nam est lectus, cursus vitae posuere quis, condimentum quis velit. Duis sit amet rhoncus nunc. Quisque sed mauris gravida, pulvinar ante sit amet, elementum felis. ", " Praesent enim dolor, pulvinar nec eleifend vel, dignissim sit amet ante. Duis non auctor arcu. Morbi interdum faucibus pulvinar. Vivamus laoreet, dolor ut feugiat aliquet, dui lorem pretium lacus, nec bibendum velit quam eu erat. Nulla facilisi. Etiam rhoncus tellus vitae nibh blandit eleifend. Nulla hendrerit facilisis est nec tincidunt. Donec ut mattis erat, quis rhoncus arcu. Ut non mi ut ex pharetra luctus a ut nulla. Quisque iaculis id leo ut molestie. Praesent accumsan sollicitudin massa, eget pharetra nunc consequat in. Curabitur posuere, ipsum hendrerit vestibulum cursus, lacus magna euismod neque, et egestas lorem nisi sed nisi. Nunc luctus semper lobortis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam quam augue, tempus vel lectus eget, consectetur maximus nisl. Nulla fringilla malesuada rutrum. ", " Nam sed laoreet augue, id iaculis dolor. Ut venenatis ipsum ac justo accumsan porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus felis lacus, euismod sit amet nulla in, feugiat rhoncus neque. Donec maximus tortor non massa porta tempus. Etiam lacus turpis, tincidunt vitae arcu quis, blandit blandit elit. Nulla semper magna congue enim aliquet, vitae iaculis augue pellentesque. Morbi nec ipsum scelerisque, pulvinar nunc id, tempus purus. Nunc fermentum ultrices enim, vel sollicitudin justo fermentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus et ex bibendum, dictum odio imperdiet, convallis ex. Nullam at magna in orci suscipit ullamcorper eget a diam. ", " Ut ligula nulla, efficitur quis nisl sed, venenatis volutpat urna. Donec nisi ex, facilisis et fermentum non, efficitur et urna. Ut imperdiet dignissim dignissim. Donec aliquet justo a nibh mollis, vitae lacinia nisl venenatis. Donec ac tincidunt orci. Phasellus a rhoncus neque, ut dignissim nisi. Nullam fermentum viverra mi quis laoreet. ", " Sed eu bibendum enim. Phasellus tristique orci velit, sit amet imperdiet tortor dapibus ac. Etiam egestas ligula non mi lobortis, ut consectetur arcu aliquet. Curabitur facilisis elit ut nisl tristique pretium. Donec purus enim, lobortis vel dolor nec, tempus ullamcorper nunc. Aliquam ac urna nec nisi pretium tempus ut in metus. Phasellus eget bibendum felis, sit amet condimentum mi."],
-                tags: ["test1","test3"]
-            },
-            {
-                title: "About",
-                author: "Isaac Bedard",
-                date: new Date(2015, 06, 0, 0, 0, 0, 0),
-                body: ["Hartville.io is a website meant to connect technology-minded people in and around Hartville, OH."],
-                tags: ["website","about"]
-            },
-	    ];
-	    $scope.post = $scope.posts[$routeParams.id];
-	    $scope.filter = $routeParams.filter;
-	}]);
+app.controller('BlogController', ['$scope', '$routeParams', function($scope, $routeParams){
+	$scope.posts = [
+		{
+			title: 'Etiam Dapibus',
+			link: '#/blog/0',
+			author: 'John Smith',
+			date: 1388123412323,
+			content: 'Sed congue quam sed est porta, at tempor feugiat. Etiam dapibus congue imperdiet. Nam commodo nisi et diam gravida elementum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada fringilla ex, id placerat diam consectetur quis. Lorem et magna consectetur vitae. Maecenas eu venenatis mauris, congue congue nulla.',
+			tags: ['congue','NULLA','aliquam vitae'],
+			images: [
+				{
+					full: 'images/post-01-full.jpg',
+					thumb: ''
+				}
+			]
+		},
+		{
+			title: 'In Augue Orci',
+			link: '#/blog/1',
+			author: 'Tom Sulivan',
+			date: 1912123512443,
+			content: 'Aliquam lacinia, ex at lobortis varius, velit nulla tempor neque, vitae rutrum leo eros sodales ligula. In augue orci, varius non nunc sed, consequat imperdiet massa. Duis vitae blandit felis, sed luctus massa. Etiam dignissim nunc urna, a egestas enim cursus quis. Nam nec pretium sapien. Phasellus quis consectetur sem.',
+			tags: ['lobortis','velit','nam', 'cursus'],
+			images: [
+				{
+					full: 'images/post-02-full.jpg',
+					thumb: ''
+				}
+			]
+		},
+		{
+			title: 'Nullam et Nisi',
+			link: '#/blog/2',
+			author: 'Tom Sulivan',
+			date: 1312123442323,
+			content: 'Morbi molestie diam id urna fringilla commodo eget vel justo. In bibendum viverra risus, a tempus elit auctor tincidunt. Quisque id malesuada nunc, ut eleifend metus. Quisque eget vehicula nunc. Fusce faucibus sit amet libero accumsan viverra. Vestibulum facilisis enim eget nisi ullamcorper iaculis. Nullam et nisi turpis. Proin pretium risus a magna elementum ultrices.',
+			tags: ['nunc', 'enim et nisi'],
+			images: [
+				{
+					full: 'images/post-03-full.jpg',
+					thumb: ''
+				}
+			]
+		},
+		{
+			title: 'Curabitur Eget Semper',
+			link: '#/blog/3',
+			author: 'Joanne Smith',
+			date: 1336123517323,
+			content: 'Curabitur eget semper nibh. Ut sed blandit velit, sit amet pellentesque libero. Vivamus varius dolor sed quam accumsan porta. Nunc feugiat orci nec semper lobortis. Nullam eget accumsan est. Nam placerat eleifend suscipit. Aenean tincidunt ultrices nulla ut volutpat. Pellentesque sem magna, molestie ut massa ut, convallis dictum leo. In bibendum viverra risus, a tempus elit auctor tincidunt. Quisque id malesuada nunc, ut eleifend metus.',
+			tags: ['pellentesque', 'molestie', 'tincidunt'],
+			images: [
+				{
+					full: 'images/post-04-full.jpg',
+					thumb: ''
+				}
+			]
+		}
+	];
+	$scope.content = $scope.posts[$routeParams.id];
+}]);
