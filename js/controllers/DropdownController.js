@@ -1,18 +1,8 @@
-app.controller("DropdownController", function ($scope, $log) {
-	$scope.items = [
-		'Profile',
-		'New Post',
-		'Log Out'
-	];
-	  
+app.controller("DropdownController", function ($scope) {
 	$scope.status = {
 		isopen: false
 	};
-	
-	$scope.toggled = function(open) {
-		$log.log('Dropdown is now: ', open);
-	};
-	
+	$scope.isCollapsed = true;
 	$scope.toggleDropdown = function($event) {
 		$event.preventDefault();
 		$event.stopPropagation();
