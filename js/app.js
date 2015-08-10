@@ -1,1 +1,1 @@
-var app = angular.module('Hartville-io', ['ui.bootstrap', 'ngRoute']);
+var app = angular.module('Hartville-io', ['ui.bootstrap', 'ngRoute', 'mgcrea.ngStrap', 'ngAnimate']);

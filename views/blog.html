@@ -1,10 +1,24 @@
 <div class="container padded">
+	<ol class="breadcrumb">
+	  <li><a href="#/">Home</a></li>
+	  <li class="active">Blog</li>
+	</ol>
+	<div class="page-header">
+		<h1>Blog</h1>
+	</div><!-- end page-header -->
 	<div class="row">
-		<div class="col-md-9" ng-repeat="post in posts | orderBy:date">
-		
-			<ul class="list-group">
+		<div class="input-group col-sm-4 form-search">
+	        <span class="input-group-addon">
+	            <span class="glyphicon glyphicon-search"></span>
+	        </span>
+	        <input type="text" class="form-control" ng-model="post.searchInput" placeholder="Type something to start filtering...">
+	    </div><br>
+	</div> <!-- end row -->
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="list-group" ng-repeat="post in posts | orderBy:date | filter:post.searchInput">
 				<li class="list-group">
-					<h1>{{post.title}}</h1>
+					<h1><a href="{{post.link}}">{{post.title}}</a></h1>
 					<hr>
 					<p>{{post.content}}</p>
 				</li>
@@ -12,6 +26,8 @@
 				<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}} </li>
 			</ul>
 		</div> <!--end column-->
-		<website-sidebar></website-sidebar>
+		<div class="col-md-12">
+			<pagination total-items="posts.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+		</div>
 	</div> <!--end row-->
 </div> <!--end container -->

@@ -3,21 +3,30 @@
     <head>
     	<meta charset="utf-8">
     	<title>Hartville.io</title>
+    	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     	
     	<!--Styles-->
     	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="css/animations.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
         
         <!--AngularJS-->
         <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
         <script type="text/javascript" src="node_modules/angular-ui-bootstrap/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.js"></script>
+        
+        <!--AngularStrap 'keep after Bootstrap'-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.min.js"></script><!--JS Library Code-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.tpl.min.js"></script><!--HTML Defaults-->
+        
     </head>
     <body ng-app="Hartville-io">
         <website-navigation></website-navigation>
     
-        <ng-view ng-controller="BlogController"></ng-view>
+        <ng-view ng-animate-children ng-controller="BlogController"></ng-view>
     
         <website-footer></website-footer>
         
@@ -30,10 +39,12 @@
         <!--Controllers-->
         <script src="js/controllers/BlogController.js"></script>
         <script src="js/controllers/DropdownController.js"></script>
+        <script src="js/controllers/UserDropdownController.js"></script>
+        <script src="js/controllers/HeaderController.js"></script>
         
         <!--Directives--->
         <script src="js/directives/websiteNavigation.js"></script>
-        <script src="js/directives/websiteSidebar"></script>
-        <script src="js/directives/websiteFooter"></script>
+        <script src="js/directives/websiteSidebar.js"></script>
+        <script src="js/directives/websiteFooter.js"></script>
     </body>
 </html>

@@ -3,24 +3,95 @@ body {
   color: #4d4d57;
   font-weight: 400;
 }
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 h1, h2, h3, h4 {font-weight: 200; color:#7e7f7f;}
 h5, h6 {font-weight: 600; color:#7e7f7f;}
 li{
   list-style: none;
 }
-padded{
+a{color: #d9534f;}
+a:hover{
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.padded{
   padding: 10px 10px;
 }
 .panel{border:none;}
-.navbar-primary{
-	background-color: #d9534f;
-	color: #fff;
-	border-radius: 0px;
+.navbar{ margin-bottom: 0px;}
+.navbar-default{
+    background-color: #fff !important;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid #e7e7e7;
 }
-.navbar-brand, .navbar-brand:hover {color: #fff;}
-nav li a{color: #fff;}
-nav li a:hover{color: #fff;}
-
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+    background-color: #d9534f;
+    color: #fff;
+}
+.container-full-bg {
+  width:100%;
+  height:100%;
+  max-width:100%;
+  background-position:center;
+  background-size:cover;
+}
+.container-full-bg .container, .container-full-bg .container .jumbotron {height:100%;width:100%;}
 .btn {
 	border-radius: 0px;
+}
+.btn-danger:hover {
+    color: #d9534f;
+    background-color: transparent;
+    border-color: #d9534f;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.btn-success:hover {
+    color: #5cb85c;
+    background-color: transparent;
+    border-color: #5cb85c;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.btn-lg.btn-danger{
+    color: #fff;
+    background-color: transparent;
+    border-color: #fff;
+}
+.btn-lg.btn-danger:hover{
+    color: #d9534f;
+    background-color: #fff;
+    border-color: #fff;
+}
+jumbotron > .btn-danger:hover{
+  border-color: #fff;
+}
+.jumbotron{
+    background-color: transparent !important;
+    text-align: center;
+    color: #fff;
+}
+.list-group-item.active{
+    font-size: 1em;
+}
+.list-group-item{
+    font-size: .75em;
+}
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.pager li>a, .pager li>span{
+    color: #d9534f;
+}
+.pager li>a:hover, .pager li>span:hover{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.form-search{
+    margin: 10px;
 }

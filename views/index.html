@@ -3,7 +3,7 @@
       	<div class="jumbotron">
       	    <h1>Hartville.io</h1>
             <p>Information about the website.</p>
-            <p><a class="btn btn-danger btn-lg" href="about.html" role="button">Learn more</a></p>
+            <p><a class="btn btn-danger btn-lg" href="/#/about" role="button">Learn more</a></p>
       	</div>
     </div>
 </div>
@@ -21,20 +21,20 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel-heading">
-                                <a href="#/blog/{{posts.id}}"><h2>{{post.title}}</h2></a>
+                                <a href="{{post.link}}"><h2>{{post.title}}</h2></a>
                                 <h5>By: <a href="#">{{post.author}}</a></h5>
                                 <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                             </div>
                             <div class="panel-body">
                                 <img ng-src="{{post.images[0].full}}" class="img-responsive" /><hr>
                                 <p>{{post.content | limitTo:256}} ...</p>
-                                <a href="{{post.link}}"><button class="btn btn-danger btn-sm pull-right">Continue Reading <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                                <a href="{{post.link}}"><button class="btn btn-danger btn-sm pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                             </div>
 
                             <div class="panel-footer">
-                                <ul class="small list-inline" ng-show="post.tags.length">
-                                    <li>tags:</li>
-                                    <li ng-repeat="tag in post.tags"><a href="#">{{tag | lowercase}}</a></li>
+                                <ul class="small list-inline" ng-show="post.categories.length">
+                                    <li><span class="glyphicon glyphicon-tags"></span></li>
+                                    <li ng-repeat="category in post.categories"><a href="#">{{category | lowercase}}</a></li>
                                 </ul>
                             </div>
                         </div> <!-- end panel body -->
@@ -59,15 +59,14 @@
                                 <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                             </div>
                             <div class="panel-body">
-                                <img ng-src="{{post.images[0].full}}" class="img-responsive" /><hr>
-                                <p>{{post.content | limitTo:256}} ...</p>
-                                <a href="{{post.link}}"><button class="btn btn-danger btn-sm pull-right">Continue Reading <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                                <p>{{post.teaser}}</p>
+                                <a href="{{post.link}}"><button class="btn btn-danger btn-xs pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                             </div>
 
                             <div class="panel-footer">
-                                <ul class="small list-inline" ng-show="post.tags.length">
-                                    <li>tags:</li>
-                                    <li ng-repeat="tag in post.tags"><a href="#">{{tag | lowercase}}</a></li>
+                                <ul class="small list-inline" ng-show="post.categories.length">
+                                    <li><span class="glyphicon glyphicon-tags"></span></li>
+                                    <li ng-repeat="category in post.categories"><a href="#">{{category | lowercase}}</a></li>
                                 </ul>
                             </div>
                         </div> <!-- end panel body -->

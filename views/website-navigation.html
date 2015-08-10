@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default" role="navigation" ng-controller="DropdownController">
+<nav class="navbar navbar-default" role="navigation" ng-controller="DropdownController" bs-navbar>
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" ng-click="DropdownController = !DropdownController">
+      <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
@@ -13,16 +13,16 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" collapse="DropdownController">
+    <div class="navbar-collapse" collapse="isCollapsed" ng-controller="HeaderController">
       <ul class="nav navbar-nav">
-        <li><a href="#/blog/" ng-click="DropdownController = !DropdownController">Blog</a></li>
-        <li><a href="#" ng-click="DropdownController = !DropdownController">Spotlight</a></li>
-        <li><a href="#" ng-click="DropdownController = !DropdownController">Community</a></li> 
-        <li><a href="#" ng-click="DropdownController = !DropdownController">About</a></li> 
+        <li data-match-route="/blog/"><a href="#/blog/">Blog</a></li>
+        <li data-match-route="/spotlight/"><a href="#/spotlight/">Spotlight</a></li>
+        <li data-match-route="/community/"><a href="#/community/">Community</a></li> 
+        <li data-match-route="/about/"><a href="#/about/">About</a></li> 
       </ul>
       
-      <ul class="nav navbar-nav navbar-right">
-        <li dropdown on-toggle="toggled(open)">
+      <ul class="nav navbar-nav navbar-right" ng-controller="UserDropdownController">
+        <li bs-dropdown="dropdown">
             <a href id="simple-dropdown" dropdown-toggle>
               <span class="glyphicon glyphicon-cog"></span> UserName <span class="caret"></span>
             </a>
@@ -32,6 +32,7 @@
               </li>
             </ul>
         </li>
+        
       </ul>
     </div><!-- /.navbar-collapse -->
     </div>

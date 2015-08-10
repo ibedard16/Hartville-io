@@ -1,8 +1,8 @@
 <div class="col-md-3">
     <div class="list-group">
       <a href="#/blog" class="list-group-item active">
-        Blog <span class="glyphicon glyphicon-chevron-right"></span>
+        Recent Posts <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
-          <a href="#" class="list-group-item" ng-repeat="post in posts | limitTo:4 | orderBy: '-date'">{{post.title}}</a>
+          <a href="{{post.link}}" class="list-group-item" ng-repeat="post in posts | limitTo:4 | orderBy: '-date'">{{post.title}}</a>
     </div>
 </div>
