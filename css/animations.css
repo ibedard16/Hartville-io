@@ -1,0 +1,12 @@
+/* Animations */
+.list-group.ng-enter {
+    animation: bounceInLeft 1s;
+}
+
+.list-group.ng-leave {
+    animation: bounceOutLeft 1s;
+}
+
+.list-group.ng-move {
+    animation: bounceInUp 1s;
+}
