@@ -36,9 +36,9 @@ app.get('/index.html', function(request, response) {
     response.send('index.html');
 })
 
-app.get('*', function(request, response) {
+/*app.get('*', function(request, response) {
     response.sendFile(__dirname + '/public/index.html#/404');
-})
+})*/
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Server listening on port ' + app.get('port'));
