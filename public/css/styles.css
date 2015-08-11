@@ -69,8 +69,25 @@ jumbotron > .btn-danger:hover{
 }
 .jumbotron{
     background-color: transparent !important;
+}
+.jumbotron, .jumbotron-404{
     text-align: center;
     color: #fff;
+}
+.jumbotron-404{
+    background-color: #d9534f;
+    margin: 20px;
+}
+.error-header{
+    font-size: 3em;
+    color: #fff;
+}
+.error-lg-font{
+    font-size: 1.5em;
+}
+.lg-glyphicon{
+    font-size: 5em;
+    padding-top: 20px;
 }
 .list-group-item.active{
     font-size: 1em;
@@ -94,4 +111,35 @@ jumbotron > .btn-danger:hover{
 }
 .form-search{
     margin: 10px;
+}
+.dropdown-menu{
+    border-radius: 0px;
+}
+
+/*sidebar styling*/
+
+.sidebar-group{
+    padding-bottom: 20px;
+}
+
+/*footer styling*/
+
+footer{
+	background-color: #282828;
+	color: #5e5e5e;
+	font-weight: 700;
+	padding: 15px 0px;
+}
+.footer-header{
+    color: #d9534f;
+}
+.footer-header-other{
+    color: #FFF;
+}
+.footer-hr{
+    border-color: #303030;
+}
+.footer-links{
+    margin: 0px;
+    padding: 0px;
 }

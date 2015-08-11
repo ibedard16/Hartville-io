@@ -1,8 +1,12 @@
-<div class="col-md-3">
-    <div class="list-group">
-      <a href="#/blog" class="list-group-item active">
-        Recent Posts <span class="glyphicon glyphicon-chevron-right"></span>
+<div class="sidebar-group">
+  <h4><a href="#/about">About Us</a></h4>
+  <p>Mauris et dignissim condimentum, mi tellus auctor justo, sed lobortis lectus mauris id dolor. Morbi vulputate lectus eu eros volutpat, vel ullamcorper sapien rhoncus.</p>
+</div>
+
+<div class="sidebar-group">
+  <h4>Recent Posts</h4>
+      <a href="{{post.link}}" class="list-group-item" ng-repeat="post in posts | limitTo:5 | orderBy: '-date'">
+        {{post.title}}
+        <span class="glyphicon glyphicon-menu-right pull-right"></span>
       </a>
-          <a href="{{post.link}}" class="list-group-item" ng-repeat="post in posts | limitTo:4 | orderBy: '-date'">{{post.title}}</a>
-    </div>
 </div>

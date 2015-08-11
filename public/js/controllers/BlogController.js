@@ -64,5 +64,7 @@ app.controller('BlogController', ['$scope', '$routeParams', function($scope, $ro
 	];
 	
 	$scope.content = $scope.posts[$routeParams.id];
+	
+	
 
 }]);

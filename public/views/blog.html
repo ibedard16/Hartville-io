@@ -15,19 +15,21 @@
 	    </div><br>
 	</div> <!-- end row -->
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-9">
 			<ul class="list-group" ng-repeat="post in posts | orderBy:date | filter:post.searchInput">
 				<li class="list-group">
+					<img ng-src="{{post.images[0].full}}" class="img-responsive" />
 					<h1><a href="{{post.link}}">{{post.title}}</a></h1>
+					<p><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
+					<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
 					<hr>
 					<p>{{post.content}}</p>
+					<a href="{{post.link}}">READ MORE <span class="glyphicon glyphicon-menu-right"></span></a>
 				</li>
-				<li><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
-				<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}} </li>
 			</ul>
 		</div> <!--end column-->
-		<div class="col-md-12">
-			<pagination total-items="posts.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+		<div class="col-md-3">
+			<website-sidebar></website-sidebar>
 		</div>
 	</div> <!--end row-->
 </div> <!--end container -->
