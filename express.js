@@ -8,7 +8,7 @@ var fs = require('fs'),
 
 var app = express();
     app.set('port', process.env.PORT || 8000);
-    app.use(express.static(path.join(__dirname)));
+    app.use(express.static(path.join(__dirname + '/public')));
 
 app.get("/posts.json", function(request, response) {
     post.find(function(err, posts) {

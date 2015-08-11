@@ -4,11 +4,7 @@
   "description": "Website for Hartville.io",
   "main": "express.js",
   "dependencies": {
-    "angular": "1.4.3",
-    "angular-animate": "^1.4.3",
-    "angular-route": "1.4.3",
-    "angular-ui-bootstrap": "^0.13.2",
-    "bootstrap": "3.3.5",
+    "bower": "1.4.1",
     "express": "4.13.3",
     "mongoose": "4.1.1",
     "vary": "1.0.1"

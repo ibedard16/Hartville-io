@@ -1,0 +1,32 @@
+{
+  "name": "hartville-io",
+  "version": "0.2.0",
+  "homepage": "https://github.com/ibedard16/Hartville-io",
+  "authors": [
+    "Isaac Bedard <ibedard@biomedscienceacademy.org>"
+  ],
+  "description": "Website for Hartville.io",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.3",
+    "angular-animate": "1.4.3",
+    "angular-bootstrap": "~0.13.3",
+    "angular-route": "1.4.3",
+    "bootstrap": "3.3.5"
+  }
+}
