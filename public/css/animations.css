@@ -1,12 +1,18 @@
 /* Animations */
-.list-group.ng-enter {
+.post-list-animation.ng-enter {
     animation: bounceInLeft 1s;
 }
 
-.list-group.ng-leave {
+.post-list-animation.ng-leave {
     animation: bounceOutLeft 1s;
 }
 
-.list-group.ng-move {
-    animation: bounceInUp 1s;
+.most-recent-animation.ng-enter {
+    animation: fadeInUp 1s;
+}
+.more-news-animation.ng-enter {
+    animation: fadeInUp 1s;
+}
+.post-animation.ng-enter {
+    animation: fadeIn 750ms;
 }

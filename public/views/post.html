@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-9">
 		
-			<ul class="list-group">
+			<ul class="list-group post-animation" ng-repeat="post in posts | limitTo:1">
 				<li class="list-group">
 				    <img ng-src="{{content.images[0].full}}" class="img-responsive" />
 					<h1>{{content.title}}</h1>

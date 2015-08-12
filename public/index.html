@@ -7,9 +7,9 @@
     	
     	<!--Styles-->
     	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <link rel="stylesheet" type="text/css" href="css/animations.css">
+    	<link rel="stylesheet" type="text/css" href="css/animations.css">
         <link rel="stylesheet" type="text/css" href="css/animate.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
         
         <!--AngularJS-->
@@ -23,10 +23,10 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.tpl.min.js"></script><!--HTML Defaults-->
         
     </head>
-    <body ng-app="Hartville-io">
+    <body class="Site" ng-app="Hartville-io">
         <website-navigation></website-navigation>
     
-        <ng-view ng-animate-children ng-controller="BlogController"></ng-view>
+        <ng-view class="Site-content" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
     
         <website-footer></website-footer>
         

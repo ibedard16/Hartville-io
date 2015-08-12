@@ -5,7 +5,7 @@ var fs = require('fs'),
     http = require('http'),
     url = require('url'),
     post = require('./post');
-
+    
 var app = express();
     app.set('port', process.env.PORT || 8000);
     app.use(express.static(path.join(__dirname + '/public')));
