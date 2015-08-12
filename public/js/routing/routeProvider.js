@@ -5,6 +5,10 @@ app.config(function ($routeProvider) {$routeProvider
 	.when('/new/', {
 		templateUrl: 'views/new.html',  
 	})
+	.when('blog', {
+		templateUrl: 'views/blog.html',
+		controller: 'BlogController'
+	})
 	.when('/blog/', {
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
