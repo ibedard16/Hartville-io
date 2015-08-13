@@ -36,25 +36,25 @@
 							
 							<div class="checkbox">
 							  <label>
-							    <input type="checkbox" value="technology">
+							    <input type="checkbox" name="categories" value="technology">
 							    Technology
 							  </label>
 							</div>
 							<div class="checkbox">
 							  <label>
-							    <input type="checkbox" value="community">
+							    <input type="checkbox" name="categories" value="community">
 							    Community
 							  </label>
 							</div>
 							<div class="checkbox">
 							  <label>
-							    <input type="checkbox" value="science">
+							    <input type="checkbox" name="categories" value="science">
 							    Science
 							  </label>
 							</div>
 							<div class="checkbox">
 							  <label>
-							    <input type="checkbox" value="news">
+							    <input type="checkbox" name="categories" value="news">
 							    News
 							  </label>
 							</div>
@@ -71,7 +71,6 @@
 			</div>
 		  <!--Username--><div class="col-md-6">
 			  <div class="form-group">
-		      	<label class="sr-only" ></label>
 				<div class="input-group">
 				    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
 				    <input type="text" class="form-control" name="username" placeholder="Username">
@@ -80,10 +79,9 @@
 		  </div><!-- end col -->
 		  <!--Password--><div class="col-md-6">
 		  	<div class="form-group">
-		      	<label class="sr-only" ></label>
 				<div class="input-group">
 				    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-				    <input type="text" class="form-control" name="password" placeholder="Password">
+				    <input type="password" autocomplete="off" class="form-control" name="password" placeholder="Password">
 				</div>
 			  </div><!-- end form-group -->
 		  </div>

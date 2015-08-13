@@ -4,6 +4,7 @@
   "description": "Website for Hartville.io",
   "main": "express.js",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "bower": "1.4.1",
     "express": "4.13.3",
     "mongoose": "4.1.1",

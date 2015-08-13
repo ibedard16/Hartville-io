@@ -1,11 +1,18 @@
+<div class="container-full-bg padded">
+    <div class="container special">
+      	<div class="jumbotron">
+      	    <h1 ng-bind="title"></h1>    
+      	</div>
+    </div>
+</div>
+
 <div class="container padded">
+	
 	<ol class="breadcrumb">
-	  <li><a href="#/">Home</a></li>
-	  <li class="active">Blog</li>
+		<li><a href="#/">Home</a></li>
+	    <li class="active">Blog</li>
 	</ol>
-	<div class="page-header">
-		<h1>Blog</h1>
-	</div><!-- end page-header -->
+	
 	<div class="row">
 		<div class="input-group col-sm-4 form-search">
 	        <span class="input-group-addon">
@@ -14,7 +21,9 @@
 	        <input type="text" class="form-control" ng-model="post.searchInput" placeholder="Type something to start filtering...">
 	    </div><br>
 	</div> <!-- end row -->
+	
 	<div class="row">
+		
 		<div class="col-md-9">
 			<ul class="list-group post-list-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput">
 				<li class="list-group">
@@ -28,6 +37,8 @@
 				</li>
 			</ul>
 		</div> <!--end column-->
+		
+		
 		<div class="col-md-3">
 			<website-sidebar></website-sidebar>
 		</div>

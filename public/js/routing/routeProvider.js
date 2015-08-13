@@ -1,15 +1,19 @@
 app.config(function ($routeProvider) {$routeProvider
 	.when('/', {
+		title: 'A Community For Technology',
 		templateUrl: 'views/index.html',
 	})
 	.when('/new/', {
-		templateUrl: 'views/new.html',  
+		title: 'New Post',
+		templateUrl: 'views/new.html',
 	})
 	.when('blog', {
+		title: 'Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/', {
+		title: 'Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
@@ -22,10 +26,28 @@ app.config(function ($routeProvider) {$routeProvider
 		controller: 'BlogController'
 	})
 	.when('/about/', {
+		title: 'About',
 		templateUrl: 'views/about.html',
 		controller: 'BlogController'
 	})
+	.when('/spotlight/', {
+		title: 'Spotlight',
+		templateUrl: 'views/spotlight.html',
+		controller: 'BlogController'
+	})
+	.when('/community/', {
+		title: 'Community',
+		templateUrl: 'views/community.html',
+		controller: 'BlogController',
+	})
 	.otherwise({
-		templateUrl: 'views/404.html'
+		title: '404 Error',
+		templateUrl: 'views/404.html',
 	});
 });
+
+app.run(['$rootScope', function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title;
+    });
+}]);

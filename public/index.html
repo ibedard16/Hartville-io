@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Hartville-io">
     <head>
     	<meta charset="utf-8">
-    	<title>Hartville.io</title>
+    	<title>Hartville.io | {{title}}</title>
     	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     	
     	<!--Styles-->
@@ -23,9 +23,9 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.tpl.min.js"></script><!--HTML Defaults-->
         
     </head>
-    <body class="Site" ng-app="Hartville-io">
+    <body class="Site">
         <website-navigation></website-navigation>
-    
+        
         <ng-view class="Site-content" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
     
         <website-footer></website-footer>
@@ -35,6 +35,7 @@
         
         <!--Services-->
         <script type="text/javascript" src="js/services/posts.js"></script>
+        <script type="text/javascript" src="../vendor/angular-sanitize/angular-sanitize.js"></script>
         
         <!--Routing-->
         <script type="text/javascript" src="js/routing/routeProvider.js"></script>
@@ -45,6 +46,7 @@
         <script type="text/javascript" src="js/controllers/UserDropdownController.js"></script>
         <script type="text/javascript" src="js/controllers/HeaderController.js"></script>
         <script type="text/javascript" src="js/controllers/CollapseController.js"></script>
+        <script type="text/javascript" src="js/controllers/SidebarController.js"></script>
 
         <!--Directives--->
         <script type="text/javascript" src="js/directives/websiteNavigation.js"></script>
