@@ -4,7 +4,7 @@ var fs = require('fs'),
     path = require('path'),
     http = require('http'),
     url = require('url'),
-    post = require('./post');
+    Post = require('./post');
     
 var app = express();
     app.set('port', process.env.PORT || 8000);
@@ -13,7 +13,7 @@ var app = express();
     app.set('view engine', 'html');*/
 
 app.get("/posts.json", function(request, response) {
-    post.find(function(err, posts) {
+    Post.find(function(err, posts) {
         if (err) {
             response.send(500, {
                 success:false
@@ -24,6 +24,30 @@ app.get("/posts.json", function(request, response) {
                 success:true,
                 posts:posts
             });
+        }
+    });
+});
+
+app.post('/create', function(request, response) {
+    var post = new Post({
+        title: request.title,
+        author: request.author,
+        content: request.content,
+        categories: request.categories,
+        images: ""
+    });
+    
+    console.log(request);
+    console.log(request.author);
+    console.log(request.content);
+    console.log(request.categories);
+
+    post.save(function(err, model) {
+        if (err) {
+            response.send(500, 'There was an error - tough luck.');
+        }
+        else {
+            response.redirect('/');
         }
     });
 });

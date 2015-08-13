@@ -1,35 +1,100 @@
-<div class="container padded">
+<div class="container container-form">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
 			  <h1>New Post</h1>
 			</div>
 		</div>
-	</div>
-            <form action="/create" method="POST">
-			  <div class="form-group">
+
+        <form name="newPost" action="/create" method="POST">
+        	<div class="col-md-12">
+			  <!--Title--><div class="form-group">
 			    <label>Title</label>
 			    <input type="text" name="title" class="form-control" placeholder="The title for your post">
 			  </div>
-			  <div class="form-group">
-			    <label>Short Summary</label>
-			    <input type="text" name="title" class="form-control" placeholder="A short summary for your post">
-			  </div>
-			  <div class="form-group">
+			</div>
+			<div class="col-md-12">
+			  <!--Author--><div class="form-group">
 			    <label>Author</label>
 			    <input type="text" name="author" class="form-control" placeholder="John Smith">
 			  </div>
-			  <div class="form-group">
+			</div>
+			<div class="col-md-12">
+			  <!--Content--><div class="form-group">
 			    <label>Content</label>
 			    <textarea type="text" name="content" class="form-control" rows="5"></textarea>
 			  </div>
-			  <div class="form-group">
-			    <label>Tags</label>
-			    <input type="text" name="tags" class="form-control" placeholder="some, tags, about, your, post">
+			</div>
+		 	<div class="col-md-12">
+			  <!--Category--><div class="form-group">
+			    <label>Category</label>
+			    <div ng-controller="CollapseController">
+					<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Choose Categories</button>
+					<hr>
+					<div collapse="!isCollapsed">
+						<div class="well well-md">
+							
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="technology">
+							    Technology
+							  </label>
+							</div>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="community">
+							    Community
+							  </label>
+							</div>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="science">
+							    Science
+							  </label>
+							</div>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="news">
+							    News
+							  </label>
+							</div>
+							
+						</div> 
+					</div>
+				</div>
 			  </div>
-			  <div class="pull-right">
+		  	</div>
+		  	<div class="col-md-12">
+				<div class="page-header">
+				  <h3>Log in</h3>
+				</div>
+			</div>
+		  <!--Username--><div class="col-md-6">
+			  <div class="form-group">
+		      	<label class="sr-only" ></label>
+				<div class="input-group">
+				    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+				    <input type="text" class="form-control" name="username" placeholder="Username">
+				</div>
+			  </div><!-- end form-group -->
+		  </div><!-- end col -->
+		  <!--Password--><div class="col-md-6">
+		  	<div class="form-group">
+		      	<label class="sr-only" ></label>
+				<div class="input-group">
+				    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+				    <input type="text" class="form-control" name="password" placeholder="Password">
+				</div>
+			  </div><!-- end form-group -->
+		  </div>
+		  	
+			<!--Buttons--><div class="row">
+		  		<div class="col-md-12 form-buttons">
 				  <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Submit</button>
 				  <button type="reset" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-remove"></span> Reset</button>
-			  </div>
-			</form>
+			    </div>
+			</div>
+	  	
+		</form>
+	</div><!-- end row wrapper -->
 </div>

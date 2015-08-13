@@ -21,14 +21,14 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel-heading">
-                                <a href="{{post.link}}"><h2>{{post.title}}</h2></a>
+                                <a ng-href="#/blog/{{ posts.indexOf(post) }}"><h2>{{post.title}}</h2></a>
                                 <h5>By: <a href="#">{{post.author}}</a></h5>
                                 <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                             </div>
                             <div class="panel-body">
                                 <img ng-src="{{post.images[0].full}}" class="img-responsive" /><hr>
                                 <p>{{post.content | limitTo:256}} ...</p>
-                                <a href="{{post.link}}"><button class="btn btn-danger btn-sm pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                                <a ng-href="#/blog/{{ posts.indexOf(post) }}"><button class="btn btn-danger btn-sm pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                             </div>
 
                             <div class="panel-footer">
@@ -54,13 +54,13 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel-heading">
-                                <a href="{{post.link}}"><h2>{{post.title}}</h2></a>
+                                <a ng-href="#/blog/{{ posts.indexOf(post) }}"><h2>{{post.title}}</h2></a>
                                 <h5>By: <a href="#">{{post.author}}</a></h5>
                                 <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                             </div>
                             <div class="panel-body">
-                                <p>{{post.teaser}}</p>
-                                <a href="{{post.link}}"><button class="btn btn-danger btn-xs pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                                <p>{{post.content | limitTo:156}} ...</p>
+                                <a ng-href="#/blog/{{ posts.indexOf(post) }}"><button class="btn btn-danger btn-xs pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                             </div>
 
                             <div class="panel-footer">

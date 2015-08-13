@@ -1,6 +1,13 @@
-app.controller('BlogController', ['$scope', '$routeParams', function($scope, $routeParams){
+app.controller('BlogController', ['$scope', '$routeParams', 'posts', function($scope, $routeParams, posts){
 	$scope.searchInput = '';
-	$scope.posts = [
+	posts.success(function(data) {
+		$scope.posts = data.posts;
+		$scope.content = $scope.posts[$routeParams.id];
+	});
+}]);
+
+
+/*$scope.posts = [
 		{
 			title: 'Etiam Dapibus',
 			link: '#/blog/0',
@@ -61,8 +68,5 @@ app.controller('BlogController', ['$scope', '$routeParams', function($scope, $ro
 				}
 			]
 		}
-	];
+	];*/
 	
-	$scope.content = $scope.posts[$routeParams.id];
-	
-}]);
