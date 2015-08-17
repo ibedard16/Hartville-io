@@ -25,22 +25,16 @@
 	<div class="row">
 		
 		<div class="col-md-9">
-			<ul class="list-group post-list-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput">
-				<li class="list-group">
-					<img ng-src="{{post.images[0].full}}" class="img-responsive" />
-					<h1><a ng-href="#/blog/{{ posts.indexOf(post) }}">{{post.title}}</a></h1>
-					<p><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
-					<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
-					<hr>
-					<p>{{post.content}}</p>
-					<a ng-href="#/blog/{{ posts.indexOf(post) }}">READ MORE <span class="glyphicon glyphicon-menu-right"></span></a>
-				</li>
+			<ul class="list-group post-list-animation" ng-repeat="post in posts | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize"> <!--| orderBy:'-date' | filter:post.searchInput-->
+				<post-preview-lg post='post'></post-preview-lg>
 			</ul>
 		</div> <!--end column-->
-		
 		
 		<div class="col-md-3">
 			<website-sidebar></website-sidebar>
 		</div>
 	</div> <!--end row-->
+	<nav>
+		<pagination total-items="posts.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+	</nav>
 </div> <!--end container -->

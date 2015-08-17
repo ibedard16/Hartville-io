@@ -28,6 +28,10 @@
     "angular-bootstrap": "~0.13.3",
     "angular-route": "1.4.3",
     "bootstrap": "3.3.5",
-    "angular-sanitize": "~1.4.3"
+    "angular-sanitize": "~1.4.3",
+    "angular-truncate": "*"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
   }
 }

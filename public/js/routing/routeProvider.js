@@ -1,7 +1,7 @@
 app.config(function ($routeProvider) {$routeProvider
 	.when('/', {
 		title: 'A Community For Technology',
-		templateUrl: 'views/index.html',
+		templateUrl: 'views/home.html',
 	})
 	.when('/new/', {
 		title: 'New Post',
@@ -45,6 +45,8 @@ app.config(function ($routeProvider) {$routeProvider
 		templateUrl: 'views/404.html',
 	});
 });
+
+//Adjusts page titles to match Route.title
 
 app.run(['$rootScope', function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {

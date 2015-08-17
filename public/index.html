@@ -16,26 +16,20 @@
         <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
         <script type="text/javascript" src="vendor/angular-route/angular-route.min.js"></script>
         <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.js"></script>
         
         <!--AngularStrap 'keep after Bootstrap'-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.min.js"></script><!--JS Library Code-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.tpl.min.js"></script><!--HTML Defaults-->
         
-    </head>
-    <body class="Site">
-        <website-navigation></website-navigation>
-        
-        <ng-view class="Site-content" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
-    
-        <website-footer></website-footer>
-        
         <!--Modules-->
+        <script type="text/javascript" src="vendor/angular-truncate/src/truncate.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         
         <!--Services-->
         <script type="text/javascript" src="js/services/posts.js"></script>
-        <script type="text/javascript" src="../vendor/angular-sanitize/angular-sanitize.js"></script>
+        <script type="text/javascript" src="vendor/angular-sanitize/angular-sanitize.js"></script>
         
         <!--Routing-->
         <script type="text/javascript" src="js/routing/routeProvider.js"></script>
@@ -47,10 +41,24 @@
         <script type="text/javascript" src="js/controllers/HeaderController.js"></script>
         <script type="text/javascript" src="js/controllers/CollapseController.js"></script>
         <script type="text/javascript" src="js/controllers/SidebarController.js"></script>
+        <script type="text/javascript" src="js/controllers/PagerController.js"></script>
 
         <!--Directives--->
         <script type="text/javascript" src="js/directives/websiteNavigation.js"></script>
         <script type="text/javascript" src="js/directives/websiteSidebar.js"></script>
         <script type="text/javascript" src="js/directives/websiteFooter.js"></script>
+        <script type="text/javascript" src="js/directives/postPreviewSm.js"></script>
+        <script type="text/javascript" src="js/directives/postPreviewMd.js"></script>
+        <script type="text/javascript" src="js/directives/postPreviewLg.js"></script>
+        
+        <!--Filters-->
+        <script type="text/javascript" src="js/filters/startFrom.js"></script>
+    </head>
+    <body class="Site">
+        <website-navigation></website-navigation>
+        
+        <ng-view class="Site-content" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
+    
+        <website-footer></website-footer>
     </body>
 </html>

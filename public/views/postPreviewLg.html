@@ -1,0 +1,9 @@
+<li class="list-group" ng-controller="BlogController">
+	<img ng-src="{{post.images[0].full}}" class="img-responsive" />
+	<h1><a ng-href="#/blog/{{ posts.indexOf(post) }}">{{post.title}}</a></h1>
+	<p><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
+	<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
+	<hr>
+	<p>{{post.content | words:50}}</p>
+	<a ng-href="#/blog/{{ posts.indexOf(post) }}">READ MORE <span class="glyphicon glyphicon-menu-right"></span></a>
+</li>
