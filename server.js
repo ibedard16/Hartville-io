@@ -5,7 +5,6 @@ var fs = require('fs'),
     http = require('http'),
     url = require('url'),
     bodyParser = require('body-parser'),
-    //mongoose=require('mongoose'),
     Post = require('./post');
     
 var app = express();
@@ -17,8 +16,6 @@ var app = express();
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use(bodyParser.urlencoded({ extended: false }));
-    /*app.set('views', __dirname + "/public");
-    app.set('view engine', 'html');*/
 
 app.get("/posts.json", function(request, response) {
     Post.find(function(err, posts) {
@@ -62,20 +59,6 @@ app.post('/create', function(request, response) {
 app.get('*', function(request, response) {
     response.sendFile(__dirname + '/public/index.html');
 });
-
-/*app.get('/', function(request, response) {
-    response.send('index.html');
-})
-
-app.get('/index.html', function(request, response) {
-    response.send('index.html');
-})
-
-
-
-app.get('/blog', function(request, response) {
-    response.sendFile(__dirname + '/public/index.html');
-});*/
 
 http.createServer(app).listen(app.get('port'), app.get('IP'), function() {
     console.log('Server listening on port ' + app.get('port'));
