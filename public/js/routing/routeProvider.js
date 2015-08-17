@@ -1,4 +1,11 @@
-app.config(function ($routeProvider) {$routeProvider
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$locationProvider) {
+	$locationProvider
+		.html5Mode({
+  			enabled: true,
+  			requireBase: false
+		});
+	
+	$routeProvider
 	.when('/', {
 		title: 'A Community For Technology',
 		templateUrl: 'views/home.html',
@@ -44,7 +51,7 @@ app.config(function ($routeProvider) {$routeProvider
 		title: '404 Error',
 		templateUrl: 'views/404.html',
 	});
-});
+}]);
 
 //Adjusts page titles to match Route.title
 

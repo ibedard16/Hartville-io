@@ -1,12 +1,12 @@
 <div class="sidebar-group">
-  <h4><a href="#/about">About Us</a></h4>
+  <h4><a href="/about">About Us</a></h4>
   <p>Mauris et dignissim condimentum, mi tellus auctor justo, sed lobortis lectus mauris id dolor. Morbi vulputate lectus eu eros volutpat, vel ullamcorper sapien rhoncus.</p>
 </div>
 
 <div class="sidebar-group">
   
   <h4>Recent Posts</h4>
-      <a ng-href="#/blog/{{ posts.indexOf(post) }}" class="list-group-item" ng-repeat="post in posts | orderBy: '-date' | limitTo:10">
+      <a ng-href="/blog/{{ posts.indexOf(post) }}" class="list-group-item" ng-repeat="post in posts | orderBy: '-date' | limitTo:10">
         {{post.title}}
         <span class="glyphicon glyphicon-menu-right pull-right"></span>
       </a>

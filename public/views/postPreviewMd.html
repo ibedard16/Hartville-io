@@ -3,20 +3,20 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="panel-heading">
-                    <h1><a ng-href="#/blog/{{ posts.indexOf(post) }}">{{post.title}}</a></h1>
-                    <h5>By: <a href="#">{{post.author}}</a></h5>
+                    <h1><a ng-href="/blog/{{ posts.indexOf(post) }}">{{post.title}}</a></h1>
+                    <h5>By: <a href="">{{post.author}}</a></h5>
                     <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                 </div>
                 <div class="panel-body">
                     <img ng-src="{{post.images[0].full}}" class="img-responsive" /><hr>
                     <p>{{post.content | words:25}}</p>
-                    <a ng-href="#/blog/{{ posts.indexOf(post) }}"><button class="btn btn-danger btn-sm pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                    <a ng-href="/blog/{{ posts.indexOf(post) }}"><button class="btn btn-danger btn-sm pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                 </div>
 
                 <div class="panel-footer">
                     <ul class="small list-inline" ng-show="post.categories.length">
                         <li><span class="glyphicon glyphicon-tags"></span></li>
-                        <li ng-repeat="category in post.categories"><a href="#">{{category | lowercase}}</a></li>
+                        <li ng-repeat="category in post.categories"><a href="">{{category | lowercase}}</a></li>
                     </ul>
                 </div>
             </div> <!-- end panel body -->

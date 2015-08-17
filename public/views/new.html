@@ -10,7 +10,7 @@
         	<div class="col-md-12">
 			  <!--Title--><div class="form-group">
 			    <label>Title</label>
-			    <input type="text" name="title" class="form-control" placeholder="The title for your post">
+			    <input type="text" name="title" class="form-control" placeholder="The title for your post" ng-model="formInfo.title">
 			  </div>
 			</div>
 			<!--<div class="col-md-12">
@@ -92,7 +92,7 @@
 				  <button type="reset" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-remove"></span> Reset</button>
 			    </div>
 			</div>
-	  	
+	  		<span>{{formInfo}}</span>
 		</form>
 	</div><!-- end row wrapper -->
 </div>

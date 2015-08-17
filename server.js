@@ -11,7 +11,11 @@ var fs = require('fs'),
 var app = express();
     app.set('port', process.env.PORT || 8000);
     app.set('IP', process.env.IP || '127.0.0.1');
-    app.use(express.static(path.join(__dirname + '/public')));
+    app.use('/css', express.static(path.join(__dirname + '/public/css')));
+    app.use('/images', express.static(path.join(__dirname + '/public/images')));
+    app.use('/js', express.static(path.join(__dirname + '/public/js')));
+    app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
+    app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use(bodyParser.urlencoded({ extended: false }));
     /*app.set('views', __dirname + "/public");
     app.set('view engine', 'html');*/
@@ -55,6 +59,10 @@ app.post('/create', function(request, response) {
     }
 });
 
+app.get('*', function(request, response) {
+    response.sendFile(__dirname + '/public/index.html');
+});
+
 /*app.get('/', function(request, response) {
     response.send('index.html');
 })
@@ -63,9 +71,7 @@ app.get('/index.html', function(request, response) {
     response.send('index.html');
 })
 
-app.get('*', function(request, response) {
-    response.sendFile(__dirname + '/public/index.html');
-});
+
 
 app.get('/blog', function(request, response) {
     response.sendFile(__dirname + '/public/index.html');
