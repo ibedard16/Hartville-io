@@ -131,7 +131,7 @@ jumbotron > .btn-danger:hover{
     transition-duration: 0.5s;
 }
 .form-search{
-    margin: 10px;
+    margin: 10px 15px;
 }
 .dropdown-menu{
     border-radius: 0px;
@@ -187,4 +187,34 @@ textarea {
     border: none;
 }
 
-/*blog*/
+/*pagination*/
+.pagination{
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+}
+.pagination>li>a, 
+.pagination>li>span, 
+.pagination>li>a:hover, 
+.pagination>li>span:hover{
+    color: #d9534f;
+}
+.pagination>li:last-child>a,
+.pagination>li:first-child>a,
+.pagination>li:last-child>span,
+.pagination>li:first-child>span {
+    border-radius: 0px;
+}
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
+
+/*breadcrumb*/
+.breadcrumb{
+    margin: 0px 15px;
+}

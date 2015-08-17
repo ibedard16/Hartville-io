@@ -5,11 +5,12 @@ var fs = require('fs'),
     http = require('http'),
     url = require('url'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
+    //mongoose=require('mongoose'),
     Post = require('./post');
     
 var app = express();
     app.set('port', process.env.PORT || 8000);
+    app.set('IP', process.env.IP || '127.0.0.1');
     app.use(express.static(path.join(__dirname + '/public')));
     app.use(bodyParser.urlencoded({ extended: false }));
     /*app.set('views', __dirname + "/public");
@@ -18,7 +19,7 @@ var app = express();
 app.get("/posts.json", function(request, response) {
     Post.find(function(err, posts) {
         if (err) {
-            response.send(500, {
+            response.status(500).send({
                 success:false
             });
         }
@@ -32,27 +33,26 @@ app.get("/posts.json", function(request, response) {
 });
 
 app.post('/create', function(request, response) {
-    var post = new Post({
-        title: request.body.title,
-        author: request.body.username,
-        content: request.body.content,
-        categories: request.body.categories,
-        images: ""
-    });
-    
-    /*mongoose.disconnect();
-    mongoose.connect('mongodb://'+request.body.username+':'+request.body.password+'@ds059672.mongolab.com:59672/hartvilleio');*/
-
-    post.save(function(err, model) {
-        if (err) {
-            response.send(500, 'There was an error - tough luck.', err);
-        }
-        else {
-            //mongoose.disconnect();
-            //mongoose.connect('mongodb://PostReader:PostReader@ds059672.mongolab.com:59672/hartvilleio');
-            response.redirect('/');
-        }
-    });
+    if (request.body.password === 'password') {
+        var post = new Post({
+            title: request.body.title,
+            author: request.body.username,
+            content: request.body.content,
+            categories: request.body.categories,
+            images: ""
+        });
+        
+        post.save(function(err, model) {
+            if (err) {
+                response.status(500).send(err);
+            }
+            else {
+                response.redirect('/');
+            }
+        });
+    } else {
+        response.status(401).send('Invalid Password');
+    }
 });
 
 /*app.get('/', function(request, response) {
@@ -71,6 +71,6 @@ app.get('/blog', function(request, response) {
     response.sendFile(__dirname + '/public/index.html');
 });*/
 
-http.createServer(app).listen(app.get('port'), function() {
+http.createServer(app).listen(app.get('port'), app.get('IP'), function() {
     console.log('Server listening on port ' + app.get('port'));
 });

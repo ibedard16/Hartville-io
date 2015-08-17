@@ -8,24 +8,29 @@
 
 <div class="container padded">
 	
-	<ol class="breadcrumb">
-		<li><a href="#/">Home</a></li>
-	    <li class="active">Blog</li>
-	</ol>
+	<div class="row">
+		<ol class="breadcrumb">
+			<li><a href="#/">Home</a></li>
+		    <li class="active">Blog</li>
+		</ol>
+	</div>
 	
 	<div class="row">
-		<div class="input-group col-sm-4 form-search">
+		<div class="col-md-4">
+	    	<pagination total-items="posts.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+	    </div>
+		<div class="input-group col-md-8 form-search">
 	        <span class="input-group-addon">
 	            <span class="glyphicon glyphicon-search"></span>
 	        </span>
 	        <input type="text" class="form-control" ng-model="post.searchInput" placeholder="Type something to start filtering...">
-	    </div><br>
+	    </div>
 	</div> <!-- end row -->
 	
 	<div class="row">
 		
 		<div class="col-md-9">
-			<ul class="list-group post-list-animation" ng-repeat="post in posts | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize"> <!--| orderBy:'-date' | filter:post.searchInput-->
+			<ul class="list-group post-list-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize">
 				<post-preview-lg post='post'></post-preview-lg>
 			</ul>
 		</div> <!--end column-->
@@ -34,7 +39,4 @@
 			<website-sidebar></website-sidebar>
 		</div>
 	</div> <!--end row-->
-	<nav>
-		<pagination total-items="posts.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
-	</nav>
 </div> <!--end container -->

@@ -1,6 +1,6 @@
 app.controller('BlogController', ['$scope', '$routeParams', 'posts', function($scope, $routeParams, posts){
 	$scope.searchInput = '';
-	posts.success(function(data) {
+	posts.then(function(data) {
 		$scope.posts = data.posts;
 		$scope.content = $scope.posts[$routeParams.id];
 	});

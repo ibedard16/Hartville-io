@@ -1,12 +1,10 @@
 /* Animations */
 .post-list-animation.ng-enter {
-    animation: bounceInLeft 1s;
+    animation: fadeIn 250ms;
 }
-
 .post-list-animation.ng-leave {
-    animation: bounceOutLeft 1s;
+    animation: fadeOut 250ms;
 }
-
 .most-recent-animation.ng-enter {
     animation: fadeInUp 1s;
 }
