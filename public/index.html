@@ -2,6 +2,8 @@
 <html ng-app="Hartville-io">
     <head>
     	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     	<title>Hartville.io | {{title}}</title>
     	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     	<base href="/">
@@ -44,7 +46,7 @@
         <script type="text/javascript" src="js/controllers/SidebarController.js"></script>
         <script type="text/javascript" src="js/controllers/PagerController.js"></script>
 
-        <!--Directives--->
+        <!--Directives-->
         <script type="text/javascript" src="js/directives/websiteNavigation.js"></script>
         <script type="text/javascript" src="js/directives/websiteSidebar.js"></script>
         <script type="text/javascript" src="js/directives/websiteFooter.js"></script>
@@ -55,11 +57,11 @@
         <!--Filters-->
         <script type="text/javascript" src="js/filters/startFrom.js"></script>
     </head>
-    <body class="Site">
-        <website-navigation></website-navigation>
+    <body>
+        <website-navigation class="page-row"></website-navigation>
         
-        <ng-view class="Site-content" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
+        <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
     
-        <website-footer></website-footer>
+        <website-footer class="page-row"></website-footer>
     </body>
 </html>

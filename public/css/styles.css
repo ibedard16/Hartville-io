@@ -4,7 +4,10 @@ body {
   font-weight: 400;
   word-wrap: break-word;
 }
-.Site {
+
+/*Flexbox Soluton*/
+
+/*.Site {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -12,7 +15,27 @@ body {
 
 .Site-content {
   flex: 1;
+}*/
+
+/* Display-Table Solution */
+
+html,
+body { height: 100%; }
+
+body {
+  display: table;
+  width: 100%;
 }
+
+.page-row {
+  display: table-row;
+  height: 1px;
+}
+
+.page-row-expanded { height: 100%; }
+
+
+
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 h1, h3, h4 {font-weight: 200; color:#7e7f7f;}
 h2 {color: #292929;}
