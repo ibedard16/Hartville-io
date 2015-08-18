@@ -5,6 +5,7 @@ var fs = require('fs'),
     http = require('http'),
     url = require('url'),
     bodyParser = require('body-parser'),
+    mongoConnect = require('./server/database/databaseConnect.js'),
     Post = require('./server/database/postSchema');
     
 var app = express();
