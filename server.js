@@ -33,6 +33,12 @@ app.get("/posts.json", function(request, response) {
     });
 });
 
+app.get("/google*", function(request, response) {
+    var verifyUrl = request.url.substring(7);
+    console.log("A user or a GoogleBot attempted to verify the website at: google" + verifyUrl);
+    response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
+});
+
 app.post('/create', function(request, response) {
     if (request.body.password === 'password') {
         var post = new Post({
