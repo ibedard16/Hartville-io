@@ -5,7 +5,7 @@ var fs = require('fs'),
     http = require('http'),
     url = require('url'),
     bodyParser = require('body-parser'),
-    Post = require('./post');
+    Post = require('./server/database/postSchema');
     
 var app = express();
     app.set('port', process.env.PORT || 8000);
@@ -16,6 +16,10 @@ var app = express();
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use(bodyParser.urlencoded({ extended: false }));
+    
+app.get("/favicon.ico", function(request, response){
+    response.sendFile(__dirname + '/public/favicon.ico');
+});
 
 app.get("/posts.json", function(request, response) {
     Post.find(function(err, posts) {

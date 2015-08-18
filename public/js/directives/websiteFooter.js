@@ -1,6 +1,6 @@
 app.directive('websiteFooter', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'views/website-footer.html'
+		templateUrl: 'views/partials/navigation/website-footer.html'
 	};
 });
