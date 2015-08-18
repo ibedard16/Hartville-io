@@ -5,7 +5,7 @@ This is the development space and backup for the website hartville.io.
 * The development site is located at [http://hartville-io-ibedard16.c9.io](http://hartville-io-ibedard16.c9.io)
 
 ## Downloading and running website on local machine
-1. Make sure [node](nodejs.org) and [bower](http://bower.io/) are installed on your computer.
+1. Make sure [node](http://nodejs.org) and [bower](http://bower.io/) are installed on your computer.
 
 2. After navigating the command line to wherever you extracted this repository to, run the following commands:
 
