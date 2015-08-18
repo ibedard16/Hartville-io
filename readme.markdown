@@ -1,8 +1,8 @@
 # Hartville.io
 This is the development space and backup for the website hartville.io.
 
-* ~~The official website is located at http:\\hartville.io~~ Website is currently not hosted at official domain.
-* The development site is located at [http:\\hartville-io-ibedard16.c9.io](http://hartville-io-ibedard16.c9.io)
+* ~~The official website is located at http://hartville.io~~ Website is currently not hosted at official domain.
+* The development site is located at [http://hartville-io-ibedard16.c9.io](http://hartville-io-ibedard16.c9.io)
 
 ## Downloading and running website on local machine
 1. Make sure [node](nodejs.org) and [bower](http://bower.io/) are installed on your computer.
