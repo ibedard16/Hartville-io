@@ -5,8 +5,13 @@ var fs = require('fs'),
     http = require('http'),
     url = require('url'),
     bodyParser = require('body-parser'),
-    mongoConnect = require('./server/database/databaseConnect.js'),
     Post = require('./server/database/postSchema');
+    
+try {
+    var mongoConnect = require('./server/database/databaseConnect');
+} catch (e) {
+    var readerConnect = require('./server/database/readerConnect');
+}
     
 var app = express();
     app.set('port', process.env.PORT || 8000);
