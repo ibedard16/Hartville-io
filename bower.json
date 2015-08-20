@@ -30,7 +30,8 @@
     "bootstrap": "3.3.5",
     "angular-sanitize": "~1.4.3",
     "angular-truncate": "*",
-    "less": "~2.5.1"
+    "less": "~2.5.1",
+    "lodash": "~3.10.1"
   },
   "resolutions": {
     "angular": "1.4.3"

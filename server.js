@@ -5,7 +5,8 @@ var fs          = require('fs'),
     http        = require('http'),
     url         = require('url'),
     bodyParser  = require('body-parser'),
-    Post        = require('./server/database/postSchema');
+    Post        = require('./server/database/postSchema'),
+    Author      = require('./server/database/authorSchema');
     //sass        = require('node-sass');
    
 var app = express();
@@ -42,6 +43,22 @@ app.get("/posts.json", function(request, response) {
             response.send({
                 success:true,
                 posts:posts
+            });
+        }
+    });
+});
+
+app.get("/authors.json", function(request, response) {
+    Author.find(function(err, authors) {
+        if (err) {
+            response.status(500).send({
+                success:false
+            });
+        }
+        else {
+            response.send({
+                success:true,
+                authors:authors
             });
         }
     });
