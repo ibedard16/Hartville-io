@@ -4,27 +4,34 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
   			enabled: true,
   			requireBase: false
 		});
+		
+	$routeProvider.caseInsensitiveMatch = true;
 	
 	$routeProvider
 	.when('/', {
 		title: 'A Community For Technology',
 		templateUrl: 'views/home.html',
+		controller: 'BlogController' 
 	})
-	.when('/new/', {
+	.when('/new', {
 		title: 'New Post',
 		templateUrl: 'views/new.html',
 	})
-	.when('blog', {
+	.when('/blog', {
 		title: 'Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
-	.when('/blog/', {
+	.when('/blog/author/:author', {
 		title: 'Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/:id', {
+		templateUrl: 'views/post.html',
+		controller: 'BlogController'
+	})
+	.when('/blog/post/:id', {
 		templateUrl: 'views/post.html',
 		controller: 'BlogController'
 	})

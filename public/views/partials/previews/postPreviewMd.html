@@ -4,7 +4,7 @@
             <div class="panel-body">
                 <div class="panel-heading">
                     <h1><a ng-href="/blog/{{ posts.indexOf(post) }}">{{post.title}}</a></h1>
-                    <h5>By: <a href="">{{post.author}}</a></h5>
+                    <h5>By: <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a></h5>
                     <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                 </div>
                 <div class="panel-body">

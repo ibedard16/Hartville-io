@@ -48,7 +48,6 @@
         <script type="text/javascript" src="js/controllers/HeaderController.js"></script>
         <script type="text/javascript" src="js/controllers/CollapseController.js"></script>
         <script type="text/javascript" src="js/controllers/SidebarController.js"></script>
-        <script type="text/javascript" src="js/controllers/PagerController.js"></script>
 
         <!--Directives-->
         <script type="text/javascript" src="js/directives/websiteNavigation.js"></script>
@@ -64,7 +63,7 @@
     <body>
         <website-navigation class="page-row"></website-navigation>
         
-        <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children ng-controller="BlogController"></ng-view>
+        <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children></ng-view>
     
         <website-footer class="page-row"></website-footer>
     </body>

@@ -5,15 +5,9 @@ var fs          = require('fs'),
     http        = require('http'),
     url         = require('url'),
     bodyParser  = require('body-parser'),
-    Post        = require('./server/database/postSchema'),
-    sass        = require('node-sass');
-    
-try {
-    var mongoConnect = require('./server/database/databaseConnect');
-} catch (e) {
-    var readerConnect = require('./server/database/readerConnect');
-}
-    
+    Post        = require('./server/database/postSchema');
+    //sass        = require('node-sass');
+   
 var app = express();
     app.set('port', process.env.PORT || 8000);
     app.set('IP', process.env.IP || '127.0.0.1');
@@ -23,6 +17,15 @@ var app = express();
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use(bodyParser.urlencoded({ extended: false }));
+    
+try {
+    var verify = require('./server/database/verifyCredentials');
+    var mongoConnect = require('./server/database/databaseConnect');
+    app.enable('canPost');
+} catch (e) {
+    var readerConnect = require('./server/database/readerConnect');
+    app.disable('canPost');
+}
     
 app.get("/favicon.ico", function(request, response){
     response.sendFile(__dirname + '/public/favicon.ico');
@@ -51,25 +54,29 @@ app.get("/google*", function(request, response) {
 });
 
 app.post('/create', function(request, response) {
-    if (request.body.password === 'password') {
-        var post = new Post({
-            title: request.body.title,
-            author: request.body.username,
-            content: request.body.content,
-            categories: request.body.categories,
-            images: ""
-        });
-        
-        post.save(function(err, model) {
-            if (err) {
-                response.status(500).send(err);
-            }
-            else {
-                response.redirect('/');
-            }
-        });
+    if (app.get('canPost')) {
+        if (verify.credentials(request.body.username,request.body.password)) {
+            var post = new Post({
+                title: request.body.title,
+                author: request.body.username,
+                content: request.body.content,
+                categories: request.body.categories,
+                images: ""
+            });
+            
+            post.save(function(err, model) {
+                if (err) {
+                    response.status(500).send(err);
+                }
+                else {
+                    response.redirect('/');
+                }
+            });
+        } else {
+            response.status(401).send('Invalid Password');
+        }
     } else {
-        response.status(401).send('Invalid Password');
+        response.status(503).send('This server cannot post to the database. It either lacks the authority to write to the database or does not have any way to validate user credentials. Please contact administrator for more details.');
     }
 });
 

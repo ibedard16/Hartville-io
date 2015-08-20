@@ -1,10 +1,13 @@
-app.controller('BlogController', ['$scope', '$routeParams', 'posts', function($scope, $routeParams, posts){
+app.controller('BlogController', ['$scope', '$routeParams', 'posts', '$filter', function($scope, $routeParams, posts, $filter){
 	$scope.searchInput = '';
 	posts.then(function(data) {
-		$scope.posts = data.posts;
+		$scope.posts = $filter('filter')(data.posts,{author: $routeParams.author});
 		$scope.content = $scope.posts[$routeParams.id];
 	});
 	
+	//$scope.posts = [];
+	$scope.pageSize = 5;
+	$scope.currentPage = 1;
 }]);
 
 
