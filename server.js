@@ -1,11 +1,12 @@
 "use strict";
-var fs = require('fs'),
-    express = require('express'),
-    path = require('path'),
-    http = require('http'),
-    url = require('url'),
-    bodyParser = require('body-parser'),
-    Post = require('./server/database/postSchema');
+var fs          = require('fs'),
+    express     = require('express'),
+    path        = require('path'),
+    http        = require('http'),
+    url         = require('url'),
+    bodyParser  = require('body-parser'),
+    Post        = require('./server/database/postSchema'),
+    sass        = require('node-sass');
     
 try {
     var mongoConnect = require('./server/database/databaseConnect');

@@ -29,7 +29,8 @@
     "angular-route": "1.4.3",
     "bootstrap": "3.3.5",
     "angular-sanitize": "~1.4.3",
-    "angular-truncate": "*"
+    "angular-truncate": "*",
+    "less": "~2.5.1"
   },
   "resolutions": {
     "angular": "1.4.3"
