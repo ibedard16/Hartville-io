@@ -1,6 +1,6 @@
 app.directive('websiteNavigation', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'views/partials/navigation/website-navigation.html'
+		templateUrl: 'js/directives/navigation/partials/website-navigation.html'
 	};
 });

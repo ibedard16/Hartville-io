@@ -1,7 +1,7 @@
 app.directive('postPreviewLg', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'views/partials/previews/postPreviewLg.html',
+		templateUrl: 'js/directives/previews/partials/postPreviewLg.html',
 		scope: {
             post: '=post',
         },
