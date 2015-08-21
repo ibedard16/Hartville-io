@@ -6,7 +6,11 @@ app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'posts', 
 	});
 	authors.then(function(data){
 		$scope.authors = data.authors;
-		$scope.author = _.find(data.authors, {name: $routeParams.author});
+		if ($routeParams.author) {
+			$scope.author = _.find(data.authors, {name: $routeParams.author});
+		} else {
+			$scope.author = {name:"About Us", bio: "Mauris et dignissim condimentum, mi tellus auctor justo, sed lobortis lectus mauris id dolor. Morbi vulputate lectus eu eros volutpat, vel ullamcorper sapien rhoncus."};
+		}
 	});
 	//$scope.posts = [];
 	$scope.pageSize = 5;

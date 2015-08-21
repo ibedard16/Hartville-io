@@ -22,34 +22,30 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
+	.when('/blog/post/:id', {
+		templateUrl: 'views/post.html',
+		controller: 'BlogController'
+	})
 	.when('/blog/author/:author', {
 		title: 'Blog',
 		templateUrl: 'views/blog.html',
-		controller: 'BlogController'
-	})
-	.when('/blog/:id', {
-		templateUrl: 'views/post.html',
-		controller: 'BlogController'
-	})
-	.when('/blog/post/:id', {
-		templateUrl: 'views/post.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/filter/:filter', {
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
-	.when('/about/', {
+	.when('/about', {
 		title: 'About',
 		templateUrl: 'views/about.html',
 		controller: 'BlogController'
 	})
-	.when('/spotlight/', {
+	.when('/spotlight', {
 		title: 'Spotlight',
 		templateUrl: 'views/spotlight.html',
 		controller: 'BlogController'
 	})
-	.when('/community/', {
+	.when('/community', {
 		title: 'Community',
 		templateUrl: 'views/community.html',
 		controller: 'BlogController',

@@ -1,13 +1,10 @@
 app.directive('websiteSidebar', ['$routeParams', function ($routeParams) {
-	if ($routeParams.author) {
-		return {
-			restrict: 		'E',
-			templateUrl:	'views/partials/navigation/website-sidebar-author.html'
-		};
-	} else {
-		return {
-			restrict: 		'E',
-			templateUrl: 	'views/partials/navigation/website-sidebar-main.html'
-		};
-	}
+	return {
+		restrict: 		'E',
+		templateUrl:	'views/partials/navigation/website-sidebar.html',
+		scope: {
+        	author: '=author',
+        	posts: '=posts'
+    	},
+	};
 }]);

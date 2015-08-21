@@ -3,13 +3,13 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="panel-heading">
-                    <h2><a ng-href="/blog/{{ posts.indexOf(post) }}">{{post.title}}</a></h2>
-                    <h5>By: <a href="/blog/author/{{post.author}}">{{post.author}}</a></h5>
+                    <h2><a ng-href="/blog/post/{{ posts.indexOf(post) }}">{{post.title}}</a></h2>
+                    <h5>By: <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a></h5>
                     <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                 </div>
                 <div class="panel-body">
                     <p>{{post.content | words:25}}</p>
-                    <a ng-href="/blog/{{ posts.indexOf(post) }}"><button class="btn btn-danger btn-xs pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                    <a ng-href="/blog/post/{{ posts.indexOf(post) }}"><button class="btn btn-danger btn-xs pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                 </div>
 
                 <div class="panel-footer">
