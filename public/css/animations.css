@@ -14,3 +14,9 @@
 .post-animation.ng-enter {
     animation: fadeIn 750ms;
 }
+.navbar {
+    animation: fadeIn 1s;
+}
+.jumbotron{
+    animation: fadeIn 500ms;
+}

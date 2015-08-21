@@ -168,7 +168,7 @@ jumbotron > .btn-danger:hover{
 /*footer styling*/
 
 footer{
-	background-color: #282828;
+	background-color: #272727;
 	color: #5e5e5e;
 	font-weight: 700;
 	padding: 15px 0px;
@@ -240,4 +240,9 @@ textarea {
 /*breadcrumb*/
 .breadcrumb{
     margin: 0px 15px;
+}
+
+/*page-headers*/
+.page-header h1{
+    color: #d9534f;
 }
