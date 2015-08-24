@@ -49,7 +49,7 @@ a:hover{
     transition-duration: 0.5s;
 }
 blockquote {
-    background-color: #efefef;
+    background-color: transparent;
     border-left: 5px solid #d9534f;
 }
 pre{
@@ -74,15 +74,17 @@ pre{
 }
 .container-full-bg {
   width:100%;
+  background-color: #000;
   background-position:center;
   background-size:cover;
-  background-image:url('../images/header-01.jpg');
 }
+.container-full-bg {background-image:url('../images/header-02.png');}
 .container-full-bg .container, .container-full-bg .container .jumbotron {height:100%;width:100%;}
+
+/*buttons*/
 .btn {
 	border-radius: 0px;
 }
-
 
 .btn-danger:hover {
     color: #d9534f;
@@ -115,6 +117,18 @@ pre{
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
+.btn-inverted{
+    background-color: #333;
+    border-color: #242424;
+}
+.btn-inverted:hover{
+    color: #242424;
+    background-color: transparent;
+    border-color: #242424;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
 jumbotron > .btn-danger:hover{
   border-color: #fff;
 }
@@ -257,4 +271,15 @@ textarea {
 /*ng cloak*/
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+/*inverted*/
+.inverted{
+    color: #4d4d57;
+}
+
+/*events*/
+.event-push{
+    margin-top: 20px;
+    padding: 2px;
 }

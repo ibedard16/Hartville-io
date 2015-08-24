@@ -6,10 +6,72 @@
     </div>
 </div>
 
-<div class="row">
-    
-    <div class="col-md-12">
+<div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1><span class="glyphicon glyphicon-map-marker"></span> Next Event</h1>
+        </div>
+        
+      	<div ng-repeat="event in events | orderBy: '-date' | limitTo:1 " class="jumbotron inverted">
+      	    <div class="row">
+      	        <div class="col-sm-6">
+              	    <h1>{{event.title}}</h1>
+              	    <h4>{{event.date | date:'MM/dd/yyyy'}}</h4>
+              	    <hr>
+              	    <address>
+              	        <h5>{{event.address.street}}</h5>
+                        <h5>{{event.address.city}}, {{event.address.ohio}} {{event.address.zip}}</h5>
+              	    </address>
+          	    </div>
+          	    <div class="col-sm-6 event-push">
+              	    <blockquote>{{event.content}}</blockquote>
+          	    </div>
+      	    </div>
+      	    <class="row">
+      	        <a ng-href="#"><button class="btn btn-danger btn-inverted">More Information</button></a>
+      	        <a ng-href="#"><button class="btn btn-danger">Register</button></a>
+      	    </class>
+      	</div>
+        
+        <div class="page-header">
+            <h1><span class="glyphicon glyphicon-menu-hamburger"></span> Upcoming Events</h1>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="well well-lg">
+                <h2><a href="#">Event Title</a></h2>
+                <h5>Monday, 2 November 2015</h5>
+                <p>Praesent justo neque, vehicula ac nulla non, imperdiet accumsan urna. Pellentesque efficitur magna non consectetur fringilla.</p>
+                <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="well well-lg">
+                <h2><a href="#">Event Title</a></h2>
+                <h5>Monday, 2 November 2015</h5>
+                <p>Praesent justo neque, vehicula ac nulla non, imperdiet accumsan urna. Pellentesque efficitur magna non consectetur fringilla.</p>
+                <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="well well-lg">
+                <h2><a href="#">Event Title</a></h2>
+                <h5>Monday, 2 November 2015</h5>
+                <p>Praesent justo neque, vehicula ac nulla non, imperdiet accumsan urna. Pellentesque efficitur magna non consectetur fringilla.</p>
+                <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="well well-lg">
+                <h2><a href="#">Event Title</a></h2>
+                <h5>Monday, 2 November 2015</h5>
+                <p>Praesent justo neque, vehicula ac nulla non, imperdiet accumsan urna. Pellentesque efficitur magna non consectetur fringilla.</p>
+                <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>
+            </div>
+        </div>
         
     </div>
-    
 </div>

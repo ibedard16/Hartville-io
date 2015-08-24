@@ -5,7 +5,8 @@ var fs          = require('fs'),
     http        = require('http'),
     url         = require('url'),
     Post        = require('./server/database/postSchema'),
-    Author      = require('./server/database/authorSchema');
+    Author      = require('./server/database/authorSchema'),
+    Event       = require('./server/database/eventSchema');
     //sass        = require('node-sass');
     
 var currentPostNum=0;
@@ -34,9 +35,7 @@ var multer      = require('multer'),
                     fs.mkdirSync('public/postFiles/'+currentPostNum);
                     cb(null, 'public/postFiles/'+currentPostNum);
                 }
-            } else {
-                console.log('it worked!')
-            }
+            } 
         },
         filename: function (request, file, cb) {
             cb(null, file.originalname)
@@ -94,6 +93,22 @@ app.get("/authors.json", function(request, response) {
             response.send({
                 success:true,
                 authors:authors
+            });
+        }
+    });
+});
+
+app.get("/events.json", function(request, response) {
+    Event.find(function(err, events) {
+        if (err) {
+            response.status(500).send({
+                success:false
+            });
+        }
+        else {
+            response.send({
+                success:true,
+                events:events
             });
         }
     });
