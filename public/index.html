@@ -4,7 +4,7 @@
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    	<title>Hartville.io | {{title}}</title>
+    	<title ng-bind="title">Hartville.io</title>
     	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     	<base href="/">
     	
@@ -43,6 +43,7 @@
                 
         <!--Controllers-->
         <script type="text/javascript" src="js/controllers/BlogController.js"></script>
+        <script type="text/javascript" src="js/controllers/NewController.js"></script>
         <script type="text/javascript" src="js/controllers/DropdownController.js"></script>
         <script type="text/javascript" src="js/controllers/UserDropdownController.js"></script>
         <script type="text/javascript" src="js/controllers/HeaderController.js"></script>
@@ -60,7 +61,7 @@
         <!--Filters-->
         <script type="text/javascript" src="js/filters/startFrom.js"></script>
     </head>
-    <body>
+    <body ng-cloak>
         <website-navigation class="page-row"></website-navigation>
         
         <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children></ng-view>

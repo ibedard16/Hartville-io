@@ -1,10 +1,14 @@
 app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'posts', 'authors', function($scope, $routeParams, $filter, posts, authors){
 	$scope.searchInput = '';
-	posts.then(function(data) {
-		$scope.posts = $filter('filter')(data.posts,{author: $routeParams.author});
-		$scope.content = $scope.posts[$routeParams.id];
+	posts.get().then(function(data) {
+		if ($routeParams.author) {
+			$scope.posts = $filter('filter')(data.posts,{author: $routeParams.author});
+		} else {
+			$scope.posts = data.posts;
+			$scope.content = _.find($scope.posts, {id: Number($routeParams.id)});
+		}
 	});
-	authors.then(function(data){
+	authors.get().then(function(data){
 		$scope.authors = data.authors;
 		if ($routeParams.author) {
 			$scope.author = _.find(data.authors, {name: $routeParams.author});

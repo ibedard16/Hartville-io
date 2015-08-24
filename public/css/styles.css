@@ -108,6 +108,13 @@ pre{
     background-color: #fff;
     border-color: #fff;
 }
+.btn-primary:hover{
+    color: #337ab7;
+    background-color: transparent;
+    border-color: #337ab7;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
 jumbotron > .btn-danger:hover{
   border-color: #fff;
 }
@@ -245,4 +252,9 @@ textarea {
 /*page-headers*/
 .page-header h1{
     color: #d9534f;
+}
+
+/*ng cloak*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

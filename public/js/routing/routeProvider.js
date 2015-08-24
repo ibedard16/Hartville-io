@@ -9,29 +9,31 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 	
 	$routeProvider
 	.when('/', {
-		title: 'A Community For Technology',
+		title: 'Hartville.io | A Community For Technology',
 		templateUrl: 'views/home.html',
 		controller: 'BlogController' 
 	})
 	.when('/new', {
-		title: 'New Post',
+		title: 'Hartville.io | New Post',
 		templateUrl: 'views/new.html',
 	})
 	.when('/blog', {
-		title: 'Blog',
+		title: 'Hartville.io | Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/post/:id', {
+		title: 'Hartville.io | Blog',
 		templateUrl: 'views/post.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/author/:author', {
-		title: 'Blog',
+		title: 'Hartville.io | Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/filter/:filter', {
+		title: 'Hartville.io | Blog',
 		templateUrl: 'views/blog.html',
 		controller: 'BlogController'
 	})
@@ -48,6 +50,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 	.when('/community', {
 		title: 'Community',
 		templateUrl: 'views/community.html',
+		controller: 'BlogController',
+	})
+	.when('/events', {
+		title: 'Events',
+		templateUrl: 'views/events.html',
 		controller: 'BlogController',
 	})
 	.otherwise({

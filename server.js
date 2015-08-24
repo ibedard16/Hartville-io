@@ -4,10 +4,45 @@ var fs          = require('fs'),
     path        = require('path'),
     http        = require('http'),
     url         = require('url'),
-    bodyParser  = require('body-parser'),
     Post        = require('./server/database/postSchema'),
     Author      = require('./server/database/authorSchema');
     //sass        = require('node-sass');
+    
+var currentPostNum=0;
+Post.find(function(err, posts) {
+    if (err) {
+        console.log("Server cannot connect to database.")
+    }
+    else {
+        for(var i=0;i<posts.length;i++){
+            if (posts[i].id>currentPostNum) {
+                currentPostNum = posts[i].id;
+            }
+        }
+        currentPostNum +=1;
+        console.log("There are currently " + currentPostNum + " posts in the database.");
+    }
+});
+
+var multer      = require('multer'),
+    storage     = multer.diskStorage({
+        destination: function (request, file, cb) {
+            if (verify.credentials(request.body.username,request.body.password)) {
+                if (fs.existsSync('public/postFiles/'+currentPostNum)) {
+                    cb(null, 'public/postFiles/'+currentPostNum);
+                } else {
+                    fs.mkdirSync('public/postFiles/'+currentPostNum);
+                    cb(null, 'public/postFiles/'+currentPostNum);
+                }
+            } else {
+                console.log('it worked!')
+            }
+        },
+        filename: function (request, file, cb) {
+            cb(null, file.originalname)
+        }
+    }),
+    upload      = multer({storage:storage});
    
 var app = express();
     app.set('port', process.env.PORT || 8000);
@@ -17,7 +52,7 @@ var app = express();
     app.use('/js', express.static(path.join(__dirname + '/public/js')));
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use('/postFiles', express.static(path.join(__dirname + '/public/postFiles')));
     
 try {
     var verify = require('./server/database/verifyCredentials');
@@ -70,15 +105,22 @@ app.get("/google*", function(request, response) {
     response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
 });
 
-app.post('/create', function(request, response) {
+app.post('/create', upload.array('images'), function(request, response) {
     if (app.get('canPost')) {
+        console.log(request.files);
         if (verify.credentials(request.body.username,request.body.password)) {
+            var Images = [];
+            for (var i=0; i<request.files.length; i++) {
+                var parse = request.files[i].path.substring(6).split(' ').join('%20')
+                Images.push(parse);
+            }
             var post = new Post({
+                id: currentPostNum,
                 title: request.body.title,
                 author: request.body.username,
                 content: request.body.content,
                 categories: request.body.categories,
-                images: ""
+                images: Images
             });
             
             post.save(function(err, model) {
@@ -86,6 +128,8 @@ app.post('/create', function(request, response) {
                     response.status(500).send(err);
                 }
                 else {
+                    currentPostNum += 1;
+                    console.log("A user has added another post to the database. There are now " + currentPostNum + " posts in the database.");
                     response.redirect('/');
                 }
             });

@@ -7,9 +7,9 @@
 	<div class="row">
 		<div class="col-md-9">
 		
-			<ul class="list-group post-animation" ng-repeat="post in posts | limitTo:1">
+			<ul class="list-group post-animation">
 				<li class="list-group">
-				    <img ng-src="{{content.images[0].full}}" class="img-responsive" />
+				    <img ng-src="{{content.images[0]}}" class="img-responsive" />
 					<h1>{{content.title}}</h1>
 					<li class="list-group"><span class="glyphicon glyphicon-pencil"></span> By {{content.author}} | 
 				<span class="glyphicon glyphicon-time"></span> {{content.date | date:'MM/dd/yyyy @ h:mma'}} </li>
@@ -21,7 +21,7 @@
 		
 		</div> <!--end column-->
 		<div class="col-md-3">
-			<website-sidebar></website-sidebar>
+			<website-sidebar author="author" posts="posts"></website-sidebar>
 		</div>
 	</div> <!--end row-->
 </div> <!--end container -->

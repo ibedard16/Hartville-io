@@ -6,7 +6,7 @@
 			</div>
 		</div>
 
-        <form name="newPost" action="/create" method="POST">
+        <form name="newPost" action="/create" method="POST"enctype="multipart/form-data">
         	<div class="col-md-12">
 			  <!--Title--><div class="form-group">
 			    <label>Title</label>
@@ -21,6 +21,12 @@
 			</div>-->
 			<div class="col-md-12">
 			  <!--Content--><div class="form-group">
+			    <label>Images</label>
+			    <input type="file" name="images" class="form-control" accept="image/*" multiple>
+			  </div>
+			</div>
+			<div class="col-md-12">
+			  <!--Content--><div class="form-group">
 			    <label>Content</label>
 			    <textarea type="text" name="content" class="form-control" rows="5"></textarea>
 			  </div>
@@ -29,7 +35,7 @@
 			  <!--Category--><div class="form-group">
 			    <label>Category</label>
 			    <div ng-controller="CollapseController">
-					<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Choose Categories</button>
+					<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed"></a><span class="glyphicon glyphicon-th-list"></span> Categories</button>
 					<hr>
 					<div collapse="!isCollapsed">
 						<div class="well well-md">
