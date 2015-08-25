@@ -1,4 +1,4 @@
-app.controller("DropdownController", function ($scope) {
+app.controller("DropdownController",['$scope', function ($scope) {
 	$scope.status = {
 		isopen: false
 	};
@@ -8,4 +8,4 @@ app.controller("DropdownController", function ($scope) {
 		$event.stopPropagation();
 		$scope.status.isopen = !$scope.status.isopen;
 	};
-});
+}]);

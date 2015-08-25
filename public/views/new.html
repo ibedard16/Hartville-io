@@ -28,6 +28,7 @@
 			<div class="col-md-12">
 			  <!--Content--><div class="form-group">
 			    <label>Content</label>
+			    <div ng-repeat="content in contentLength track by $index"><div ng-bind-html='snippet'></div></div><input type="button" ng-click="moreContent()" value="Add another image" />
 			    <textarea type="text" name="content" class="form-control" rows="5" ng-model="formInfo.content"></textarea>
 			  </div>
 			</div>

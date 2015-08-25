@@ -1,3 +1,3 @@
-app.controller("HeaderController", function ($scope, $location) {
+app.controller("HeaderController",['$scope', '$location', function ($scope, $location) {
   $scope.$location = $location;
-});
+}]);

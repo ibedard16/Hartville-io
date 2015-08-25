@@ -10,6 +10,7 @@ var fs          = require('fs'),
     //sass        = require('node-sass');
     
 var currentPostNum=0;
+var postList;
 Post.find(function(err, posts) {
     if (err) {
         console.log("Server cannot connect to database.")
@@ -22,6 +23,7 @@ Post.find(function(err, posts) {
         }
         currentPostNum +=1;
         console.log("There are currently " + currentPostNum + " posts in the database.");
+        postList = posts;
     }
 });
 
@@ -67,18 +69,9 @@ app.get("/favicon.ico", function(request, response){
 });
 
 app.get("/posts.json", function(request, response) {
-    Post.find(function(err, posts) {
-        if (err) {
-            response.status(500).send({
-                success:false
-            });
-        }
-        else {
-            response.send({
-                success:true,
-                posts:posts
-            });
-        }
+    response.send({
+        success:true,
+        posts:postList
     });
 });
 
@@ -129,14 +122,16 @@ app.post('/create', upload.array('images'), function(request, response) {
                 var parse = request.files[i].path.substring(6).split(' ').join('%20')
                 Images.push(parse);
             }
-            var post = new Post({
+            var newPost = {
                 id: currentPostNum,
                 title: request.body.title,
                 author: request.body.username,
                 content: request.body.content,
                 categories: request.body.categories,
                 images: Images
-            });
+            };
+            postList.push(newPost);
+            var post = new Post(newPost);
             
             post.save(function(err, model) {
                 if (err) {

@@ -1,3 +1,3 @@
-app.controller('CollapseController', function ($scope) {
+app.controller('CollapseController', ['$scope', function ($scope) {
   $scope.isCollapsed = false;
-});
+}]);
