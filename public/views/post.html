@@ -14,7 +14,7 @@
 					<li class="list-group"><span class="glyphicon glyphicon-pencil"></span> By {{content.author}} | 
 				<span class="glyphicon glyphicon-time"></span> {{content.date | date:'MM/dd/yyyy @ h:mma'}} </li>
 					<hr>
-					<p>{{content.content}}</p>
+					<p ng-bind-html="content.content | markdown"></p>
 				</li>
 			</ul>
 			
