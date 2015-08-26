@@ -30,8 +30,10 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.min.js"></script><!--JS Library Code-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.1/angular-strap.tpl.min.js"></script><!--HTML Defaults-->
         
+        <!--Markdown Interpreting-->
+        <script type="text/javascript" src="vendor/showdown/dist/showdown.min.js"></script>
+        
         <!--Modules-->
-        <script type="text/javascript" src="vendor/angular-truncate/src/truncate.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         
         <!--Services-->
@@ -62,7 +64,9 @@
         <script type="text/javascript" src="js/directives/previews/eventPreviewLg.js"></script>
         
         <!--Filters-->
+        <script type="text/javascript" src="vendor/angular-truncate/src/truncate.js"></script>
         <script type="text/javascript" src="js/filters/startFrom.js"></script>
+        <script type="text/javascript" src="js/filters/markdown.js"></script>
     </head>
     <body ng-cloak>
         <website-navigation class="page-row"></website-navigation>

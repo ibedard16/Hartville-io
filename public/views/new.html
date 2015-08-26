@@ -28,8 +28,8 @@
 			<div class="col-md-12">
 			  <!--Content--><div class="form-group">
 			    <label>Content</label>
-			    <div ng-repeat="content in contentLength track by $index"><div ng-bind-html='snippet'></div></div><input type="button" ng-click="moreContent()" value="Add another image" />
-			    <textarea type="text" name="content" class="form-control" rows="5" ng-model="formInfo.content"></textarea>
+			    <div ng-repeat="content in contentLength track by $index"><div ng-bind-html="trustHtml('test')"></div></div><input type="button" ng-click="moreContent('test')" value="Add another image" />
+			    <textarea name="content" class="form-control" rows="5" ng-model="formInfo.content"></textarea>
 			  </div>
 			</div>
 		 	<div class="col-md-12">
@@ -71,12 +71,26 @@
 				</div>
 			  </div>
 		  	</div>
+		  	
 		  	<div class="col-md-12">
 				<div class="page-header">
-				  <h3>Preview</h3>
+				  <h3>Post Preview</h3>
 				</div>
 			</div>
-			<post-preview-lg post=formInfo class=col-md-12></post-preview-lg>
+			<div class="well">
+				<post-preview-lg post=formInfo class=col-md-9></post-preview-lg>
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Preview information</h3>
+					  </div>
+					  <div class="panel-body">
+					    Date is displayed after post creation.
+					  </div>
+					</div>
+				</div>
+			</div>
+			
 		  	<div class="col-md-12">
 				<div class="page-header">
 				  <h3>Log in</h3>

@@ -31,9 +31,11 @@
     "angular-sanitize": "1.4.3",
     "angular-truncate": "*",
     "less": "~2.5.1",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "showdown": "~1.2.2"
   },
   "resolutions": {
-    "angular": "1.4.3"
+    "angular": "1.4.3",
+    "showdown": "~1.2.2"
   }
 }
