@@ -1,41 +1,42 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="DropdownController" bs-navbar>
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">
         Hartville.io
       </a>
-    </div>
+  </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="navbar-collapse" collapse="isCollapsed" ng-controller="HeaderController">
-      <ul class="nav navbar-nav">
-        <li data-match-route="/#/"><a href="/">Home</a></li>
-        <li data-match-route="/blog"><a href="/blog/">Blog</a></li>
-        <li data-match-route="/spotlight/"><a href="/spotlight/">Spotlight</a></li>
-        <li data-math-route="/events/"><a href="/events/">Events</a></li>
-        <li data-match-route="/community/"><a href="/community/">Community</a></li> 
-        <li data-match-route="/about/"><a href="/about/">About</a></li> 
-      </ul>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="navbar-collapse" collapse="isCollapsed" ng-controller="HeaderController">
+    <ul class="nav navbar-nav">
+      <li data-match-route="/#/"><a href="/">Home</a></li>
+      <li data-match-route="/blog"><a href="/blog/">Blog</a></li>
+      <li data-match-route="/spotlight"><a href="/spotlight/">Spotlight</a></li>
+      <li data-match-route="/events"><a href="/events/">Events</a></li>
+      <li data-match-route="/community"><a href="/community/">Community</a></li>
+      <li data-match-route="/about"><a href="/about/">About</a></li>
+    </ul>
 
-      <ul class="nav navbar-nav navbar-right dropdown-menu-right" ng-controller="UserDropdownController">
-        <li bs-dropdown="dropdown">
-            <a href id="simple-dropdown" dropdown-toggle>
-              <span class="glyphicon glyphicon-cog"></span> UserName <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
-              <li ng-repeat="choice in items">
-                <a href>{{choice}}</a>
-              </li>
-            </ul>
-        </li>
-        
-      </ul>
-    </div><!-- /.navbar-collapse -->
-    </div>
+    <ul class="nav navbar-nav navbar-right dropdown-menu-right" ng-controller="UserDropdownController">
+      <li bs-dropdown="dropdown">
+        <a href id="simple-dropdown" dropdown-toggle>
+          <span class="glyphicon glyphicon-cog"></span> UserName <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+          <li ng-repeat="choice in items">
+            <a href>{{choice}}</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+  <!-- /.navbar-collapse -->
+  </div>
 </nav>

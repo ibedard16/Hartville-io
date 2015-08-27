@@ -12,7 +12,8 @@
             <h1><span class="glyphicon glyphicon-map-marker"></span> Next Event</h1>
         </div>
         
-      	<div ng-repeat="event in events | orderBy: '-date' | limitTo:1 " class="jumbotron inverted">
+        <!-- large event preview -->
+      	<div ng-repeat="event in events | orderBy: 'date' | limitTo:1 ">
       	    <event-preview-lg event='event'></event-preview-lg>
       	</div>
         
@@ -21,6 +22,9 @@
         </div>
         
         <!--small event preview -->
+        <div ng-repeat="event in events | orderBy: 'date' | limitTo:4 ">
+            <event-preview-sm event='event'></event-preview-sm>
+        </div>
         
     </div>
 </div>

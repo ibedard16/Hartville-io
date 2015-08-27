@@ -26,6 +26,39 @@ var Event = mongoose.model('Event', eventSchema);
     }
 });
 
+var event = new Event({
+    title: 'Nunc at Odio Vulputate',
+    content: 'Phasellus auctor erat nec odio ullamcorper accumsan. Donec eget pellentesque lorem. Morbi lobortis enim pulvinar est rutrum, vitae finibus ligula volutpat. Nunc at odio vulputate velit pharetra volutpat. Quisque non enim eros. Proin ultrices eget dui vel porttitor.',
+    address: {
+        street: '687 Olive Street',
+        city: 'Quakertown',
+        state: 'PA',
+        zip: '18951'
+    }
+});
+
+var event = new Event({
+    title: 'Curabitur Nec Orci',
+    content: 'Nam non sapien est. Aenean pretium, arcu sed convallis mattis, lorem neque molestie odio, eu fringilla risus urna sed orci. Phasellus at gravida tellus. Nullam consectetur venenatis posuere. Fusce convallis risus tincidunt ex tempor, ac fermentum neque molestie. Fusce posuere elit mollis, vulputate ipsum et, semper felis. Donec eget suscipit enim. Sed consequat vehicula nibh, eget fermentum ante consequat ac.',
+    address: {
+        street: '33 Elm Street',
+        city: 'Lakeland',
+        state: 'FL',
+        zip: '33801'
+    }
+});
+
+var event = new Event({
+    title: 'Aliquam vel Ligula Dapibus',
+    content: 'Phasellus nec lorem id ligula sollicitudin convallis sit amet sit amet lectus. Phasellus placerat turpis eu turpis efficitur, eget lobortis tortor efficitur. Aenean faucibus ex nec efficitur tincidunt. Curabitur sodales eros suscipit ante tristique porta. Nullam luctus lorem lacus, at tempor leo accumsan a. Cras ac efficitur ex. Aliquam quis posuere magna.',
+    address: {
+        street: '180 Walnut Street',
+        city: 'Westlake',
+        state: 'OH',
+        zip: '44145'
+    }
+});
+
 event.save(function(err, model) {
     if (err) {
         console.log('An error happened and the event was not saved to the database.');

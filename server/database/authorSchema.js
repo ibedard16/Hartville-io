@@ -14,6 +14,12 @@ var Author = mongoose.model('Author', authorSchema);
     avatar: "images/theFaceOfHartville.jpg"
 });
 
+var author = new Author({
+    name:   'Brent',
+    bio:    "I like front-end design.",
+    avatar: "images/bmor-creative.png"
+});
+
 author.save(function(err, model) {
     if (err) {
         console.log('An error happened and the author was not saved to the database.');

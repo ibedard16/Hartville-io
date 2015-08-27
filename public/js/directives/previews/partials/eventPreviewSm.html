@@ -1,8 +1,8 @@
-<div class="col-md-3">
+<div class="col-md-3" ng-controller="BlogController">
     <div class="well well-lg">
-        <h2><a href="#">Event Title</a></h2>
-        <h5>Monday, 2 November 2015</h5>
-        <p>Praesent justo neque, vehicula ac nulla non, imperdiet accumsan urna. Pellentesque efficitur magna non consectetur fringilla.</p>
+        <h2><a href="#">{{event.title}}</a></h2>
+        <h5>{{event.date | date:'MM/dd/yyyy'}}</h5>
+        <p>{{event.content | words: 25}}</p>
         <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>
     </div>
 </div>

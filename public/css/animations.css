@@ -20,3 +20,6 @@
 .jumbotron{
     animation: fadeIn 500ms;
 }
+.img-responsive:hover{
+    background-color: #d9534f;
+}

@@ -122,6 +122,7 @@ app.post('/create', upload.array('images'), function(request, response) {
                 var parse = request.files[i].path.substring(6).split(' ').join('%20')
                 Images.push(parse);
             }
+            console.log(request.body);
             var newPost = {
                 id: currentPostNum,
                 title: request.body.title,

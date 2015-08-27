@@ -20,16 +20,16 @@
         </div> <!--end column-->
     </div> <!--end row-->
     
-    <div class="inverted-bg">
-        <div class="page-header">
-            <h1><span class="glyphicon glyphicon-calendar"></span> <a href="/events">Events</a></h1>
-        </div>
-        
-        <div class="col-md-6">
-            
-        </div>
-        
+    <div class="page-header">
+        <h1><span class="glyphicon glyphicon-calendar"></span> <a href="/events">Events</a></h1>
     </div>
+    
+    <div class="row">
+        <div class="most-recent-animation" ng-repeat="event in events | orderBy: 'date' | limitTo:4 ">
+            <event-preview-sm event='event'></event-preview-sm>
+        </div> <!--end column-->
+    </div> <!--end row-->
+        
 
     <div class="page-header">
         <h1><span class="glyphicon glyphicon-th"></span> More News</h1>
