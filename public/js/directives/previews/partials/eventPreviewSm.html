@@ -1,6 +1,6 @@
 <div class="col-md-3" ng-controller="BlogController">
     <div class="well well-lg">
-        <h2><a href="#">{{event.title}}</a></h2>
+        <h2><a ng-href="/events/event/{{ event.id }}">{{event.title}}</a></h2>
         <h5>{{event.date | date:'MM/dd/yyyy'}}</h5>
         <p>{{event.content | words: 25}}</p>
         <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>

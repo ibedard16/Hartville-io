@@ -7,7 +7,7 @@ var postSchema = mongoose.Schema({
     date:       { type: Date, default: Date.now },
     content:    String,
     categories: Array,
-    images:     Array
+    imageHead:  String
 });
 
 var Post = mongoose.model('Post', postSchema);

@@ -1,5 +1,5 @@
 <li class="list-group">
-	<img ng-src="{{post.images[0]}}" class="img-responsive" />
+	<img ng-src="{{post.imageHead}}" class="img-responsive" />
 	<h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
 	<p><span class="glyphicon glyphicon-pencil"></span> By <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> | 
 	<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>

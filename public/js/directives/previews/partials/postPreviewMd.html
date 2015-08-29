@@ -8,7 +8,7 @@
                     <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                 </div>
                 <div class="panel-body">
-                    <img ng-src="{{post.images[0]}}" class="img-responsive" /><hr>
+                    <img ng-src="{{post.imageHead}}" class="img-responsive" /><hr>
                     <p ng-bind-html="post.content | markdownPreview:25"></p>
                     <a ng-href="/blog/post/{{ post.id }}"><button class="btn btn-danger btn-sm pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
                 </div>

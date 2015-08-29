@@ -23,3 +23,6 @@
 .img-responsive:hover{
     background-color: #d9534f;
 }
+.add-image-animation{
+    animation: fadeIn 500ms;
+}

@@ -3,3 +3,4 @@ public/vendor
 server/database/databaseConnect.js
 server/database/verifyCredentials.js
 commit command
+public/postFiles

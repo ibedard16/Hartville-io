@@ -28,7 +28,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		pageTitle: 'Hartville.io | Blog',
 		title: 'Blog',
 		templateUrl: 'views/post.html',
-		controller: 'BlogController'
+		controller: 'PostController'
 	})
 	.when('/blog/author/:author', {
 		pageTitle: 'Hartville.io | Author',
@@ -63,6 +63,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		pageTitle: 'Hartville.io | Events',
 		title: 'Events',
 		templateUrl: 'views/events.html',
+		controller: 'BlogController'
+	})
+	.when('/events/event/:id', {
+		pageTitle: 'Hartville.io | Event',
+		title: 'Events',
+		templateUrl: 'views/eventDetails.html',
 		controller: 'BlogController'
 	})
 	.otherwise({

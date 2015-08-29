@@ -9,8 +9,10 @@
     "busboy": "^0.2.9",
     "eventbrite": "^0.1.6",
     "express": "4.13.3",
+    "lodash": "^3.10.1",
     "mongoose": "4.1.1",
     "multer": "^1.0.3",
+    "node-sass-middleware": "^0.9.0",
     "vary": "1.0.1"
   },
   "devDependencies": {},

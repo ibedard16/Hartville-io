@@ -1,3 +1,4 @@
+<!--<div ng-repeat="content in contentLength track by $index"><div ng-bind-html="trustHtml('test')"></div></div><input type="button" ng-click="moreContent('test')" value="Add another image" />-->
 <div class="container container-form">
 	<div class="row">
 		<div class="col-md-12">
@@ -6,13 +7,41 @@
 			</div>
 		</div>
 
-        <form name="newPost" action="/create" method="POST"enctype="multipart/form-data">
+        <form name="newPost" action="/create" method="POST" enctype="multipart/form-data">
         	<div class="col-md-12">
+				<div class="page-header">
+				  <h3>Log in</h3>
+				</div>
+			</div>
+        	<!--Username--><div class="col-md-6">
+			  <div class="form-group">
+				<div class="input-group">
+				    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+				    <input type="text" class="form-control" name="username" placeholder="Username" ng-model="formInfo.author">
+				</div>
+			  </div><!-- end form-group -->
+		  </div><!-- end col -->
+		  <!--Password--><div class="col-md-6">
+			  	<div class="form-group">
+					<div class="input-group">
+					    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+					    <input type="password" autocomplete="off" class="form-control" name="password" placeholder="Password">
+					</div>
+				</div><!-- end form-group -->
+			</div>
+			
+			<div class="col-md-12">
+				<div class="page-header">
+				  <h3>Create Post</h3>
+				</div>
+			</div>
+	    	<div class="col-md-12">
 			  <!--Title--><div class="form-group">
 			    <label>Title</label>
 			    <input type="text" name="title" class="form-control" placeholder="The title for your post" ng-model="formInfo.title">
 			  </div>
 			</div>
+			
 			<!--<div class="col-md-12">
 			  <!--Author<div class="form-group">
 			    <label>Author</label>
@@ -21,17 +50,30 @@
 			</div>-->
 			<div class="col-md-12">
 			  <!--Content--><div class="form-group">
-			    <label>Images</label>
-			    <input type="file" name="images" class="form-control" accept="image/*" ng-model="formInfo.images" multiple>
+			    <label>Header Image</label>
+			    <input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage">
 			  </div>
 			</div>
 			<div class="col-md-12">
 			  <!--Content--><div class="form-group">
 			    <label>Content</label>
-			    <div ng-repeat="content in contentLength track by $index"><div ng-bind-html="trustHtml('test')"></div></div><input type="button" ng-click="moreContent('test')" value="Add another image" />
 			    <textarea name="content" class="form-control" rows="5" ng-model="formInfo.content"></textarea>
 			  </div>
 			</div>
+			
+			  <div class="form-group">
+			  	<label class="col-md-12">Add Images to Body</label>
+			  <div class="col-md-9">
+				   <div class="add-image-animation"ng-repeat="image in imageCount track by $index">
+				    	<input type="file" name="bodyImage" class="form-control" accept="image/*" />
+				   </div>
+			  </div>
+			    <div class="col-md-3">
+			    	<input class="btn btn-primary" type="button" ng-click="addImage()" value="Add another image" />
+			    </div>
+			  </div>
+			  <br>
+			
 		 	<div class="col-md-12">
 			  <!--Category--><div class="form-group">
 			    <label>Category</label>
@@ -72,13 +114,14 @@
 			  </div>
 		  	</div>
 		  	
+		  	
 		  	<div class="col-md-12">
 				<div class="page-header">
 				  <h3>Post Preview</h3>
 				</div>
 			</div>
 			<div class="well">
-				<post-preview-lg post=formInfo class=col-md-9></post-preview-lg>
+				<post-preview-new post=newPost class=col-md-9></post-preview-new>
 				<div class="col-md-3">
 					<div class="panel panel-primary">
 					  <div class="panel-heading">
@@ -90,30 +133,7 @@
 					</div>
 				</div>
 			</div>
-			
-		  	<div class="col-md-12">
-				<div class="page-header">
-				  <h3>Log in</h3>
-				</div>
-			</div>
-		  <!--Username--><div class="col-md-6">
-			  <div class="form-group">
-				<div class="input-group">
-				    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-				    <input type="text" class="form-control" name="username" placeholder="Username" ng-model="formInfo.author">
-				</div>
-			  </div><!-- end form-group -->
-		  </div><!-- end col -->
-		  <!--Password--><div class="col-md-6">
-		  	<div class="form-group">
-				<div class="input-group">
-				    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-				    <input type="password" autocomplete="off" class="form-control" name="password" placeholder="Password">
-				</div>
-			  </div><!-- end form-group -->
-		  </div>
-		  	
-			<!--Buttons--><div class="row">
+		  	<!--Buttons--><div class="row">
 		  		<div class="col-md-12 form-buttons">
 				  <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Submit</button>
 				  <button type="reset" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-remove"></span> Reset</button>

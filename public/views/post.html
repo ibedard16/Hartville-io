@@ -2,19 +2,19 @@
 	<ol class="breadcrumb">
 		<li><a href="/">Home</a></li>
 	  <li><a href="/blog/">Blog</a></li>
-	  <li class="active">{{content.title}}</li>
+	  <li class="active">{{post.title}}</li>
 	</ol>
 	<div class="row">
 		<div class="col-md-9">
 		
 			<ul class="list-group post-animation">
 				<li class="list-group">
-				    <img ng-src="{{content.images[0]}}" class="img-responsive" />
-					<h1>{{content.title}}</h1>
-					<li class="list-group"><span class="glyphicon glyphicon-pencil"></span> By {{content.author}} | 
-				<span class="glyphicon glyphicon-time"></span> {{content.date | date:'MM/dd/yyyy @ h:mma'}} </li>
+				    <img ng-src="{{post.imageHead}}" class="img-responsive" />
+					<h1>{{post.title}}</h1>
+					<li class="list-group"><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
+				<span class="glyphicon glyphicon-time"></span> {{post.date | date:'MM/dd/yyyy @ h:mma'}} </li>
 					<hr>
-					<p ng-bind-html="content.content | markdown"></p>
+					<p ng-bind-html="post.content | markdown"></p>
 				</li>
 			</ul>
 			
