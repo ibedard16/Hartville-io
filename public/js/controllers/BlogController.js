@@ -7,7 +7,6 @@ app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'posts', 
 			$scope.posts = $filter('filter')(data.posts,{author: $routeParams.author});
 		} else {
 			$scope.posts = data.posts;
-			$scope.content = _.find($scope.posts, {id: Number($routeParams.id)});
 		}
 	});
 	

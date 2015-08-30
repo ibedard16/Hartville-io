@@ -101,11 +101,17 @@ app.get("/posts.json", function(request, response) {
     console.log('request url ' + JSON.stringify(request.url));
     console.log('request query ' + JSON.stringify(request.query));
     if (request.query.post) {
-        var post = _.find(postList, {id: Number(request.query.post)})
-        response.send({
-            success:true,
-            post:post
-        });
+        var post = _.find(postList, {id: Number(request.query.post)});
+        if (!post) {
+            response.status(404).send({
+                success:false,
+            });
+        } else {
+            response.send({
+                success:true,
+                post:post
+            });
+        }
     } else {
         response.send({
             success:true,
