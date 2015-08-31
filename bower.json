@@ -27,12 +27,14 @@
     "angular-animate": "1.4.3",
     "angular-bootstrap": "~0.13.3",
     "angular-route": "1.4.3",
-    "bootstrap": "3.3.5",
     "angular-sanitize": "1.4.3",
     "angular-truncate": "*",
+    "bootstrap": "3.3.5",
+    "font-awesome": "~4.4.0",
     "less": "~2.5.1",
     "lodash": "~3.10.1",
-    "showdown": "~1.2.2"
+    "showdown": "~1.2.2",
+    "textAngular": "~1.4.3"
   },
   "resolutions": {
     "angular": "1.4.3",
