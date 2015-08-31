@@ -1,0 +1,22 @@
+// Font Weights / Styles
+$typeThin:      100;
+$typeLight:     300;
+$typeNormal:    400;
+$typeMedium:    500;
+$typeBold:      700;
+$typeBlack:     900;
+
+// Base Font & Size
+$typeFamilyRoboto: 'Roboto', sans-serif;
+$typeBaseSize: 1.5em;
+
+//Typography Defaults
+body {
+    font-size: $typeBaseSize;
+    font-weight: $typeNormal;
+    font-family: $typeFamilyRoboto;
+}
+
+h1 {font-weight: $typeLight;}
+h2, h3, h4, h6 {font-weight: $typeNormal;}
+h5 {font-weight: $typeMedium;}

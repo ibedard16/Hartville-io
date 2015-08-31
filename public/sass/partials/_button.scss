@@ -1,0 +1,58 @@
+//Floating Action Button
+.btn-float {
+    background-color: $colorAccent;
+    color: $colorWhite;
+    @include border-radius(35px);
+    width: 50px; height: 50px;
+    @include box-shadow(0 8px 6px 0px $colorDropshadowFloat);
+    border-style: none;
+    margin: 4px;
+    span {
+        position: relative;
+        top: 1px;
+        left: 1px;
+    }
+    &:hover {
+        background-color: $colorAccentDark;
+        @include transition-duration(250ms);
+        @include box-shadow(0 8px 6px 0px $colorDropshadowFloat);
+    }
+    &:active {
+        background-color: $colorAccentLight;
+        @include transition-duration(250ms);
+        @include box-shadow(0 12px 6px 20px $colorDropshadowFloatDarker);
+    }
+    &:focus{
+        outline:0;
+        background-color: $colorAccent;
+    }
+}
+
+//Raised Button
+.btn-raised{
+    background-color: $colorAccent;
+    color: $colorWhite;
+    @include box-shadow(0px 2px 3px 0px $colorDropshadow);
+    text-align: center;
+    height: 35px; width: 95px;
+    margin: 4px;
+    border-style: none;
+    @include border-radius(3px);
+    &:hover {
+        background-color: $colorAccentDark;
+        @include transition-duration(250ms);
+    }
+    &:active {
+        background-color: $colorAccentLight;
+        @include transition-duration(250ms);
+    }
+    &:focus{
+        outline:0;
+        background-color: $colorAccent;
+    }
+}
+
+//Flat Button
+.btn-flat{
+    
+}

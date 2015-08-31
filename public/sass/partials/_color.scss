@@ -1,0 +1,30 @@
+//Brand Colors
+$colorBrand:        #F44336;
+$colorBrandDark:    #D32F2F;
+$colorBrandLight:   #FFCDD2;
+
+//Accent Colors
+$colorAccent:       #651FFF;
+$colorAccentLight:  #B388FF;
+$colorAccentDark:   #521DC4;
+
+
+//Text / Icon Colors
+$colorBase:         #000000;
+$colorWhite:        #FFFFFF;
+$colorText:         lighten ( $colorBase, 13);    //87% of base
+$colorSecondary:    lighten ( $colorBase, 46);    //54% of base
+$colorDisabled:     lighten ( $colorBase, 63);    //38% of base
+$colorDivider:      lighten ( $colorBase, 88);    //12% of base
+
+//Background Colors
+$colorStatusbar:    #E0E0E0;
+$colorAppbar:       #F5F5F5;
+$colorBackground:   #FAFAFA;
+$colorCard:         #FFFFFF;
+
+//Dropshadows
+$colorDropshadow:               #969696;
+$colorDropshadowDarker:         darken ( $colorDropshadow, 75);
+$colorDropshadowFloat:          #C9C9C9;
+$colorDropshadowFloatDarker:    darken ( $colorDropshadowFloat, 90);

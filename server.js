@@ -29,10 +29,11 @@ var fs              = require('fs'),
         src: path.join(__dirname + '/public/sass'),
         dest: path.join(__dirname + '/public/css'),
         debug: true,
-        outputStyle: 'compressed',
+        outputStyle: 'expanded',
         
         error: function(err) {console.log(err);}
       }));
+    app.use('/css', express.static(path.join(__dirname + '/public/css')));
     app.use('/images', express.static(path.join(__dirname + '/public/images')));
     app.use('/js', express.static(path.join(__dirname + '/public/js')));
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));

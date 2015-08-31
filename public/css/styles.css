@@ -1,0 +1,100 @@
+body {
+  font-size: 1.5em;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+h2, h3, h4, h6 {
+  font-weight: 400;
+}
+
+h5 {
+  font-weight: 500;
+}
+
+.btn-float {
+  background-color: #651FFF;
+  color: #FFFFFF;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  border-radius: 35px;
+  width: 50px;
+  height: 50px;
+  -webkit-box-shadow: 0 8px 6px 0px #C9C9C9;
+  -moz-box-shadow: 0 8px 6px 0px #C9C9C9;
+  box-shadow: 0 8px 6px 0px #C9C9C9;
+  border-style: none;
+  margin: 4px;
+}
+
+.btn-float span {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+.btn-float:hover {
+  background-color: #521DC4;
+  -webkit-transition-duration: 250ms;
+  transition-duration: 250ms;
+  -webkit-box-shadow: 0 8px 6px 0px #C9C9C9;
+  -moz-box-shadow: 0 8px 6px 0px #C9C9C9;
+  box-shadow: 0 8px 6px 0px #C9C9C9;
+}
+
+.btn-float:active {
+  background-color: #B388FF;
+  -webkit-transition-duration: 250ms;
+  transition-duration: 250ms;
+  -webkit-box-shadow: 0 12px 6px 20px darken #C9C9C9, 90;
+  -moz-box-shadow: 0 12px 6px 20px darken #C9C9C9, 90;
+  box-shadow: 0 12px 6px 20px darken #C9C9C9, 90;
+}
+
+.btn-float:focus {
+  outline: 0;
+  background-color: #651FFF;
+}
+
+.btn-raised {
+  background-color: #651FFF;
+  color: #FFFFFF;
+  -webkit-box-shadow: 0px 2px 3px 0px #969696;
+  -moz-box-shadow: 0px 2px 3px 0px #969696;
+  box-shadow: 0px 2px 3px 0px #969696;
+  text-align: center;
+  height: 35px;
+  width: 95px;
+  margin: 4px;
+  border-style: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.btn-raised:hover {
+  background-color: #521DC4;
+  -webkit-transition-duration: 250ms;
+  transition-duration: 250ms;
+}
+
+.btn-raised:active {
+  background-color: #B388FF;
+  -webkit-transition-duration: 250ms;
+  transition-duration: 250ms;
+}
+
+.btn-raised:focus {
+  outline: 0;
+  background-color: #651FFF;
+}
+
+body {
+  background-color: #FAFAFA;
+}

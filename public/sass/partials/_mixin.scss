@@ -1,0 +1,18 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin transition-duration($duration) {
+    -webkit-transition-duration: $duration;
+            transition-duration: $duration;
+}
+
+@mixin box-shadow ($attributes) {
+	-webkit-box-shadow: $attributes;
+	   -moz-box-shadow: $attributes;
+	        box-shadow: $attributes;
+}
+//Usage example:     .box { @include border-radius(10px); }
