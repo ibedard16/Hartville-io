@@ -11,7 +11,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 	.when('/', {
 		pageTitle: 'Hartville.io | A Community For Technology',
 		templateUrl: 'views/home.html',
-		controller: 'BlogController' 
+		controller: 'MainController' 
 	})
 	.when('/new', {
 		pageTitle: 'Hartville.io | New Post',

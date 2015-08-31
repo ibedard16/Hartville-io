@@ -63,7 +63,7 @@ Post.find(function(err, posts) {
         }
         currentPostNum +=1;
         console.log("There are currently " + currentPostNum + " posts in the database.");
-        postList = posts;
+        postList = _.sortBy(posts,'date');
     }
 });
 
@@ -97,8 +97,6 @@ app.get("/favicon.ico", function(request, response){
 });
 
 app.get("/posts.json", function(request, response) {
-    console.log("request params " + JSON.stringify(request.params));
-    console.log('request url ' + JSON.stringify(request.url));
     console.log('request query ' + JSON.stringify(request.query));
     if (request.query.post) {
         var post = _.find(postList, {id: Number(request.query.post)});
@@ -112,6 +110,12 @@ app.get("/posts.json", function(request, response) {
                 post:post
             });
         }
+    } else if (request.query.main) {
+        console.log('success');
+        response.send({
+            success:true,
+            posts: postList.slice(-4)
+        });
     } else {
         response.send({
             success:true,
@@ -166,14 +170,25 @@ app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyIma
         if (verify.credentials(request.body.username,request.body.password)) {
             
             console.log(request.body);
-            var newPost = {
-                id: currentPostNum,
-                title: request.body.title,
-                author: request.body.username,
-                content: request.body.content,
-                categories: request.body.categories,
-                imageHead: request.files.headImage[0].path.substring(7)
-            };
+            var newPost
+            if (request.files.headImage) {
+                newPost = {
+                    id: currentPostNum,
+                    title: request.body.title,
+                    author: request.body.username,
+                    content: request.body.content,
+                    categories: request.body.categories,
+                    imageHead: request.files.headImage[0].path.substring(7)
+                };
+            } else {
+                newPost = {
+                    id: currentPostNum,
+                    title: request.body.title,
+                    author: request.body.username,
+                    content: request.body.content,
+                    categories: request.body.categories,
+                };
+            }
             console.log(newPost.images);
             postList.push(newPost);
             var post = new Post(newPost);
