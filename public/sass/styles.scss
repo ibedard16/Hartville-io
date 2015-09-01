@@ -2,7 +2,30 @@
 @import 'partials/_color';
 @import 'partials/_typography';
 @import 'partials/_button';
+@import 'partials/_card';
+@import 'partials/_container';
+
+/* Display-Table Solution */
+
+html,
+body { height: 100%; }
 
 body {
-    background-color: $colorBackground;
+  display: table;
+  width: 100%;
+  background-color: $colorBackground;
+}
+
+.page-row {
+  display: table-row;
+  height: 1px;
+}
+
+.page-row-expanded { height: 100%; }
+
+.nav, .pagination, .carousel, .panel-title a, .button { cursor: pointer; }
+
+//Fix for bulleted items
+nav li, .list-group{
+  list-style: none;
 }

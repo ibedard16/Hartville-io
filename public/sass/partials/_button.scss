@@ -1,58 +1,150 @@
-//Floating Action Button
-.btn-float {
-    background-color: $colorAccent;
-    color: $colorWhite;
-    @include border-radius(35px);
-    width: 50px; height: 50px;
-    @include box-shadow(0 8px 6px 0px $colorDropshadowFloat);
-    border-style: none;
-    margin: 4px;
-    span {
-        position: relative;
-        top: 1px;
-        left: 1px;
+//Google Design - Polymer
+//Base Button + Colors
+.button {
+  display: inline-block;
+  position: relative;
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  @include border-radius(2px);
+  font-size: 0.9em;
+  background-color: #fff;
+  color: $colorText;
+  text-align: center;
+  &.brand{
+      background-color: $colorBrand;
+      color: $colorWhite;
+      &:hover {
+        background-color: $colorBrandLight;
     }
-    &:hover {
-        background-color: $colorAccentDark;
-        @include transition-duration(250ms);
-        @include box-shadow(0 8px 6px 0px $colorDropshadowFloat);
-    }
-    &:active {
+  }
+  &.accent{
+      background-color: $colorAccent;
+      color: $colorWhite;
+      &:hover {
         background-color: $colorAccentLight;
-        @include transition-duration(250ms);
-        @include box-shadow(0 12px 6px 20px $colorDropshadowFloatDarker);
     }
-    &:focus{
-        outline:0;
-        background-color: $colorAccent;
+  }
+  &.info{
+      background-color: $colorInfo;
+      color: $colorWhite;
+      &:hover {
+        background-color: $colorInfoLight;
     }
+  }
+  &.disabled{
+    background-color: $colorStatusbar;
+    color: $colorDisabled;
+  }
+  &:hover {
+    @include transition(background-color .25s 0s);
+  }
 }
 
-//Raised Button
-.btn-raised{
-    background-color: $colorAccent;
-    color: $colorWhite;
-    @include box-shadow(0px 2px 3px 0px $colorDropshadow);
-    text-align: center;
-    height: 35px; width: 95px;
-    margin: 4px;
-    border-style: none;
-    @include border-radius(3px);
-    &:hover {
-        background-color: $colorAccentDark;
-        @include transition-duration(250ms);
-    }
-    &:active {
-        background-color: $colorAccentLight;
-        @include transition-duration(250ms);
-    }
-    &:focus{
-        outline:0;
-        background-color: $colorAccent;
-    }
+// Label Colors
+.label-brand { color: $colorBrand; }
+.label-accent { color: $colorAccent; }
+.label-info { color: $colorInfo; }
+.label-disabled { color: $colorDisabled; }
+
+//Button Sizes
+.large {
+  width: 150px;
+  height: 42px;
+  line-height: 42px;
+}
+.small {
+  width: 100px;
+  height: 22px;
+  line-height: 22px;
 }
 
-//Flat Button
-.btn-flat{
-    
+// Raised Button
+.raised {
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  &:active {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: .0s;
+    @include transition(box-shadow .5s 0s);
+  }
+}
+
+/* Icon Button */
+.icon-button {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  > .core-icon {
+      position: relative;
+      top: 5px;
+      left: 6px;
+      margin: 16px;
+      transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover{
+    > .core-icon {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+  > paper-ripple {
+     overflow: hidden;
+     color: #646464; 
+  }
+}
+
+/* Floating Action Button */
+.fab {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  @include border-radius(50%);
+  color: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  &span{
+      position:relative;
+      top: 15;
+  }
+  > .core-icon {
+      position: relative;
+      top: 5px;
+      left: 6px;
+      margin: 16px;
+      transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &.brand{
+      background-color: $colorBrand;
+      color: $colorWhite;
+  }
+  &.accent{
+      background-color: $colorAccent;
+      color: $colorWhite;
+  }
+  &.info{
+      background-color: $colorInfo;
+      color: $colorWhite;
+  }
+  &.disabled{
+      background-color: $colorStatusbar;
+      color: $colorDisabled;
+  }
+  &:active{
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;  
+  }
+  &:hover{
+    > .core-icon {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
 }

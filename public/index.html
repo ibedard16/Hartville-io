@@ -19,12 +19,15 @@
             <link rel="stylesheet" href="css/_typography.css" type="text/css" />
             <link rel="stylesheet" href="css/_mixin.css" type="text/css" />
             <link rel="stylesheet" href="css/_button.css" type="text/css"/>
+            <link rel="stylesheet" href="css/_card.css" type="text/css" />
+            <link rel="stylesheet" href="css/_container.css" type="text/css" />
             <link rel="stylesheet" href="css/styles.css" type="text/css"/>
 
-
-            
             <!--Google Fonts-->
             <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300italic,300,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+            
+            <!--Polymer-->
+            <link rel="import" href="https://www.polymer-project.org/0.5/components/paper-ripple/paper-ripple.html"> <!--Testing this -->
         
         <!--Lodash-->
     	<script type="text/javascript" src="vendor/lodash/lodash.min.js"></script>
@@ -94,6 +97,6 @@
         
         <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children></ng-view>
     
-        <website-footer class="page-row"></website-footer>
+        <!--<website-footer class="page-row"></website-footer> TEMPORARY BROKE--> 
     </body>
 </html>

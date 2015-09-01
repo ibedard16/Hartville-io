@@ -28,7 +28,7 @@ var fs              = require('fs'),
     app.use('/css', sassMiddleware({
         src: path.join(__dirname + '/public/sass'),
         dest: path.join(__dirname + '/public/css'),
-        debug: true,
+        debug: false,
         outputStyle: 'expanded',
         
         error: function(err) {console.log(err);}

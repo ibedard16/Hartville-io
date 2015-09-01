@@ -1,24 +1,31 @@
-<ul class="list-group" ng-controller="BlogController">
-    <li class="list-group">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="panel-heading">
-                    <h2><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h2>
-                    <h5>By: <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a></h5>
-                    <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
-                </div>
+<div class="post-card" ng-controller="BlogController">
+    <ul class="list-group">
+        <li class="list-group">
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <p ng-bind-html="post.content | markdownPreview:25"></p>
-                    <a ng-href="/blog/post/{{ post.id }}"><button class="btn btn-danger btn-xs pull-right">Read More <span class="glyphicon glyphicon-menu-right"></span></button></a>
+                    <div class="panel-heading">
+                        <h2><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h2>
+                        <h5>By: <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a></h5>
+                        <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
+                    </div>
+                    <div class="panel-body">
+                        <p ng-bind-html="post.content | markdownPreview:25"></p>
+                        <a ng-href="/blog/post/{{ post.id }}">
+                            <div class="button">
+                               <div class="center" fit>READ MORE</div>
+                               <paper-ripple fit></paper-ripple>
+                            </div>
+                        </a>
+                    </div>
+    
+                    <div class="panel-footer">
+                        <ul class="small list-inline" ng-show="post.categories.length">
+                            <li><span class="glyphicon glyphicon-tags"></span></li>
+                            <li ng-repeat="category in post.categories"><a href="">{{category | lowercase}}</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="panel-footer">
-                    <ul class="small list-inline" ng-show="post.categories.length">
-                        <li><span class="glyphicon glyphicon-tags"></span></li>
-                        <li ng-repeat="category in post.categories"><a href="">{{category | lowercase}}</a></li>
-                    </ul>
-                </div>
-            </div> <!-- end panel body -->
-        </div> <!-- end panel -->
-    </li>
-</ul>
+            </div>
+        </li>
+    </ul>
+</div>

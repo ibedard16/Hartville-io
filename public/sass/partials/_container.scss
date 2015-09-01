@@ -1,0 +1,40 @@
+.jumbotron{
+    background-color: transparent !important;
+    text-align: center;
+    color: $colorWhite;
+}
+
+.container-full-bg {
+  width:100%;
+  background-color: #000;
+  background-position:center;
+  background-size:cover;
+  background-image:url('../images/header-02.png');
+}
+.container-full-bg .container, .container-full-bg .container .jumbotron {height:100%;width:100%;}
+
+.navbar{
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+
+.navbar-default {
+  .navbar-nav {
+    >.active {
+      & a {
+        background-color: $colorBrand;
+        color: #fff;
+      }
+      & a:focus {
+        background-color: $colorBrand;
+        color: #fff;
+      }
+      & a:hover {
+        background-color: $colorBrandLight;
+        color: #fff;
+        @include transition(background-color .25s 0s);
+      }
+    }
+  }
+}

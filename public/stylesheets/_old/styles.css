@@ -81,68 +81,7 @@ pre{
 .container-full-bg {background-image:url('../images/header-02.png');}
 .container-full-bg .container, .container-full-bg .container .jumbotron {height:100%;width:100%;}
 
-/*buttons*/
-.btn {
-	border-radius: 0px;
-}
 
-.btn-danger:hover {
-    color: #d9534f;
-    background-color: transparent;
-    border-color: #d9534f;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-}
-.btn-success:hover {
-    color: #5cb85c;
-    background-color: transparent;
-    border-color: #5cb85c;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-}
-.btn-lg.btn-danger{
-    color: #fff;
-    background-color: transparent;
-    border-color: #fff;
-}
-.btn-lg.btn-danger:hover{
-    color: #d9534f;
-    background-color: #fff;
-    border-color: #fff;
-}
-.btn-primary:hover{
-    color: #337ab7;
-    background-color: transparent;
-    border-color: #337ab7;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-}
-.btn-inverted{
-    background-color: #333;
-    border-color: #242424;
-}
-.btn-inverted:hover{
-    color: #242424;
-    background-color: transparent;
-    border-color: #242424;
-    -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
-}
-
-jumbotron > .btn-danger:hover{
-  border-color: #fff;
-}
-.jumbotron{
-    background-color: transparent !important;
-}
-.jumbotron, .jumbotron-404{
-    text-align: center;
-    color: #fff;
-}
-.jumbotron-404{
-    background-color: #d9534f;
-    margin: 20px;
-}
 .error-header{
     font-size: 3em;
     color: #fff;

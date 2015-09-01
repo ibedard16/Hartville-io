@@ -1,9 +1,16 @@
-<li class="list-group">
-	<img ng-src="{{post.imageHead}}" class="img-responsive" />
-	<h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
-	<p><span class="glyphicon glyphicon-pencil"></span> By <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> | 
-	<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
-	<hr>
-	<p ng-bind-html="post.content | markdownPreview:50"></p>
-	<a ng-href="/blog/post/{{ post.id }}">READ MORE <span class="glyphicon glyphicon-menu-right"></span></a>
-</li>
+<div class="post-card">
+	<li class="list-group">
+		<img ng-src="{{post.imageHead}}" class="img-responsive" />
+		<h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
+		<p><span class="glyphicon glyphicon-pencil"></span> By <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> | 
+		<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
+		<hr>
+		<p ng-bind-html="post.content | markdownPreview:50"></p>
+		<a ng-href="/blog/post/{{ post.id }}">
+			<div class="button label-accent">
+	           <div class="center" fit>READ MORE <span class="fa fa-angle-right"></span></div>
+	           <paper-ripple fit></paper-ripple>
+        	</div>
+        </a>
+	</li>
+</div>

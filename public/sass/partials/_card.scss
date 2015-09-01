@@ -1,0 +1,47 @@
+.card, .dialog {
+  position: relative;
+  vertical-align: top;
+  background-color: $colorWhite;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
+  margin: 10px 10px 25px 10px;
+  &.image {
+      color: $colorWhite;
+  }
+}
+
+.dialog {
+  box-sizing: border-box;
+  > .content {
+      font-size: 0.9em;
+      padding: 15px;
+      > .title {
+          font-size: 2em;
+          padding-bottom: 0px;
+        }
+    }
+  > .button {
+      margin: 0px 5px;
+      width: 90px;
+    }
+  &:hover {
+    box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: .0s;
+    @include transition(box-shadow .5s 0s);
+  }
+}
+
+.post-card{
+  padding: 20px;
+  background-color: $colorWhite;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
+  &:hover {
+    box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: .0s;
+    @include transition(box-shadow .5s 0s);
+  }
+}
+
+.post-info {
+  background-color: $colorAppbar;
+  padding: 15px;
+}
