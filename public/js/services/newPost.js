@@ -1,5 +1,5 @@
 app.service('newPost', ['$http', function($http) {
-    return $http.post('/create')
+    return $http.post('/test')
 		.then(function(data){
 			return data;
 		}, function(error){

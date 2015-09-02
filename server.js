@@ -50,6 +50,7 @@ try {
     console.log('Server was not able to log in to database.');
 }
 
+//Retrieves list of posts from database and then stores them in a variable to be used throughout the server session.
 var currentPostNum=0;
 var postList;
 Post.find(function(err, posts) {
@@ -64,6 +65,8 @@ Post.find(function(err, posts) {
         }
         currentPostNum +=1;
         console.log("There are currently " + currentPostNum + " posts in the database.");
+        //The postList here is ordered by date explicitly, later mentions only append posts onto the end. It's presumed that the server
+        //would put the newer posts towards the end of the array (since it is pushing the post to the array).
         postList = _.sortBy(posts,'date');
     }
 });
@@ -71,20 +74,15 @@ Post.find(function(err, posts) {
 var multer      = require('multer'),
     storage     = multer.diskStorage({
         destination: function (request, file, cb) {
-            console.log("line 62 " + JSON.stringify(file));
-            console.log("line 63 " + JSON.stringify(request.body));
             if (verify.credentials(request.body.username,request.body.password)) {
-                console.log("Attempting to save post image now.");
                 if (fs.existsSync('public/postFiles/'+currentPostNum)) {
                     cb(null, 'public/postFiles/'+currentPostNum);
-                    console.log("Post image successfully saved. Directory is not new though.");
                 } else {
                     fs.mkdirSync('public/postFiles/'+currentPostNum);
                     cb(null, 'public/postFiles/'+currentPostNum);
-                    console.log("Post image successfully saved in new directory.");
                 }
             } else {
-                console.log("Image couldnot be saved.");
+                console.log("Ah, crap. A user-uploaded image could not be saved.");
             }
         },
         filename: function (request, file, cb) {
@@ -115,7 +113,8 @@ app.get("/posts.json", function(request, response) {
         console.log('success');
         response.send({
             success:true,
-            posts: postList.slice(-4)
+            mdPreview: postList.slice(-2),
+            smPreview: postList.slice(-6,-2)
         });
     } else {
         response.send({
@@ -211,6 +210,11 @@ app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyIma
         response.status(503).send('This server cannot post to the database. It either lacks the authority to write to the database or does not have any way to validate user credentials. Please contact administrator for more details.');
     }
 });
+
+app.post('/test', upload.single(), function(request, response) {
+    console.log(request.body);
+    response.send("success");
+}); 
 
 app.get('*', function(request, response) {
     response.sendFile(__dirname + '/public/index.html');

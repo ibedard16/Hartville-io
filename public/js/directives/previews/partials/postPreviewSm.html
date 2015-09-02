@@ -9,7 +9,7 @@
                         <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
                     </div>
                     <div class="panel-body">
-                        <p ng-bind-html="post.content | markdownPreview:25"></p>
+                        <p>{{post.content | htmlToPlainText | words:25}}</p>
                         <a ng-href="/blog/post/{{ post.id }}">
                             <div class="button">
                                <div class="center" fit>READ MORE</div>

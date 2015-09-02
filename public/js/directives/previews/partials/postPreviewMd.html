@@ -37,7 +37,7 @@
  <div class="content">
     <div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
     <hr>
-    <div><p ng-bind-html="post.content | markdownPreview:25"></p></div>
+    <div><p>{{post.content | htmlToPlainText | words:50}}</p></div>
  </div>
 
  <a ng-href="/blog/post/{{ post.id }}">

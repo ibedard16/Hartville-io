@@ -5,10 +5,10 @@
 		<p><span class="glyphicon glyphicon-pencil"></span> By <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> | 
 		<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
 		<hr>
-		<p ng-bind-html="post.content | markdownPreview:50"></p>
+		<p ng-bind-html="post.content"></p>
 		<a ng-href="/blog/post/{{ post.id }}">
 			<div class="button label-accent">
-	           <div class="center" fit>READ MORE <span class="fa fa-angle-right"></span></div>
+	           <div class="center" fit>GO TO POST <span class="fa fa-angle-right"></span></div>
 	           <paper-ripple fit></paper-ripple>
         	</div>
         </a>

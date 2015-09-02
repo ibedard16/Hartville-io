@@ -4,7 +4,8 @@ app.controller('MainController', ['$scope', '$routeParams', '$filter', 'posts', 
 		if ($routeParams.author) {
 			$scope.posts = $filter('filter')(data.posts,{author: $routeParams.author});
 		} else {
-			$scope.posts = data.posts;
+			$scope.mdPreview = data.mdPreview;
+			$scope.smPreview = data.smPreview;
 		}
 	});
 	//Events
