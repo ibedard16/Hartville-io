@@ -1,32 +1,104 @@
 .card, .dialog {
   position: relative;
+  border-radius: 3px;
   vertical-align: top;
   background-color: $colorWhite;
   box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
   margin: 10px 10px 25px 10px;
   &.image {
       color: $colorWhite;
+      border-radius: 3px;
   }
 }
 
 .dialog {
   box-sizing: border-box;
+  margin: 0px 0px 20px 0px;
   > .content {
       font-size: 0.9em;
       padding: 15px;
-      > .title {
-          font-size: 2em;
-          padding-bottom: 0px;
-        }
+      color: $colorText;
+      & blockquote {
+        border-left: 5px solid $colorAppbar;
+      }
     }
-  > .button {
-      margin: 0px 5px;
+  > .title {
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: $typeLight;
+      padding: 15px;
+      color: $colorBase;
+      background-color: $colorAppbar;
+      margin: 0px;
+    }
+  & .button {
       width: 90px;
+      margin-left: 10px;
     }
   &:hover {
     box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
     transition-delay: .0s;
     @include transition(box-shadow .5s 0s);
+  }
+}
+
+
+//Card Specific Colors
+.brand {
+  > .title {
+    background-color: $colorBrand;
+    color: $colorWhite;
+  }
+  > .content{
+    & blockquote {
+      border-left: 5px solid $colorBrand;
+    }
+  }
+  > .post-info {
+    > a {
+      color: $colorBrand;
+    }
+  }
+  & .post-info-button {
+      color: $colorBrand;
+    }
+  > .button {
+    color: $colorBrand;
+  }
+}
+.accent {
+  > .title {
+    background-color: $colorAccent;
+    color: $colorWhite;
+  }
+  > .content{
+    & blockquote {
+      border-left: 5px solid $colorAccent;
+    }
+  }
+  & .post-info-button {
+      color: $colorAccent;
+    }
+  > .button {
+    color: $colorAccent;
+  }
+}
+
+.info {
+  > .title {
+    background-color: $colorInfo;
+    color: $colorWhite;
+  }
+  > .content{
+    & blockquote {
+      border-left: 5px solid $colorInfo;
+    }
+  }
+  & .post-info-button {
+      color: $colorInfo;
+    }
+  > .button {
+    color: $colorInfo;
   }
 }
 
@@ -44,4 +116,18 @@
 .post-info {
   background-color: $colorAppbar;
   padding: 15px;
+  text-align: center;
+}
+
+.post-info-button {
+  font-size: 1.2em;
+  color: $colorStatusbar;
+  float: right;
+  position: relative;
+  right: 15px;
+  bottom: 33px;
+}
+
+.card-hr{
+  margin-bottom: 6px;
 }

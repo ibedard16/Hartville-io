@@ -8,7 +8,8 @@ var fs              = require('fs'),
     Author          = require('./server/database/authorSchema'),
     Event           = require('./server/database/eventSchema'),
     sassMiddleware  = require('node-sass-middleware'),
-    _               = require('lodash');
+    _               = require('lodash'),
+    bodyParser      = require('body-parser');
     
 
     var app = express();
@@ -39,6 +40,7 @@ var fs              = require('fs'),
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use('/postFiles', express.static(path.join(__dirname + '/public/postFiles')));
+    app.use(bodyParser.json());
     
 try {
     var verify = require('./server/database/verifyCredentials');
@@ -164,14 +166,12 @@ app.get("/google*", function(request, response) {
     response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
 });
 
-app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyImage"}]), function(request, response) {
+app.post('/create', /*upload.fields([{name:'headImage', maxCount:1},{name:"bodyImage"}]),*/ upload.single(), function(request, response) {
     if (app.get('canPost')) {
-        console.log(request.files);
         if (verify.credentials(request.body.username,request.body.password)) {
-            
-            console.log(request.body);
+        
             var newPost
-            if (request.files.headImage) {
+            /*if (request.files.headImage) {
                 newPost = {
                     id: currentPostNum,
                     title: request.body.title,
@@ -180,7 +180,7 @@ app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyIma
                     categories: request.body.categories,
                     imageHead: request.files.headImage[0].path.substring(7)
                 };
-            } else {
+            } else {*/
                 newPost = {
                     id: currentPostNum,
                     title: request.body.title,
@@ -188,10 +188,9 @@ app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyIma
                     content: request.body.content,
                     categories: request.body.categories,
                 };
-            }
-            console.log(newPost.images);
-            postList.push(newPost);
+            //}
             var post = new Post(newPost);
+            postList.push(post);
             
             post.save(function(err, model) {
                 if (err) {
@@ -200,11 +199,11 @@ app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyIma
                 else {
                     currentPostNum += 1;
                     console.log("A user has added another post to the database. There are now " + currentPostNum + " posts in the database.");
-                    response.redirect('/');
+                    response.send('Post Success');
                 }
             });
         } else {
-            response.status(401).send('Invalid Password');
+            response.status(401).send('Invalid Login');
         }
     } else {
         response.status(503).send('This server cannot post to the database. It either lacks the authority to write to the database or does not have any way to validate user credentials. Please contact administrator for more details.');
@@ -212,6 +211,10 @@ app.post('/create', upload.fields([{name:'headImage', maxCount:1},{name:"bodyIma
 });
 
 app.post('/test', upload.single(), function(request, response) {
+    for (var i in request) {
+        console.log(i);
+    }
+    console.log(request.query);
     console.log(request.body);
     response.send("success");
 }); 

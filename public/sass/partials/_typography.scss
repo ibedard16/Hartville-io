@@ -24,13 +24,13 @@ h5 {font-weight: $typeMedium;}
 
 blockquote{
     border-left: 5px solid $colorBrand;
+    font-size: 1.2em;
 }
 
 a {
     color: $colorAccent;
     &:hover{
         color: $colorAccentLight;
-        background-color: $colorWhite;
         text-decoration: none;
         @include transition-duration(500ms);
     }

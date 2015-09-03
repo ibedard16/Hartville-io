@@ -10,6 +10,68 @@
     <div class="row">
         <div class="col-md-12">
             <h1>HTML Ipsum Presents</h1>
+            
+            <h2>Panels</h2>
+            <div class="row">
+                <div class="col-md-3">
+    				<div class="panel">
+    				  <div class="panel-heading">
+    				    <h3 class="panel-title">Preview information</h3>
+    				  </div>
+    				  <div class="panel-body">
+    				    Date is displayed after post creation.
+    				  </div>
+    				</div>
+    			</div>
+    			
+    			<div class="col-md-3">
+    				<div class="panel brand">
+    				  <div class="panel-heading">
+    				    <h3 class="panel-title">Preview information</h3>
+    				  </div>
+    				  <div class="panel-body">
+    				    Date is displayed after post creation.
+    				  </div>
+    				  <hr>
+    				  <div class="button">
+                        <div class="center" fit>LINK</div>
+                        <paper-ripple fit></paper-ripple>
+                      </div>
+    				</div>
+    			</div>
+    			
+    			<div class="col-md-3">
+    				<div class="panel accent">
+    				  <div class="panel-heading">
+    				    <h3 class="panel-title">Preview information</h3>
+    				  </div>
+    				  <div class="panel-body">
+    				    Date is displayed after post creation.
+    				  </div>
+    				  <hr>
+    				  <div class="button">
+                        <div class="center" fit>LINK</div>
+                        <paper-ripple fit></paper-ripple>
+                      </div>
+    				</div>
+    			</div>
+    			
+    			<div class="col-md-3">
+    				<div class="panel info">
+    				  <div class="panel-heading">
+    				    <h3 class="panel-title">Preview information</h3>
+    				  </div>
+    				  <div class="panel-body">
+    				    Date is displayed after post creation.
+    				  </div>
+    				  <hr>
+    				  <div class="button">
+                        <div class="center" fit>LINK</div>
+                        <paper-ripple fit></paper-ripple>
+                      </div>
+    				</div>
+    			</div>
+			</div>
 	       
             <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
             
@@ -85,110 +147,175 @@
               <paper-ripple fit></paper-ripple>
             </div>
             
+            <h4>Form Buttons</h4>
+            <button class="button raised brand">
+              <div class="center" fit>SUBMIT</div>
+              <paper-ripple fit></paper-ripple>
+            </button>
+            
+            <button class="button raised accent" disabled>
+              <div class="center" fit>RESET</div>
+              <paper-ripple fit></paper-ripple>
+            </button>
+            
             <h2>Responsive Card</h2>
             <hr>
          
             <div class="row">
+               
                <div class="col-md-6">
                   <div class="dialog">
           
+                     <div class="title">Card Title</div>
+          
                      <div class="content">
-                       <div class="title">Card Title</div><br>
-                       <div>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
+                       <div>
+                           <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                           <p>Nunc venenatis turpis eu ligula pretium aliquet. Cras vel mauris aliquam, scelerisque velit non, facilisis erat.</p>
+                           <blockquote>Phasellus lorem lacus, viverra eu lacus id, sollicitudin mattis lectus. Quisque interdum nisi at mi sodales, quis posuere leo aliquam.</blockquote>
+                           </div>
                      </div>
-                   
-                     <div class="button label-brand">
-                       <div class="center" fit>ACCEPT</div>
+                       <hr class="card-hr">
+                     <div class="button">
+                       <div class="center" fit>LEARN MORE</div>
                        <paper-ripple fit></paper-ripple>
                      </div>
                      
                      <div class="button">
-                       <div class="center" fit>DECLINE</div>
+                       <div class="center" fit>SHARE</div>
                        <paper-ripple fit></paper-ripple>
                      </div>
+                     
+                     <div ng-controller="CollapseController">
+    					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+    					    <span class="fa fa-info"></span>
+    					</div>
+    					<div collapse="!isCollapsed">
+                            <div class="post-info">
+                                 <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                             </div>
+    					</div>
+    				 </div>
                    
                   </div>
                </div>
                
                <div class="col-md-6">
-                  <div class="dialog">
+                  <div class="dialog brand">
+          
+                     <div class="title">Blog Card</div>
           
                      <div class="content">
-                       <div class="title">Card Title</div><br>
-                       <div>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
+                       <div>
+                           <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                           <p>Nunc venenatis turpis eu ligula pretium aliquet. Cras vel mauris aliquam, scelerisque velit non, facilisis erat.</p>
+                           <blockquote>Phasellus lorem lacus, viverra eu lacus id, sollicitudin mattis lectus. Quisque interdum nisi at mi sodales, quis posuere leo aliquam.</blockquote>
+                           </div>
                      </div>
-                   
-                     <div class="button label-brand">
-                       <div class="center" fit>ACCEPT</div>
+                       <hr class="card-hr">
+                     <div class="button">
+                       <div class="center" fit>READ MORE</div>
                        <paper-ripple fit></paper-ripple>
                      </div>
                      
                      <div class="button">
-                       <div class="center" fit>DECLINE</div>
+                       <div class="center" fit>SHARE</div>
                        <paper-ripple fit></paper-ripple>
                      </div>
+                     
+                     <div ng-controller="CollapseController">
+    					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+    					    <span class="fa fa-info"></span>
+    					</div>
+    					<div collapse="!isCollapsed">
+                            <div class="post-info">
+                                 <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                             </div>
+    					</div>
+    				 </div>
+                   
+                  </div>
+               </div>
+               
+               <div class="col-md-6">
+                  <div class="dialog accent">
+          
+                     <div class="title">Card Title</div>
+                     <div class="image">
+                        <img class="img-responsive" src="http://wallpapersyet.com/wp-content/uploads/2015/08/Tiger-Nature-HD.jpg"></img>
+                     </div>
+                     <div class="content">
+                       <div>
+                           <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                           <p>Nunc venenatis turpis eu ligula pretium aliquet. Cras vel mauris aliquam, scelerisque velit non, facilisis erat.</p>
+                           <blockquote>Phasellus lorem lacus, viverra eu lacus id, sollicitudin mattis lectus. Quisque interdum nisi at mi sodales, quis posuere leo aliquam.</blockquote>
+                           </div>
+                     </div>
+                       <hr class="card-hr">
+                     <div class="button">
+                       <div class="center" fit>LEARN MORE</div>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                     
+                     <div class="button">
+                       <div class="center" fit>SHARE</div>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                     
+                     <div ng-controller="CollapseController">
+    					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+    					    <span class="fa fa-info"></span>
+    					</div>
+    					<div collapse="!isCollapsed">
+                            <div class="post-info">
+                                 <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                             </div>
+    					</div>
+    				 </div>
+                   
+                  </div>
+               </div>
+               
+               <div class="col-md-6">
+                  <div class="dialog info">
+          
+                     <div class="title">Card Title</div>
+                     <div class="image">
+                        <img class="img-responsive" src="http://wallpaper-download.net/wallpapers/beautiful-wallpapers-purple-nature-wallpaper-wallpaper-35654.jpg"></img>
+                     </div>
+                     <div class="content">
+                       <div>
+                           <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                           <p>Nunc venenatis turpis eu ligula pretium aliquet. Cras vel mauris aliquam, scelerisque velit non, facilisis erat.</p>
+                           <blockquote>Phasellus lorem lacus, viverra eu lacus id, sollicitudin mattis lectus. Quisque interdum nisi at mi sodales, quis posuere leo aliquam.</blockquote>
+                           </div>
+                     </div>
+                       <hr class="card-hr">
+                     <div class="button">
+                       <div class="center" fit>LEARN MORE</div>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                     
+                     <div class="button">
+                       <div class="center" fit>SHARE</div>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                     
+                     <div ng-controller="CollapseController">
+    					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+    					    <span class="fa fa-info"></span>
+    					</div>
+    					<div collapse="!isCollapsed">
+                            <div class="post-info">
+                                 <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                             </div>
+    					</div>
+    				 </div>
                    
                   </div>
                </div>
                
             </div>
-            
-            <h2>Responsive Card w/ Images</h2>
-            <hr>
-            	   
-            <div class="row">
-               
-               <div class="col-md-6">
-                  <div class="dialog">
-                      
-                     <div class="image">
-                        <img class="img-responsive" src="http://cdn.images.express.co.uk/img/dynamic/59/590x/Google-New-Logo-See-New-Google-Logo-Font-Change-2015-G-Logo-Google-Different-What-Has-happened-with-Google-Logo-Google-New-Look-602266.jpg"></img>
-                     </div>
-                      
-                     <div class="content">
-                       <div class="title">Card Title</div><br>
-                       <div>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
-                     </div>
-                   
-                     <div class="button label-brand">
-                       <div class="center" fit>ACCEPT</div>
-                       <paper-ripple fit></paper-ripple>
-                     </div>
-                     
-                     <div class="button">
-                       <div class="center" fit>DECLINE</div>
-                       <paper-ripple fit></paper-ripple>
-                     </div>
-                   
-                  </div>
-               </div>
-               
-               <div class="col-md-6">
-                  <div class="dialog">
-                      
-                     <div class="image">
-                        <img class="img-responsive" src="http://img07.deviantart.net/708e/i/2015/146/2/b/big_mountain_12_by_niedec_stock-d8uvgvq.png"></img>
-                     </div>
-                      
-                     <div class="content">
-                       <div class="title">Card Title</div><br>
-                       <div>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
-                     </div>
-                   
-                     <div class="button label-brand">
-                       <div class="center" fit>ACCEPT</div>
-                       <paper-ripple fit></paper-ripple>
-                     </div>
-                     
-                     <div class="button">
-                       <div class="center" fit>DECLINE</div>
-                       <paper-ripple fit></paper-ripple>
-                     </div>
-                   
-                  </div>
-               </div>
-               
-            </div> 
             
             <ol>
                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
@@ -260,6 +387,58 @@
                <li>Aliquam tincidunt mauris eu risus.</li>
                <li>Vestibulum auctor dapibus neque.</li>
             </ol>
+            
+            <h2>Styled Form</h2>
+            <hr>
+            
+
+              <form>
+                <div class="form-group">
+                  <select id="select">
+                    <option>Value 1</option>
+                    <option>Value 2</option>
+                  </select>
+                  <label for="select">Selectbox</label><i class="bar"></i>
+                </div>
+                <div class="form-group">
+                  <input id="input" type="text" required="required"/>
+                  <label for="input">Textfield</label><i class="bar"></i>
+                </div>
+                <div class="form-group">
+                  <textarea id="textarea" required="required"></textarea>
+                  <label for="textarea">Textarea</label><i class="bar"></i>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" checked="checked"/><i class="helper"></i>I'm the label from a checkbox
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"/><i class="helper"></i>I'm the label from a checkbox
+                  </label>
+                </div>
+                <div class="form-radio">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="radio" checked="checked"/><i class="helper"></i>I'm the label from a radio button
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="radio"/><i class="helper"></i>I'm the label from a radio button
+                    </label>
+                  </div>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"/><i class="helper"></i>I'm the label from a checkbox
+                  </label>
+                </div>
+              </form>
+
+                
+            </div>
             
         </div>
     </div>

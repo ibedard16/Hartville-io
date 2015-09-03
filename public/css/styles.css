@@ -20,6 +20,7 @@ h5 {
 
 blockquote {
   border-left: 5px solid #0091EA;
+  font-size: 1.2em;
 }
 
 a {
@@ -28,7 +29,6 @@ a {
 
 a:hover {
   color: #FF5722;
-  background-color: #FFFFFF;
   text-decoration: none;
   -moz-transition-property: 500ms;
   -o-transition-property: 500ms;
@@ -52,8 +52,8 @@ code {
   -ms-border-radius: 2px;
   border-radius: 2px;
   font-size: 0.9em;
-  background-color: #fff;
-  color: lighten #000000, 13;
+  background-color: none;
+  color: #777777;
   text-align: center;
 }
 
@@ -86,7 +86,7 @@ code {
 
 .button.disabled {
   background-color: #E0E0E0;
-  color: #757575;
+  color: lighten #000000, 63%;
 }
 
 .button:hover {
@@ -96,20 +96,40 @@ code {
   transition: background-color 0.25s 0s;
 }
 
+button {
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
 .label-brand {
   color: #0091EA;
+}
+
+.label-brand:hover {
+  color: #00B0FF;
 }
 
 .label-accent {
   color: #FF3D00;
 }
 
+.label-accent:hover {
+  color: #FF5722;
+}
+
 .label-info {
   color: #6200EA;
 }
 
+.label-info:hover {
+  color: #651FFF;
+}
+
 .label-disabled {
-  color: #757575;
+  color: lighten #000000, 63%;
 }
 
 .large {
@@ -130,8 +150,8 @@ code {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
-.raised:active {
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+.raised:hover {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   transition-delay: .0s;
   -moz-transition: box-shadow 0.5s 0s;
   -o-transition: box-shadow 0.5s 0s;
@@ -214,10 +234,10 @@ code {
 
 .fab.disabled {
   background-color: #E0E0E0;
-  color: #757575;
+  color: lighten #000000, 63%;
 }
 
-.fab:active {
+.fab:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
   transition-delay: 0s;
 }
@@ -229,6 +249,7 @@ code {
 
 .card, .dialog {
   position: relative;
+  border-radius: 3px;
   vertical-align: top;
   background-color: #FFFFFF;
   box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
@@ -237,25 +258,37 @@ code {
 
 .card.image, .dialog.image {
   color: #FFFFFF;
+  border-radius: 3px;
 }
 
 .dialog {
   box-sizing: border-box;
+  margin: 0px 0px 20px 0px;
 }
 
 .dialog > .content {
   font-size: 0.9em;
   padding: 15px;
+  color: #777777;
 }
 
-.dialog > .content > .title {
-  font-size: 2em;
-  padding-bottom: 0px;
+.dialog > .content blockquote {
+  border-left: 5px solid #F5F5F5;
 }
 
-.dialog > .button {
-  margin: 0px 5px;
+.dialog > .title {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 300;
+  padding: 15px;
+  color: #000000;
+  background-color: #F5F5F5;
+  margin: 0px;
+}
+
+.dialog .button {
   width: 90px;
+  margin-left: 10px;
 }
 
 .dialog:hover {
@@ -265,6 +298,61 @@ code {
   -o-transition: box-shadow 0.5s 0s;
   -webkit-transition: box-shadow 0.5s 0s;
   transition: box-shadow 0.5s 0s;
+}
+
+.brand > .title {
+  background-color: #0091EA;
+  color: #FFFFFF;
+}
+
+.brand > .content blockquote {
+  border-left: 5px solid #0091EA;
+}
+
+.brand > .post-info > a {
+  color: #0091EA;
+}
+
+.brand .post-info-button {
+  color: #0091EA;
+}
+
+.brand > .button {
+  color: #0091EA;
+}
+
+.accent > .title {
+  background-color: #FF3D00;
+  color: #FFFFFF;
+}
+
+.accent > .content blockquote {
+  border-left: 5px solid #FF3D00;
+}
+
+.accent .post-info-button {
+  color: #FF3D00;
+}
+
+.accent > .button {
+  color: #FF3D00;
+}
+
+.info > .title {
+  background-color: #6200EA;
+  color: #FFFFFF;
+}
+
+.info > .content blockquote {
+  border-left: 5px solid #6200EA;
+}
+
+.info .post-info-button {
+  color: #6200EA;
+}
+
+.info > .button {
+  color: #6200EA;
 }
 
 .post-card {
@@ -285,6 +373,20 @@ code {
 .post-info {
   background-color: #F5F5F5;
   padding: 15px;
+  text-align: center;
+}
+
+.post-info-button {
+  font-size: 1.2em;
+  color: #E0E0E0;
+  float: right;
+  position: relative;
+  right: 15px;
+  bottom: 33px;
+}
+
+.card-hr {
+  margin-bottom: 6px;
 }
 
 .jumbotron {
@@ -328,6 +430,252 @@ code {
   -o-transition: background-color 0.25s 0s;
   -webkit-transition: background-color 0.25s 0s;
   transition: background-color 0.25s 0s;
+}
+
+.panel {
+  background-color: #FFFFFF;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.panel:hover {
+  box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
+  transition-delay: .0s;
+  -moz-transition: box-shadow 0.5s 0s;
+  -o-transition: box-shadow 0.5s 0s;
+  -webkit-transition: box-shadow 0.5s 0s;
+  transition: box-shadow 0.5s 0s;
+}
+
+.panel.brand {
+  background-color: #0091EA;
+  color: #FFFFFF;
+}
+
+.panel.brand hr {
+  border: 1px solid #00B0FF;
+}
+
+.panel.accent {
+  background-color: #FF3D00;
+  color: #FFFFFF;
+}
+
+.panel.accent hr {
+  border: 1px solid #FF5722;
+}
+
+.panel.info {
+  background-color: #6200EA;
+  color: #FFFFFF;
+}
+
+.panel.info hr {
+  border: 1px solid #651FFF;
+}
+
+.panel .button {
+  color: #fff;
+  background-color: none;
+  margin-left: 5px;
+}
+
+.panel-title {
+  font-size: 1.2em;
+  margin: 10px 0px 0px 0px;
+}
+
+.panel-body {
+  margin: 0px;
+  padding: 0px 15px 15px 15px;
+}
+
+.form-radio, .form-group {
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.form-help {
+  margin-top: 2px;
+  margin-left: 2px;
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.checkbox .form-help, .form-radio .form-help {
+  padding-top: 4px;
+  padding-left: 25px;
+}
+
+.form-group select {
+  width: 100%;
+  font-size: 18px;
+  height: 29px;
+  padding: 2px 2px 1px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  line-height: 29px;
+}
+
+.form-group select ~ .bar {
+  border-bottom: 1px solid #999;
+}
+
+.form-group select ~ .bar:after, .form-group select ~ .bar:before {
+  bottom: -1px;
+}
+
+.form-group select ~ label {
+  font-size: 14px;
+  color: gray;
+  top: -20px;
+}
+
+.form-group select:focus {
+  outline: none;
+}
+
+.form-group select:focus ~ .bar:before, .form-group select:focus ~ .bar:after {
+  width: 50%;
+}
+
+.form-group label {
+  position: relative;
+  top: 0;
+  pointer-events: none;
+  padding-left: 2px;
+  z-index: 1;
+  color: #b3b3b3;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  transition: all 0.2s ease;
+}
+
+.form-group .bar {
+  position: relative;
+  display: block;
+  margin-right: -4px;
+}
+
+.form-group .bar:before, .form-group .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  background: #0091EA;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.form-group .bar:before {
+  left: 50%;
+}
+
+.form-group .bar:after {
+  right: 50%;
+}
+
+.form-group input, .form-group textarea {
+  display: block;
+  background: none;
+  padding: 2px 2px 1px;
+  font-size: 18px;
+  border-width: 0 0 1px;
+  line-height: 29px;
+  border-color: #999;
+  width: 100%;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+}
+
+.form-group input:focus ~ label, .form-group input:valid ~ label, .form-group input.hasValue ~ label, .form-group textarea:focus ~ label, .form-group textarea:valid ~ label, .form-group textarea.hasValue ~ label {
+  font-size: 14px;
+  color: gray;
+  top: -20px;
+}
+
+.form-group input:focus ~ label, .form-group textarea:focus ~ label {
+  color: #0091EA;
+}
+
+.form-group input:focus ~ .bar:before, .form-group input:focus ~ .bar:after, .form-group textarea:focus ~ .bar:before, .form-group textarea:focus ~ .bar:after {
+  width: 50%;
+}
+
+.checkbox, .radio {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.checkbox label, .radio label {
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px;
+}
+
+.checkbox .helper, .radio .helper {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  height: 18px;
+  width: 18px;
+  border: 1px solid #999;
+  top: 2px;
+  left: 0;
+  transition: all 0.2s ease;
+}
+
+.checkbox .helper:before, .radio .helper:before {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 12px;
+  width: 12px;
+  top: 50%;
+  left: 50%;
+  background: transparent;
+  transition: all 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.checkbox input, .radio input {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox input:checked ~ .helper, .checkbox input.checked ~ .helper, .radio input:checked ~ .helper, .radio input.checked ~ .helper {
+  border-color: gray;
+}
+
+.checkbox input:checked ~ .helper:before, .checkbox input.checked ~ .helper:before, .radio input:checked ~ .helper:before, .radio input.checked ~ .helper:before {
+  background: #0091EA;
+}
+
+.radio .helper, .radio .helper:before {
+  border-radius: 16px;
+}
+
+.radio + .radio, .checkbox + .checkbox {
+  margin-top: -10px;
+}
+
+.form-group.has-error label,
+.has-error .form-help {
+  color: #6200EA !important;
+}
+
+.has-error .bar:before, .has-error .bar:after {
+  background: #6200EA;
+  width: 50%;
+}
+
+.has-error.checkbox .helper, .has-error .radio .helper {
+  border-color: #6200EA;
 }
 
 /* Display-Table Solution */

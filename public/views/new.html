@@ -2,12 +2,10 @@
 <div class="container container-form">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="page-header">
 			  <h1>New Post</h1>
-			</div>
 		</div>
 
-        <form name="newPost" ng-submit="postData()" enctype="multipart/form-data"><!--action="/create" method="POST"-->
+        <form name="newPost" ><!--action="/create" method="POST" ng-submit="postData()"-->
         	<div class="col-md-12">
 				<div class="page-header">
 				  <h3>Log in</h3>
@@ -15,19 +13,16 @@
 			</div>
         	<!--Username--><div class="col-md-6">
 			  <div class="form-group">
-				<div class="input-group">
-				    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-				    <input type="text" class="form-control" name="username" placeholder="Username" ng-model="formInfo.author">
-				</div>
+				<input id="input" type="text" name="username" ng-model="formInfo.author" required="required"/>
+                <label for="input">Username</label><i class="bar"></i>
 			  </div><!-- end form-group -->
 		  </div><!-- end col -->
 		  <!--Password--><div class="col-md-6">
-			  	<div class="form-group">
-					<div class="input-group">
-					    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-					    <input type="password" autocomplete="off" class="form-control" name="password" placeholder="Password">
-					</div>
-				</div><!-- end form-group -->
+			<div class="form-group">
+				<input id="input" type="password" autocomplete="off" name="password" required="required" ng-model="formInfo.password"/>
+                <label for="input">Password</label><i class="bar"></i>
+			</div><!-- end form-group -->
+				
 			</div>
 			
 			<div class="col-md-12">
@@ -37,9 +32,9 @@
 			</div>
 	    	<div class="col-md-12">
 			  <!--Title--><div class="form-group">
-			    <label>Title</label>
-			    <input type="text" name="title" class="form-control" placeholder="The title for your post" ng-model="formInfo.title">
-			  </div>
+				<input id="input" type="text" name="title" ng-model="formInfo.title"/>
+                <label for="input">Title</label><i class="bar"></i>
+			</div><!-- end form-group -->
 			</div>
 			
 			<!--<div class="col-md-12">
@@ -49,68 +44,42 @@
 			  </div>
 			</div>-->
 			<div class="col-md-12">
+			<h4>Header Image</h4>
 			  <!--Content--><div class="form-group">
-			    <label>Header Image</label>
 			    <input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage">
 			  </div>
 			</div>
 			<div class="col-md-12">
-			  <!--Content--><div class="form-group">
-			    <label>Content</label>
+			<h4>Content</h4>
+			  <div class="form-group">
 			    <text-angular ng-model="formInfo.content" name="content"></text-angular>
 			  </div>
 			</div>
 			
-			  <div class="form-group">
-			  	<label class="col-md-12">Add Images to Body</label>
-			  <div class="col-md-9">
-				   <div class="add-image-animation"ng-repeat="image in imageCount track by $index">
-				    	<input type="file" name="bodyImage" class="form-control" accept="image/*" />
-				   </div>
-			  </div>
-			    <div class="col-md-3">
-			    	<input class="btn btn-primary" type="button" ng-click="addImage()" value="Add another image" />
-			    </div>
-			  </div>
-			  <br>
-			
 		 	<div class="col-md-12">
-			  <!--Category--><div class="form-group">
-			    <label>Category</label>
-			    <div ng-controller="CollapseController">
-					<button type="button" class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Choose Categories</button>
-					<hr>
-					<div collapse="!isCollapsed">
-						<div class="well well-md">
-							
-							<div class="checkbox">
-							  <label>
-							    <input type="checkbox" name="categories" value="technology">
-							    Technology
-							  </label>
-							</div>
-							<div class="checkbox">
-							  <label>
-							    <input type="checkbox" name="categories" value="community">
-							    Community
-							  </label>
-							</div>
-							<div class="checkbox">
-							  <label>
-							    <input type="checkbox" name="categories" value="science">
-							    Science
-							  </label>
-							</div>
-							<div class="checkbox">
-							  <label>
-							    <input type="checkbox" name="categories" value="news">
-							    News
-							  </label>
-							</div>
-							
-						</div> 
-					</div>
-				</div>
+		 		
+				<h4>Choose Categories</h4>
+				<div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="categories" value="technology"/><i class="helper"></i>Technology
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="categories" value="community"/><i class="helper"></i>Community
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="categories" value="science"/><i class="helper"></i>Science
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="categories" value="news"/><i class="helper"></i>News
+                  </label>
+                </div>
+				
 			  </div>
 		  	</div>
 		  	
@@ -120,7 +89,6 @@
 				  <h3>Post Preview</h3>
 				</div>
 			</div>
-			<div class="well">
 				<post-preview-new post=newPost class=col-md-9></post-preview-new>
 				<div class="col-md-3">
 					<div class="panel panel-primary">
@@ -132,12 +100,21 @@
 					  </div>
 					</div>
 				</div>
-			</div>
 		  	<!--Buttons--><div class="row">
-		  		<div class="col-md-12 form-buttons">
-				  <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Submit</button>
-				  <button type="reset" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-remove"></span> Reset</button>
-			    </div>
+		  		<div class="col-md-12">
+
+				    <button type="submit" ng-click="postData(formInfo)" class="button raised brand">
+			           <div class="center" fit>SUBMIT</div>
+			           <paper-ripple fit></paper-ripple>
+			        </button>
+			        
+			        <button type="reset" class="button raised accent">
+			           <div class="center" fit>RESET</div>
+			           <paper-ripple fit></paper-ripple>
+			        </button>
+		        
+		        </div>
+			    
 			</div>
 		</form>
 	</div><!-- end row wrapper -->

@@ -38,3 +38,49 @@
     }
   }
 }
+
+.panel {
+  background-color: $colorWhite;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  &:hover {
+    box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: .0s;
+    @include transition(box-shadow .5s 0s);
+  }
+  &.brand {
+    background-color: $colorBrand;
+    color: $colorWhite;
+    & hr {
+      border: 1px solid $colorBrandLight;
+    }
+  }
+  &.accent {
+    background-color: $colorAccent;
+    color: $colorWhite;
+    & hr {
+      border: 1px solid $colorAccentLight;
+    }
+  }
+  &.info {
+    background-color: $colorInfo;
+    color: $colorWhite;
+    & hr {
+      border: 1px solid $colorInfoLight;
+    }
+  }
+  .button {
+    color: #fff;
+    background-color: none;
+    margin-left: 5px;
+  }
+}
+
+.panel-title{
+  font-size: 1.2em;
+  margin: 10px 0px 0px 0px;
+}
+.panel-body{
+  margin: 0px;
+  padding: 0px 15px 15px 15px;
+}

@@ -15,10 +15,10 @@ $colorInfoDark:     #311B92;
 //Text / Icon Colors
 $colorBase:         #000000;
 $colorWhite:        #FFFFFF;
-$colorText:         lighten ( $colorBase, 13);    //87% of base
-$colorSecondary:    lighten ( $colorBase, 46);    //54% of base
-$colorDisabled:     #757575; //lighten ( $colorBase, 63);    //38% of base
-$colorDivider:      lighten ( $colorBase, 88);    //12% of base
+$colorText:         #777777; //lighten ( $colorBase, 13%);    //87% of base
+$colorSecondary:    lighten ( $colorBase, 46%);    //54% of base
+$colorDisabled:     lighten ( $colorBase, 63%);    //38% of base
+$colorDivider:      lighten ( $colorBase, 88%);    //12% of base
 
 //Background Colors
 $colorStatusbar:    #E0E0E0;

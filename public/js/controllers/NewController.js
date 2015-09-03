@@ -1,4 +1,4 @@
-app.controller('NewController', ['$scope', '$sanitize', '$http', 'toastr', function($scope, $sanitize, $http, toastr){
+app.controller('NewController', ['$scope', '$sanitize', '$http', 'toastr', 'newPost', function($scope, $sanitize, $http, toastr, newPost){
 
 	if (storageAvailable('localStorage')){
 		var savePost = function () {localStorage.setItem('postBackup', JSON.stringify($scope.formInfo));};
@@ -22,13 +22,22 @@ app.controller('NewController', ['$scope', '$sanitize', '$http', 'toastr', funct
 		});
 	}
 	
-	$scope.postData = function() {
-        $http({
-            method : 'POST',
-            url : '/test',
-            data : $scope.formInfo
-        })
-    }
+	$scope.postData = function(blogPost) {
+	    newPost.post(blogPost).then(function(data) {
+        	switch (data.data) {
+        		case 'Post Success':
+        			toastr.info('Post was saved successfully!', 'Success!');
+        			$scope.formInfo = {};
+        			localStorage.removeItem('postBackup');
+        			break;
+    			case 'Invalid Login':
+    				toastr.error('Invalid Username and Password combination.', 'Invalid Credentials')
+    				break;
+				default:
+					toastr.error('The server couldn\'t save the post. Please contact an administrator for help.', 'Post Save Error');
+        	}
+        });
+    };
 	
 	$scope.imageCount = [''];
 

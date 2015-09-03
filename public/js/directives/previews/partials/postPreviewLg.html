@@ -1,5 +1,4 @@
-<div class="post-card">
-	<li class="list-group">
+<!--<div class="post-card">
 		<img ng-src="{{post.imageHead}}" class="img-responsive" />
 		<h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
 		<p><span class="glyphicon glyphicon-pencil"></span> By <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> | 
@@ -8,9 +7,34 @@
 		<p ng-bind-html="post.content"></p>
 		<a ng-href="/blog/post/{{ post.id }}">
 			<div class="button label-accent">
-	           <div class="center" fit>GO TO POST <span class="fa fa-angle-right"></span></div>
-	           <paper-ripple fit></paper-ripple>
-        	</div>
-        </a>
-	</li>
+      <div class="center" fit>GO TO POST <span class="fa fa-angle-right"></span></div>
+      <paper-ripple fit></paper-ripple>
+  	</div>
+  </a>
+</div>-->
+
+<div class="dialog" ng-controller="BlogController">
+  
+ <div class="image">
+    <img ng-src="{{post.imageHead}}" class="img-responsive" />
+ </div>
+  
+ <div class="content">
+    <h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
+    <hr>
+    <div><p ng-bind-html="post.content"></p></div>
+ </div>
+
+ <a ng-href="/blog/post/{{ post.id }}">
+     <div class="button label-accent">
+       <div class="center" fit>GO TO POST</div>
+       <paper-ripple fit></paper-ripple>
+     </div>
+ </a>
+ 
+ <div class="post-info">
+     <span class="fa fa-pencil"></span> <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a>
+     at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+ </div>
+
 </div>
