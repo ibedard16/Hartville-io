@@ -96,6 +96,24 @@ code {
   background-color: #651FFF;
 }
 
+.button.warning {
+  background-color: #F44336;
+  color: #FFFFFF;
+}
+
+.button.warning:hover {
+  background-color: #D50000;
+}
+
+.button.success {
+  background-color: #00C853;
+  color: #FFFFFF;
+}
+
+.button.success:hover {
+  background-color: #00E676;
+}
+
 .button.disabled {
   background-color: #E0E0E0;
   color: lighten #000000, 63%;
@@ -116,28 +134,81 @@ button:focus {
   outline: 0;
 }
 
-.label-brand {
-  color: #0091EA;
-}
-
 .label-brand:hover {
   color: #00B0FF;
-}
-
-.label-accent {
-  color: #FF3D00;
+  background-color: #E0E0E0;
+  -moz-transition: background-color 0.25s 0s;
+  -o-transition: background-color 0.25s 0s;
+  -webkit-transition: background-color 0.25s 0s;
+  transition: background-color 0.25s 0s;
+  -moz-transition: color 0.25s 0s;
+  -o-transition: color 0.25s 0s;
+  -webkit-transition: color 0.25s 0s;
+  transition: color 0.25s 0s;
 }
 
 .label-accent:hover {
   color: #FF5722;
+  background-color: #E0E0E0;
+  -moz-transition: background-color 0.25s 0s;
+  -o-transition: background-color 0.25s 0s;
+  -webkit-transition: background-color 0.25s 0s;
+  transition: background-color 0.25s 0s;
+  -moz-transition: color 0.25s 0s;
+  -o-transition: color 0.25s 0s;
+  -webkit-transition: color 0.25s 0s;
+  transition: color 0.25s 0s;
 }
 
 .label-info {
-  color: #6200EA;
+  background-color: transparent;
 }
 
 .label-info:hover {
   color: #651FFF;
+  background-color: #E0E0E0;
+  -moz-transition: background-color 0.25s 0s;
+  -o-transition: background-color 0.25s 0s;
+  -webkit-transition: background-color 0.25s 0s;
+  transition: background-color 0.25s 0s;
+  -moz-transition: color 0.25s 0s;
+  -o-transition: color 0.25s 0s;
+  -webkit-transition: color 0.25s 0s;
+  transition: color 0.25s 0s;
+}
+
+.label-warning {
+  background-color: transparent;
+}
+
+.label-warning:hover {
+  color: #D50000;
+  background-color: #E0E0E0;
+  -moz-transition: background-color 0.25s 0s;
+  -o-transition: background-color 0.25s 0s;
+  -webkit-transition: background-color 0.25s 0s;
+  transition: background-color 0.25s 0s;
+  -moz-transition: color 0.25s 0s;
+  -o-transition: color 0.25s 0s;
+  -webkit-transition: color 0.25s 0s;
+  transition: color 0.25s 0s;
+}
+
+.label-success {
+  background-color: transparent;
+}
+
+.label-success:hover {
+  color: #00E676;
+  background-color: #E0E0E0;
+  -moz-transition: background-color 0.25s 0s;
+  -o-transition: background-color 0.25s 0s;
+  -webkit-transition: background-color 0.25s 0s;
+  transition: background-color 0.25s 0s;
+  -moz-transition: color 0.25s 0s;
+  -o-transition: color 0.25s 0s;
+  -webkit-transition: color 0.25s 0s;
+  transition: color 0.25s 0s;
 }
 
 .label-disabled {
@@ -163,11 +234,11 @@ button:focus {
 .raised {
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 0.2s;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .raised:hover {
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
   transition-delay: .0s;
   -moz-transition: box-shadow 0.5s 0s;
   -o-transition: box-shadow 0.5s 0s;
@@ -276,13 +347,12 @@ button:focus {
   border-radius: 3px;
   vertical-align: top;
   background-color: #FFFFFF;
-  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
   margin: 10px 10px 25px 10px;
 }
 
 .card > .image, .dialog > .image {
   color: #FFFFFF;
-  border-radius: 3px;
 }
 
 .card > .image > img, .dialog > .image > img {
@@ -328,15 +398,6 @@ button:focus {
 .dialog .button {
   width: 90px;
   margin-left: 10px;
-}
-
-.dialog:hover {
-  box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
-  transition-delay: .0s;
-  -moz-transition: box-shadow 0.5s 0s;
-  -o-transition: box-shadow 0.5s 0s;
-  -webkit-transition: box-shadow 0.5s 0s;
-  transition: box-shadow 0.5s 0s;
 }
 
 .brand > .title {
@@ -396,6 +457,40 @@ button:focus {
 
 .info > .button {
   color: #6200EA;
+}
+
+.warning > .title {
+  background-color: #F44336;
+  color: #FFFFFF;
+}
+
+.warning > .content blockquote {
+  border-left: 5px solid #F44336;
+}
+
+.warning .post-info-button {
+  color: #F44336;
+}
+
+.warning > .button {
+  color: #F44336;
+}
+
+.success > .title {
+  background-color: #00C853;
+  color: #FFFFFF;
+}
+
+.success > .content blockquote {
+  border-left: 5px solid #00C853;
+}
+
+.success .post-info-button {
+  color: #00C853;
+}
+
+.success > .button {
+  color: #00C853;
 }
 
 .post-card {
@@ -517,6 +612,24 @@ button:focus {
   border: 1px solid #651FFF;
 }
 
+.panel.warning {
+  background-color: #F44336;
+  color: #FFFFFF;
+}
+
+.panel.warning hr {
+  border: 1px solid #D50000;
+}
+
+.panel.success {
+  background-color: #00C853;
+  color: #FFFFFF;
+}
+
+.panel.success hr {
+  border: 1px solid #00E676;
+}
+
 .panel .button {
   color: #fff;
   background-color: none;
@@ -554,6 +667,15 @@ footer li > a:hover {
 
 footer .footer-links {
   padding: 0px;
+}
+
+.container-top20 {
+  margin-top: 20px;
+}
+
+.crop-height {
+  max-height: 325px;
+  overflow: hidden;
 }
 
 .form-radio, .form-group {

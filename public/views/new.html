@@ -47,7 +47,9 @@
 			<div class="col-md-12">
 				<h4>Header Image</h4>
 				<div class="form-group">
-					<input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage" id="headImage">
+					<input type="file" name="imageHead" class="form-control" accept="image/*" ng-model="formInfo.imageHead" id="imageHead">
+					<button ng-click="addHeadImage()">Add Head Image</button>
+					<button ng-click="log(formInfo.imageHead)">log image to console</button>
 				</div>
 			</div>
 			
@@ -99,9 +101,10 @@
 					<h3>Post Preview</h3>
 				</div>
 			</div>
-			<post-preview-new post=newPost class=col-md-9></post-preview-new>
+			<post-preview-new post=formInfo class=col-md-9></post-preview-new>
 			<div class="col-md-3">
-				<div class="panel panel-primary">
+				
+				<div class="panel info">
 					<div class="panel-heading">
 						<h3 class="panel-title">Preview information</h3>
 					</div>
@@ -109,6 +112,7 @@
 						Date is displayed after post creation.
 					</div>
 				</div>
+				
 			</div>
 			
 			<!--Submit/Reset-->

@@ -69,6 +69,20 @@
       border: 1px solid $colorInfoLight;
     }
   }
+  &.warning {
+     background-color: $colorWarning;
+    color: $colorWhite;
+    & hr {
+      border: 1px solid $colorWarningLight;
+    }
+  }
+  &.success {
+     background-color: $colorSuccess;
+    color: $colorWhite;
+    & hr {
+      border: 1px solid $colorSuccessLight;
+    }
+  }
   .button {
     color: #fff;
     background-color: none;
@@ -102,4 +116,13 @@ footer {
   .footer-links {
     padding: 0px;
   }
+}
+
+.container-top20{
+  margin-top: 20px;
+}
+
+.crop-height {
+  max-height: 325px;
+  overflow: hidden; 
 }

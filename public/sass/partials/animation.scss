@@ -1,0 +1,28 @@
+/* Animations */
+dialog-animation.ng-enter {
+    animation: fadeIn 250ms;
+}
+dialog-animation.ng-leave {
+    animation: fadeOut 250ms;
+}
+.most-recent-animation.ng-enter {
+    animation: fadeInUp 1s;
+}
+.more-news-animation.ng-enter {
+    animation: fadeInUp 1s;
+}
+.post-animation.ng-enter {
+    animation: fadeIn 750ms;
+}
+.navbar {
+    animation: fadeIn 1s;
+}
+.jumbotron{
+    animation: fadeIn 500ms;
+}
+.img-responsive:hover{
+    background-color: #d9534f;
+}
+.add-image-animation{
+    animation: fadeIn 500ms;
+}

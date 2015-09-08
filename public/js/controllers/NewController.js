@@ -28,8 +28,23 @@ app.controller('NewController', ['$scope', '$rootScope', '$sanitize', '$http', '
 		});
 	}
 	
+	$scope.log = function(input) {
+		console.log(input);
+	}
+	
+	$scope.addHeadImage = function() {
+		var file = document.getElementById('imageHead').files[0],
+			reader = new FileReader();
+		reader.onload = function(e){
+			$scope.formInfo.imageHead = e.target.result;
+			$scope.$apply();
+		}
+		reader.readAsDataURL(file);
+		//onsole.log(FileReader.readAsDataURL(f));
+	}
+	
 	$scope.postData = function() {
-	    newPost.post($scope.formInfo).then(function(data) {
+		newPost.post($scope.formInfo).then(function(data) {
         	switch (data.data) {
         		case 'Post Success':
         			toastr.info('Post was successfully published!', 'Success!');

@@ -32,6 +32,20 @@
         background-color: $colorInfoLight;
     }
   }
+  &.warning{
+      background-color: $colorWarning;
+      color: $colorWhite;
+      &:hover {
+        background-color: $colorWarningLight;
+    }
+  }
+  &.success{
+      background-color: $colorSuccess;
+      color: $colorWhite;
+      &:hover {
+        background-color: $colorSuccessLight;
+    }
+  }
   &.disabled{
     background-color: $colorStatusbar;
     color: $colorDisabled;
@@ -50,21 +64,46 @@ button {
 
 // Label Colors
 .label-brand {
-  color: $colorBrand;
   &:hover {
     color: $colorBrandLight;
+    background-color: $colorStatusbar;
+    @include transition(background-color .25s 0s);
+    @include transition(color .25s 0s);
   }
 }
 .label-accent {
-  color: $colorAccent;
   &:hover {
     color: $colorAccentLight;
+    background-color: $colorStatusbar;
+    @include transition(background-color .25s 0s);
+    @include transition(color .25s 0s);
   }
 }
 .label-info {
-  color: $colorInfo;
+  background-color: transparent;
   &:hover {
     color: $colorInfoLight;
+    background-color: $colorStatusbar;
+    @include transition(background-color .25s 0s);
+    @include transition(color .25s 0s);
+  }
+}
+.label-warning {
+  background-color: transparent;
+  &:hover {
+    color: $colorWarningLight;
+    background-color: $colorStatusbar;
+    @include transition(background-color .25s 0s);
+    @include transition(color .25s 0s);
+  }
+}
+.label-success {
+  background-color: transparent;
+  &:hover {
+    color: $colorSuccessLight;
+    background-color: $colorStatusbar;
+    @include transition(background-color .25s 0s);
+    @include transition(color .25s 0s);
   }
 }
 .label-disabled { color: $colorDisabled; }
@@ -88,9 +127,9 @@ button {
 .raised {
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: 0.2s;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.10);
   &:hover {
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
     transition-delay: .0s;
     @include transition(box-shadow .5s 0s);
   }

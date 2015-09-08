@@ -40,7 +40,7 @@ var fs              = require('fs'),
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use('/postFiles', express.static(path.join(__dirname + '/public/postFiles')));
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({limit: '3mb'}));
     
 try {
     var verify = require('./server/database/verifyCredentials');
@@ -189,6 +189,7 @@ app.post('/create', /*upload.fields([{name:'headImage', maxCount:1},{name:"bodyI
                     categories: request.body.categories,
                     imageHead: request.body.imageHead
                 };
+                console.log(request.body);
             //}
             var post = new Post(newPost);
             postList.push(post);

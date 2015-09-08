@@ -1,5 +1,5 @@
 <footer>
-	<div class="container">
+	<div class="container" ng-controller="BlogController">
 
 		<div class="row">
 			<div class="col-md-5">
@@ -7,7 +7,13 @@
 				<p>Mauris et dignissim condimentum, mi tellus auctor justo, sed lobortis lectus mauris id dolor. Morbi vulputate lectus eu eros volutpat, vel ullamcorper sapien rhoncus. Fusce venenatis, augue consectetur placerat rhoncus, purus turpis venenatis ante,
 					sit amet tincidunt lorem nibh eget arcu. Morbi at lobortis orci. Proin at neque neque.</p>
 			</div>
-			<div class="col-md-3 col-md-offset-4">
+			<div class="col-md-4">
+				<h5 class="footer-header-other">RECENT NEWS</h5>
+				<div class="footer-links" ng-repeat="post in posts | orderBy: '-date' | limitTo: 5">
+					<li><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></li>
+				</div>
+			</div>
+			<div class="col-md-3">
 				<h5 class="footer-header-other">LINKS</h5>
 				<ul class="footer-links">
 					<li><a href="/">Home</a></li>

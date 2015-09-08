@@ -71,6 +71,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		templateUrl: 'views/eventDetails.html',
 		controller: 'BlogController'
 	})
+	.when('/login', {
+		pageTitle: 'Hartville.io | Login',
+		title: 'Login',
+		templateUrl: 'views/login.html',
+		controller: 'BlogController'
+	})
 	.when('/components', {
 		templateUrl: 'views/components.html',
 		controller: 'BlogController'

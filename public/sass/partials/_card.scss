@@ -3,11 +3,10 @@
   border-radius: 3px;
   vertical-align: top;
   background-color: $colorWhite;
-  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.10);
   margin: 10px 10px 25px 10px;
   >.image {
       color: $colorWhite;
-      border-radius: 3px;
       > img{
         display: block;
         margin-left: auto;
@@ -47,11 +46,6 @@
       width: 90px;
       margin-left: 10px;
     }
-  &:hover {
-    box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
-    transition-delay: .0s;
-    @include transition(box-shadow .5s 0s);
-  }
 }
 
 
@@ -100,7 +94,6 @@
     color: $colorAccent;
   }
 }
-
 .info {
   > .title {
     background-color: $colorInfo;
@@ -116,6 +109,40 @@
     }
   > .button {
     color: $colorInfo;
+  }
+}
+.warning {
+  > .title {
+    background-color: $colorWarning;
+    color: $colorWhite;
+  }
+  > .content{
+    & blockquote {
+      border-left: 5px solid $colorWarning;
+    }
+  }
+  & .post-info-button {
+      color: $colorWarning;
+    }
+  > .button {
+    color: $colorWarning;
+  }
+}
+.success {
+  > .title {
+    background-color: $colorSuccess;
+    color: $colorWhite;
+  }
+  > .content{
+    & blockquote {
+      border-left: 5px solid $colorSuccess;
+    }
+  }
+  & .post-info-button {
+      color: $colorSuccess;
+    }
+  > .button {
+    color: $colorSuccess;
   }
 }
 
