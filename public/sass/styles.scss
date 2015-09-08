@@ -6,6 +6,7 @@
 @import 'partials/_container';
 @import 'partials/_form';
 @import 'partials/_navigation';
+@import 'partials/_table';
 
 /* Display-Table Solution */
 
@@ -25,9 +26,12 @@ body {
 
 .page-row-expanded { height: 100%; }
 
-.nav, .pagination, .carousel, .panel-title a, .button { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a, .button, .post-info-button { cursor: pointer; }
 
 //Fix for bulleted items
 nav li, .list-group{
   list-style: none;
 }
+
+//Firefox / IE img-responsive fix
+.img-responsive { width:100%; }

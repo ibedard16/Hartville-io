@@ -28,4 +28,5 @@ app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'posts', 
 	//$scope.posts = [];
 	$scope.pageSize = 5;
 	$scope.currentPage = 1;
+	$scope.maxSize = 5;
 }]);

@@ -71,6 +71,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		templateUrl: 'views/eventDetails.html',
 		controller: 'BlogController'
 	})
+	.when('/components', {
+		templateUrl: 'views/components.html',
+		controller: 'BlogController'
+	})
 	.otherwise({
 		title: '404 Error',
 		templateUrl: 'views/404.html',

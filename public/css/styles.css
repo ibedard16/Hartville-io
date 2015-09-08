@@ -767,6 +767,23 @@ footer .footer-links {
   border-color: #0091EA;
 }
 
+table thead {
+  color: #8A8A8A;
+  font-size: 1em;
+}
+
+table thead > tr > th {
+  font-weight: 400;
+}
+
+table tbody > tr {
+  padding: 50px;
+}
+
+table tbody > tr > td {
+  font-size: 1.1em;
+}
+
 /* Display-Table Solution */
 html,
 body {
@@ -788,10 +805,14 @@ body {
   height: 100%;
 }
 
-.nav, .pagination, .carousel, .panel-title a, .button {
+.nav, .pagination, .carousel, .panel-title a, .button, .post-info-button {
   cursor: pointer;
 }
 
 nav li, .list-group {
   list-style: none;
+}
+
+.img-responsive {
+  width: 100%;
 }

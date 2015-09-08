@@ -187,6 +187,7 @@ app.post('/create', /*upload.fields([{name:'headImage', maxCount:1},{name:"bodyI
                     author: request.body.username,
                     content: request.body.content,
                     categories: request.body.categories,
+                    imageHead: request.body.imageHead
                 };
             //}
             var post = new Post(newPost);

@@ -1,0 +1,19 @@
+table {
+    & thead {
+        color: $colorSecondary;
+        font-size: 1em;
+        >tr{
+            >th {
+                font-weight: $typeNormal;
+            }
+        }
+    }
+    & tbody{
+        >tr{
+            padding: 50px;
+            > td {
+            font-size: 1.1em;
+            }  
+        }
+    }
+}

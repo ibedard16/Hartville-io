@@ -47,7 +47,7 @@
 			<div class="col-md-12">
 				<h4>Header Image</h4>
 				<div class="form-group">
-					<input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage">
+					<input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage" id="headImage">
 				</div>
 			</div>
 			
@@ -139,7 +139,7 @@
 	<div class="toast toast-error">
 		<div ng-if="title" class="toast-title">Are you sure?</div>
 		<div class="toast-message">
-			<p>This will completely delete the post you are working on. There will be no recovery.</p>
+			<p>This will completely delete the post you are working on. You will never be able to recover it.</p>
 			<p>Do you really want to do this?</p>
 			<div class="row toastr-buttons">
 				<div class="col-xs-12">    				
