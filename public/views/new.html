@@ -1,121 +1,162 @@
 <!--<div ng-repeat="content in contentLength track by $index"><div ng-bind-html="trustHtml('test')"></div></div><input type="button" ng-click="moreContent('test')" value="Add another image" />-->
 <div class="container container-form">
 	<div class="row">
+		
 		<div class="col-md-12">
-			  <h1>New Post</h1>
+			<h1>New Post</h1>
 		</div>
 
-        <form name="newPost" ><!--action="/create" method="POST" ng-submit="postData()"-->
-        	<div class="col-md-12">
+    <form name="newPost">
+      <div class="col-md-12">
 				<div class="page-header">
-				  <h3>Log in</h3>
+					<h3>Log in</h3>
 				</div>
 			</div>
-        	<!--Username--><div class="col-md-6">
+			
+      <!--Username-->
+      <div class="col-md-6">
 			  <div class="form-group">
-				<input id="input" type="text" name="username" ng-model="formInfo.author" required="required"/>
-                <label for="input">Username</label><i class="bar"></i>
-			  </div><!-- end form-group -->
-		  </div><!-- end col -->
-		  <!--Password--><div class="col-md-6">
-			<div class="form-group">
-				<input id="input" type="password" autocomplete="off" name="password" required="required" ng-model="formInfo.password"/>
-                <label for="input">Password</label><i class="bar"></i>
-			</div><!-- end form-group -->
-				
+					<input id="input" type="text" name="username" ng-model="formInfo.author" required="required"/>
+          <label for="input">Username</label><i class="bar"></i>
+				</div>
+			</div>
+			
+			<!--Password-->
+			<div class="col-md-6">
+			  <div class="form-group">
+					<input id="input" type="password" autocomplete="off" name="password" required="required" ng-model="formInfo.password"/>
+          <label for="input">Password</label><i class="bar"></i>
+			  </div>
 			</div>
 			
 			<div class="col-md-12">
 				<div class="page-header">
-				  <h3>Create Post</h3>
+					<h3>Create Post</h3>
 				</div>
 			</div>
-	    	<div class="col-md-12">
-			  <!--Title--><div class="form-group">
-				<input id="input" type="text" name="title" ng-model="formInfo.title"/>
-                <label for="input">Title</label><i class="bar"></i>
-			</div><!-- end form-group -->
+			
+			<!--Title-->
+			<div class="col-md-12">
+				<div class="form-group">
+					<input id="input" type="text" name="title" ng-model="formInfo.title"/>
+					<label for="input">Title</label><i class="bar"></i>
+				</div>
 			</div>
 			
-			<!--<div class="col-md-12">
-			  <!--Author<div class="form-group">
-			    <label>Author</label>
-			    <input type="text" name="author" class="form-control" placeholder="John Smith">
-			  </div>
-			</div>-->
+			<!--Header Image-->
 			<div class="col-md-12">
-			<h4>Header Image</h4>
-			  <!--Content--><div class="form-group">
-			    <input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage">
-			  </div>
-			</div>
-			<div class="col-md-12">
-			<h4>Content</h4>
-			  <div class="form-group">
-			    <text-angular ng-model="formInfo.content" name="content"></text-angular>
-			  </div>
+				<h4>Header Image</h4>
+				<div class="form-group">
+					<input type="file" name="headImage" class="form-control" accept="image/*" ng-model="formInfo.headImage">
+				</div>
 			</div>
 			
-		 	<div class="col-md-12">
-		 		
+			<!--Content-->
+			<div class="col-md-12">
+				<h4>Content</h4>
+				<div class="form-group">
+					<text-angular ng-model="formInfo.content" name="content"></text-angular>
+				</div>
+			</div>
+			
+			<!--Categories-->
+			<div class="col-md-12">
 				<h4>Choose Categories</h4>
-				<div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="categories" value="technology"/><i class="helper"></i>Technology
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="categories" value="community"/><i class="helper"></i>Community
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="categories" value="science"/><i class="helper"></i>Science
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" name="categories" value="news"/><i class="helper"></i>News
-                  </label>
-                </div>
 				
-			  </div>
-		  	</div>
-		  	
-		  	
-		  	<div class="col-md-12">
+				<!--Technology-->
+				<div class="checkbox">
+          <label>
+            <input type="checkbox" name="categories" value="technology"/><i class="helper"></i>Technology
+          </label>
+        </div>
+        
+        <!--Community-->
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="categories" value="community"/><i class="helper"></i>Community
+          </label>
+        </div>
+        
+        <!--Science-->
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="categories" value="science"/><i class="helper"></i>Science
+          </label>
+        </div>
+        
+				<!--News-->
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="categories" value="news"/><i class="helper"></i>News
+          </label>
+        </div>
+				
+			</div>
+			
+			<!--Post Preview-->
+			<div class="col-md-12">
 				<div class="page-header">
-				  <h3>Post Preview</h3>
+					<h3>Post Preview</h3>
 				</div>
 			</div>
-				<post-preview-new post=newPost class=col-md-9></post-preview-new>
-				<div class="col-md-3">
-					<div class="panel panel-primary">
-					  <div class="panel-heading">
-					    <h3 class="panel-title">Preview information</h3>
-					  </div>
-					  <div class="panel-body">
-					    Date is displayed after post creation.
-					  </div>
+			<post-preview-new post=newPost class=col-md-9></post-preview-new>
+			<div class="col-md-3">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Preview information</h3>
+					</div>
+					<div class="panel-body">
+						Date is displayed after post creation.
 					</div>
 				</div>
-		  	<!--Buttons--><div class="row">
-		  		<div class="col-md-12">
-
-				    <button type="submit" ng-click="postData(formInfo)" class="button raised brand">
-			           <div class="center" fit>SUBMIT</div>
-			           <paper-ripple fit></paper-ripple>
-			        </button>
-			        
-			        <button type="reset" class="button raised accent">
-			           <div class="center" fit>RESET</div>
-			           <paper-ripple fit></paper-ripple>
-			        </button>
-		        
-		        </div>
-			    
 			</div>
+			
+			<!--Submit/Reset-->
+			<div class="row">
+				<div class="col-md-12">
+					
+					<!--Submit-->
+					<button type="submit" ng-click="postData()" class="button raised brand">
+						<div class="center" fit>SUBMIT</div>
+						<paper-ripple fit></paper-ripple>
+					</button>
+					
+					<!--Reset-->
+					<button type="reset" ng-click="resetPost()" class="button raised accent">
+						<div class="center" fit>RESET</div>
+						<paper-ripple fit></paper-ripple>
+					</button>
+					
+				</div>
+			</div>
+			
 		</form>
-	</div><!-- end row wrapper -->
+	</div>
+</div>
+
+<!--Confirm Reset-->
+<div id="toast-container" class="toast-center-center" ng-show="resetConfirm">
+	<div class="toast toast-error">
+		<div ng-if="title" class="toast-title">Are you sure?</div>
+		<div class="toast-message">
+			<p>This will completely delete the post you are working on. There will be no recovery.</p>
+			<p>Do you really want to do this?</p>
+			<div class="row toastr-buttons">
+				<div class="col-xs-12">    				
+					<div class="col-xs-6">			    		
+						<button ng-click="reset(true)" class="button label-accent">
+							<div class="center" fit="">RESET</div>							
+							<paper-ripple fit=""></paper-ripple>						
+						</button>					
+					</div>					
+					<div class="col-xs-6">						
+						<button ng-click="reset(false)" class="button label-brand">							
+							<div class="center" fit="">CANCEL</div>							
+							<paper-ripple fit=""></paper-ripple>						
+						</button>					
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
 </div>
