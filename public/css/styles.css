@@ -1,3 +1,15 @@
+h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand, p.brand {
+  color: #0091EA;
+}
+
+h1.accent, h2.accent, h3.accent, h4.accent, h5.accent, h6.accent, p.accent {
+  color: #FF3D00;
+}
+
+h1.info, h2.info, h3.info, h4.info, h5.info, h6.info, p.info {
+  color: #6200EA;
+}
+
 body {
   font-size: 1.5em;
   font-weight: 400;
@@ -138,6 +150,10 @@ button:focus {
   line-height: 42px;
 }
 
+.large a {
+  color: #FFFFFF;
+}
+
 .small {
   width: 100px;
   height: 22px;
@@ -247,6 +263,14 @@ button:focus {
   transform: scale(1.2);
 }
 
+.toastr-buttons .col-xs-6 {
+  padding: 0px;
+}
+
+.toastr-buttons .col-xs-6 .button {
+  background-color: none;
+}
+
 .card, .dialog {
   position: relative;
   border-radius: 3px;
@@ -256,9 +280,15 @@ button:focus {
   margin: 10px 10px 25px 10px;
 }
 
-.card.image, .dialog.image {
+.card > .image, .dialog > .image {
   color: #FFFFFF;
   border-radius: 3px;
+}
+
+.card > .image > img, .dialog > .image > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dialog {
@@ -276,7 +306,7 @@ button:focus {
   border-left: 5px solid #F5F5F5;
 }
 
-.dialog > .title {
+.dialog .title {
   text-align: center;
   font-size: 1.3em;
   font-weight: 300;
@@ -284,6 +314,15 @@ button:focus {
   color: #000000;
   background-color: #F5F5F5;
   margin: 0px;
+  border-radius: 3px 3px 0px 0px;
+}
+
+.dialog .title > a {
+  color: #FFFFFF;
+}
+
+.dialog .title > a:hover {
+  color: #00B0FF;
 }
 
 .dialog .button {
@@ -324,6 +363,10 @@ button:focus {
 .accent > .title {
   background-color: #FF3D00;
   color: #FFFFFF;
+}
+
+.accent > .title > a:hover {
+  color: #FF5722;
 }
 
 .accent > .content blockquote {
@@ -378,7 +421,7 @@ button:focus {
 
 .post-info-button {
   font-size: 1.2em;
-  color: #E0E0E0;
+  color: #212121;
   float: right;
   position: relative;
   right: 15px;
@@ -488,6 +531,29 @@ button:focus {
 .panel-body {
   margin: 0px;
   padding: 0px 15px 15px 15px;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 15px 0px;
+  background-color: #212121;
+  color: #FFFFFF;
+}
+
+footer li {
+  list-style: none;
+}
+
+footer li > a {
+  color: #0091EA;
+}
+
+footer li > a:hover {
+  color: #00B0FF;
+}
+
+footer .footer-links {
+  padding: 0px;
 }
 
 .form-radio, .form-group {
@@ -676,6 +742,29 @@ button:focus {
 
 .has-error.checkbox .helper, .has-error .radio .helper {
   border-color: #6200EA;
+}
+
+/*pagination*/
+.pagination {
+  margin: 10px 0px 0px 0px;
+  padding: 0px;
+}
+
+.pagination > li > a, .pagination > li > span, .pagination > li > a:hover, .pagination > li > span:hover {
+  color: #0091EA;
+}
+
+.pagination > li:last-child > a, .pagination > li:first-child > a {
+  border-radius: 3px;
+}
+
+.pagination > li:last-child > span, .pagination > li:first-child > span {
+  border-radius: 0px;
+}
+
+.pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  background-color: #0091EA;
+  border-color: #0091EA;
 }
 
 /* Display-Table Solution */

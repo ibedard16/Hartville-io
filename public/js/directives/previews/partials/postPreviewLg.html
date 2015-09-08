@@ -1,40 +1,36 @@
-<!--<div class="post-card">
-		<img ng-src="{{post.imageHead}}" class="img-responsive" />
-		<h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
-		<p><span class="glyphicon glyphicon-pencil"></span> By <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> | 
-		<span class="glyphicon glyphicon-time"></span> at {{post.date | date:'MM/dd/yyyy @ h:mma'}}</p>
-		<hr>
-		<p ng-bind-html="post.content"></p>
-		<a ng-href="/blog/post/{{ post.id }}">
-			<div class="button label-accent">
-      <div class="center" fit>GO TO POST <span class="fa fa-angle-right"></span></div>
-      <paper-ripple fit></paper-ripple>
-  	</div>
-  </a>
-</div>-->
+<div class="dialog brand" ng-controller="BlogController">
 
-<div class="dialog" ng-controller="BlogController">
-  
+ <div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
  <div class="image">
-    <img ng-src="{{post.imageHead}}" class="img-responsive" />
+     <img ng-src="{{post.imageHead}}" class="img-responsive" />
  </div>
-  
  <div class="content">
-    <h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
-    <hr>
-    <div><p ng-bind-html="post.content"></p></div>
+    <div>
+       <p ng-bind-html="post.content"></p>
+    </div>
  </div>
-
+   <hr class="card-hr">
  <a ng-href="/blog/post/{{ post.id }}">
-     <div class="button label-accent">
-       <div class="center" fit>GO TO POST</div>
+     <div class="button">
+       <div class="center" fit>READ MORE</div>
        <paper-ripple fit></paper-ripple>
      </div>
  </a>
  
- <div class="post-info">
-     <span class="fa fa-pencil"></span> <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a>
-     at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+ <div class="button">
+   <div class="center" fit>SHARE</div>
+   <paper-ripple fit></paper-ripple>
+ </div>
+ 
+ <div ng-controller="CollapseController">
+	<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+	    <span class="fa fa-info"></span>
+	</div>
+	<div collapse="!isCollapsed">
+        <div class="post-info">
+            <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+         </div>
+	</div>
  </div>
 
 </div>

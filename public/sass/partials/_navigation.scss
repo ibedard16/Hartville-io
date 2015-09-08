@@ -1,0 +1,26 @@
+/*pagination*/
+.pagination{
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+    >li {
+        >a, >span, >a:hover, >span:hover {
+            color: $colorBrand;
+        }
+        &:last-child, &:first-child {
+            >a {
+                border-radius: 3px;
+            }
+            >span {
+                border-radius: 0px;
+            }
+        }
+    }
+    >.active {
+        >a, >span {
+            &:focus, &:hover {
+                background-color: $colorBrand;
+                border-color: $colorBrand;  
+            }
+        }
+    }
+}

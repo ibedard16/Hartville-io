@@ -21,10 +21,11 @@ $colorDisabled:     lighten ( $colorBase, 63%);    //38% of base
 $colorDivider:      lighten ( $colorBase, 88%);    //12% of base
 
 //Background Colors
-$colorStatusbar:    #E0E0E0;
-$colorAppbar:       #F5F5F5;
-$colorBackground:   #FAFAFA;
-$colorCard:         #FFFFFF;
+$colorStatusbar:        #E0E0E0;
+$colorAppbar:           #F5F5F5;
+$colorBackground:       #FAFAFA;
+$colorCard:             #FFFFFF;
+$colorBackgroundDark:   #212121;
 
 //Dropshadows
 $colorDropshadow:               #212121;

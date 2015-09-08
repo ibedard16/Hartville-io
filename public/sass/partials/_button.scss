@@ -74,6 +74,9 @@ button {
   width: 150px;
   height: 42px;
   line-height: 42px;
+  a {
+    color: $colorWhite;
+  }
 }
 .small {
   width: 100px;
@@ -165,6 +168,15 @@ button {
     > .core-icon {
       -webkit-transform: scale(1.2);
       transform: scale(1.2);
+    }
+  }
+}
+
+.toastr-buttons {
+  & .col-xs-6{
+    padding: 0px;
+    & .button{
+      background-color: none;
     }
   }
 }

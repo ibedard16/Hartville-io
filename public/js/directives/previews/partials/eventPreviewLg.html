@@ -1,21 +1,38 @@
-<div class="jumbotron inverted" ng-controller="BlogController">
-  <div class="row">
-    <div class="col-sm-6">
-        <h1><a ng-href="/events/event/{{ event.id }}">{{event.title}}</a></h1>
-        <h4>{{event.date | date:'MM/dd/yyyy'}}</h4>
-        <hr>
-        <address>
-            <h5>{{event.address.street}}</h5>
-          <h5>{{event.address.city}}, {{event.address.state}} {{event.address.zip}}</h5>
-        </address>
+<div class="dialog accent" ng-controller="BlogController">
+
+    <div class="title"><a ng-href="/events/event/{{ event.id }}">{{event.title}}</a></div>
+    <div class="image">
+        <img ng-src="" class="img-responsive" />
     </div>
-    <div class="col-sm-6 event-push">
-        <blockquote>{{event.content}}</blockquote>
+    <div class="content">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Event Details</h2><hr>
+                    <p>{{event.content}}</p>
+                </div>
+                <div class="col-md-4">
+                    <blockquote>
+                        <h4>Address:</h4>
+                        <h5>{{event.address.street}}</h5>
+                        <h5>{{event.address.city}}, {{event.address.state}} {{event.address.zip}}</h5>
+                        <hr>
+                        <h4>Date:</h4>
+                        <h5>{{event.date | date:'MM/dd/yyyy'}}</h5>
+                    </blockquote>
+                </div>
+            </div>
     </div>
-  </div>
-  
-  <div class="row">
-    <a ng-href="#"><button class="btn btn-danger btn-inverted">More Information</button></a>
-    <a ng-href="#"><button class="btn btn-danger">Register</button></a>
-  </div>
+    <hr class="card-hr">
+    <a ng-href="/events/event/{{ event.id }}">
+     <div class="button">
+       <div class="center" fit>INFORMATION</div>
+       <paper-ripple fit></paper-ripple>
+     </div>
+    </a>
+    
+    <div class="button">
+        <div class="center" fit>SHARE</div>
+        <paper-ripple fit></paper-ripple>
+    </div>
+
 </div>

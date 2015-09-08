@@ -1,55 +1,36 @@
-<!--<div class="post-card" ng-controller="BlogController">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="panel-heading">
-                <h1><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h1>
-                <h5>By: <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a></h5>
-                <h6>Posted on: {{post.date | date:'MM/dd/yyyy @ h:mma'}}</h6>
-            </div>
-            <div class="panel-body">
-                <img ng-src="{{post.imageHead}}" class="img-responsive" /><hr>
-                <p ng-bind-html="post.content | markdownPreview:25"></p>
-                <a ng-href="/blog/post/{{ post.id }}">
-                    <div class="button">
-                       <div class="center" fit>READ MORE</div>
-                       <paper-ripple fit></paper-ripple>
-                    </div>
-                </a>
-            </div>
+<div class="dialog brand" ng-controller="BlogController">
 
-            <div class="panel-footer">
-                <ul class="small list-inline" ng-show="post.categories.length">
-                    <li><span class="glyphicon glyphicon-tags"></span></li>
-                    <li ng-repeat="category in post.categories"><a href="">{{category | lowercase}}</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-
-<div class="dialog" ng-controller="BlogController">
-  
+ <div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
  <div class="image">
-    <img ng-src="{{post.imageHead}}" class="img-responsive" />
+     <img ng-src="{{post.imageHead}}" class="img-responsive" />
  </div>
-  
  <div class="content">
-    <div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
-    <hr>
-    <div><p>{{post.content | htmlToPlainText | words:50}}</p></div>
+    <div>
+       <p>{{post.content | htmlToPlainText | words:50}}</p>
+    </div>
  </div>
-
+   <hr class="card-hr">
  <a ng-href="/blog/post/{{ post.id }}">
-     <div class="button label-accent">
+     <div class="button">
        <div class="center" fit>READ MORE</div>
        <paper-ripple fit></paper-ripple>
      </div>
  </a>
  
- <div class="post-info">
-     <span class="fa fa-pencil"></span> <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a>
-     at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+ <div class="button">
+   <div class="center" fit>SHARE</div>
+   <paper-ripple fit></paper-ripple>
+ </div>
+ 
+ <div ng-controller="CollapseController">
+	<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+	    <span class="fa fa-info"></span>
+	</div>
+	<div collapse="!isCollapsed">
+        <div class="post-info">
+            <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+         </div>
+	</div>
  </div>
 
 </div>

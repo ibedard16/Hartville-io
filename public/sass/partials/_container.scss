@@ -84,3 +84,22 @@
   margin: 0px;
   padding: 0px 15px 15px 15px;
 }
+
+footer {
+  margin-top: 20px;
+  padding: 15px 0px;
+  background-color: $colorBackgroundDark;
+  color: $colorWhite;
+  & li {
+    list-style: none;
+    > a {
+      color: $colorBrand;
+      &:hover {
+        color: $colorBrandLight;
+      }
+    }
+  }
+  .footer-links {
+    padding: 0px;
+  }
+}

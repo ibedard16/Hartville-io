@@ -6,18 +6,8 @@
 	</ol>
 	<div class="row">
 		<div class="col-md-9">
-		
-			<ul class="list-group post-animation">
-				<li class="list-group">
-				    <img ng-src="{{post.imageHead}}" class="img-responsive" />
-					<h1>{{post.title}}</h1>
-					<li class="list-group"><span class="glyphicon glyphicon-pencil"></span> By {{post.author}} | 
-				<span class="glyphicon glyphicon-time"></span> {{post.date | date:'MM/dd/yyyy @ h:mma'}} </li>
-					<hr>
-					<p ng-bind-html="post.content"></p>
-				</li>
-			</ul>
-			
+
+			<post-preview-lg post='post'></post-preview-lg>
 		
 		</div> <!--end column-->
 		<div class="col-md-3">

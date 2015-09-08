@@ -158,7 +158,48 @@
               <paper-ripple fit></paper-ripple>
             </button>
             
-            <h2>Responsive Card</h2>
+            <h2>Responsive Full-Width</h2>
+            <hr>
+            <div class="col-md-12">
+                  <div class="dialog info">
+          
+                     <div class="title">Card Title</div>
+                     <div class="image">
+                        <img class="img-responsive" src="http://wallpaper-download.net/wallpapers/beautiful-wallpapers-purple-nature-wallpaper-wallpaper-35654.jpg"></img>
+                     </div>
+                     <div class="content">
+                       <div>
+                           <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                           <p>Nunc venenatis turpis eu ligula pretium aliquet. Cras vel mauris aliquam, scelerisque velit non, facilisis erat.</p>
+                           <blockquote>Phasellus lorem lacus, viverra eu lacus id, sollicitudin mattis lectus. Quisque interdum nisi at mi sodales, quis posuere leo aliquam.</blockquote>
+                           </div>
+                     </div>
+                       <hr class="card-hr">
+                     <div class="button">
+                       <div class="center" fit>LEARN MORE</div>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                     
+                     <div class="button">
+                       <div class="center" fit>SHARE</div>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                     
+                     <div ng-controller="CollapseController">
+    					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+    					    <span class="fa fa-info"></span>
+    					</div>
+    					<div collapse="!isCollapsed">
+                            <div class="post-info">
+                                 <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                             </div>
+    					</div>
+    				 </div>
+                   
+                  </div>
+               </div>
+            
+            <h2>Responsive Card Large</h2>
             <hr>
          
             <div class="row">
@@ -316,6 +357,160 @@
                </div>
                
             </div>
+            
+            <h2>Responsive Card Small</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                      <div class="dialog">
+              
+                         <div class="title">Card Title</div>
+                         <div class="image">
+                            <img class="img-responsive" src="http://wallpapersyet.com/wp-content/uploads/2015/08/Tiger-Nature-HD.jpg"></img>
+                         </div>
+                         <div class="content">
+                           <div>
+                               <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                             </div>
+                           <hr class="card-hr">
+                         <div class="button">
+                           <div class="center" fit>LEARN MORE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div class="button">
+                           <div class="center" fit>SHARE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div ng-controller="CollapseController">
+        					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+        					    <span class="fa fa-info"></span>
+        					</div>
+        					<div collapse="!isCollapsed">
+                                <div class="post-info">
+                                     <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                                 </div>
+        					</div>
+        				 </div>
+                       
+                      </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-3">
+                      <div class="dialog info">
+              
+                         <div class="title">Card Title</div>
+                         <div class="image">
+                            <img class="img-responsive" src="http://wallpapersyet.com/wp-content/uploads/2015/08/Tiger-Nature-HD.jpg"></img>
+                         </div>
+                         <div class="content">
+                           <div>
+                               <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Fusce id ex nisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                         </div>
+                           <hr class="card-hr">
+                         <div class="button">
+                           <div class="center" fit>LEARN MORE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div class="button">
+                           <div class="center" fit>SHARE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div ng-controller="CollapseController">
+        					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+        					    <span class="fa fa-info"></span>
+        					</div>
+        					<div collapse="!isCollapsed">
+                                <div class="post-info">
+                                     <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                                 </div>
+        					</div>
+        				 </div>
+                       
+                      </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-3">
+                      <div class="dialog brand">
+              
+                         <div class="title">Card Title</div>
+                         <div class="image">
+                            <img class="img-responsive" src="http://wallpapersyet.com/wp-content/uploads/2015/08/Tiger-Nature-HD.jpg"></img>
+                         </div>
+                         <div class="content">
+                           <div>
+                               <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Inceptos himenaeos.</p>
+                         </div>
+                           <hr class="card-hr">
+                         <div class="button">
+                           <div class="center" fit>LEARN MORE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div class="button">
+                           <div class="center" fit>SHARE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div ng-controller="CollapseController">
+        					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+        					    <span class="fa fa-info"></span>
+        					</div>
+        					<div collapse="!isCollapsed">
+                                <div class="post-info">
+                                     <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                                 </div>
+        					</div>
+        				 </div>
+                       
+                      </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-3">
+                      <div class="dialog accent">
+              
+                         <div class="title">Card Title</div>
+                         <div class="image">
+                            <img class="img-responsive" src="http://wallpapersyet.com/wp-content/uploads/2015/08/Tiger-Nature-HD.jpg"></img>
+                         </div>
+                         <div class="content">
+                           <div>
+                               <p>Etiam in purus venenatis, ultrices ex vitae, lobortis ligula. In sed elit hendrerit, egestas elit non, pretium nisi. Morbi faucibus mi erat. Taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                         </div>
+                           <hr class="card-hr">
+                         <div class="button">
+                           <div class="center" fit>LEARN MORE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div class="button">
+                           <div class="center" fit>SHARE</div>
+                           <paper-ripple fit></paper-ripple>
+                         </div>
+                         
+                         <div ng-controller="CollapseController">
+        					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+        					    <span class="fa fa-info"></span>
+        					</div>
+        					<div collapse="!isCollapsed">
+                                <div class="post-info">
+                                     <a ng-href="#">John Smith</a> at <em>09/03/2015 @ 1:20PM</em>
+                                 </div>
+        					</div>
+        				 </div>
+                       
+                      </div>
+                   </div>
+                </div>
+                
+                
+            </div><!-- end row -->
             
             <ol>
                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>

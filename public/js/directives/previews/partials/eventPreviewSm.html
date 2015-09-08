@@ -1,8 +1,36 @@
-<div class="col-md-3" ng-controller="BlogController">
-    <div class="well well-lg">
-        <h2><a ng-href="/events/event/{{ event.id }}">{{event.title}}</a></h2>
-        <h5>{{event.date | date:'MM/dd/yyyy'}}</h5>
-        <p>{{event.content | words: 25}}</p>
-        <a ng-href="#"><button class="btn btn-sm btn-danger btn-inverted">Details</button></a>
+<div class="dialog accent" ng-controller="BlogController">
+
+    <div class="title"><a ng-href="/events/event/{{ event.id }}">{{event.title}}</a></div>
+    <div class="image">
+        <img ng-src="" class="img-responsive" />
     </div>
+    <div class="content">
+        <div>
+           <p>{{event.content | htmlToPlainText | words: 25}}</p>
+        </div>
+    </div>
+    <hr class="card-hr">
+    <a ng-href="/events/event/{{ event.id }}">
+     <div class="button">
+       <div class="center" fit>DETAILS</div>
+       <paper-ripple fit></paper-ripple>
+     </div>
+    </a>
+    
+    <div class="button">
+        <div class="center" fit>SHARE</div>
+        <paper-ripple fit></paper-ripple>
+    </div>
+    
+    <div ng-controller="CollapseController">
+        <div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+            <span class="fa fa-info"></span>
+        </div>
+        <div collapse="!isCollapsed">
+            <div class="post-info">
+                Event Date: {{event.date | date:'MM/dd/yyyy'}}
+            </div>
+        </div>
+    </div>
+
 </div>

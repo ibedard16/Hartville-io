@@ -19,18 +19,20 @@
 		<div class="col-md-4">
 	    	<pagination total-items="posts.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
 	    </div>
-		<div class="input-group col-md-8 form-search">
-	        <span class="input-group-addon">
-	            <span class="glyphicon glyphicon-search"></span>
-	        </span>
-	        <input type="text" class="form-control" ng-model="post.searchInput" placeholder="Type something to start filtering...">
+		<div class="col-md-8">
+			<form>
+        	<div class="form-group">
+              <input id="input" type="text" ng-model="post.searchInput"/>
+              <label for="input">Filter</label><i class="bar"></i>
+            </div>
+            </form>
 	    </div>
 	</div> <!-- end row -->
 	
 	<div class="row">
 		
 		<div class="col-md-9">
-			<ul class="list-group post-list-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize">
+			<ul class="list-group dialog-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize">
 				<post-preview-lg post='post'></post-preview-lg>
 			</ul>
 		</div> <!--end column-->

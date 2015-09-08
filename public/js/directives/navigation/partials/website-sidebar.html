@@ -8,7 +8,7 @@
   <h4>Recent Posts</h4>
       <a ng-href="/blog/post/{{ post.id }}" class="list-group-item" ng-repeat="post in posts | orderBy: '-date' | limitTo:10">
         {{post.title}}
-        <span class="glyphicon glyphicon-menu-right pull-right"></span>
+        <span class="fa fa-chevron-right pull-right"></span>
       </a>
       
 </div>

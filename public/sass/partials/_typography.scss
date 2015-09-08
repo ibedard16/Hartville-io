@@ -6,6 +6,20 @@ $typeMedium:    500;
 $typeBold:      700;
 $typeBlack:     900;
 
+// Font Colors
+h1, h2, h3, h4, h5, h6, p{
+    &.brand {
+        color: $colorBrand;
+    }
+    &.accent{
+        color: $colorAccent;
+    }
+    &.info{
+        color: $colorInfo;
+    }
+}
+
+
 // Base Font & Size
 $typeFamilyRoboto: 'Roboto', sans-serif;
 $typeBaseSize: 1.5em;

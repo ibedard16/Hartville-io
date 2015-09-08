@@ -8,21 +8,17 @@
 
 <div class="container">
     <div class="row">
-        <div class="page-header">
-            <h1><span class="glyphicon glyphicon-map-marker"></span> Next Event</h1>
-        </div>
+        <h1 class="accent">Next Event</h1><hr>
         
         <!-- large event preview -->
-      	<div ng-repeat="event in events | orderBy: 'date' | limitTo:1 ">
+      	<div class="col-md-12" ng-repeat="event in events | orderBy: 'date' | limitTo:1 ">
       	    <event-preview-lg event='event'></event-preview-lg>
       	</div>
         
-        <div class="page-header">
-            <h1><span class="glyphicon glyphicon-menu-hamburger"></span> Upcoming Events</h1>
-        </div>
+        <h1 class="accent">Upcoming Events</h1><hr>
         
         <!--small event preview -->
-        <div ng-repeat="event in events | orderBy: 'date' | limitTo:4 ">
+        <div class="col-md-4" ng-repeat="event in events | orderBy: 'date' | limitTo:3 ">
             <event-preview-sm event='event'></event-preview-sm>
         </div>
         

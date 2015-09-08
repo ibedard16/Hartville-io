@@ -1,8 +1,8 @@
 /* Animations */
-.post-list-animation.ng-enter {
+dialog-animation.ng-enter {
     animation: fadeIn 250ms;
 }
-.post-list-animation.ng-leave {
+dialog-animation.ng-leave {
     animation: fadeOut 250ms;
 }
 .most-recent-animation.ng-enter {

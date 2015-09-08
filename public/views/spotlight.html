@@ -5,3 +5,47 @@
       	</div>
     </div>
 </div>
+
+<div class="container padded" ng-hide="error">
+	<ol class="breadcrumb">
+		<li><a href="/">Home</a></li>
+	  <li class="active">Spotlight</a></li>
+	</ol>
+	<div class="row">
+		<div class="col-md-12">
+
+			<div class="dialog brand" ng-controller="BlogController">
+
+            <div class="title"><a ng-href="#">Business Name</a></div>
+            <div class="image">
+                <img ng-src="http://i.imgur.com/dOuzczB.jpg" class="img-responsive" />
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Maecenas lobortis a risus eget blandit. Sed iaculis porttitor sagittis. Aenean ornare, lorem ac suscipit sagittis, urna diam vestibulum neque, vel vestibulum est dolor non tellus. Duis at semper erat, eget condimentum est.</h4>
+                        <p>Nam blandit accumsan mi, in tempus dui viverra nec. Fusce scelerisque laoreet molestie. Donec euismod sapien at tortor malesuada condimentum. Donec ornare dolor eget risus convallis porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam efficitur odio eu ex tempor, in scelerisque nisi suscipit. Nullam nulla orci, mollis id placerat eget, ultrices ut nulla. Phasellus in justo ac dui luctus sollicitudin. Sed euismod mi nec mi sollicitudin aliquet. Fusce porta rutrum est at luctus. Integer condimentum luctus leo. Etiam viverra sollicitudin lacus nec sagittis.</p>
+                        <blockquote>Felis fringilla malesuada non in orci. Vestibulum aliquet dui nulla, ac ultricies risus volutpat a. Integer pharetra vel nisl ac eleifend. Duis tempus, lectus sit amet aliquet eleifend, ex purus porttitor lorem, ac placerat leo magna a augue.</blockquote>
+                        <ul>
+                           <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+                           <li>Aliquam tincidunt mauris eu risus.</li>
+                           <li>Vestibulum auctor dapibus neque.</li>
+                        </ul>
+                        <p>Dui luctus sollicitudin. Sed euismod mi nec mi sollicitudin aliquet. Fusce porta rutrum est at luctus. Integer condimentum luctus leo. Etiam viverra sollicitudin lacus nec sagittis. Etiam massa sem, accumsan vitae euismod et, vestibulum ac nulla. Suspendisse luctus suscipit est, ac faucibus lacus aliquam eu. Sed mauris quam, congue sed aliquam eu, accumsan non mi. Cras hendrerit varius feugiat. Ut ut tristique purus, ut dictum lorem.</p>
+                        <p>Fusce scelerisque laoreet molestie. Donec euismod sapien at tortor malesuada condimentum. Donec ornare dolor eget risus convallis porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam efficitur odio eu ex tempor, in scelerisque nisi suscipit. Nullam nulla orci, mollis id placerat eget, ultrices ut nulla. Phasellus in justo ac dui luctus sollicitudin. Sed euismod mi nec mi sollicitudin aliquet. Fusce porta rutrum est at luctus. Integer condimentum luctus leo.</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="card-hr">
+            
+            <div class="button">
+                <div class="center" fit>SHARE</div>
+                <paper-ripple fit></paper-ripple>
+            </div>
+        
+        </div>
+		
+		</div> <!--end column-->
+	</div> <!--end row-->
+</div> <!--end container -->
+<error ng-show="error"></error>

@@ -5,9 +5,14 @@
   background-color: $colorWhite;
   box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);
   margin: 10px 10px 25px 10px;
-  &.image {
+  >.image {
       color: $colorWhite;
       border-radius: 3px;
+      > img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
   }
 }
 
@@ -22,7 +27,7 @@
         border-left: 5px solid $colorAppbar;
       }
     }
-  > .title {
+  & .title {
       text-align: center;
       font-size: 1.3em;
       font-weight: $typeLight;
@@ -30,6 +35,13 @@
       color: $colorBase;
       background-color: $colorAppbar;
       margin: 0px;
+      border-radius: 3px 3px 0px 0px;
+      > a {
+        color: $colorWhite;
+        &:hover {
+          color: $colorBrandLight;
+        }
+      }
     }
   & .button {
       width: 90px;
@@ -70,6 +82,11 @@
   > .title {
     background-color: $colorAccent;
     color: $colorWhite;
+    > a{
+    &:hover {
+      color: $colorAccentLight;
+    }
+  }
   }
   > .content{
     & blockquote {
@@ -121,7 +138,7 @@
 
 .post-info-button {
   font-size: 1.2em;
-  color: $colorStatusbar;
+  color: $colorDropshadow;
   float: right;
   position: relative;
   right: 15px;
