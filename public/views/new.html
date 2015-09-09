@@ -47,9 +47,7 @@
 			<div class="col-md-12">
 				<h4>Header Image</h4>
 				<div class="form-group">
-					<input type="file" name="imageHead" class="form-control" accept="image/*" ng-model="formInfo.imageHead" id="imageHead">
-					<button ng-click="addHeadImage()">Add Head Image</button>
-					<button ng-click="log(formInfo.imageHead)">log image to console</button>
+					<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" onchange="angular.element(this).scope().bindImage(this.files[0], 'imageHead')">
 				</div>
 			</div>
 			

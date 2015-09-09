@@ -77,6 +77,7 @@ var multer      = require('multer'),
     storage     = multer.diskStorage({
         destination: function (request, file, cb) {
             if (verify.credentials(request.body.username,request.body.password)) {
+                console.log("attemtping to save image");
                 if (fs.existsSync('public/postFiles/'+currentPostNum)) {
                     cb(null, 'public/postFiles/'+currentPostNum);
                 } else {
@@ -166,7 +167,7 @@ app.get("/google*", function(request, response) {
     response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
 });
 
-app.post('/create', /*upload.fields([{name:'headImage', maxCount:1},{name:"bodyImage"}]),*/ upload.single(), function(request, response) {
+app.post('/create', /*upload.fields([{name:'headImage', maxCount:1},{name:"bodyImage"}]),*/ upload.single('imageHead'), function(request, response) {
     if (app.get('canPost')) {
         if (verify.credentials(request.body.username,request.body.password)) {
         
