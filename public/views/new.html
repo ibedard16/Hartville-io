@@ -16,7 +16,7 @@
       <!--Username-->
       <div class="col-md-6">
 			  <div class="form-group">
-					<input id="input" type="text" name="username" ng-model="formInfo.author" required="required"/>
+					<input id="input" type="text" name="username" ng-model="login.author" required="required" ng-disabled="formDisabled"/>
           <label for="input">Username</label><i class="bar"></i>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 			<!--Password-->
 			<div class="col-md-6">
 			  <div class="form-group">
-					<input id="input" type="password" autocomplete="off" name="password" required="required" ng-model="formInfo.password"/>
+					<input id="input" type="password" autocomplete="off" name="password" required="required" ng-model="login.password" ng-disabled="formDisabled"/>
           <label for="input">Password</label><i class="bar"></i>
 			  </div>
 			</div>
@@ -38,7 +38,7 @@
 			<!--Title-->
 			<div class="col-md-12">
 				<div class="form-group">
-					<input id="input" type="text" name="title" ng-model="formInfo.title"/>
+					<input id="input" type="text" required name="title" ng-model="formInfo.title" ng-disabled="formDisabled"/>
 					<label for="input">Title</label><i class="bar"></i>
 				</div>
 			</div>
@@ -47,7 +47,7 @@
 			<div class="col-md-12">
 				<h4>Header Image</h4>
 				<div class="form-group">
-					<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" onchange="angular.element(this).scope().bindImage(this.files[0], 'imageHead')">
+					<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" ng-disabled="formDisabled" onchange="angular.element(this).scope().bindImage(this.files[0], 'imageHead')">
 				</div>
 			</div>
 			
@@ -55,7 +55,7 @@
 			<div class="col-md-12">
 				<h4>Content</h4>
 				<div class="form-group">
-					<text-angular ng-model="formInfo.content" name="content"></text-angular>
+					<text-angular ng-model="formInfo.content" required name="content" ta-disabled="formDisabled"></text-angular>
 				</div>
 			</div>
 			
@@ -66,28 +66,28 @@
 				<!--Technology-->
 				<div class="checkbox">
           <label>
-            <input type="checkbox" name="categories" value="technology"/><i class="helper"></i>Technology
+            <input type="checkbox" name="categories" value="technology" ng-disabled="formDisabled"/><i class="helper"></i>Technology
           </label>
         </div>
         
         <!--Community-->
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="categories" value="community"/><i class="helper"></i>Community
+            <input type="checkbox" name="categories" value="community" ng-disabled="formDisabled"/><i class="helper"></i>Community
           </label>
         </div>
         
         <!--Science-->
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="categories" value="science"/><i class="helper"></i>Science
+            <input type="checkbox" name="categories" value="science" ng-disabled="formDisabled"/><i class="helper"></i>Science
           </label>
         </div>
         
 				<!--News-->
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="categories" value="news"/><i class="helper"></i>News
+            <input type="checkbox" name="categories" value="news" ng-disabled="formDisabled"/><i class="helper"></i>News
           </label>
         </div>
 				
@@ -118,13 +118,13 @@
 				<div class="col-md-12">
 					
 					<!--Submit-->
-					<button type="submit" ng-click="postData()" class="button raised brand">
+					<button type="submit" ng-click="submitForm()" class="button raised brand" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
 						<div class="center" fit>SUBMIT</div>
 						<paper-ripple fit></paper-ripple>
 					</button>
 					
 					<!--Reset-->
-					<button type="reset" ng-click="resetPost()" class="button raised accent">
+					<button type="reset" ng-click="resetPost()" class="button raised accent" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
 						<div class="center" fit>RESET</div>
 						<paper-ripple fit></paper-ripple>
 					</button>

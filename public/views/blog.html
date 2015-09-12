@@ -5,21 +5,20 @@
       	</div>
     </div>
 </div>
-
 <div class="container padded">
 	<ol class="breadcrumb">
-			<li><a href="/">Home</a></li>
-		    <li class="active">Blog</li>
-		</ol>
-	
+		<li><a href="/">Home</a></li>
+	    <li class="active">Blog</li>
+	</ol>
 	<div class="row">
+		
 		<div class="col-md-6">
-	    	<pagination total-items="posts.length" rotate="false" max-size="maxSize" ng-model="currentPage" boundary-links="true" items-per-page="pageSize"></pagination>
+	    	<pagination total-items="postCount" rotate="true" max-size="maxSize" ng-model="currentPage" boundary-links="true" items-per-page="pageSize"></pagination>
 	    </div>
 		<div class="col-md-6">
 
             <div class="form-group">
-				<input id="input" type="text" name="filter" ng-model="post.searchInput"/>
+				<input id="input" type="text" name="filter" ng-model="post.searchInput" disabled title="Post searching coming soon!"/>
           		<label for="input">Filter</label><i class="bar"></i>
 			</div>
 
@@ -29,13 +28,13 @@
 	<div class="row">
 		
 		<div class="col-md-9">
-			<ul class="list-group dialog-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput | startFrom:(currentPage - 1) * pageSize | limitTo: pageSize">
+			<ul class="list-group dialog-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput ">
 				<post-preview-lg post='post'></post-preview-lg>
 			</ul>
 			
-		<div class="col-md-12">
-			<pagination total-items="posts.length" rotate="false" max-size="maxSize" boundary-links="true" ng-model="currentPage" items-per-page="pageSize"></pagination>
-		</div>
+			<div class="col-md-12">
+				<pagination total-items="postCount" rotate="true" max-size="maxSize" boundary-links="true" ng-model="currentPage" items-per-page="pageSize"></pagination>
+			</div>
 		
 		</div> <!--end column-->
 		

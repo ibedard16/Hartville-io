@@ -1,15 +1,23 @@
-app.controller('NewController', ['$scope', '$rootScope', '$sanitize', '$http', 'toastr', 'newPost', function($scope, $rootScope, $sanitize, $http, toastr, newPost){
+/*global angular*/
+/*global app*/
+/*global storageAvailable*/
+app.controller('NewController', ['$scope', '$rootScope', '$location', '$sanitize', '$http', 'toastr', 'newPost', 'postResource', function($scope, $rootScope, $location, $sanitize, $http, toastr, newPost, postResource){
+	
+	//postResource.save({},{password:''});
 	
 	if (storageAvailable('localStorage')){
 		var savePost = function () {localStorage.setItem('postBackup', JSON.stringify($scope.formInfo));};
 		
-		
-	
 		if(localStorage.getItem('postBackup')) {
-			$scope.formInfo = JSON.parse(localStorage.getItem('postBackup')); 
-			toastr.info('Post recovered from Local Storage.', {
-				positionClass: "toast-bottom-right",
-			});
+			try {
+				$scope.formInfo = JSON.parse(localStorage.getItem('postBackup')); 
+				toastr.info('Post recovered from Local Storage.', {
+					positionClass: "toast-bottom-right",
+				});
+			}
+			catch (e) {
+				toastr.error('Post backup was found, but it could not be retrieved.', 'Backup Recovery Error');
+			}
 		} 
 		
 		$scope.$watchCollection('formInfo', savePost);
@@ -29,29 +37,37 @@ app.controller('NewController', ['$scope', '$rootScope', '$sanitize', '$http', '
 		reader.onload = function(e){
 			$scope.formInfo[dest] = e.target.result;
 			$scope.$apply();
-		}
+		};
 		reader.readAsDataURL(file);
-	}
+	};
 	
-	$scope.postData = function() {
-		newPost.post($scope.formInfo).then(function(data) {
-        	switch (data.data) {
+	$scope.submitForm = function() {
+		$scope.formDisabled = true;
+		//newPost.post(angular.extend({}, $scope.formInfo, $scope.login)).then(function(data) {
+		postResource.save({}, angular.extend({}, $scope.formInfo, $scope.login)).$promise.then(function (data) {
+        	console.log(data);
+        	switch (data.head) {
         		case 'Post Success':
         			toastr.info('Post was successfully published!', 'Success!');
         			$scope.formInfo = {};
         			localStorage.removeItem('postBackup');
+        			$scope.formDisabled = false;
+        			$location.path(data.redirect);
         			break;
     			case 'Invalid Login':
-    				toastr.error('Invalid Username and Password combination.', 'Invalid Credentials')
+    				toastr.error('Invalid Username and Password combination.', 'Invalid Credentials');
+    				$scope.formDisabled = false;
     				break;
 				default:
 					toastr.error('The server couldn\'t save the post. Please contact an administrator for help.', 'Post Save Error');
+					$scope.formDisabled = false;
 					break;
         	}
         });
     };
     
     $scope.resetPost = function () {
+    	$scope.formDisabled = true;
     	$scope.resetConfirm = true;
     };
     
@@ -62,8 +78,10 @@ app.controller('NewController', ['$scope', '$rootScope', '$sanitize', '$http', '
 	    	}
 	    	$scope.formInfo = {};
 	        console.log("it should be working!");
+	        $scope.formDisabled = false;
 	        $scope.resetConfirm = false;
     	} else {
+    		$scope.formDisabled = false;
     		$scope.resetConfirm = false;
     	}
     };

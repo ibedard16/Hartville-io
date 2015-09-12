@@ -1,14 +1,30 @@
-app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'posts', 'authors', 'events', function($scope, $routeParams, $filter, posts, authors, events){
+/*global app*/
+/*global _*/
+app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'postResource', 'posts', 'authors', 'events', function($scope, $routeParams, $filter, postResource, posts, authors, events){
 	$scope.searchInput = '';
+	$scope.pageSize = 5;
+	$scope.currentPage = 1;
+	$scope.maxSize = 5;
+	
+	/*var postCount = postResource.get({number:true}, function () {
+		$scope.postCount = postCount.postCount;
+	});*/
+	
+	$scope.$watch('currentPage', function (newVal,oldVal) {
+		var post = postResource.get({page:$scope.currentPage}, function() {
+			$scope.posts = post.posts;
+			$scope.postCount = Number(post.postCount);
+		});
+	});
 	
 	//Posts
-	posts.get().then(function(data) {
+	/*posts.get().then(function(data) {
 		if ($routeParams.author) {
 			$scope.posts = $filter('filter')(data.posts,{author: $routeParams.author});
 		} else {
 			$scope.posts = data.posts;
 		}
-	});
+	});*/
 	
 	//Authors
 	authors.get().then(function(data){
@@ -26,7 +42,4 @@ app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'posts', 
 	});
 	
 	//$scope.posts = [];
-	$scope.pageSize = 5;
-	$scope.currentPage = 1;
-	$scope.maxSize = 5;
 }]);
