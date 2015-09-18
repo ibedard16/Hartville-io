@@ -3,7 +3,7 @@
   border-radius: 3px;
   vertical-align: top;
   background-color: $colorWhite;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.05);
   margin: 10px 10px 25px 10px;
   >.image {
       color: $colorWhite;
@@ -40,6 +40,9 @@
         &:hover {
           color: $colorBrandLight;
         }
+      }
+      &.user {
+        text-align: left;
       }
     }
   & .button {
@@ -165,7 +168,7 @@
 
 .post-info-button {
   font-size: 1.2em;
-  color: $colorDropshadow;
+  color: $colorWhite;
   float: right;
   position: relative;
   right: 15px;
@@ -174,4 +177,25 @@
 
 .card-hr{
   margin-bottom: 6px;
+}
+
+
+//User Card
+.dialog-user{
+  & a {
+    color: $colorBrand;
+  }
+}
+.user-info {
+  text-align: left;
+  > h3 {
+    margin-top: 0px;
+  }
+  a {
+    color: $colorWhite;
+  }
+}
+.user-image{
+  background-color: $colorWhite;
+  border-radius: 3px;
 }

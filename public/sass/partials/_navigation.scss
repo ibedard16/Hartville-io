@@ -1,4 +1,70 @@
-/*pagination*/
+// Navbar
+.navbar{
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar-header {
+    > .navbar-toggle {
+        border: none;
+        & .icon-bar {
+            background-color: $colorWhite;
+        }
+        &:hover {
+            background-color: $colorBrandLight;
+            > span {
+                color: $colorWhite;
+            }
+        }
+        &:focus {
+            background-color: $colorBrandLight;
+        }
+    }
+}
+
+.navbar-default {
+    background-color: $colorBrand;
+    border: none;
+  .navbar-brand {
+      color: $colorWhite;
+      &:hover {
+          color: $colorWhite;
+      }
+  }
+  .navbar-nav {
+      > li {
+        & a {
+            color: $colorWhite;
+            &:hover {
+                color: $colorWhite;
+                background-color: $colorBrandLight;
+                @include transition(background-color .25s 0s);
+                @include transition(color .2s 0s);
+            }
+            &:focus {
+                color: $colorWhite;
+            }
+        }  
+      }
+    >.active {
+      & a {
+        background-color: $colorBrandLight;
+        color: $colorWhite;
+        &:focus {
+            background-color: $colorBrandLight;
+            color: $colorWhite;
+        }
+        &:hover {
+            background-color: $colorBrandLight;
+            color: $colorWhite;
+            @include transition(background-color .25s 0s);
+        }
+      }
+    }
+  }
+}
+
+// Pagination
 .pagination{
     margin: 10px 0px 0px 0px;
     padding: 0px;
@@ -23,4 +89,10 @@
             }
         }
     }
+}
+
+.dropdown-menu {
+    box-shadow: 0 10px 17px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
 }
