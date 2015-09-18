@@ -8,7 +8,7 @@ app.directive('websiteNavigation', function () {
 			$scope.$location = $location;
 			$scope.isAuthenticated = function () {
 				return authToken.isAuthenticated();
-			}
+			};
 			$scope.status = {
 				isopen: false
 			};

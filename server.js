@@ -61,14 +61,14 @@ var fs              = require('fs'),
             if (err) return done(err);
             
             if (!user) {
-                return done(null, false, {message: 'Email not Found'});
+                return done('Email not Found');
             }
             
             user.comparePasswords(password, function (err, isMatch) {
                 if (err) return done(err);
                 
                 if (!isMatch) {
-                    return done(null, false, {message: 'Invalid Login'});
+                    return done('Invalid Login');
                 } 
                 
                 return done(null, user);
@@ -78,17 +78,30 @@ var fs              = require('fs'),
     });
     
     var signupStrategy = new LocalStrategy(strategyOptions, function (email, password, done) {
-        var newUser = new User({
-            email: email,
-            password: password
-        });
-    
-        newUser.save(function (err) {
+        var searchUser = {
+            email: email
+        };
+        User.findOne(searchUser, function (err, user) {
             if (err) {
-                return done(null, false, err);
-            } else {
-                done(null, newUser);
+                return done(err);
             }
+            
+            if (user) {
+                return done('Email Already in Use');
+            }
+        
+            var newUser = new User({
+                email: email,
+                password: password
+            });
+        
+            newUser.save(function (err) {
+                if (err) {
+                    return done(err);
+                } else {
+                    done(null, newUser);
+                }
+            });
         });
     });
     
