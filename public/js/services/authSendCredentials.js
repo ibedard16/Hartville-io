@@ -34,9 +34,9 @@ app.factory('authSendCredentials', ['$location', '$http', '$rootScope', 'authTok
                             toastr.error('The email address you entered was not found in our database. Do you even have an account?', 'Email not Found');
                             break;
                         case 'Email Already in Use':
-                            toastr.error('This email is already in use. <br /><br /> Either you already have an account and forgot about it; you\'re trying to impersonate someone else; or someone else is impersonating you. <br /><br /> We hope it\'s the first one. Identity theft is no joke.', 'Email in Use', {
+                            toastr.error('This email is already in use. <br /><br /> There are three scarios where this could happen:<ul><li>You have an account and forgot about it.</li><li>You are trying to impersonate someone else by using their email.</li><li>Someone else is impersonating you using your email.</li></ul> <br/> We hope it\'s the first one. Identity theft is no joke.', 'Email in Use', {
                                 allowHtml: true,
-                                timeOut: 10000
+                                timeOut: 20000
                             });
                             break;
                         default:
