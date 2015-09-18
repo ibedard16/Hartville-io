@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation" ng-controller="DropdownController" bs-navbar>
+<nav class="navbar navbar-default" role="navigation" bs-navbar>
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
@@ -13,7 +13,7 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="navbar-collapse" collapse="isCollapsed" ng-controller="HeaderController">
+  <div class="navbar-collapse" collapse="isCollapsed">
     <ul class="nav navbar-nav">
       <li data-match-route="/#/"><a href="/">Home</a></li>
       <li data-match-route="/blog"><a href="/blog/">Blog</a></li>
@@ -23,19 +23,10 @@
       <li data-match-route="/about"><a href="/about/">About</a></li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right dropdown-menu-right" ng-controller="UserDropdownController">
-      <li bs-dropdown="dropdown">
-        <a href id="simple-dropdown" dropdown-toggle>
-          <span class="glyphicon glyphicon-cog"></span> UserName <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
-          <li ng-repeat="choice in items">
-            <a href>{{choice}}</a>
-          </li>
-        </ul>
-      </li>
-
-    </ul>
+    <user-dropdown></user-dropdown>
+    
+    </div>
+    
   </div>
   <!-- /.navbar-collapse -->
   </div>

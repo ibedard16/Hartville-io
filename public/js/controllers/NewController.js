@@ -1,7 +1,7 @@
 /*global angular*/
 /*global app*/
-/*global storageAvailable*/
-app.controller('NewController', ['$scope', '$rootScope', '$location', '$sanitize', '$http', 'toastr', 'newPost', 'postResource', function($scope, $rootScope, $location, $sanitize, $http, toastr, newPost, postResource){
+
+app.controller('NewController', ['$location', '$scope', 'postResource', 'toastr', 'storageAvailable', function($location, $scope, postResource, toastr, storageAvailable) {
 	
 	//postResource.save({},{password:''});
 	
@@ -43,7 +43,6 @@ app.controller('NewController', ['$scope', '$rootScope', '$location', '$sanitize
 	
 	$scope.submitForm = function() {
 		$scope.formDisabled = true;
-		//newPost.post(angular.extend({}, $scope.formInfo, $scope.login)).then(function(data) {
 		postResource.save({}, angular.extend({}, $scope.formInfo, $scope.login)).$promise.then(function (data) {
         	console.log(data);
         	switch (data.head) {
@@ -77,12 +76,21 @@ app.controller('NewController', ['$scope', '$rootScope', '$location', '$sanitize
     			localStorage.removeItem('postBackup');
 	    	}
 	    	$scope.formInfo = {};
-	        console.log("it should be working!");
 	        $scope.formDisabled = false;
 	        $scope.resetConfirm = false;
     	} else {
     		$scope.formDisabled = false;
     		$scope.resetConfirm = false;
+    	}
+    };
+    
+    $scope.submitSpam = function() {
+    	for (var i=1; i <= 100; i++) {
+    		postResource.save({},{
+    			password: $scope.login.password,
+    			title: 'Test Post ' + i,
+    			content: 'This is the content for test post ' + i + '.'
+    		});
     	}
     };
     

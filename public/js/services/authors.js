@@ -1,3 +1,6 @@
+'use strict';
+/*global app*/
+
 app.factory('authors', ['$http', function($http) {
     return {
     	get: function() {

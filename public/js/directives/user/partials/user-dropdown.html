@@ -1,0 +1,12 @@
+<ul class="nav navbar-nav navbar-right dropdown-menu-right">
+    <li bs-dropdown="dropdown">
+        <a href id="simple-dropdown" dropdown-toggle>
+            <span class="glyphicon glyphicon-cog"></span> {{menuName}} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu pull-right" aria-labelledby="simple-dropdown">
+            <li ng-repeat="choice in items">
+                <a href>{{choice}}</a>
+            </li>
+        </ul>
+    </li>
+</ul>

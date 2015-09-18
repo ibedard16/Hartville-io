@@ -5,10 +5,10 @@
                 <div class="title">Hartville.io</div>
                 
                 <div class="content">
-                    <h3>Log In</h3>
+                    <h3>Sign Up</h3>
                     <hr>
                     
-                    <form name="logIn" class="form-signin" novalidate>
+                    <form name="signUp" class="form-signin" novalidate>
                         
                         <!--Email-->
                         <div class="form-group">
@@ -22,16 +22,23 @@
                             <label for="password">Password</label><i class="bar"></i>
                         </div>
                         
+                        <!--Passowrd Confirm-->
+                        <div class="form-group">
+                            <input class="input" id="password_confirm" name="password_confirm" ng-model="password_confirm" type="password" class="form-control" required password-validate="password">
+                            <label for="password_confirm">Password Confirm</label><i class="bar"></i>
+                        </div>
+                        
+                        <p class="help-block" ng-show="(signUp.email.$viewValue.length > 0 && signUp.email.$invalid)">Please enter a proper email.</p>
+                        <p class="help-block" ng-show="signUp.password.$viewValue != signUp.password_confirm.$viewValue">Please match the passwords.</p>
+                        
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" ng-model="remember" /><i class="helper"></i>Remember me</input>
+                            <input type="checkbox" ng-model='remember' /><i class="helper"></i>Remember me</input>
                           </label>
                         </div>
                         
-                        <p class="help-block" ng-show="(logIn.email.$viewValue.length > 0 && logIn.email.$invalid)">Please enter a proper email.</p>
-                        
-                        <button type="submit" class="button brand" ng-click="submit()" ng-disabled="logIn.$invalid" ng-class="{disabled: logIn.$invalid==true}">
-                            <div class="center">LOGIN</div>
+                        <button type="submit" class="button brand" ng-click="submit()" ng-disabled="signUp.$invalid" ng-class="{disabled: signUp.$invalid==true}">
+                            <div class="center">Sign Up</div>
                             <paper-ripple fit></paper-ripple>
                         </button>
                         

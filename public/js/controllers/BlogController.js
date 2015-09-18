@@ -1,6 +1,6 @@
 /*global app*/
 /*global _*/
-app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'postResource', 'posts', 'authors', 'events', function($scope, $routeParams, $filter, postResource, posts, authors, events){
+app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'postResource', 'authors', 'events', function($scope, $routeParams, $filter, postResource, authors, events){
 	$scope.searchInput = '';
 	$scope.pageSize = 5;
 	$scope.currentPage = 1;
@@ -9,6 +9,10 @@ app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'postReso
 	/*var postCount = postResource.get({number:true}, function () {
 		$scope.postCount = postCount.postCount;
 	});*/
+	
+	var recentPosts = postResource.get({page:1}, function() {
+		$scope.recentPosts = recentPosts.posts;
+	});
 	
 	$scope.$watch('currentPage', function (newVal,oldVal) {
 		var post = postResource.get({page:$scope.currentPage}, function() {

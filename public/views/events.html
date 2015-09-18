@@ -15,7 +15,7 @@
 	<h1 class="accent">Next Event</h1><hr>
     <div class="row">
         <!-- large event preview -->
-      	<div class="col-md-12" ng-repeat="event in events | orderBy: 'date' | limitTo:1 ">
+      	<div class="col-md-12 dialog-animation" ng-repeat="event in events | orderBy: 'date' | limitTo:1 ">
       	    <event-preview-lg event='event'></event-preview-lg>
       	</div>
     </div>
@@ -23,7 +23,7 @@
     <h1 class="accent">Upcoming Events</h1><hr>
     <div class="row">
         <!--small event preview -->
-        <div class="col-md-4" ng-repeat="event in events | orderBy: 'date' | limitTo:3 ">
+        <div class="col-md-4 dialog-animation " ng-repeat="event in events | orderBy: 'date' | limitTo:3 ">
             <event-preview-sm event='event'></event-preview-sm>
         </div>
     </div>

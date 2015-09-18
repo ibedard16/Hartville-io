@@ -2,8 +2,15 @@ var mongoose = require('mongoose');
 
 var authorSchema = mongoose.Schema({
     name:   String,
+    title:  String,
     bio:    String,
-    avatar: String
+    about:  String,
+    avatar: String,
+    contact:    {
+                    email: String,
+                    website: String,
+                    facebook: String,
+                }
 });
 
 var Author = mongoose.model('Author', authorSchema);
@@ -16,8 +23,15 @@ var Author = mongoose.model('Author', authorSchema);
 
 var author = new Author({
     name:   'Brent',
-    bio:    "I like front-end design.",
-    avatar: "images/bmor-creative.png"
+    title:  'Web Developer',
+    bio:    "I like front-end web development.",
+    about:  "Student at Stark State College studying Web Design & Development. I really like front-end web development.",
+    avatar: "images/bmor-creative.jpg",
+    contact: {
+        email:      'brentwmiller93@gmail.com',
+        website:    'bmor-creative.com',
+        facebook:   'facebook.com/bmorcreative'
+    }
 });
 
 author.save(function(err, model) {

@@ -1,5 +1,6 @@
-app.controller('PostController', ['$scope', '$routeParams', '$filter', 'posts', '$sce', function($scope, $routeParams, $filter, posts, $sce){
-	posts.get({post:$routeParams.id}).then(function(data) {
+/*global app*/
+app.controller('PostController', ['$scope', '$routeParams', '$filter', 'postResource', '$sce', function($scope, $routeParams, $filter, postResource, $sce){
+	postResource.get({post:$routeParams.id}).$promise.then(function(data) {
 		if (data.status == 404) {
 			$scope.error = true;
 		} else {

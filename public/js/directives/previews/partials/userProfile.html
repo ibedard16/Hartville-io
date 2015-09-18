@@ -1,0 +1,68 @@
+<div class="dialog dialog-user brand">
+    <div class="title">
+        <div class="row">
+            <div class="col-xs-2">
+                <img ng-src="{{author.avatar}}" class="user-image img-responsive"></img>
+            </div>
+            <div class="col-xs-10 user-info">
+                <h3><a href="#">{{author.name}}</a></h3> <!-- User's name -->
+                <h4>{{author.title}}</h4>             <!-- User's Job/Title -->
+            </div>
+        </div>
+    </div>
+     
+    <div class="content">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h4>About</h4><hr>
+                <p ng-bind="author.about"></p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Contact Info</h4><hr>
+                <h5>Email</h5>
+                <h6>{{author.contact.email}}</h6><hr>
+                <h5>Website</h5>
+                <h6><a href="http://{{author.contact.website}}">{{author.contact.website}}</a></h6><hr>
+                <h5>Facebook</h5>
+                <h6><a href="http://{{author.contact.facebook}}">{{author.contact.facebook}}</a></h6><hr>
+            </div>
+            <div class="col-md-9">
+                <h4>Recent Posts</h4><hr>
+                
+                <div class="fadeInUp" ng-repeat="post in posts | orderBy: '-date' | limitTo: 5" class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></h5>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="text-right">{{post.date | date:'MM/dd/yyyy'}}</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <p>{{post.content | htmlToPlainText | words:25}}</p><hr>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <a ng-href="#">
+                            <div class="button pull-right label-brand">
+                                <div class="center" fit>ALL POSTS</div>
+                                <paper-ripple fit></paper-ripple>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

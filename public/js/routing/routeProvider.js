@@ -1,4 +1,6 @@
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$locationProvider) {
+/*global app*/
+
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider,$locationProvider,$httpProvider) {
 	$locationProvider
 		.html5Mode({
   			enabled: true,
@@ -18,6 +20,9 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		templateUrl: 'views/new.html',
 		controller: 'NewController'
 	})
+	/*.when('/blog', {
+		redirectTo: '/blog/page/1'
+	})*/
 	.when('/blog', {
 		pageTitle: 'Hartville.io | Blog',
 		title: 'Blog',
@@ -33,7 +38,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 	.when('/blog/author/:author', {
 		pageTitle: 'Hartville.io | Author',
 		title: 'Blog',
-		templateUrl: 'views/blog.html',
+		templateUrl: 'views/user.html',
 		controller: 'BlogController'
 	})
 	.when('/blog/filter/:filter', {
@@ -71,11 +76,21 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		templateUrl: 'views/eventDetails.html',
 		controller: 'BlogController'
 	})
+	.when('/signup', {
+		pageTitle: 'Hartville.io | Sign Up',
+		title: 'Sign Up',
+		templateUrl: 'views/signUp.html',
+		controller: 'SignupController'
+	})
 	.when('/login', {
-		pageTitle: 'Hartville.io | Login',
-		title: 'Login',
+		pageTitle: 'Hartville.io | Log In',
+		title: 'Log In',
 		templateUrl: 'views/login.html',
-		controller: 'BlogController'
+		controller: 'LoginController'
+	})
+	.when('/logout', {
+		controller: 'LogoutController',
+		template: ''
 	})
 	.when('/components', {
 		templateUrl: 'views/components.html',
@@ -85,6 +100,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider,$loc
 		title: '404 Error',
 		templateUrl: 'views/404.html',
 	});
+	
+	$httpProvider.interceptors.push('authIntercept');
 }]);
 
 //Adjusts page titles to match Route.title
