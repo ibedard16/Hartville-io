@@ -12,19 +12,19 @@
                         
                         <!--Email-->
                         <div class="form-group">
-                            <input class="input" id="email" name="email" ng-model="email" type="email" class="form-control" required>
+                            <input class="input" id="email" name="email" ng-model="email" type="email" class="form-control" ng-class="{'has-value': signUp.email.$viewValue}" required>
                             <label for="email">Email Address</label><i class="bar"></i>
                         </div>
                         
                         <!--Passowrd-->
                         <div class="form-group">
-                            <input class='input' id="password" name="password" ng-model="password" type="password" class="form-control" required>
+                            <input class='input' id="password" name="password" ng-model="password" type="password" class="form-control" ng-class="{'has-value': signUp.password.$viewValue}" required>
                             <label for="password">Password</label><i class="bar"></i>
                         </div>
                         
                         <!--Passowrd Confirm-->
                         <div class="form-group">
-                            <input class="input" id="password_confirm" name="password_confirm" ng-model="password_confirm" type="password" class="form-control" required password-validate="password">
+                            <input class="input" id="password_confirm" name="password_confirm" ng-model="password_confirm" type="password" class="form-control" ng-class="{'has-value': signUp.password_confirm.$viewValue}" required password-validate="password">
                             <label for="password_confirm">Password Confirm</label><i class="bar"></i>
                         </div>
                         

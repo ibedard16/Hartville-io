@@ -783,7 +783,7 @@ footer .footer-links {
   outline: none;
 }
 
-.form-group input:focus ~ label, .form-group input:valid ~ label, .form-group input.hasValue ~ label, .form-group textarea:focus ~ label, .form-group textarea:valid ~ label, .form-group textarea.hasValue ~ label {
+.form-group input:focus ~ label, .form-group input:valid ~ label, .form-group input.has-value ~ label, .form-group textarea:focus ~ label, .form-group textarea:valid ~ label, .form-group textarea.has-value ~ label {
   font-size: 14px;
   color: gray;
   top: -20px;

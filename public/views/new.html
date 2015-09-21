@@ -16,7 +16,7 @@
       <!--Username-->
       <div class="col-md-6">
 			  <div class="form-group">
-					<input id="input" type="text" name="username" ng-model="login.author" required="required" ng-disabled="formDisabled"/>
+					<input id="input" ng-class="{'has-value': newPost.username.$viewValue}" type="text" name="username" ng-model="login.author" required="required" ng-disabled="formDisabled"/>
           <label for="input">Username</label><i class="bar"></i>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 			<!--Password-->
 			<div class="col-md-6">
 			  <div class="form-group">
-					<input id="input" type="password" autocomplete="off" name="password" required="required" ng-model="login.password" ng-disabled="formDisabled"/>
+					<input id="input" ng-class="{'has-value': newPost.password.$viewValue}" type="password" autocomplete="off" name="password" required="required" ng-model="login.password" ng-disabled="formDisabled"/>
           <label for="input">Password</label><i class="bar"></i>
 			  </div>
 			</div>
@@ -38,7 +38,7 @@
 			<!--Title-->
 			<div class="col-md-12">
 				<div class="form-group">
-					<input id="input" type="text" required name="title" ng-model="formInfo.title" ng-disabled="formDisabled"/>
+					<input ng-class="{'has-value': newPost.title.$viewValue}" id="input" type="text" required name="title" ng-model="formInfo.title" ng-disabled="formDisabled"/>
 					<label for="input">Title</label><i class="bar"></i>
 				</div>
 			</div>

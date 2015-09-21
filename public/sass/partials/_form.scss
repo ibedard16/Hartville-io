@@ -104,7 +104,7 @@ $material-form-transition-speed: 0.2s;
 		&:focus {
 			outline: none;
 		}
-		&:focus, &:valid, &.hasValue {
+		&:focus, &:valid, &.has-value {
 			~ label {
 				font-size: $material-form-active-font-size;
 				color: $material-form-active-color;
