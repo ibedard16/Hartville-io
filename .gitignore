@@ -4,3 +4,5 @@ server/database/databaseConnect.js
 server/database/verifyCredentials.js
 commit command
 public/postFiles
+server/auth
+public/css/styles.css

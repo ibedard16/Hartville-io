@@ -13,7 +13,9 @@ var fs              = require('fs'),
     LocalStrategy   = require('passport-local').Strategy,
     sassMiddleware  = require('node-sass-middleware'),
     _               = require('lodash'),
-    bodyParser      = require('body-parser');
+    bodyParser      = require('body-parser'),
+    Request         = require('request'),
+    md5             = require("blueimp-md5").md5;
 
     var app = express();
     app.set('port', process.env.PORT || 8000);
@@ -33,7 +35,7 @@ var fs              = require('fs'),
         src: path.join(__dirname + '/public/sass'),
         dest: path.join(__dirname + '/public/css'),
         debug: false,
-        outputStyle: 'expanded',
+        outputStyle: 'compressed',
         
         error: function(err) {console.log(err);}
       }));
@@ -89,6 +91,8 @@ var fs              = require('fs'),
             if (user) {
                 return done('Email Already in Use');
             }
+            
+            
         
             var newUser = new User({
                 email: email,
@@ -118,8 +122,8 @@ var fs              = require('fs'),
     });
     
 try {
-    var verify = require('./server/database/verifyCredentials');
-    var mongoConnect = require('./server/database/databaseConnect');
+    var authGoogle = JSON.parse(fs.readFileSync('server/auth/google.json', 'utf8')),
+        mongoConnect = require('./server/database/databaseConnect');
     app.enable('canPost');
 } catch (e) {
     var readerConnect = require('./server/database/readerConnect');
@@ -402,6 +406,54 @@ app.post('/login', passport.authenticate('local-login'), function(request, respo
     createSendToken(request.user, response);
 });
 
+app.post('/auth/google', function (request, response) {
+    
+    var authUrl = 'https://accounts.google.com/o/oauth2/token',
+        apiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect',
+    params = {
+        client_id: request.body.clientId,
+        redirect_uri: request.body.redirectUri,
+        code: request.body.code,
+        grant_type: 'authorization_code',
+        client_secret: authGoogle.web.client_secret
+    };
+    
+    Request.post(authUrl, {
+        json: true,
+        form: params
+    }, function (err, res, token) {
+        if (err) { return response.send(err);}
+        var accessToken = token.access_token,
+            headers = {
+                Authorization: 'Bearer ' + accessToken
+            };
+            Request.get({
+                url: apiUrl,
+                headers: headers,
+                json: true
+            }, function (err, res, profile) {
+                if (err) {return response.send(err);};
+                User.findOne({googleId: profile.sub}, function (err, foundUser) {
+                    if (foundUser) {
+                        return createSendToken(foundUser, response);
+                    } else {
+                        var newUser = new User({
+                            googleId: profile.sub,
+                            displayName: profile.name
+                        });
+                        newUser.save(function (err) {
+                            if (err) {
+                                return response.send(err);
+                            } else {
+                                createSendToken(newUser, response);
+                            }
+                        })
+                    }
+                });
+            });
+    });
+});
+
 function createSendToken (user, response) {
     var payload = {
         //iss: request.hostname,
@@ -420,6 +472,19 @@ app.get("/google*", function (request, response) {
     var verifyUrl = request.url.substring(7);
     console.log("A user or a GoogleBot attempted to verify the website at: google" + verifyUrl);
     response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
+});
+
+app.get('/test', function (request, response) {
+    if (request.query.e) {
+        var email       = request.query.e,
+            emailMD5    = md5(email);
+        console.log(('https://en.gravatar.com/' + emailMD5 + '.json?callback=alert').split(' '));
+        http.get('http://en.gravatar.com/' + emailMD5 + '.json?callback=alert', function (res) {
+            console.log(res);
+        });
+    } else {
+        response.send('No email provided');
+    }
 });
 
 app.get('*', function(request, response) {

@@ -96,6 +96,10 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 		templateUrl: 'views/components.html',
 		controller: 'BlogController'
 	})
+	.when('/authgoogle', {
+		templateUrl: 'views/404.html',
+		controller: 'AuthGoogleController'
+	})
 	.otherwise({
 		title: '404 Error',
 		templateUrl: 'views/404.html',
