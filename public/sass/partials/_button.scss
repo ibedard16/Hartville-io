@@ -49,6 +49,9 @@
   &.disabled{
     background-color: $colorStatusbar;
     color: $colorDisabled;
+    &:hover {
+      background-color: $colorDisabled;
+    }
   }
   &:hover {
     @include transition(background-color .25s 0s);
