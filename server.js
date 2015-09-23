@@ -474,19 +474,6 @@ app.get("/google*", function (request, response) {
     response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
 });
 
-app.get('/test', function (request, response) {
-    if (request.query.e) {
-        var email       = request.query.e,
-            emailMD5    = md5(email);
-        console.log(('https://en.gravatar.com/' + emailMD5 + '.json?callback=alert').split(' '));
-        http.get('http://en.gravatar.com/' + emailMD5 + '.json?callback=alert', function (res) {
-            console.log(res);
-        });
-    } else {
-        response.send('No email provided');
-    }
-});
-
 app.get('*', function(request, response) {
     response.sendFile(__dirname + '/public/index.html');
 });

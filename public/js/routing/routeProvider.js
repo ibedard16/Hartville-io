@@ -13,7 +13,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 	.when('/', {
 		pageTitle: 'Hartville.io | A Community For Technology',
 		templateUrl: 'views/home.html',
-		controller: 'MainController' 
+		controller: 'HomeController' 
 	})
 	.when('/new', {
 		pageTitle: 'Hartville.io | New Post',

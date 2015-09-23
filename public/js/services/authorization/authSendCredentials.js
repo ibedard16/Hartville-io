@@ -22,9 +22,7 @@ app.factory('authSendCredentials', ['$location', '$http', '$rootScope', 'authTok
                     }
                     authToken.setToken(response.data.token);
                     $rootScope.$broadcast('userUpdate');
-                    if (redirect) {
-                        $location.path(redirect);
-                    }
+                    $rootScope.$broadcast('hideDialogueBox');
                 }, 
                 function (error) {
                     error.data = error.data.replace('\n', '');

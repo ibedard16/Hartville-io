@@ -60,6 +60,7 @@
             
         <!--Controllers-->
         <script type="text/javascript" src="js/controllers/MainController.js"></script>
+        <script type="text/javascript" src="js/controllers/HomeController.js"></script>
         <script type="text/javascript" src="js/controllers/BlogController.js"></script>
         <script type="text/javascript" src="js/controllers/PostController.js"></script>
         <script type="text/javascript" src="js/controllers/NewController.js"></script>
@@ -85,7 +86,7 @@
         <script type="text/javascript" src="js/directives/previews/userProfile.js"></script>
         <script type="text/javascript" src="js/directives/user/userDropdown.js"></script>
         <script type="text/javascript" src="js/directives/registration/passwordValidate.js"></script>
-        <script type="text/javascript" src="js/directives/registration/logInMenu.js"></script>
+        <script type="text/javascript" src="js/directives/dialogueBox.js"></script>
         <script type="text/javascript" src="js/directives/error/404.js"></script>
         
         <!--Filters-->
@@ -104,11 +105,13 @@
         <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css">
         <script type="text/javascript" src="vendor/angular-toastr/dist/angular-toastr.tpls.js"></script>
     </head>
-    <body ng-cloak>
+    <body ng-cloak ng-controller='MainController'>
         <website-navigation class="page-row"></website-navigation>
         
         <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children></ng-view>
     
         <website-footer class="page-row"></website-footer>
+        
+        <dialogue-box ng-show="dialogueBoxActive" style='position:fixed;width:100%;height:100%;top:0;background-color:rgba(0,0,0,0.5)'></dialogue-box>
     </body>
 </html>

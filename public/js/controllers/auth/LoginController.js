@@ -1,6 +1,7 @@
 'use strict';
 /*global app*/
 app.controller('LoginController', ['$scope', 'authSendCredentials', function ($scope, authSendCredentials) {
+    console.log('LoginController initiallized');
     
     $scope.submit = function () {
         var redirect = '/';
