@@ -1,6 +1,6 @@
 /*global app*/
 
-app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider,$locationProvider,$httpProvider) {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvider', function ($routeProvider,$locationProvider,$httpProvider,$authProvider) {
 	$locationProvider
 		.html5Mode({
   			enabled: true,
@@ -106,6 +106,23 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 	});
 	
 	$httpProvider.interceptors.push('authIntercept');
+	
+	$authProvider.loginUrl = 'login';
+	$authProvider.signupUrl = 'register';
+	
+	$authProvider.google({
+		clientId: '1065972837087-m4vql5k5rv3q7mler25k5cmu892joekb.apps.googleusercontent.com',
+		url: 'auth/google',
+		redirectUri: window.location.origin + '/authgoogle',
+		scope: ['profile','email']
+	});
+	
+	$authProvider.facebook({
+		clientId: '438217639703965',
+		url: 'auth/facebook',
+		redirectUri: window.location.origin + '/authfacebook',
+		//scope: ['profile','email']
+	});
 }]);
 
 //Adjusts page titles to match Route.title

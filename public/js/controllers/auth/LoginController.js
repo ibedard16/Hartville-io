@@ -1,15 +1,18 @@
 'use strict';
 /*global app*/
-app.controller('LoginController', ['$scope', 'authSendCredentials', function ($scope, authSendCredentials) {
-    console.log('LoginController initiallized');
+app.controller('LoginController', ['$rootScope','$scope', 'authSendCredentials', '$auth', 'toastr', function ($rootScope, $scope, authSendCredentials, $auth, toastr) {
+
+    function logInSuccess (serverResponse) {
+        toastr.success('You are now logged in!','Success');
+        $rootScope.$broadcast('userUpdate');
+        $rootScope.$broadcast('hideDialogueBox');
+    }
     
     $scope.submit = function () {
-        var redirect = '/';
-        authSendCredentials.login($scope.remember, $scope.email, $scope.password, redirect);
+        $auth.login({email: $scope.email, password: $scope.password }).then(logInSuccess);
     };
     
-    $scope.google = function () {
-        var redirect='/';
-        authSendCredentials.googleAuth($scope.remember, redirect);
+    $scope.authenticate = function (provider) {
+        $auth.authenticate(provider).then(logInSuccess);
     };
 }]);

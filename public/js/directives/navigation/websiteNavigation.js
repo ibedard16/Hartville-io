@@ -4,10 +4,10 @@ app.directive('websiteNavigation', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/directives/navigation/partials/website-navigation.html',
-		controller: ['$location', '$scope', 'authToken', function ($location, $scope, authToken) {
+		controller: ['$location', '$scope', '$auth', function ($location, $scope, $auth) {
 			$scope.$location = $location;
 			$scope.isAuthenticated = function () {
-				return authToken.isAuthenticated();
+				return $auth.isAuthenticated();
 			};
 			$scope.status = {
 				isopen: false

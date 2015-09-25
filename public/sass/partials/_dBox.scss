@@ -1,0 +1,56 @@
+dialogue-box {
+    z-index: 10;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    background-color: rgba(0,0,0,0.5);
+    -webkit-transition: opacity 0.3s ease-in;
+    -moz-transition: opacity 0.3s ease-in;
+    -o-transition: opacity 0.3s ease-in;
+    opacity: 1;
+}
+
+dialogue-box.ng-hide {
+    -webkit-transition: opacity 0.3s ease-in;
+    -moz-transition: opacity 0.3s ease-in;
+    -o-transition: opacity 0.3s ease-in;
+    opacity: 0;
+}
+
+dialogue-box > div {
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 90%;
+    //max-height: 83%;
+    //overflow: scroll;
+}
+
+dialogue-box .col-centered {
+    margin: auto;
+    float: none;
+    padding: 0;
+}
+
+dialogue-box .close-box {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #ffffff;
+}
+
+dialogue-box .close-box:hover {
+    color: #292929;
+    cursor: pointer;
+}
+
+dialogue-box button {
+    display: inline;
+    margin: 0 !important;
+}
+
+dialogue-box .rightButton {
+    float: right;
+}

@@ -2,6 +2,7 @@ node_modules
 public/vendor
 server/database/databaseConnect.js
 server/database/verifyCredentials.js
+server/services/config.js
 commit command
 public/postFiles
 server/auth

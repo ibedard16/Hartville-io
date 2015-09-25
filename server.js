@@ -10,12 +10,14 @@ var fs              = require('fs'),
     Event           = require('./server/database/eventSchema'),
     jwt             = require('jwt-simple'),
     passport        = require('passport'),
-    LocalStrategy   = require('passport-local').Strategy,
     sassMiddleware  = require('node-sass-middleware'),
     _               = require('lodash'),
     bodyParser      = require('body-parser'),
     Request         = require('request'),
-    md5             = require("blueimp-md5").md5;
+    md5             = require("blueimp-md5").md5,
+    createSendToken = require('./server/services/createSendToken'),
+    facebookAuth    = require('./server/services/facebookAuth'),
+    LocalStrategy   = require('./server/services/localStrategy');
 
     var app = express();
     app.set('port', process.env.PORT || 8000);
@@ -51,66 +53,8 @@ var fs              = require('fs'),
         done(null, user.id);
     });
     
-    var strategyOptions = {
-        usernameField: 'email'
-    };
-    
-    var loginStrategy = new LocalStrategy(strategyOptions, function (email, password, done) {
-        var searchUser = {
-            email: email
-        };
-        User.findOne(searchUser, function (err, user) {
-            if (err) return done(err);
-            
-            if (!user) {
-                return done('Email not Found');
-            }
-            
-            user.comparePasswords(password, function (err, isMatch) {
-                if (err) return done(err);
-                
-                if (!isMatch) {
-                    return done('Invalid Login');
-                } 
-                
-                return done(null, user);
-                
-            });
-        });
-    });
-    
-    var signupStrategy = new LocalStrategy(strategyOptions, function (email, password, done) {
-        var searchUser = {
-            email: email
-        };
-        User.findOne(searchUser, function (err, user) {
-            if (err) {
-                return done(err);
-            }
-            
-            if (user) {
-                return done('Email Already in Use');
-            }
-            
-            
-        
-            var newUser = new User({
-                email: email,
-                password: password
-            });
-        
-            newUser.save(function (err) {
-                if (err) {
-                    return done(err);
-                } else {
-                    done(null, newUser);
-                }
-            });
-        });
-    });
-    
-    passport.use('local-login', loginStrategy);
-    passport.use('local-signup', signupStrategy);
+    passport.use('local-login', LocalStrategy.loginStrategy);
+    passport.use('local-signup', LocalStrategy.signupStrategy);
     
     app.use(bodyParser.json({limit: '3mb'}));
     app.use(function (request, response, next) {
@@ -123,6 +67,7 @@ var fs              = require('fs'),
     
 try {
     var authGoogle = JSON.parse(fs.readFileSync('server/auth/google.json', 'utf8')),
+        verify = require('./server/database/verifyCredentials'),
         mongoConnect = require('./server/database/databaseConnect');
     app.enable('canPost');
 } catch (e) {
@@ -432,8 +377,9 @@ app.post('/auth/google', function (request, response) {
                 headers: headers,
                 json: true
             }, function (err, res, profile) {
-                if (err) {return response.send(err);};
+                if (err) {return response.send(err);}
                 User.findOne({googleId: profile.sub}, function (err, foundUser) {
+                    if (err) {return response.send(err);}
                     if (foundUser) {
                         return createSendToken(foundUser, response);
                     } else {
@@ -454,19 +400,7 @@ app.post('/auth/google', function (request, response) {
     });
 });
 
-function createSendToken (user, response) {
-    var payload = {
-        //iss: request.hostname,
-        sub: user.id
-    };
-    
-    var token = jwt.encode(payload, 'shhh...');
-    
-    response.status(200).send({
-        user: user.toJSON(), 
-        token: token
-    });
-}
+app.post('/auth/facebook', facebookAuth);
 
 app.get("/google*", function (request, response) {
     var verifyUrl = request.url.substring(7);

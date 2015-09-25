@@ -13,7 +13,9 @@ app.directive('userDropdown', function () {
                         {text: 'Profile', href: '/user'},
                         {text: 'New Post', href: '/new'},
                         {divider: true},
-                        {text: 'Logout', href: '/logout'}
+                        {text: 'Logout', click: function () {
+                            $rootScope.$broadcast('showDialogueBox', {boxType: 'logout'})
+                        }}
                     ];
                 }
                 else {

@@ -59,16 +59,16 @@ app.factory('authSendCredentials', ['$location', '$http', '$rootScope', 'authTok
                 params = {
                     email:email,
                     password: password
-                }
+                };
             return submitUser(remember, url, params, redirect);
         },
         
         signup: function (remember, email, password, redirect) {
-            var url = 'signup';
+            var url = 'signup',
                 params = {
                     email:email,
                     password: password
-                }
+                };
             return submitUser(remember, url, params, redirect);
         },
         
