@@ -6,13 +6,13 @@ var userSchema = mongoose.Schema({
     password: String,
     googleId: String,
     facebookId: String,
-    displayName: String
+    displayName: String,
+    active: Boolean
 });
 
 userSchema.methods.toJSON = function () {
     var user = this.toObject();
     delete user.password;
-    
     return user;
 };
 

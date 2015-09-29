@@ -17,7 +17,8 @@ var fs              = require('fs'),
     md5             = require("blueimp-md5").md5,
     createSendToken = require('./server/services/createSendToken'),
     facebookAuth    = require('./server/services/facebookAuth'),
-    LocalStrategy   = require('./server/services/localStrategy');
+    LocalStrategy   = require('./server/services/localStrategy'),
+    emailVerification = require('./server/services/emailVerification');
 
     var app = express();
     app.set('port', process.env.PORT || 8000);
@@ -344,7 +345,8 @@ app.get("/events.json", function(request, response) {
 });
 
 app.post("/signup", passport.authenticate('local-signup'), function (request, response) {
-    createSendToken(request.user, response);
+    emailVerification.send(request.user.email);
+    //createSendToken(request.user, response);
 });
 
 app.post('/login', passport.authenticate('local-login'), function(request, response) {
@@ -352,17 +354,16 @@ app.post('/login', passport.authenticate('local-login'), function(request, respo
 });
 
 app.post('/auth/google', function (request, response) {
-    
     var authUrl = 'https://accounts.google.com/o/oauth2/token',
         apiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect',
-    params = {
-        client_id: request.body.clientId,
-        redirect_uri: request.body.redirectUri,
-        code: request.body.code,
-        grant_type: 'authorization_code',
-        client_secret: authGoogle.web.client_secret
-    };
-    
+        params = {
+            client_id: request.body.clientId,
+            redirect_uri: request.body.redirectUri,
+            code: request.body.code,
+            grant_type: 'authorization_code',
+            client_secret: authGoogle.web.client_secret
+        };
+        
     Request.post(authUrl, {
         json: true,
         form: params
@@ -372,32 +373,37 @@ app.post('/auth/google', function (request, response) {
             headers = {
                 Authorization: 'Bearer ' + accessToken
             };
-            Request.get({
-                url: apiUrl,
-                headers: headers,
-                json: true
-            }, function (err, res, profile) {
+        Request.get({
+            url: apiUrl,
+            headers: headers,
+            json: true
+        }, function (err, res, profile) {
+            if (err) {return response.send(err);}
+            User.findOne({googleId: profile.sub}, function (err, foundUser) {
                 if (err) {return response.send(err);}
-                User.findOne({googleId: profile.sub}, function (err, foundUser) {
-                    if (err) {return response.send(err);}
-                    if (foundUser) {
-                        return createSendToken(foundUser, response);
-                    } else {
-                        var newUser = new User({
-                            googleId: profile.sub,
-                            displayName: profile.name
-                        });
-                        newUser.save(function (err) {
-                            if (err) {
-                                return response.send(err);
-                            } else {
-                                createSendToken(newUser, response);
-                            }
-                        })
-                    }
-                });
+                if (foundUser) {
+                    return createSendToken(foundUser, response);
+                } else {
+                    var newUser = new User({
+                        googleId: profile.sub,
+                        displayName: profile.name,
+                        active: true
+                    });
+                    newUser.save(function (err) {
+                        if (err) {
+                            return response.send(err);
+                        } else {
+                            createSendToken(newUser, response);
+                        }
+                    });
+                }
             });
+        });
     });
+});
+
+app.get('/auth/verifyEmail', function (request, response) {
+    emailVerification.handler(request, response);
 });
 
 app.post('/auth/facebook', facebookAuth);

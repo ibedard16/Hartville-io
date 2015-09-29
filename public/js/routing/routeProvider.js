@@ -108,7 +108,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 	$httpProvider.interceptors.push('authIntercept');
 	
 	$authProvider.loginUrl = 'login';
-	$authProvider.signupUrl = 'register';
+	$authProvider.signupUrl = 'signup';
 	
 	$authProvider.google({
 		clientId: '1065972837087-m4vql5k5rv3q7mler25k5cmu892joekb.apps.googleusercontent.com',
