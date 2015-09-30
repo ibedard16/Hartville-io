@@ -5,9 +5,8 @@ app.controller('HomeController', ['$scope', '$routeParams', '$filter', 'posts', 
 		$scope.mdPreview = data.mdPreview;
 		$scope.smPreview = data.smPreview;
 	});*/
-	var post = postResource.get({page: 0}, function() {
-		$scope.mdPreview = post.posts.slice(0,2);
-		$scope.smPreview = post.posts.slice(2,6);
+	postResource.get({limitTo: 6}, function(data) {
+		$scope.posts = data.posts;
 	});
 	//Events
 	events.get().then(function(data){

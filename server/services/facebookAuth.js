@@ -1,6 +1,6 @@
 var req = require('request'),
     qs = require('querystring'),
-    User = require('./../database/userSchema'),
+    User = require('./../models/userSchema'),
     createSendToken = require('./createSendToken'),
     config = require('./config');
 

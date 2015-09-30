@@ -1,4 +1,4 @@
-var User = require('./../database/userSchema'),
+var User = require('./../models/userSchema'),
     LocalStrategy   = require('passport-local').Strategy,
     strategyOptions = {
         usernameField: 'email'

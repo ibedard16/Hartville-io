@@ -4,10 +4,10 @@ var fs              = require('fs'),
     path            = require('path'),
     http            = require('http'),
     url             = require('url'),
-    Post            = require('./server/database/postSchema'),
-    Author          = require('./server/database/authorSchema'),
-    User            = require('./server/database/userSchema'),
-    Event           = require('./server/database/eventSchema'),
+    Post            = require('./server/models/postSchema'),
+    Author          = require('./server/models/authorSchema'),
+    User            = require('./server/models/userSchema'),
+    Event           = require('./server/models/eventSchema'),
     jwt             = require('jwt-simple'),
     passport        = require('passport'),
     sassMiddleware  = require('node-sass-middleware'),
@@ -67,9 +67,9 @@ var fs              = require('fs'),
     });
     
 try {
-    var authGoogle = JSON.parse(fs.readFileSync('server/auth/google.json', 'utf8')),
-        verify = require('./server/database/verifyCredentials'),
-        mongoConnect = require('./server/database/databaseConnect');
+    var config = require('./server/services/config');
+    var verify = require('./server/database/verifyCredentials');
+    var mongoConnect = require('./server/database/databaseConnect');
     app.enable('canPost');
 } catch (e) {
     var readerConnect = require('./server/database/readerConnect');
@@ -77,9 +77,11 @@ try {
     console.log('Server was not able to log in to database.');
 }
 
+require('./server/routes')(app);
+
 //Retrieves list of posts from database and then stores them in variables to be used throughout the server session.
     //currentPostID = the current highest ID value a post has.
-var currentPostID = -1,
+/*var currentPostID = -1,
     //postList = an array of all posts, each post's position in the list is determined by its ID value.
     postList = [],
     //pages = an array of arrays, where each inner array is a collection of five posts. Starts counting at 1.
@@ -139,19 +141,19 @@ Post.find(function(err, posts) {
         postCount = posts.length;
         pagesUpdate();
     }
-});
+});*/
 
 var multer      = require('multer'),
     storage     = multer.diskStorage({
         destination: function (request, file, cb) {
             if (verify.credentials(request.body.username,request.body.password)) {
                 console.log("attemtping to save image");
-                if (fs.existsSync('public/postFiles/'+currentPostID)) {
+                /*if (fs.existsSync('public/postFiles/'+currentPostID)) {
                     cb(null, 'public/postFiles/'+currentPostID);
                 } else {
                     fs.mkdirSync('public/postFiles/'+currentPostID);
                     cb(null, 'public/postFiles/'+currentPostID);
-                }
+                }*/
             } else {
                 console.log("Ah, crap. A user-uploaded image could not be saved.");
             }
@@ -167,7 +169,7 @@ app.get("/favicon.ico", function(request, response){
 });
 
 app.get("/post/:id", function(request, response) {
-    var post = _.find(postList, {id: Number(request.params.id)});
+    var post = Post.find({id: Number(request.params.id)});
         if (!post) {
             response.status(404).send({
                 success:false,
@@ -182,53 +184,57 @@ app.get("/post/:id", function(request, response) {
 
 app.get("/posts.json", function(request, response) {
     console.log('request query ' + JSON.stringify(request.query));
-    if (request.query.post) {
-        var post,
-            postNum = Number(request.query.post);
-        if (postNum >= 0) {
-            post = postList[postNum];
-        } else if (postNum < -1){
-            post = postList.slice(postNum, postNum+1)[0];
-        } else {
-            post = postList.slice(-1)[0];
-        }
-        if (!post) {
-            response.status(404).send({
-                success:false,
-            });
-        } else {
-            response.send({
-                success:true,
-                post:post
-            });
-        }
-    } else if (request.query.page == 0) {
-        var postsToSend = [];
-        for (var i = -1; postsToSend.length < 6; i--) {
-            if (postList.slice(i)[0]) {
-                postsToSend.push(postList.slice(i)[0]);
+    if (request.query.id) {
+        var postNum = Number(request.query.id);
+        Post.findOne({id: postNum}, function (err, foundPost) {
+            if (err) {
+                return response.send(err);
+            } else {
+                return response.send(foundPost);
             }
-        }
-        response.send({
-            success:true,
-            posts: postsToSend,
-            postCount: postCount
-        });
-    } else if (request.query.page > 0) {
-        response.send({
-            success:true,
-            posts: pages[Number(request.query.page)],
-            postCount: postCount
-        });
-    } else if (request.query.number) {
-        response.send({
-            success: true,
-            postCount: postCount
         });
     } else {
-        response.send({
-            success:true,
-            posts:postList
+        Post.count(function (err, number) {
+            if (err) return response.send (err);
+            var postCount = number;
+            
+            if (!request.query.sortBy) {
+                request.query.sortBy = '-date';
+            }
+            if (!request.query.skip || isNaN(Number(request.query.skip))) {
+                request.query.skip = 0;
+            } else {
+                request.query.skip = Number(request.query.skip);
+            }
+            
+            if (!request.query.limitTo || isNaN(Number(request.query.limitTo))) {
+                Post.find()
+                    .sort(request.query.sortBy)
+                    .skip(request.query.skip)
+                    .exec(function (err, posts) {
+                        if (err) return response.send(err);
+                        
+                        return response.send({
+                            success: true,
+                            posts: posts,
+                            postCount: postCount
+                        });
+                    });
+            } else {
+                Post.find()
+                    .sort(request.query.sortBy)
+                    .skip(request.query.skip)
+                    .limit(Number(request.query.limitTo))
+                    .exec(function (err, posts) {
+                        if (err) return response.send(err);
+                        
+                        return response.send({
+                            success: true,
+                            posts: posts,
+                            postCount: postCount
+                            });
+                    });
+            }
         });
     }
 });
@@ -361,7 +367,7 @@ app.post('/auth/google', function (request, response) {
             redirect_uri: request.body.redirectUri,
             code: request.body.code,
             grant_type: 'authorization_code',
-            client_secret: authGoogle.web.client_secret
+            client_secret: config.GOOGLE_SECRET
         };
         
     Request.post(authUrl, {

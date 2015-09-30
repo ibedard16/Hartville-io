@@ -4,7 +4,7 @@ var _               = require('lodash'),
     nodemailer      = require('nodemailer'),
     smtpTransport   = require('nodemailer-smtp-transport'),
     fs              = require('fs'),
-    User            = require('../database/userSchema');
+    User            = require('../models/userSchema');
     
 var model = {
     verifyUrl: config.APP_URL + 'auth/verifyEmail?token=',

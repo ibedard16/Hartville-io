@@ -15,7 +15,7 @@
 
     <h1>Recent News</h1><hr>
     <div class="row">
-        <div class="col-sm-12 col-lg-6 fadeInUp" ng-repeat="post in mdPreview | orderBy: '-date' ">
+        <div class="col-sm-12 col-lg-6 fadeInUp" ng-repeat="post in posts | orderBy: '-date' | limitTo: 2">
             <post-preview-md post='post'></post-preview-md>
         </div> <!--end column-->
     </div> <!--end row-->
@@ -31,7 +31,7 @@
     <h1> More News</h1><hr> 
 
     <div class="row">
-        <div class="col-lg-3 fadeInUp" ng-repeat="post in smPreview | orderBy: '-date'">
+        <div class="col-lg-3 fadeInUp" ng-repeat="post in posts | orderBy: '-date'" ng-if="$index>1">
             <post-preview-sm post='post'></post-preview-sm>
         </div> <!--end column-->
     </div> <!--end row-->

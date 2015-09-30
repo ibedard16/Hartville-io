@@ -10,14 +10,15 @@ app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'postReso
 		$scope.postCount = postCount.postCount;
 	});*/
 	
-	var recentPosts = postResource.get({page:1}, function() {
-		$scope.recentPosts = recentPosts.posts;
+	postResource.get({limitTo:10}, function(data) {
+		$scope.recentPosts = data.posts;
 	});
 	
 	$scope.$watch('currentPage', function (newVal,oldVal) {
-		var post = postResource.get({page:$scope.currentPage}, function() {
-			$scope.posts = post.posts;
-			$scope.postCount = Number(post.postCount);
+		postResource.get({limitTo:$scope.pageSize, skip:($scope.currentPage - 1)*$scope.pageSize}, function(data) {
+			$scope.posts = data.posts;
+			$scope.postCount = Number(data.postCount);
+			console.log(data);
 		});
 	});
 	
