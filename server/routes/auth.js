@@ -21,6 +21,10 @@ router.post('/login', function(req, res) {
             return res.status(400).send('Email not Found');
         }
         
+        if (!user.active) {
+            return res.status(401).send('User must validate email first');
+        }
+        
         user.comparePasswords(password, function (err, isMatch) {
             if (err) return res.status(500).send(err);
             
