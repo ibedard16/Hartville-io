@@ -88,40 +88,44 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		templateUrl: 'views/login.html',
 		controller: 'LoginController'
 	})
-	.when('/logout', {
-		controller: 'LogoutController',
-		template: ''
-	})
 	.when('/components', {
 		templateUrl: 'views/components.html',
 		controller: 'BlogController'
 	})
-	.when('/authgoogle', {
-		templateUrl: 'views/404.html',
-		controller: 'AuthGoogleController'
+	.when('/validateemail', {
+		controller: 'ValidateEmailController',
+		templateUrl: 'views/404.html'
 	})
 	.otherwise({
 		title: '404 Error',
 		templateUrl: 'views/404.html',
+		pageTitle: 'Hartville.io | 404 Error'
 	});
 	
 	$httpProvider.interceptors.push('authIntercept');
 	
-	$authProvider.loginUrl = 'login';
-	$authProvider.signupUrl = 'signup';
+	$authProvider.loginUrl = 'auth/login';
+	$authProvider.signupUrl = 'auth/signup';
 	
 	$authProvider.google({
 		clientId: '1065972837087-m4vql5k5rv3q7mler25k5cmu892joekb.apps.googleusercontent.com',
-		url: 'auth/google',
-		redirectUri: window.location.origin + '/authgoogle',
-		scope: ['profile','email']
+		url: 'OAuth/google',
+		redirectUri: window.location.origin + '/authgoogle'
 	});
 	
 	$authProvider.facebook({
+		authorizationEndpoint: 'https://www.facebook.com/v2.4/dialog/oauth',
 		clientId: '438217639703965',
-		url: 'auth/facebook',
+		url: 'OAuth/facebook',
 		redirectUri: window.location.origin + '/authfacebook',
-		//scope: ['profile','email']
+		scope: ['email', 'public_profile']
+	});
+	
+	$authProvider.github({
+		authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+		clientId: 'bdffc5e7699592a8fd61',
+		url: 'OAuth/github',
+		redirectUri: window.location.origin + '/authgithub',
 	});
 }]);
 

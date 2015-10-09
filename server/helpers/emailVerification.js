@@ -1,13 +1,13 @@
 var _               = require('lodash'),
-    jwt             = require('jwt-simple'),
-    config          = require('./config'),
+    jwt             = require('jsonwebtoken'),
+    config          = require('../config'),
     nodemailer      = require('nodemailer'),
     smtpTransport   = require('nodemailer-smtp-transport'),
     fs              = require('fs'),
     User            = require('../models/userSchema');
     
 var model = {
-    verifyUrl: config.APP_URL + 'auth/verifyEmail?token=',
+    verifyUrl: config.APP_URL + 'validateemail?token=',
     title: 'Hartville.io',
     subTitle: 'Thanks for Signing up!',
     body: 'Please verify your email address by clicking the button below'
@@ -20,7 +20,7 @@ exports.send = function (email) {
         sub: email
     };
     
-    var token = jwt.encode(payload, config.EMAIL_SECRET);
+    var token = jwt.sign(payload, config.JWT_SECRET);
     
     getHtml(token, function (err, data) {
         if (err) throw new Error(err);
@@ -47,27 +47,34 @@ exports.send = function (email) {
     });
 };
 
-exports.handler = function (request, response) {
-    var token = request.query.token,
-        payload = jwt.decode(token, config.EMAIL_SECRET),
-        email = payload.sub;
-        
-    if (!email) return handleError(response);
+exports.handler = function (req, res) {
+    var token = req.body.token;
     
-    User.findOne({email: email}, function (err, foundUser) {
-        if (err) return response.status(500);
-        
-        if (!foundUser) return handleError(response);
-        
-        if (!foundUser.active) {
-            foundUser.active = true;
-            
-            foundUser.save(function(err) {
-                if (err) return response.status(500);
-                
-                return response.redirect(config.APP_URL);
-            });
+    jwt.verify(token, config.JWT_SECRET, function (err, decodedToken) {
+        if (err) {
+            return res.status(401).send(err);
         }
+    
+        var email = decodedToken.sub;
+        
+        console.log(email);
+        
+        if (!email) return handleError(res);
+        
+        User.findOne({loginEmail: email}, function (err, foundUser) {
+            if (err) return res.status(500);
+            
+            if (!foundUser) return handleError(res);
+            
+            if (!foundUser.active) {
+                foundUser.active = true;
+                
+                foundUser.save(function(err) {
+                    if (err) return res.status(500);
+                });
+            }
+            return res.send('success');
+        });
     });
 };
 

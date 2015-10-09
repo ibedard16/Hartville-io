@@ -1,6 +1,7 @@
 /*global app*/
 /*global _*/
 app.controller('BlogController', ['$scope', '$routeParams', '$filter', 'postResource', 'authors', 'events', function($scope, $routeParams, $filter, postResource, authors, events){
+	console.log('Blog Controller Initialized');
 	$scope.searchInput = '';
 	$scope.pageSize = 5;
 	$scope.currentPage = 1;

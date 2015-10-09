@@ -1,6 +1,6 @@
 /*global app*/
 app.factory('postResource', ['$resource', function($resource) {
-    var Posts = $resource('posts.json');
+    var Posts = $resource('resources/posts');
     return {
         get: function(params, success) {
             return Posts.get(params, success);

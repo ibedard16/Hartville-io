@@ -5,6 +5,7 @@
       	</div>
     </div>
 </div>
+
 <div class="container padded">
 	<ol class="breadcrumb">
 		<li><a href="/">Home</a></li>
@@ -32,14 +33,20 @@
 				<post-preview-lg post='post'></post-preview-lg>
 			</ul>
 			
-			<div class="col-md-12">
-				<pagination total-items="postCount" rotate="true" max-size="maxSize" boundary-links="true" ng-model="currentPage" items-per-page="pageSize"></pagination>
-			</div>
-		
 		</div> <!--end column-->
 		
 		<div class="col-md-3">
 			<website-sidebar author="author" posts="recentPosts"></website-sidebar>
 		</div>
+		
+	</div>
+	
+	
+	<div class="row">
+	
+		<div class="col-md-6">
+	    	<pagination total-items="postCount" rotate="true" max-size="maxSize" ng-model="currentPage" boundary-links="true" items-per-page="pageSize"></pagination>
+	    </div>
+	    
 	</div> <!--end row-->
 </div> <!--end container -->

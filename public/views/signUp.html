@@ -10,6 +10,11 @@
                     
                     <form name="signUp" class="form-signin" novalidate>
                         
+                        <div class="form-group">
+                            <input class="input" id="name" name="name" ng-model="name" type="text" class="form-control" required>
+                            <label for="name">Username</label><i class="bar"></i>
+                        </div>
+                        
                         <!--Email-->
                         <div class="form-group">
                             <input class="input" id="email" name="email" ng-model="email" type="email" class="form-control" ng-class="{'has-value': signUp.email.$viewValue}" required>
