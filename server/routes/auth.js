@@ -35,6 +35,10 @@ router.post('/login', function(req, res) {
 
 router.post("/signup", function (req, res) {
     
+    if (!config.allowSignup) {
+        return res.status(501).send('Signup is currently disabled.')
+    }
+    
     var email = req.body.email,
         name = req.body.name,
         password = req.body.password;
