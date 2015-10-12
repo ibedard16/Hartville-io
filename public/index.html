@@ -43,7 +43,8 @@
         <script type="text/javascript" src="js/app.js"></script>
         
         <!--Module Config-->
-        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/appConfig.js"></script>
+        <script type="text/javascript" src="resources/client_config"></script>
         
         <!--Services-->
         <script type="text/javascript" src="js/services/posts.js"></script>
@@ -54,9 +55,6 @@
         <script type="text/javascript" src="js/services/authorization/authToken.js"></script>
         <script type="text/javascript" src="js/services/authorization/authIntercept.js"></script>
         <script type="text/javascript" src="js/services/authorization/authSendCredentials.js"></script>
-        
-        <!--Routing-->
-        <script type="text/javascript" src="js/routing/routeProvider.js"></script>
             
         <!--Controllers-->
         <script type="text/javascript" src="js/controllers/MainController.js"></script>
@@ -110,6 +108,23 @@
     </head>
     <body ng-cloak ng-controller='MainController'>
         <website-navigation class="page-row"></website-navigation>
+        
+        <div class="container-full-bg padded">
+            <div class="container special">
+              	<div class="jumbotron">
+                    <h1 ng-if='page_title'>{{page_title}}</h1>
+                    <p ng-if='page_subtitle'>{{page_subtitle}}</p>
+                    <p>
+                        <a href="/about/">
+                            <div class="button raised large accent" ng-if='page_about'>
+                                <div class="center" fit>LEARN MORE</div>
+                                <paper-ripple fit></paper-ripple>
+                            </div>
+                        </a>
+                    </p>
+              	</div>
+            </div>
+        </div>
         
         <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children></ng-view>
     

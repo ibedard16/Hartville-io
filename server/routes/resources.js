@@ -4,6 +4,7 @@ var express         = require('express'),
     Author          = require('../models/authorSchema'),
     Event           = require('../models/eventSchema'),
     multer          = require('multer'),
+    config          = require('../config'),
     storage         = multer.diskStorage({
         destination: function (request, file, cb) {
             /*if (verify.credentials(request.body.username,request.body.password)) {
@@ -122,15 +123,19 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
     });
 });
 
-router.get("/authors.json", function(request, response) {
+router.get("/client_config", function (req, res) {
+    res.send('app.constant("appConfig", ' + JSON.stringify(config.client_config) + ');');
+});
+
+router.get("/authors.json", function(req, res) {
     Author.find(function(err, authors) {
         if (err) {
-            response.status(500).send({
+            res.status(500).send({
                 success:false
             });
         }
         else {
-            response.send({
+            res.send({
                 success:true,
                 authors:authors
             });

@@ -1,6 +1,6 @@
 'use strict';
 /*global app*/
-app.controller('LoginController', ['$rootScope','$scope', 'authSendCredentials', '$auth', 'toastr', function ($rootScope, $scope, authSendCredentials, $auth, toastr) {
+app.controller('LoginController', ['$rootScope','$scope', '$auth', 'toastr', function ($rootScope, $scope, $auth, toastr) {
 
     function logInSuccess (serverResponse) {
         console.log(serverResponse);
