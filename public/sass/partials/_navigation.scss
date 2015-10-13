@@ -109,3 +109,16 @@
     margin-bottom: -4px;
     margin-left: -4px;
 }
+
+.pagination>.active>a, .pagination>.active>span {
+    z-index: 2;
+    color: $colorWhite;
+    cursor: default;
+    background-color: $colorBrand;
+    border-color: $colorBrand;
+}
+
+.pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: $colorBrandDark;
+    border-color: $colorBrandDark;
+}
