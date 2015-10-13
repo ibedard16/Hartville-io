@@ -101,15 +101,9 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 	
 	for (var providerName in OAuth_providers) {
 		
-		var provider = {
-			redirectUri: window.location.origin + '/auth' + providerName
-		};
+		var provider = OAuth_providers[providerName];
 		
-		for (var property in OAuth_providers[providerName]) {
-			if (OAuth_providers[providerName].hasOwnProperty(property)) {
-				provider[property] = OAuth_providers[providerName][property];
-			}
-		}
+		provider.redirectUri = window.location.origin + '/auth' + providerName;
 		
 		$authProvider[providerName](provider);
 	}
