@@ -1,14 +1,23 @@
 "use strict";
-var express             = require('express'),
-    path                = require('path'),
-    http                = require('http'),
-    auth                = require('./server/routes/auth'),
-    _                   = require('lodash'),
-    bodyParser          = require('body-parser'),
-    mongoose            = require('mongoose'),
+var express     = require('express'),
+    fs          = require('fs'),
+    path        = require('path'),
+    http        = require('http'),
+    auth        = require('./server/routes/auth'),
+    _           = require('lodash'),
+    bodyParser  = require('body-parser'),
+    mongoose    = require('mongoose'),
     OAuth       = require('./server/routes/OAuth'),
-    sass        = require('node-sass-middleware'),
+    sass        = require('node-sass'),
     resources   = require('./server/routes/resources');
+    
+try {
+    var config = require('./server/config');
+    mongoose.connect(config.DATABASE_URL);
+} catch (e) {
+    mongoose.connect('mongodb://PostReader:PostReader@ds059672.mongolab.com:59672/hartvilleio');
+    console.log('Server was not able to log in to database.');
+}
 
     var app = express();
     
@@ -25,15 +34,38 @@ var express             = require('express'),
         next();
     });
     
-    app.use('/css', sass({
-        src: path.join(__dirname + '/public/sass'),
-        dest: path.join(__dirname + '/public/css'),
-        debug: false,
-        outputStyle: 'compressed',
+    var css;
+    
+    function renderSass () {
+        var sassString = '';
+        for (var color in config.client_config.colors) {
+            sassString = sassString + color + ': ' + config.client_config.colors[color] + '; ';
+        }
+        if (sassString === '') {
+            sassString = "\
+                $colorBrand: #DB3A0D; \
+                $colorBrandLight: #E67556; \
+                $colorBrandDark: #AF2E0A; \
+                $colorAccent: #EF8813; \
+                $colorAccentLight: #F5B871; \
+                $colorAccentDark: #78440A;";
+        }
+        console.log(sassString);
+        sassString = sassString + "@import 'styles';";
         
-        error: function(err) {console.log(err);}
-      }));
-    app.use('/css', express.static(path.join(__dirname + '/public/css')));
+        var result = sass.renderSync({
+            data: sassString,
+            includePaths: ['public/sass']
+        });
+                
+        css = result.css.toString('utf8');
+    }
+    
+    renderSass();
+    
+    app.use('/css', function (req, res) {
+        res.set({'content-type': 'text/css'}).send(css);
+    });
     app.use('/images', express.static(path.join(__dirname + '/public/images')));
     app.use('/js', express.static(path.join(__dirname + '/public/js')));
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
@@ -46,14 +78,6 @@ var express             = require('express'),
     app.use('/auth', auth);
     
     app.use('/OAuth', OAuth);
-    
-try {
-    var config = require('./server/config');
-    mongoose.connect(config.DATABASE_URL);
-} catch (e) {
-    mongoose.connect('mongodb://PostReader:PostReader@ds059672.mongolab.com:59672/hartvilleio');
-    console.log('Server was not able to log in to database.');
-}
 
 app.get("/google*", function (request, response) {
     var verifyUrl = request.url.substring(7);
