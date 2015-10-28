@@ -13,14 +13,14 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="navbar-collapse" collapse="isCollapsed">
+  <div class="navbar-collapse" collapse="isCollapsed" style="overflow:hidden;">
     <ul class="nav navbar-nav">
-      <li data-match-route="/#/"><a href="/">Home</a></li>
-      <li data-match-route="/blog"><a href="/blog/">Blog</a></li>
-      <li data-match-route="/spotlight"><a href="/spotlight/">Spotlight</a></li>
-      <li data-match-route="/events"><a href="/events/">Events</a></li>
-      <li data-match-route="/community"><a href="/community/">Community</a></li>
-      <li data-match-route="/about"><a href="/about/">About</a></li>
+      <li data-match-route="/#/" ng-click="collapse()"><a href="/">Home</a></li>
+      <li data-match-route="/blog" ng-click="collapse()"><a href="/blog/">Blog</a></li>
+      <li data-match-route="/spotlight" ng-click="collapse()"><a href="/spotlight/">Spotlight</a></li>
+      <li data-match-route="/events" ng-click="collapse()"><a href="/events/">Events</a></li>
+      <li data-match-route="/community" ng-click="collapse()"><a href="/community/">Community</a></li>
+      <li data-match-route="/about" ng-click="collapse()"><a href="/about/">About</a></li>
     </ul>
 
     <user-dropdown></user-dropdown>

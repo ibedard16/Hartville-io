@@ -1,0 +1,52 @@
+<div class="container container-form">
+    <form name="profileEdit">
+			
+		<div class="col-md-12">
+			<div class="page-header">
+				<h3>{{user.displayName}}</h3>
+			</div>
+		</div>
+			
+			<!--Title-->
+			<div class="col-md-12">
+			    <h4 class=>Avatar</h4>
+				<img ng-src="{{user.avatar}}" class="col-md-1" style="padding:0;max-width:100px"/>
+				
+				<div class="col-md-11 form-group" > <!--style="position: absolute;margin: 0 25%;height: inherit;bottom: 0;"-->
+				    <div >
+    					<input ng-class="{'has-value': newPost.title.$viewValue}" id="avatarUrl" type="text" required name="avatar" ng-model="user.avatar" ng-disabled="formDisabled"/>
+    					<label for="avatarUrl">Url</label>
+					</div>
+				</div>
+			</div>
+			
+			<!--Content-->
+			<div class="col-md-12">
+				<h4>Bio</h4>
+				<div class="form-group">
+					<text-angular ng-model="user.bio" required name="bio" ta-disabled="formDisabled"></text-angular>
+				</div>
+			</div>
+			
+			
+			<!--Submit/Reset-->
+			<div class="row">
+				<div class="col-md-12">
+					
+					<!--Submit-->
+					<button type="submit" ng-click="submit()" class="button raised brand" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
+						<div class="center" fit>SUBMIT</div>
+						<paper-ripple fit></paper-ripple>
+					</button>
+					
+					<!--Cancel-->
+					<button ng-click="cancel()" class="button raised accent" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
+						<div class="center" fit>CANCEL</div>
+						<paper-ripple fit></paper-ripple>
+					</button>
+					
+				</div>
+			</div>
+			
+	</form>
+</div>

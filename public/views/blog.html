@@ -6,9 +6,6 @@
 	<div class="row">
 		
 		<div class="col-md-6">
-	    	<pagination total-items="postCount" rotate="true" max-size="maxSize" ng-model="currentPage" boundary-links="true" items-per-page="pageSize"></pagination>
-	    </div>
-		<div class="col-md-6">
 
             <div class="form-group">
 				<input id="input" type="text" name="filter" ng-model="post.searchInput" disabled title="Post searching coming soon!"/>
@@ -16,6 +13,13 @@
 			</div>
 
 	    </div>
+    </div>
+    <div class="row">
+		
+		<div class="col-md-6">
+	    	<pagination total-items="postCount" rotate="true" max-size="maxSize" ng-model="currentPage" boundary-links="true" items-per-page="pageSize"></pagination>
+	    </div>
+		
 	</div> <!-- end row -->
 	
 	<div class="row">

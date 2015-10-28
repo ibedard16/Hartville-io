@@ -4,6 +4,7 @@ var User = require('../models/userSchema'),
     config = require('../config'),
     express = require("express"),
     gravatar = require("../helpers/gravatar"),
+    moment = require('moment'),
     router = express.Router();
     
 router.post('/verifyEmail', function (req, res) {
@@ -15,21 +16,27 @@ router.post('/login', function(req, res) {
         password = req.body.password;
         
     User.getUser('loginEmail', email, function (err, user) {
-        if (err) return res.status(500).send(err);
+        if (err)  {
+            if (err === 'MissingSearchValue') {
+                return res.status(400).notify('warning', 'Email was not provided to login.', 'Missing Email');
+            } else {
+                return res.status(500).notify('error', err);
+            }
+        }
         
         if (!user) {
-            return res.status(400).send('Email not Found');
+            return res.status(400).notify('error', 'Your email was not found in our records. Do you even have an account?', 'Email not Recognized');
         }
         
         if (!user.active) {
-            return res.status(401).send('User must validate email first');
+            return res.status(401).notify('warning', 'You must validate your email before you can log in.', 'Email not Validated');
         }
         
         user.comparePasswords(password, function (err, isMatch) {
-            if (err) return res.status(500).send(err);
+            if (err) return res.status(500).notify('error', err);
             
             if (!isMatch) {
-                return res.status(400).send('Invalid Login');
+                return res.status(400).notify('error', 'Email/Password combination is incorrect.', 'Email/Password Mismatch');
             } 
             
             createSendToken(user, res);
@@ -39,19 +46,15 @@ router.post('/login', function(req, res) {
 
 router.post("/signup", function (req, res) {
     
-    if (!config.allowSignup) {
-        return res.status(501).send('Signup is currently disabled.')
+    if (config.disAllowSignup) {
+        return res.status(501).notify('warning', 'Signup is currently disabled. Why? Because the admin says so! (That, and there\'s no point in signing up for something you can\'t do anything on.)', 'Sign Up Disabled');
     }
     
     var email = req.body.email,
         name = req.body.name,
         password = req.body.password;
-    
-    User.getUser('loginEmail', email, function (err, user) {
-        if (err) return res.status(500).send(err);
         
-        if (user) return res.status(400).send('Email Already in Use');
-        
+    function saveUser () {
         var avatar = gravatar.getAvatarByEmail(email);
         
         var newUser = new User({
@@ -60,18 +63,88 @@ router.post("/signup", function (req, res) {
             loginEmail: email,
             contactEmail: email,
             password: password,
-            active: false
+            active: false,
+            activateBy: moment().add(5, 'days').toDate()
         });
-    
+        
         newUser.save(function (err) {
             if (err) {
-                return res.status(500).send(err);
+                console.log(err);
+                return res.status(500).notify('error', err);
             } else {
                 emailVerification.send(email);
-                res.send('success');
+                res.notify('success', 'You have successfully signed up. To finish the process, please check your email to validate your account.', 'Success');
             }
         });
-    });
+    }
+    
+    function getUserByName (callback) {
+        User.getUser('displayName', name, function (err, user) {
+            if (err)  {
+                if (err === 'MissingSearchValue') {
+                    return res.status(400).notify('warning', 'Username was not provided to sign up.', 'Missing Email');
+                } else {
+                    return res.status(500).notify('error', err);
+                }
+            }
+            
+            if (user) {
+                if (user.active) {
+                    return res.status(400).notify('warning', 'The username you provided is already in use.', 'Username in Use');
+                } else if (Date.now() < user.activateBy){
+                    return res.status(400).notify('warning', 'The username you provided is already in use.', 'Username in Use');
+                } else {
+                    user.remove(function (err) {
+                        if (err) {
+                            return res.status(400).notify('warning', 'The username you provided is already in use.', 'Username in Use');
+                        } else {
+                            callback();
+                        }
+                    });
+                }
+            }
+            
+            callback();
+        });
+    }
+    function getUserByEmail (callback) {
+        User.getUser('loginEmail', email, function (err, user) {
+            if (err)  {
+                if (err === 'MissingSearchValue') {
+                    return res.status(400).notify('warning', 'Email was not provided to sign up.', 'Missing Email');
+                } else {
+                    return res.status(500).notify('error', err);
+                }
+            }
+            
+            if (user) {
+                if (user.active) {
+                    return res.status(400).notify('warning', 'The email you provided is already in use.', 'Email in Use');
+                } else if (Date.now() < user.activateBy){
+                    return res.status(400).notify('warning', 'The email you provided is already in use.', 'Email in Use');
+                } else {
+                    return user.remove(function (err) {
+                        if (err) {
+                            return res.status(400).notify('warning', 'The email you provided is already in use.', 'Email in Use');
+                        }
+                        callback();
+                    });
+                }
+            }
+            
+            callback();
+        });
+    }
+    
+    function signUp () {
+        getUserByEmail(function () {
+            getUserByName(function () {
+                saveUser();
+            });
+        });
+    }
+    
+    signUp();
 });
 
 module.exports = router;

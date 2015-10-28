@@ -1,16 +1,12 @@
 'use strict';
 /*global app*/
-app.controller('LoginController', ['$rootScope','$scope', '$auth', 'toastr', function ($rootScope, $scope, $auth, toastr) {
+app.controller('LoginController', ['$scope', '$auth', 'notification', 'dBox', 'userProfile', function ($scope, $auth, notification, dBox, userProfile) {
 
     function logInSuccess (serverResponse) {
         console.log(serverResponse);
-        toastr.success('You are now logged in!','Success');
-        $rootScope.$broadcast('userUpdate');
-        $rootScope.$broadcast('hideDialogueBox');
-    }
-    
-    function logInError (serverResponse) {
-        console.log(serverResponse);
+        notification.info('You are now logged in!','Success');
+        userProfile.update();
+        dBox.close();
     }
     
     $scope.submit = function () {

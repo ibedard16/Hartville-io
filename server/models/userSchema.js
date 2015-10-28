@@ -13,7 +13,9 @@ var userSchema = mongoose.Schema({
         type: Boolean,
         default: true
     },
+    activateBy: Date,
     avatar: String,
+    bio: String,
     permissions: {
         canComment: {type: Boolean, default: true},
         canPost: {type: Boolean, default: false},
@@ -43,7 +45,7 @@ User.getUser = function(fieldToSearch, searchValue, callback) {
     }
     
     if (!searchValue || !fieldToSearch) {
-        callback('Needed value was missing.');
+        callback('MissingSearchValue');
     } else {
         var searchObject = {};
         searchObject[fieldToSearch] = searchValue;

@@ -5,5 +5,9 @@ app.directive('postPreviewLg', function () {
 		scope: {
             post: '=post',
         },
+        /*link: function () {
+			Prism.highlightAll(true);
+			console.log('prism run');
+        }*/
 	};
 });

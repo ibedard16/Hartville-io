@@ -2,11 +2,10 @@
     <div class="title">
         <div class="row">
             <div class="col-xs-2">
-                <img ng-src="{{author.avatar}}" class="user-image img-responsive"></img>
+                <img ng-src="{{user.avatar}}" class="user-image img-responsive"></img>
             </div>
             <div class="col-xs-10 user-info">
-                <h3><a href="#">{{author.name}}</a></h3> <!-- User's name -->
-                <h4>{{author.title}}</h4>             <!-- User's Job/Title -->
+                <h3><a href="#">{{user.displayName}}</a></h3> <!-- User's name -->
             </div>
         </div>
     </div>
@@ -16,11 +15,13 @@
         <div class="row">
             <div class="col-md-12">
                 <h4>About</h4><hr>
-                <p ng-bind="author.about"></p>
+                <div ng-bind-html="user.bio"></div>
             </div>
         </div>
         
         <div class="row">
+            <!--Contact Info-->
+            <!--
             <div class="col-md-3">
                 <h4>Contact Info</h4><hr>
                 <h5>Email</h5>
@@ -30,7 +31,8 @@
                 <h5>Facebook</h5>
                 <h6><a href="http://{{author.contact.facebook}}">{{author.contact.facebook}}</a></h6><hr>
             </div>
-            <div class="col-md-9">
+            -->
+            <div class="col-md-12">
                 <h4>Recent Posts</h4><hr>
                 
                 <div class="fadeInUp" ng-repeat="post in posts | orderBy: '-date' | limitTo: 5" class="row">
@@ -50,18 +52,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <a ng-href="#">
-                            <div class="button pull-right label-brand">
-                                <div class="center" fit>ALL POSTS</div>
-                                <paper-ripple fit></paper-ripple>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
             </div>
         </div>
     </div>

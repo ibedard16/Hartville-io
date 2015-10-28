@@ -34,6 +34,13 @@ try {
         next();
     });
     
+    app.use('*', function (req,res,next) {
+        res.notify = function (messageType, messageBody, messageTitle) {
+            res.send({notification: {type:messageType,body:messageBody,title:messageTitle}});
+        };
+        next();
+    });
+    
     var css;
     
     function renderSass () {
@@ -50,7 +57,6 @@ try {
                 $colorAccentLight: #F5B871; \
                 $colorAccentDark: #78440A;";
         }
-        console.log(sassString);
         sassString = sassString + "@import 'styles';";
         
         var result = sass.renderSync({
@@ -71,7 +77,9 @@ try {
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use('/postFiles', express.static(path.join(__dirname + '/public/postFiles')));
-    app.get("/favicon.ico", express.static(path.join(__dirname + '/public/favicon.ico')));
+    app.get("/favicon.ico", function (req,res) {
+        res.sendFile(__dirname + '/public/favicon.ico');
+    });
     
     app.use('/resources', resources);
     

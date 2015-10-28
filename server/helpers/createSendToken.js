@@ -2,7 +2,7 @@ var jwt     = require('jsonwebtoken'),
     moment  = require('moment'),
     config  = require('../config');
 
-module.exports = function (user, response) {
+module.exports = function (user, res) {
     var permissions = [];
     
     user = (JSON.parse(JSON.stringify(user)));
@@ -37,7 +37,7 @@ module.exports = function (user, response) {
         expiresInMinutes: expire
     });
     
-    response.status(200).send({
+    res.status(200).send({
         token: token
     });
 };

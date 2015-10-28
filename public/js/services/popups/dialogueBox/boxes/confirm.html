@@ -1,0 +1,24 @@
+<div id="toast-dbox">
+	<div class="toast toast-error">
+		<div class="toast-title">Are you sure?</div>
+		<div class="toast-message">
+			<p>{{question}}<p>
+			<div class="row toastr-buttons">
+				<div class="col-xs-12">    				
+					<div class="col-xs-6">			    		
+						<button ng-click="callback()" class="button label-accent">
+							<div class="center" fit="">YES</div>							
+							<paper-ripple fit=""></paper-ripple>						
+						</button>					
+					</div>					
+					<div class="col-xs-6">						
+						<button ng-click="closeBox()" class="button label-brand">							
+							<div class="center" fit="">NO</div>							
+							<paper-ripple fit=""></paper-ripple>						
+						</button>					
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+</div>

@@ -206,7 +206,7 @@ router.post('/github', function (req, res) {
 });
 
 router.post('*', function(req, res) {
-    res.status(400).send('OAuth Provider not recognized.');
+    res.status(400).notify('error', 'OAuth Provider not recognized by server. Please contact an admin.', 'OAuth provider not recognized.');
 });
 
 module.exports = router;

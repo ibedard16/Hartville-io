@@ -20,7 +20,7 @@ exports.send = function (email) {
         sub: email
     };
     
-    var token = jwt.sign(payload, config.JWT_SECRET);
+    var token = jwt.sign(payload, config.JWT_SECRET, {noTimestamp:true});
     
     getHtml(token, function (err, data) {
         if (err) throw new Error(err);
@@ -48,40 +48,66 @@ exports.send = function (email) {
 };
 
 exports.handler = function (req, res) {
+    function activateUser (user) {
+        user.active = true;
+                    
+        user.save(function(err) {
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            } else {
+                return res.notify('success', 'You may now log in.', 'Account Verified');
+            }
+        });
+    }
+    
     var token = req.body.token;
+    
+    console.log(token);
     
     jwt.verify(token, config.JWT_SECRET, function (err, decodedToken) {
         if (err) {
-            return res.status(401).send(err);
+            console.log(err);
+            return handleError(res);
         }
     
         var email = decodedToken.sub;
         
         console.log(email);
         
-        if (!email) return handleError(res);
+        if (!email) {
+            console.log('missing email');
+            return handleError(res);
+        }
         
         User.findOne({loginEmail: email}, function (err, foundUser) {
-            if (err) return res.status(500);
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
             
-            if (!foundUser) return handleError(res);
+            if (!foundUser) {
+                handleError(res);
+            }
             
             if (!foundUser.active) {
-                foundUser.active = true;
-                
-                foundUser.save(function(err) {
-                    if (err) return res.status(500);
-                });
+                console.log(foundUser.activateBy);
+                console.log(Date.now());
+                if (foundUser.activateBy <= Date.now()) {
+                    foundUser.remove();
+                    return res.notify('error', 'You waited more than 5 days to activate your account, so your account information was deleted from our records. You must re-create your account in order to log in.', 'Expired Account');
+                } else {
+                    return activateUser(foundUser);
+                }
+            } else {
+                res.notify('warning', 'You have already verefied your account. You may log in now.', 'Email Already Verified');
             }
-            return res.send('success');
         });
     });
 };
 
 function handleError(response) {
-    return response.status(401).send({
-        message: 'Authentication failed, unable to verify the email'
-    });
+    return response.status(401).notify("error", "Something went wrong with the verification process. Please contact an admin if you believe this to be an error.", "Verification Error");
 }
 
 function getHtml (token, callback) {

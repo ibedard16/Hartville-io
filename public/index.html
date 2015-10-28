@@ -47,27 +47,28 @@
         <script type="text/javascript" src="resources/client_config"></script>
         
         <!--Services-->
-        <script type="text/javascript" src="js/services/posts.js"></script>
-        <script type="text/javascript" src="js/services/authors.js"></script>
-        <script type="text/javascript" src="js/services/events.js"></script>
-        <script type="text/javascript" src="js/services/postResource.js"></script>
+        <script type="text/javascript" src="js/services/userProfile.js"></script>
         <script type="text/javascript" src="js/services/storageAvailable.js"></script>
-        <script type="text/javascript" src="js/services/authorization/authToken.js"></script>
-        <script type="text/javascript" src="js/services/authorization/authIntercept.js"></script>
-        <script type="text/javascript" src="js/services/authorization/authSendCredentials.js"></script>
+        <script type="text/javascript" src="js/services/authorization/externalAuthIntercept.js"></script>
+        <script type="text/javascript" src="js/services/popups/notification/notification.js"></script>
+        <script type="text/javascript" src="js/services/popups/notification/notificationIntercept.js"></script>
+        <script type="text/javascript" src="js/services/popups/dialogueBox/dBoxService.js"></script>
+        <script type="text/javascript" src="js/services/popups/dialogueBox/dBoxDirective.js"></script>
+        <script type="text/javascript" src="js/services/resources/Post.js"></script>
+        <script type="text/javascript" src="js/services/resources/Event.js"></script>
+        <script type="text/javascript" src="js/services/resources/User.js"></script>
             
         <!--Controllers-->
-        <script type="text/javascript" src="js/controllers/MainController.js"></script>
         <script type="text/javascript" src="js/controllers/HomeController.js"></script>
-        <script type="text/javascript" src="js/controllers/BlogController.js"></script>
-        <script type="text/javascript" src="js/controllers/PostController.js"></script>
-        <script type="text/javascript" src="js/controllers/NewController.js"></script>
-        <script type="text/javascript" src="js/controllers/DropdownController.js"></script>
-        <script type="text/javascript" src="js/controllers/CollapseController.js"></script>
-        <script type="text/javascript" src="js/controllers/SidebarController.js"></script>
+        <script type="text/javascript" src="js/controllers/blog/BlogController.js"></script>
+        <script type="text/javascript" src="js/controllers/blog/AuthorController.js"></script>
+        <script type="text/javascript" src="js/controllers/blog/PostController.js"></script>
+        <script type="text/javascript" src="js/controllers/blog/NewPostController.js"></script>
+        <script type="text/javascript" src="js/controllers/events/EventsController.js"></script>
+        <script type="text/javascript" src="js/controllers/events/EventDetailController.js"></script>
+        <script type="text/javascript" src="js/controllers/ProfileController.js"></script>
         <script type="text/javascript" src="js/controllers/auth/SignupController.js"></script>
         <script type="text/javascript" src="js/controllers/auth/LoginController.js"></script>
-        <script type="text/javascript" src="js/controllers/auth/LogoutController.js"></script>
         <script type="text/javascript" src="js/controllers/auth/ValidateEmailController.js"></script>
 
         <!--Directives-->
@@ -77,15 +78,12 @@
         <script type="text/javascript" src="js/directives/previews/postPreviewSm.js"></script>
         <script type="text/javascript" src="js/directives/previews/postPreviewMd.js"></script>
         <script type="text/javascript" src="js/directives/previews/postPreviewLg.js"></script>
-        <script type="text/javascript" src="js/directives/previews/postPreviewNew.js"></script>
         <script type="text/javascript" src="js/directives/previews/eventPreviewSm.js"></script>
         <script type="text/javascript" src="js/directives/previews/eventPreviewLg.js"></script>
-        <script type="text/javascript" src="js/directives/previews/eventDetail.js"></script>
         <script type="text/javascript" src="js/directives/previews/userProfile.js"></script>
-        <script type="text/javascript" src="js/directives/user/userDropdown.js"></script>
-        <script type="text/javascript" src="js/directives/registration/passwordValidate.js"></script>
-        <script type="text/javascript" src="js/directives/dialogueBox/dialogueBox.js"></script>
-        <script type="text/javascript" src="js/directives/error/404.js"></script>
+        <script type="text/javascript" src="js/directives/userDropdown/userDropdown.js"></script>
+        <script type="text/javascript" src="js/directives/signup/passwordValidate.js"></script>
+        <script type="text/javascript" src="js/directives/prismColor.js"></script>
         
         <!--Filters-->
         <script type="text/javascript" src="vendor/angular-truncate/src/truncate.js"></script>
@@ -100,13 +98,17 @@
         <script type="text/javascript" src="vendor/textAngular/dist/textAngular.min.js"></script>
         
         <!--Toastr-->
-        <link rel="stylesheet" href="vendor/angular-toastr/dist/angular-toastr.css">
-        <script type="text/javascript" src="vendor/satellizer/satellizer.min.js"></script>
+        <link rel="stylesheet" href="vendor/toastr/toastr.css">
+        <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="vendor/toastr/toastr.min.js"></script>
         
         <!--Satellizer-->
-        <script type="text/javascript" src="vendor/angular-toastr/dist/angular-toastr.tpls.js"></script>
+        <script type="text/javascript" src="vendor/satellizer/satellizer.min.js"></script>
+        
+        <link href="/vendor/prism/themes/prism.css" rel="stylesheet" />
+        <script src="/vendor/prism/prism.js" data-manual></script>
     </head>
-    <body ng-cloak ng-controller='MainController'>
+    <body ng-cloak>
         <website-navigation class="page-row"></website-navigation>
         
         <div class="container-full-bg padded">

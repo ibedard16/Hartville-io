@@ -37,7 +37,10 @@
     "textAngular": "~1.4.3",
     "angular-toastr": "~1.5.0",
     "angular-resource": "~1.4.3",
-    "satellizer": "~0.12.5"
+    "satellizer": "~0.12.5",
+    "pagedown": "~1.1.0",
+    "prism": "~1.2.0",
+    "toastr": "~2.1.2"
   },
   "resolutions": {
     "angular": "1.4.3",

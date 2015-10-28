@@ -1,28 +1,36 @@
 <div class="dialog accent">
 
-    <div class="title"><a ng-href="/events/event/{{ event.id }}">{{event.title}}</a></div>
+    <div class="title" ><a ng-href="/events/{{ event.id }}">{{event.name.text | words:7 }}</a></div>
     <div class="image">
         <img ng-src="" class="img-responsive" />
     </div>
     <div class="content">
         <div>
-           <p>{{event.content | htmlToPlainText | words: 25}}</p>
+            <p style="text-align:center"><i>{{event.start | date:'MMMM dd, yyyy @ h:mm a'}}</i></p>
+            <p style="height:3em;">{{event.description.text | words: 25}}</p>
         </div>
     </div>
     <hr class="card-hr">
     
-    <div class="button">
-        <div class="center" fit>SHARE</div>
+    <a ng-href="{{event.url}}" target="_blank"><div class="button brand accent">
+        <div class="center" fit>REGISTER</div>
         <paper-ripple fit></paper-ripple>
-    </div>
+    </div></a>
     
-    <div ng-controller="CollapseController">
+    <a ng-href="/events/{{ event.id }}"><div class="button">
+        <div class="center" fit>MORE INFO</div>
+        <paper-ripple fit></paper-ripple>
+    </div></a>
+    
+    <div>
         <div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
             <span class="fa fa-info"></span>
         </div>
         <div collapse="!isCollapsed">
             <div class="post-info">
-                Event Date: {{event.date | date:'MM/dd/yyyy'}}
+                <p style="margin:0">Event Created: {{event.created | date:'MM/dd/yyyy @ hh:mm'}}</p>
+                
+                <p style="margin:0" ng-show="(event.created !== event.changed)">Event Last Modified: {{event.changed | date:'MM/dd/yyyy @ hh:mm'}} </p>
             </div>
         </div>
     </div>

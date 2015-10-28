@@ -1,14 +1,9 @@
 'use strict';
 /*global app*/
-app.controller('ValidateEmailController', ['$location', '$routeParams', '$http', 'toastr', function ($location, $routeParams, $http, toastr) {
+app.controller('ValidateEmailController', ['$location', '$routeParams', '$http', 'notification', function ($location, $routeParams, $http, notification) {
     
     if ($routeParams.token) {
-        $http.post('/auth/verifyEmail', {token: $routeParams.token}).then(function (data) {
-            toastr.success('You can now log in.', 'Email Verified!');
-        }, function (err) {
-            toastr.error('Something happened during verification, please contact an administrator.', 'Verification Error');
-            console.log(err);
-        });
+        $http.post('/auth/verifyEmail', {token: $routeParams.token});
     }
     
     $location.path('/');

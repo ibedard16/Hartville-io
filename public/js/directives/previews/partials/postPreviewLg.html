@@ -6,7 +6,7 @@
  </div>
  <div class="content">
     <div>
-       <p ng-bind-html="post.content"></p>
+       <p ng-bind-html="post.content" prism-color></p>
     </div>
  </div>
    <hr class="card-hr">
@@ -22,13 +22,13 @@
    <paper-ripple fit></paper-ripple>
  </div>
  
- <div ng-controller="CollapseController">
+ <div>
 	<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
 	    <span class="fa fa-info"></span>
 	</div>
 	<div collapse="!isCollapsed">
         <div class="post-info">
-            <a ng-href="/blog/author/{{post.author}}">{{post.author}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+            <a ng-href="/blog/author/{{post.authorId}}">{{post.authorName}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
          </div>
 	</div>
  </div>

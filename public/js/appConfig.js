@@ -1,6 +1,8 @@
 /*global app*/
 
-app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvider', 'appConfig', function ($routeProvider,$locationProvider,$httpProvider,$authProvider,appConfig) {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvider', 'appConfig', '$provide', '$resourceProvider', function ($routeProvider,$locationProvider,$httpProvider,$authProvider,appConfig, $provide, $resourceProvider) {
+	
+	$resourceProvider.defaults.stripTrailingSlashes = false;
 	
 	$locationProvider
 		.html5Mode({
@@ -18,11 +20,6 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		templateUrl: 'views/home.html',
 		controller: 'HomeController'
 	})
-	.when('/new', {
-		pageTitle: 'New Post',
-		templateUrl: 'views/new.html',
-		controller: 'NewController'
-	})
 	.when('/blog', {
 		pageTitle: 'Blog',
 		templateUrl: 'views/blog.html',
@@ -33,15 +30,15 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		templateUrl: 'views/post.html',
 		controller: 'PostController'
 	})
-	.when('/blog/author/:author', {
-		pageTitle: 'Author',
-		templateUrl: 'views/user.html',
-		controller: 'BlogController'
+	.when('/blog/newPost', {
+		pageTitle: 'New Post',
+		templateUrl: 'views/new.html',
+		controller: 'NewPostController'
 	})
-	.when('/blog/filter/:filter', {
+	.when('/blog/author/:author', {
 		pageTitle: 'Blog',
-		templateUrl: 'views/blog.html',
-		controller: 'BlogController'
+		templateUrl: 'views/user.html',
+		controller: 'AuthorController'
 	})
 	.when('/about', {
 		pageTitle: 'About',
@@ -58,15 +55,20 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		templateUrl: 'views/community.html',
 		controller: 'BlogController',
 	})
+	.when('/profile', {
+		pageTitle: 'Your Profile',
+		controller: 'ProfileController',
+		templateUrl: 'views/profile.html'
+	})
 	.when('/events', {
 		pageTitle: 'Events',
 		templateUrl: 'views/events.html',
-		controller: 'BlogController'
+		controller: 'EventsController'
 	})
-	.when('/events/event/:id', {
-		pageTitle: 'Event',
+	.when('/events/:id', {
+		pageTitle: 'Events',
 		templateUrl: 'views/eventDetails.html',
-		controller: 'BlogController'
+		controller: 'EventDetailController'
 	})
 	.when('/signup', {
 		pageTitle: 'Sign Up',
@@ -92,7 +94,8 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		pageTitle: '404 Error'
 	});
 	
-	$httpProvider.interceptors.push('authIntercept');
+	$httpProvider.interceptors.push('externalAuthIntercept');
+	$httpProvider.interceptors.push('notificationIntercept');
 	
 	$authProvider.loginUrl = 'auth/login';
 	$authProvider.signupUrl = 'auth/signup';
@@ -108,9 +111,20 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		$authProvider[providerName](provider);
 	}
 	
+	$provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
+        taRegisterTool('code', {
+            iconclass: "fa fa-code",
+            action: function() {
+            	var editor = this.$editor();
+            	editor.wrapSelection("formatBlock", "<code>");
+            },
+            activeState: function(){ return !!this.$editor().queryFormatBlockState('code'); }
+        });
+        taOptions.toolbar[1].push('code');
+        return taOptions;
+    }]);
+	
 }]);
-
-//Adjusts page titles to match Route.title
 
 app.run(['$rootScope', 'appConfig', function($rootScope, appConfig) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
@@ -125,7 +139,9 @@ app.run(['$rootScope', 'appConfig', function($rootScope, appConfig) {
         $rootScope.page_title = route.pageTitle;
         $rootScope.page_subtitle = route.subtitle;
         $rootScope.page_about = route.about;
+        
     });
     
     $rootScope.app_name = appConfig.app_name;
+    $rootScope.app_description = appConfig.app_description;
 }]);

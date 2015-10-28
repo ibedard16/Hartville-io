@@ -4,20 +4,38 @@
 	  <li class="active">Events</a></li>
 	</ol>
 	
-	<h1 class="accent">Next Event</h1><hr>
-    <div class="row">
-        <!-- large event preview -->
-      	<div class="col-md-12 dialog-animation" ng-repeat="event in events | orderBy: 'date' | limitTo:1 ">
-      	    <event-preview-lg event='event'></event-preview-lg>
-      	</div>
-    </div>
-    
-    <h1 class="accent">Upcoming Events</h1><hr>
-    <div class="row">
-        <!--small event preview -->
-        <div class="col-md-4 dialog-animation " ng-repeat="event in events | orderBy: 'date' | limitTo:3 ">
-            <event-preview-sm event='event'></event-preview-sm>
+	<div ng-show="events.ongoing.length > 0">
+    	<h1 class="accent">Ongoing Events</h1><hr>
+        <div class="row">
+            <!-- large event preview -->
+          	<div class="col-md-12 dialog-animation" ng-repeat="event in events.ongoing | orderBy: 'start' ">
+          	    <event-preview-lg event='event'></event-preview-lg>
+          	</div>
         </div>
     </div>
-        
+    
+    <div ng-hide="events.ongoing.length > 0 || events.upcoming.length === 0">
+        <h1 class="accent" >Next Event</h1><hr>
+        <div class="row">
+            <!-- large event preview -->
+          	<div class="col-md-12 dialog-animation" ng-repeat="event in events.upcoming | orderBy: 'start' | limitTo:1">
+          	    <event-preview-lg event='event'></event-preview-lg>
+          	</div>
+        </div>
+    </div>
+    
+    <div ng-hide="events.upcoming.length <= 1 && events.ongoing.length <= 0">
+        <h1 class="accent">Upcoming Events</h1><hr>
+        <div class="row">
+            <!--small event preview -->
+            <div class="col-md-4 dialog-animation " ng-repeat="event in events.upcoming | orderBy: 'start' | limitTo:9">
+                <event-preview-sm event='event'></event-preview-sm>
+            </div>
+        </div>
+    </div>
+    
+    <div ng-show="events.upcoming.length === 0 && events.ongoing.length ===0">
+        <h1 class="accent">No Events!</h1>
+        <h2>We currently do not have any events scheduled. Please check back again later.</h2>
+    </div>
 </div>
