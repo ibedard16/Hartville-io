@@ -1,36 +1,36 @@
 <div class="dialog brand">
 
- <div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
- <div class="image crop-height">
-     <img ng-src="{{post.imageHead}}" class="img-responsive" />
- </div>
- <div class="content">
-    <div>
-       <p ng-bind-html="post.content" prism-color></p>
-    </div>
- </div>
-   <hr class="card-hr">
- <a ng-href="/blog/post/{{ post.id }}">
-     <div class="button">
-       <div class="center" fit>READ MORE</div>
-       <paper-ripple fit></paper-ripple>
-     </div>
- </a>
- 
- <div class="button">
-   <div class="center" fit>SHARE</div>
-   <paper-ripple fit></paper-ripple>
- </div>
- 
- <div>
-	<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
-	    <span class="fa fa-info"></span>
+	<div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
+	<div class="image crop-height">
+		 <img ng-src="{{post.imageHead}}" class="img-responsive" />
 	</div>
-	<div collapse="!isCollapsed">
-        <div class="post-info">
-            <a ng-href="/blog/author/{{post.authorId}}">{{post.authorName}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
-         </div>
+	<div class="content">
+		<div>
+			<p ng-bind-html="post.content" prism-color></p>
+		</div>
 	</div>
- </div>
-
+	<hr class="card-hr">
+	<a ng-href="/blog/post/{{ post.id }}">
+		<div class="button">
+			 <div class="center" fit>READ MORE</div>
+			 <paper-ripple fit></paper-ripple>
+		</div>
+	</a>
+	
+	<div class="button">
+		<div class="center" fit>SHARE</div>
+		<paper-ripple fit></paper-ripple>
+	</div>
+	
+	<div>
+		<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
+			<span class="fa fa-info"></span>
+		</div>
+		<div collapse="!isCollapsed">
+			<div class="post-info">
+				<a ng-href="/blog/author/{{post.authorId}}">{{post.authorName}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+			</div>
+		</div>
+	</div>
+	
 </div>
