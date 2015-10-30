@@ -27,6 +27,20 @@ app.controller('NewPostController', ['$location', '$scope', 'Post', 'notificatio
 			$scope.$apply();
 		};
 		reader.readAsDataURL(file);
+		savePost();
+	};
+	
+	if (!$scope.formInfo.categories) {
+		$scope.formInfo.categories = [];
+	}
+	
+	$scope.bindTag = function (tag) {
+		if ($scope.formInfo.categories.indexOf(tag) === -1) {
+			$scope.formInfo.categories.push(tag);
+		} else {
+			$scope.formInfo.categories.splice($scope.formInfo.categories.indexOf(tag), 1);
+		}
+		savePost();
 	};
 	
 	$scope.submitForm = function() {

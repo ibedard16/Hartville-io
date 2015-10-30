@@ -48,7 +48,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 	.when('/spotlight', {
 		pageTitle: 'Spotlight',
 		templateUrl: 'views/spotlight.html',
-		controller: 'BlogController'
+		controller: 'SpotlightController'
 	})
 	.when('/community', {
 		pageTitle: 'Community',
