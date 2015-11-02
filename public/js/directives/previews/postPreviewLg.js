@@ -1,13 +1,14 @@
-app.directive('postPreviewLg', function () {
+app.directive('postPreviewLg', ['User', function (User) {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/directives/previews/partials/postPreviewLg.html',
 		scope: {
             post: '=post',
         },
-        /*link: function () {
-			Prism.highlightAll(true);
-			console.log('prism run');
-        }*/
+        link: function (scope) {
+			User.get({id:scope.post.authorId}, function (data) {
+    			scope.author = data;
+    		});
+        }
 	};
-});
+}]);

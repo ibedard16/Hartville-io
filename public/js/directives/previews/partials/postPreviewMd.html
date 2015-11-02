@@ -4,6 +4,7 @@
  <div class="image crop-height">
      <img ng-src="{{post.imageHead}}" class="img-responsive" />
  </div>
+ <div class="centered">by <a ng-href="/blog/author/{{post.authorId}}">{{author.displayName}} <img class="avatar-circle" ng-src="{{author.avatar}}" style="margin:0"/></a></div>
  <div class="content">
     <div>
        <p>{{post.content | htmlToPlainText | words:50}}</p>
@@ -28,7 +29,7 @@
 	</div>
 	<div collapse="!isCollapsed">
         <div class="post-info">
-            <a ng-href="/blog/author/{{post.authorId}}">{{post.authorName}}</a> at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+            Posted at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
          </div>
 	</div>
  </div>

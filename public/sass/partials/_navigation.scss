@@ -97,19 +97,6 @@
     overflow: hidden;
 }
 
-#avatar {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0,0,0,.6);
-    -moz-box-shadow: 0 0 8px rgba(0,0,0,.6);
-    -webkit-box-shadow: 0 0 8px rgba(0,0,0,.6);
-    margin-top: -4px;
-    margin-right: 0;
-    margin-bottom: -4px;
-    margin-left: -4px;
-}
-
 .pagination>.active>a, .pagination>.active>span {
     z-index: 2;
     color: $colorWhite;

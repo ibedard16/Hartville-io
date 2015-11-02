@@ -1,20 +1,22 @@
-<div class="sidebar-group" ng-show="!!author">
-	<h4><a ng-href="/blog/author/{{authorId}}"> About {{author.displayName}}</a></h4>
-	<img width=50px height=50px ng-src="{{author.avatar}}" align="left" style="margin: 5px"/>
-	<div ng-bind-html="author.bio"></div>
-</div>
-
-<div class="sidebar-group" ng-hide="!!author">
-	<h4><a ng-href="/about"> About Us </a></h4>
-	<div>This is a sample about us because we don't have an about us finished yet.</div>
-</div>
-
-<div class="sidebar-group">
+<div class="visible-lg-block">
+	<div class="sidebar-group" ng-show="!!author">
+		<h4><a ng-href="/blog/author/{{authorId}}"> About {{author.displayName}}</a></h4>
+		<img width=50px height=50px ng-src="{{author.avatar}}" align="left" style="margin: 5px"/>
+		<div ng-bind-html="author.bio"></div>
+	</div>
 	
-	<h4>Recent Posts</h4>
-	<a ng-href="/blog/post/{{ post.id }}" class="list-group-item" ng-repeat="post in posts | orderBy: '-date' | limitTo:5">
-		{{post.title}}
-		<span class="fa fa-chevron-right pull-right"></span>
-	</a>
-			
+	<div class="sidebar-group" ng-hide="!!author">
+		<h4><a ng-href="/about"> About Us </a></h4>
+		<div>This is a sample about us because we don't have an about us finished yet.</div>
+	</div>
+	
+	<div class="sidebar-group">
+		
+		<h4>Recent Posts</h4>
+		<a ng-href="/blog/post/{{ post.id }}" class="list-group-item" ng-repeat="post in posts | orderBy: '-date' | limitTo:5">
+			{{ post.title | characters:30 }}
+			<span class="fa fa-chevron-right pull-right"></span>
+		</a>
+				
+	</div>
 </div>
