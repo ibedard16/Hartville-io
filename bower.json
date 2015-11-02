@@ -29,18 +29,17 @@
     "angular-route": "1.4.3",
     "angular-sanitize": "1.4.3",
     "angular-truncate": "*",
-    "bootstrap": "3.3.5",
     "font-awesome": "~4.4.0",
     "less": "~2.5.1",
     "lodash": "~3.10.1",
     "showdown": "~1.2.2",
     "textAngular": "~1.4.3",
-    "angular-toastr": "~1.5.0",
     "angular-resource": "~1.4.3",
     "satellizer": "~0.12.5",
-    "pagedown": "~1.1.0",
     "prism": "~1.2.0",
-    "toastr": "~2.1.2"
+    "toastr": "~2.1.2",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4"
   },
   "resolutions": {
     "angular": "1.4.3",

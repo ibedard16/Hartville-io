@@ -5,6 +5,7 @@
   "main": "express.js",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "blueimp-md5": "^1.1.1",
     "body-parser": "^1.13.3",
     "bower": "1.4.1",
     "busboy": "^0.2.9",
