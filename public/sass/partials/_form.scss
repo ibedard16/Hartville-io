@@ -202,3 +202,14 @@ $material-form-transition-speed: 0.2s;
 	max-width: 100px;
 	max-height: 100px;
 }
+
+.searchButton {
+	left: -25px;
+	position: relative;
+	font-size: x-large;
+	background-color: $colorBackground;
+}
+
+.searchButton:hover {
+	color: $colorBrand;
+}

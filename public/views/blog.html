@@ -4,15 +4,21 @@
 	    <li class="active">Blog</li>
 	</ol>
 	<div class="row">
-		
-		<div class="col-md-6">
-
-            <div class="form-group">
-				<input id="input" type="text" name="filter" ng-model="post.searchInput" disabled title="Post searching coming soon!"/>
-          		<label for="input">Filter</label><i class="bar"></i>
+		<form ng-submit="search()">
+			<div class="col-md-4 col-sm-5 col-xs-10">
+			<div class="form-group">
+				<input id="search" type="text" name="searchInput" ng-model="searchInput" />
+				<label for="search">Search</label><i class="bar"></i>
 			</div>
-
-	    </div>
+			
+			</div>
+			<div class="form-group col-md-1 col-sm-1 col-xs-1">
+				<button type="submit" class="searchButton">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>
+		</form>
+	    
     </div>
     <div class="row">
 		
@@ -25,10 +31,13 @@
 	<div class="row">
 		
 		<div class="col-md-9">
-			<ul class="list-group dialog-animation" ng-repeat="post in posts | orderBy:'-date' | filter:post.searchInput ">
+			<ul class="list-group dialog-animation" ng-repeat="post in posts | orderBy:'-date' " ng-hide="postCount === 0">
 				<post-preview-lg post='post'></post-preview-lg>
 			</ul>
-			
+			<div ng-show="postCount === 0">
+				<h1>No Posts Found</h1>
+				<p>Funny story... we couldn't find any posts.</p>
+			</div>
 		</div> <!--end column-->
 		
 		<div class="col-md-3">

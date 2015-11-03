@@ -10,6 +10,8 @@ var postSchema = mongoose.Schema({
     imageHead:  String
 });
 
+postSchema.index({content: "text", title: "text", categories: "text"}, {name: "postIndex", weights: {content: 5, title: 5, categories: 3}});
+
 var Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;
