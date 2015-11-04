@@ -112,7 +112,7 @@
     <body ng-cloak>
         <website-navigation class="page-row"></website-navigation>
         
-        <div class="container-full-bg padded">
+        <header class="container-full-bg padded">
             <div class="container special">
               	<div class="jumbotron">
                     <h1 ng-if='page_title'>{{page_title}}</h1>
@@ -127,9 +127,11 @@
                     </p>
               	</div>
             </div>
-        </div>
+        </header>
         
-        <ng-view class="page-row page-row-expanded" autoscroll="true" ng-animate-children></ng-view>
+        <main class="page-row page-row-expanded">
+            <ng-view autoscroll="true" ng-animate-children></ng-view>
+        </main>
     
         <website-footer class="page-row"></website-footer>
         

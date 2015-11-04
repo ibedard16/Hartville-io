@@ -80,6 +80,9 @@ try {
     app.get("/favicon.ico", function (req,res) {
         res.sendFile(__dirname + '/public/favicon.ico');
     });
+    app.get("/robots.txt", function (req,res) {
+        res.sendFile(__dirname + '/public/robots.txt');
+    });
     
     app.use('/resources', resources);
     

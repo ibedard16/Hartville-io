@@ -7,17 +7,14 @@
 	<div class="row">
 		<div class="col-md-9">
 
-			<div class="dialog brand">
+			<article class="dialog brand" itemscope itemtype="http://schema.org/Article">
 
-				<div class="title">{{post.title}}</div>
+				<div class="title" itemprop="name">{{post.title}}</div>
 				<div class="image crop-height">
-					 <img ng-src="{{post.imageHead}}" class="img-responsive" />
+					 <img ng-src="{{post.imageHead}}" class="img-responsive" itemprop="image"/>
 				</div>
-				<div class="centered">by <a ng-href="/blog/author/{{post.authorId}}">{{author.displayName}} <img class="avatar-circle" ng-src="{{author.avatar}}" style="margin:0"/></a></div>
-				<div class="content">
-					<div>
-						<p ng-bind-html="post.content" prism-color></p>
-					</div>
+				<div class="centered">by <a ng-href="/blog/author/{{post.authorId}}"><span itemprop="author">{{author.displayName}}</span> <img class="avatar-circle" ng-src="{{author.avatar}}" style="margin:0"/></a></div>
+				<div class="content" itemprop="articleBody" ng-bind-html="post.content" prism-color>
 				</div>
 				<hr class="card-hr">
 				<div class="button">
@@ -31,12 +28,12 @@
 					</div>
 					<div collapse="isCollapsed">
 						<div class="post-info">
-							Posted at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+							Posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
 						</div>
 					</div>
 				</div>
-				
-			</div>
+				<span style="display:none !important" itemprop="url">/blog/post/{{post.id}}</span>
+			</article>
 		
 		</div> <!--end column-->
 		<div class="col-md-3">

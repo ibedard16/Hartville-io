@@ -1,12 +1,11 @@
-<div class="dialog brand">
+<article class="dialog brand" itemscope itemtype="http://schema.org/Article">
 
-	<div class="title"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
+	<div class="title" itemprop="name"><a ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
 	<div class="image crop-height">
-		 <img ng-src="{{post.imageHead}}" class="img-responsive" />
+		<img ng-src="{{post.imageHead}}" class="img-responsive" itemprop="image"/>
 	</div>
-	<div class="centered">by <a ng-href="/blog/author/{{post.authorId}}">{{author.displayName}} <img class="avatar-circle" ng-src="{{author.avatar}}" style="margin:0"/></a></div>
-	<div class="content">
-		<div ng-bind-html="post.content" prism-color></div>
+	<div class="centered">by <a ng-href="/blog/author/{{post.authorId}}"><span itemprop="author">{{author.displayName}}</span> <img class="avatar-circle" ng-src="{{author.avatar}}" style="margin:0"/></a></div>
+	<div class="content" ng-bind-html="post.content" prism-color itemprop="articleBody">
 	</div>
 	<hr class="card-hr">
 	<a ng-href="/blog/post/{{ post.id }}">
@@ -27,9 +26,10 @@
 		</div>
 		<div collapse="!isCollapsed">
 			<div class="post-info">
-				Posted at <em>{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+				Posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
 			</div>
 		</div>
 	</div>
 	
-</div>
+	<span style="display:none !important" itemprop="url">/blog/post/{{post.id}}</span>
+</article>
