@@ -1,4 +1,4 @@
-<div class="container padded" ng-hide="error">
+<div class="container padded">
 	<ol class="breadcrumb">
 		<li><a href="/">Home</a></li>
 	  <li><a href="/blog/">Blog</a></li>
@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-9">
 
-			<article class="dialog brand" itemscope itemtype="http://schema.org/Article">
+			<article class="dialog brand" itemscope itemtype="http://schema.org/Article" ng-hide="error">
 
 				<div class="title" itemprop="name">{{post.title}}</div>
 				<div class="image crop-height">
@@ -34,6 +34,26 @@
 				</div>
 				<span style="display:none !important" itemprop="url">/blog/post/{{post.id}}</span>
 			</article>
+			
+			<div class="dialog warning" ng-show="error">
+	            <div class="title">Error 404</div>
+	            
+	            <div class="content text-center">
+	                <div><span class="fa fa-exclamation-triangle fa-5x"></span></div>
+	                <br>
+	                <p>Sorry, we couldn't find the page you're looking for.</p>
+	                <hr>
+	                <a href="/"><div class="button raised warning">
+	                    <div class="center" fit>HOME</div>
+	                    <paper-ripple fit></paper-ripple>
+	                </div></a>
+	                <a href="/blog"><div class="button raised warning">
+	                    <div class="center" fit>BLOG</div>
+	                    <paper-ripple fit></paper-ripple>
+	                </div></a>
+	                
+	            </div>
+	    	</div>
 		
 		</div> <!--end column-->
 		<div class="col-md-3">
@@ -41,4 +61,3 @@
 		</div>
 	</div> <!--end row-->
 </div> <!--end container -->
-<error ng-show="error"></error>

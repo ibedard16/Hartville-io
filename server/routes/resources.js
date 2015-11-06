@@ -41,7 +41,11 @@ router.get('/posts', function(req, res) {
             if (err) {
                 return res.send(err);
             } else {
-                return res.send(foundPost);
+                if (foundPost) {
+                    return res.send(foundPost);
+                } else {
+                    return res.status(404).notify('error','The post you requested was not found. This means it was either deleted or it never existed to begin with.');
+                }
             }
         });
         
