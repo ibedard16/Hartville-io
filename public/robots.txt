@@ -1,4 +1,3 @@
 User-Agent: *
 Disallow: 
 Allow: /
-Sitemap: http://hartville-io-ibedard16.c9.io/sitemap.txt

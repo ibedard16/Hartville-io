@@ -82,7 +82,14 @@ try {
         res.sendFile(__dirname + '/public/favicon.ico');
     });
     app.get("/robots.txt", function (req,res) {
-        res.sendFile(__dirname + '/public/robots.txt');
+        fs.readFile(__dirname + '/public/robots.txt', 'utf8', function (err, data) {
+            if (err) {
+                return res.send(err);
+            }
+            console.log(data);
+            data = data + "\rSitemap: " + config.APP_URL + "sitemap.txt";
+            res.set('content-type', 'text/plain').send(data);
+        });
     });
     
     app.use('/resources', resources);
