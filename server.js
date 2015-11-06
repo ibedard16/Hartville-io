@@ -8,6 +8,7 @@ var express     = require('express'),
     bodyParser  = require('body-parser'),
     mongoose    = require('mongoose'),
     OAuth       = require('./server/routes/OAuth'),
+    sitemap     = require('./server/routes/sitemap'),
     sass        = require('node-sass'),
     resources   = require('./server/routes/resources');
     
@@ -89,6 +90,8 @@ try {
     app.use('/auth', auth);
     
     app.use('/OAuth', OAuth);
+    
+    app.use('/sitemap.txt', sitemap);
 
 app.get("/google*", function (request, response) {
     var verifyUrl = request.url.substring(7);
