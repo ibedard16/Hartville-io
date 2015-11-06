@@ -1,10 +1,10 @@
 var express = require('express'),
     config = require('../config'),
     Post = require('../models/postSchema'),
+    User = require('../models/userSchema'),
     router = express.Router();
 
 router.get('*', function (req, res) {
-    console.log('hi');
     var mapString = "",
         baseUrl = config.APP_URL;
     
@@ -21,7 +21,15 @@ router.get('*', function (req, res) {
         for (var i = 0; i < posts.length; i++) {
             mapString = mapString + baseUrl + 'blog/post/' + posts[i].id + '\r';
         }
-        res.set('content-type', 'text/plain').send(mapString);
+        User.find({"permissions.canPost": true}, function (err, users) {
+            if (err) {
+                return res.send(err);
+            }
+            for (var i = 0; i < users.length; i++) {
+                mapString = mapString + baseUrl + 'blog/author/' + users[i]._id + '\r';
+            }
+            res.set('content-type', 'text/plain').send(mapString);
+        });
     });
 });
 
