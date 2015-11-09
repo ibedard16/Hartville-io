@@ -4,7 +4,6 @@ var express     = require('express'),
     path        = require('path'),
     http        = require('http'),
     auth        = require('./server/routes/auth'),
-    _           = require('lodash'),
     bodyParser  = require('body-parser'),
     mongoose    = require('mongoose'),
     OAuth       = require('./server/routes/OAuth'),
@@ -27,6 +26,8 @@ try {
     app.set('IP', process.env.IP || '127.0.0.1');
     
     app.use(bodyParser.json({limit: '3mb'}));
+
+    app.use(require('compression')());
     
     app.use(function (request, response, next) {
         response.header('Access-Control-Allow-Origin', '*');
@@ -63,7 +64,8 @@ try {
         
         var result = sass.renderSync({
             data: sassString,
-            includePaths: ['public/sass']
+            includePaths: ['public/sass'],
+            outputStyle: 'compressed'
         });
                 
         css = result.css.toString('utf8');

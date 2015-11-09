@@ -41,6 +41,7 @@ function getFilesInDirectory (directory, cb) {
 }
 
 function minifyJavascript () {
+    console.log("Javascript Being Minified");
     getFilesInDirectory('public/js', function (err, files) {
         if (err) {
             return console.log(err);
@@ -51,9 +52,10 @@ function minifyJavascript () {
             fileOut: 'public/app.min.js',
             callback: function(err, min){
                 if (err) {
-                    throw new Error ('error minifying files', err);
+                    console.log("Javascript Could not be Minified");
+                    throw new Error (err);
                 }
-                //console.log(min);
+                console.log("Javascript was Successfully Minified");
             }
         });
     });
