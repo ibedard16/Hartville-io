@@ -53,7 +53,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 	.when('/community', {
 		pageTitle: 'Community',
 		templateUrl: 'views/community.html',
-		controller: 'BlogController',
+		controller: 'BlogController'
 	})
 	.when('/profile', {
 		pageTitle: 'Your Profile',

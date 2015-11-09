@@ -10,7 +10,8 @@ var express     = require('express'),
     OAuth       = require('./server/routes/OAuth'),
     sitemap     = require('./server/routes/sitemap'),
     sass        = require('node-sass'),
-    resources   = require('./server/routes/resources');
+    resources   = require('./server/routes/resources'),
+    minifyJavascript = require('./server/helpers/minifyJavascript');
     
 try {
     var config = require('./server/config');
@@ -86,10 +87,13 @@ try {
             if (err) {
                 return res.send(err);
             }
-            console.log(data);
             data = data + "\rSitemap: " + config.APP_URL + "sitemap.txt";
             res.set('content-type', 'text/plain').send(data);
         });
+    });
+    
+    app.get("/app.min.js", function (req, res) {
+        res.sendFile(__dirname + '/public/app.min.js');
     });
     
     app.use('/resources', resources);
@@ -106,10 +110,11 @@ app.get("/google*", function (request, response) {
     response.sendFile(__dirname + '/server/verification/google' + verifyUrl);
 });
 
-app.get('*', function(request, response) {
-    response.sendFile(__dirname + '/public/index.html');
+app.get('*', function(req, res) {
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 http.createServer(app).listen(app.get('port'), app.get('IP'), function() {
     console.log('Server listening on port ' + app.get('port'));
+    minifyJavascript();
 });

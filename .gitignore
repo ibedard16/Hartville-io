@@ -7,4 +7,5 @@ commit command
 public/postFiles
 server/auth
 public/css/styles.css
+public/app.min.js
 sailsserver
