@@ -30,12 +30,12 @@ app.factory('Event', ['$resource', '$http', 'appConfig', function($resource, $ht
     	sort_by: 'date',
     	'user.id': appConfig.eventBrite.userId, 
     	token: appConfig.eventBrite.anon_token, 
-    	tracking_code: appConfig.eventBrite.tracking_code,
+    	tracking_code: appConfig.eventBrite.tracking_code
     }, {
     	'get': {
     		transformResponse: processEvent,
     		isArray: true,
-    		cache: true,
+    		cache: true
     	}
     });
     

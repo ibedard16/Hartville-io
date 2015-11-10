@@ -3,7 +3,7 @@ app.directive('postPreviewLg', ['User', function (User) {
 		restrict: 'E',
 		templateUrl: 'js/directives/previews/partials/postPreviewLg.html',
 		scope: {
-            post: '=post',
+            post: '=post'
         },
         link: function (scope) {
 			User.get({id:scope.post.authorId}, function (data) {

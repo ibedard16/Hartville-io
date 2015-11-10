@@ -9,8 +9,7 @@ var express     = require('express'),
     OAuth       = require('./server/routes/OAuth'),
     sitemap     = require('./server/routes/sitemap'),
     sass        = require('node-sass'),
-    resources   = require('./server/routes/resources'),
-    minifyJavascript = require('./server/helpers/minifyJavascript');
+    resources   = require('./server/routes/resources');
     
 try {
     var config = require('./server/config');
@@ -98,6 +97,10 @@ try {
         res.sendFile(__dirname + '/public/app.min.js');
     });
     
+    app.get("/vendorLiscenses.txt", function (req, res) {
+        res.sendFile(__dirname + '/public/vendorLiscenses.txt');
+    });
+    
     app.use('/resources', resources);
     
     app.use('/auth', auth);
@@ -118,5 +121,5 @@ app.get('*', function(req, res) {
 
 http.createServer(app).listen(app.get('port'), app.get('IP'), function() {
     console.log('Server listening on port ' + app.get('port'));
-    minifyJavascript();
+    require('./server/helpers/minifyJavascript')();
 });

@@ -15,6 +15,6 @@ app.directive('passwordValidate', function () {
             scope.$watch(attrs.passwordValidate, function () {
                 passwordValidate(element[0].value);
             });
-        },
+        }
     };
 });

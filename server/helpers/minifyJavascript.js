@@ -1,7 +1,25 @@
 var fs = require('fs');
 var compressor = require('node-minify');
+var config = require('../config');
 
 var baseDirectory = __dirname.slice(0,-15);
+
+function makeAppConfig (cb) {
+    fs.writeFile(baseDirectory + '/public/js/appConfig.js', 'app.constant("appConfig", ' + JSON.stringify(config.client_config) + ');', cb);
+}
+
+function getVendorFiles (cb) {
+    fs.readFile(baseDirectory + '/public/js/vendorFiles.txt', 'utf8', function (err, data) {
+        if (err) {
+            return cb(err);
+        }
+        data = data.split('\n');
+        for (var i = 0; i < data.length; i++) {
+            data[i] = 'public/vendor/' + data[i];
+        }
+        cb(null, data);
+    });
+}
 
 function getFilesInDirectory (directory, cb) {
     var returnedFiles = [];
@@ -42,21 +60,39 @@ function getFilesInDirectory (directory, cb) {
 
 function minifyJavascript () {
     console.log("Javascript Being Minified");
-    getFilesInDirectory('public/js', function (err, files) {
+    makeAppConfig(function (err) {
         if (err) {
-            return console.log(err);
+            console.log(err);
         }
-        new compressor.minify({
-            type: 'yui-js',
-            fileIn: files,
-            fileOut: 'public/app.min.js',
-            callback: function(err, min){
-                if (err) {
-                    console.log("Javascript Could not be Minified");
-                    throw new Error (err);
-                }
-                console.log("Javascript was Successfully Minified");
+        getVendorFiles(function (err, vendorFiles) {
+            if (err) {
+                console.log(err);
             }
+            getFilesInDirectory('public/js', function (err, files) {
+                if (err) {
+                    return console.log(err);
+                }
+                vendorFiles.push.apply(vendorFiles, files);
+                vendorFiles.push.apply(vendorFiles, []);
+                new compressor.minify({
+                    type: 'uglifyjs',
+                    fileIn: vendorFiles,
+                    fileOut: 'public/app.min.js',
+                    callback: function(err, min){
+                        if (err) {
+                            console.log("Javascript Could not be Minified");
+                            throw new Error (err);
+                        }
+                        min = '// Vendor Liscenses located @ ' + config.APP_URL + 'vendorLiscenses.txt\n\n' + min;
+                        fs.writeFile(baseDirectory + '/public/app.min.js', min, function (err) {
+                            if (err) {
+                                throw new Error (err);
+                            }
+                           console.log("Javascript was Successfully Minified"); 
+                        });
+                    }
+                });
+            });
         });
     });
 }

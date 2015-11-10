@@ -4,6 +4,6 @@ app.directive('userProfile', function () {
 		templateUrl: 'js/directives/previews/partials/userProfile.html',
 		scope: {
             author: '=author'
-        },
+        }
 	};
 });

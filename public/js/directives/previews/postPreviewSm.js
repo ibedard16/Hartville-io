@@ -4,7 +4,7 @@ app.directive('postPreviewSm', ['User', function (User) {
 		restrict: 'E',
 		templateUrl: 'js/directives/previews/partials/postPreviewSm.html',
 		scope: {
-            post: '=post',
+            post: '=post'
         },
         link: function (scope) {
 			User.get({id:scope.post.authorId}, function (data) {

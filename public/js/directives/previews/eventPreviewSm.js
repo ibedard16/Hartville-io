@@ -3,7 +3,7 @@ app.directive('eventPreviewSm', function () {
 		restrict: 'E',
 		templateUrl: 'js/directives/previews/partials/eventPreviewSm.html',
 		scope: {
-            event: '=event',
-        },
+            event: '=event'
+        }
 	};
 });

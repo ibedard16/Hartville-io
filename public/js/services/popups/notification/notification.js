@@ -15,6 +15,6 @@ app.factory('notification', function () {
         },
         info: function (body, title, options) {
             toastr.info(body, title, options);
-        },
+        }
     };
 });
