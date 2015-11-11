@@ -1,0 +1,5 @@
+vendor/font-awesome/css/font-awesome.min.css
+vendor/bootstrap/dist/css/bootstrap.min.css
+vendor/textAngular/dist/textAngular.css
+vendor/toastr/toastr.css
+vendor/prism/themes/prism.css

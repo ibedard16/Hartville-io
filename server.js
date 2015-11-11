@@ -9,6 +9,7 @@ var express     = require('express'),
     OAuth       = require('./server/routes/OAuth'),
     sitemap     = require('./server/routes/sitemap'),
     sass        = require('node-sass'),
+    lwip        = require('lwip'),
     resources   = require('./server/routes/resources');
     
 try {
@@ -73,17 +74,48 @@ try {
     renderSass();
     
     app.use('/css', function (req, res) {
-        res.set({'content-type': 'text/css'}).send(css);
+        res.set('Cache-Control', 'max-age=0').set({'content-type': 'text/css'}).send(css);
     });
     app.use('/images', express.static(path.join(__dirname + '/public/images')));
     app.use('/js', express.static(path.join(__dirname + '/public/js')));
     app.use('/vendor', express.static(path.join(__dirname + '/public/vendor')));
     app.use('/views', express.static(path.join(__dirname + '/public/views')));
     app.use('/postFiles', express.static(path.join(__dirname + '/public/postFiles')));
+    app.get('/userFiles/avatars/:file', function(req,res) {
+        var filetype = req.params.file.slice(-3);
+        if (filetype === 'peg') {
+            filetype === 'jpg';
+        }
+        if (req.query.size) {
+            req.query.size = Number(req.query.size);
+            
+            
+            lwip.open(__dirname + '/public/userFiles/avatars/' + req.params.file, function (err, image) {
+                if (err) {
+                    return res.send(err);
+                }
+                image.resize(req.query.size, function (err, image) {
+                    if (err) {
+                        return res.send(err);
+                    }
+                    image.toBuffer(filetype, function (err, buffer) {
+                        if (err) {
+                            res.send(err);
+                        }
+                        res.set({"content-type": "image/"+filetype}).send(buffer);
+                    });
+                });
+            });
+        } else {
+            res.sendFile(__dirname + '/public/userFiles/avatars/' + req.params.file);
+        }
+    });
+    app.use('/userFiles', express.static(path.join(__dirname + '/public/userFiles')));
     app.get("/favicon.ico", function (req,res) {
-        res.sendFile(__dirname + '/public/favicon.ico');
+        res.set('Cache-Control', 'max-age=0').sendFile(__dirname + '/public/favicon.ico');
     });
     app.get("/robots.txt", function (req,res) {
+        console.log("Someone or Something opened the robots.txt!");
         fs.readFile(__dirname + '/public/robots.txt', 'utf8', function (err, data) {
             if (err) {
                 return res.send(err);
@@ -94,7 +126,7 @@ try {
     });
     
     app.get("/app.min.js", function (req, res) {
-        res.sendFile(__dirname + '/public/app.min.js');
+        res.set('Cache-Control', 'max-age=0').sendFile(__dirname + '/public/app.min.js');
     });
     
     app.get("/vendorLiscenses.txt", function (req, res) {
@@ -116,7 +148,7 @@ app.get("/google*", function (request, response) {
 });
 
 app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+    res.set('Cache-Control', 'max-age=0').sendFile(__dirname + '/public/index.html');
 });
 
 http.createServer(app).listen(app.get('port'), app.get('IP'), function() {

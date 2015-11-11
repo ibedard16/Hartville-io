@@ -5,7 +5,8 @@ server/database/verifyCredentials.js
 server/config.js
 commit command
 public/postFiles
+public/userFiles/avatars
 server/auth
 public/css/styles.css
 public/app.min.js
-sailsserver
+public/js/appConfig.js

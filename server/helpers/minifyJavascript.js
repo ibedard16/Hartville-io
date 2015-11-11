@@ -73,7 +73,6 @@ function minifyJavascript () {
                     return console.log(err);
                 }
                 vendorFiles.push.apply(vendorFiles, files);
-                vendorFiles.push.apply(vendorFiles, []);
                 new compressor.minify({
                     type: 'uglifyjs',
                     fileIn: vendorFiles,

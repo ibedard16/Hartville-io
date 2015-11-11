@@ -166,7 +166,9 @@ router.post("/user", checkPermission(), function (req, res) {
     console.log(req.body);
     
     req.user.bio = req.body.user.bio;
-    req.user.avatar = req.body.user.avatar;
+    if (req.user.avatar !== req.body.user.avatar) {
+        res.notify('warning', 'At this time, users cannot update their profile photos. Sorry for the inconvenience, we are trying to fix this.');
+    }
     
     req.user.save(function (err) {
         if (err) {

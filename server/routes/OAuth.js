@@ -3,7 +3,57 @@ var externalRequest = require('request'),
     createSendToken = require('../helpers/createSendToken'),
     config = require('../config'),
     express = require("express"),
+    fs = require("fs"),
+    baseDirectory = __dirname.slice(0,-13),
     router = express.Router();
+
+const Imagemin = require('imagemin');
+
+function retreiveSaveAvatar (url, userId, cb) {
+    
+    externalRequest.head(url, function(err, res, body){
+        if (err) {
+            return cb(err);
+        }
+        
+        var fileExtension = '';
+        if (res.headers['content-type'].indexOf('image/') === 0) {
+            fileExtension = res.headers['content-type'].slice(6);
+        } else {
+            return cb({notification: {type: "error", body: "User's profile picture in unrecognized format. Please contact an administrator."}});
+        }
+        
+        var filename = 'userFiles/avatars/' + userId + '.' + fileExtension;
+        
+        externalRequest(url).pipe(fs.createWriteStream(baseDirectory + 'public/' + filename)).on('close', function (err) {
+            if (err) {
+                return cb(err);
+            }
+            var imageCompressor;
+            switch (fileExtension) {
+                case 'jpeg': 
+                    imageCompressor = 'jpegtran';
+                    break;
+                case 'png': 
+                    imageCompressor = 'optipng';
+                    break;
+                case 'gif':
+                    imageCompressor = 'gifsicle';
+                    break;
+            }
+            new Imagemin()
+                .src(baseDirectory + 'public/' + filename)
+                .dest(baseDirectory + 'public/userFiles/avatars')
+                .use(Imagemin[imageCompressor]())
+                .run(function (err, files) {
+                    if (err) {
+                        return cb(err);
+                    }
+                    return cb(null, filename);
+                });
+        });
+    });
+}
 
 router.post('/facebook', function (req, res) {
     var tokenUrl = 'https://graph.facebook.com/v2.4/oauth/access_token',
@@ -45,19 +95,23 @@ router.post('/facebook', function (req, res) {
                     return createSendToken(existingUser, res);
                     
                 } else {
-                    
                     var newUser = new User({
-                            contactEmail: profile.email, 
-                            facebookId: profile.id,
-                            displayName: profile.name,
-                            avatar: 'https://graph.facebook.com/' + profile.id + '/picture?width=80&height=80',
-                        });
-                    newUser.save(function (err) {
+                        contactEmail: profile.email, 
+                        facebookId: profile.id,
+                        displayName: profile.name
+                    });
+                    retreiveSaveAvatar('https://graph.facebook.com/' + profile.id + '/picture?width=80&height=80', newUser._id, function (err, filename) {
                         if (err) {
                             return res.send(err);
-                        } else {
-                            return createSendToken(newUser, res);
                         }
+                        newUser.avatar = filename;
+                        newUser.save(function (err) {
+                            if (err) {
+                                return res.send(err);
+                            } else {
+                                return createSendToken(newUser, res);
+                            }
+                        });
                     });
                 }
             });
@@ -112,16 +166,20 @@ router.post('/google', function (req, res) {
                     var newUser = new User({
                         googleId: profile.sub,
                         contactEmail: profile.email,
-                        displayName: profile.name,
-                        avatar: profile.picture
+                        displayName: profile.name
                     });
-                    
-                    newUser.save(function (err) {
+                    retreiveSaveAvatar(profile.picture, newUser._id, function (err, filename) {
                         if (err) {
                             return res.send(err);
-                        } else {
-                            createSendToken(newUser, res);
                         }
+                        newUser.avatar = filename;
+                        newUser.save(function (err) {
+                            if (err) {
+                                return res.send(err);
+                            } else {
+                                createSendToken(newUser, res);
+                            }
+                        });
                     });
                 }
             });
@@ -184,20 +242,25 @@ router.post('/github', function (req, res) {
                     
                     var newUser = new User({
                         githubId: profile.id,
-                        displayName: profile.login,
-                        avatar: profile.avatar_url
+                        displayName: profile.login
                     });
                     
                     if (profile.email) {
                         newUser.contactEmail = profile.email;
                     }
                     
-                    newUser.save(function (err) {
+                    retreiveSaveAvatar(profile.avatar_url, newUser._id, function (err, filename) {
                         if (err) {
                             return res.send(err);
-                        } else {
-                            createSendToken(newUser, res);
                         }
+                        newUser.avatar = filename;
+                        newUser.save(function (err) {
+                            if (err) {
+                                return res.send(err);
+                            } else {
+                                createSendToken(newUser, res);
+                            }
+                        });
                     });
                 }
             });
