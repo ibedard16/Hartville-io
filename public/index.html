@@ -34,8 +34,8 @@
         <header ng-cloak class="container-full-bg padded">
             <div class="container special">
               	<div class="jumbotron">
-                    <h1 ng-if='page_title'>{{page_title}}</h1>
-                    <p ng-if='page_subtitle'>{{page_subtitle}}</p>
+                    <h1 ng-bind="page_title"></h1>
+                    <p ng-bind="page_subtitle"></p>
               	</div>
             </div>
         </header>

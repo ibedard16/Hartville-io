@@ -127,20 +127,11 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 	
 }]);
 
-app.run(['$rootScope', 'appConfig', function($rootScope, appConfig) {
+app.run(['$rootScope', 'appConfig', 'updatePageTitle', function($rootScope, appConfig, updatePageTitle) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         var route = current.$$route;
-        
-        $rootScope.pageTitle = appConfig.app_name + ' | ' + route.pageTitle;
-        
-        if (appConfig.app_name === route.pageTitle) {
-        	$rootScope.pageTitle = appConfig.app_name;
-        }
-        
-        $rootScope.page_title = route.pageTitle;
+        updatePageTitle(route.pageTitle);
         $rootScope.page_subtitle = route.subtitle;
-        $rootScope.page_about = route.about;
-        
     });
     
     $rootScope.app_name = appConfig.app_name;

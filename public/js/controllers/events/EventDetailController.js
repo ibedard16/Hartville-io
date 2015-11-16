@@ -1,10 +1,9 @@
 /*global app*/
-/*global _*/
-app.controller('EventDetailController', ['$scope', '$routeParams', '$rootScope', 'Event', function($scope, $routeParams, $rootScope, Event){
+app.controller('EventDetailController', ['$scope', '$routeParams', 'Event', 'updatePageTitle', function($scope, $routeParams, Event, updatePageTitle){
 	
 	Event.get({id: $routeParams.id}, function (event) {
 		$scope.event = event[0];
-		$rootScope.page_title = $scope.event.name.text;
+		updatePageTitle($scope.event.name.text);
 	});
 	
 }]);

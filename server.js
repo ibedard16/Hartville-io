@@ -29,18 +29,15 @@ try {
 
     app.use(require('compression')());
     
-    app.use(function (request, response, next) {
-        response.header('Access-Control-Allow-Origin', '*');
-        response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        response.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    app.use(function (request, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         
-        next();
-    });
-    
-    app.use('*', function (req,res,next) {
         res.notify = function (messageType, messageBody, messageTitle) {
             res.send({notification: {type:messageType,body:messageBody,title:messageTitle}});
         };
+        
         next();
     });
     
@@ -118,9 +115,10 @@ try {
         console.log("Someone or Something opened the robots.txt!");
         fs.readFile(__dirname + '/public/robots.txt', 'utf8', function (err, data) {
             if (err) {
+                console.log(err);
                 return res.send(err);
             }
-            data = data + "\rSitemap: " + config.APP_URL + "sitemap.txt";
+            data = data + "\nSitemap: " + config.APP_URL + "sitemap.txt";
             res.set('content-type', 'text/plain').send(data);
         });
     });
