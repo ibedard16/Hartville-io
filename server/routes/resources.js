@@ -5,6 +5,7 @@ var express         = require('express'),
     User            = require('../models/userSchema'),
     multer          = require('multer'),
     config          = require('../config'),
+    fs              = require('fs'),
     storage         = multer.diskStorage({
         destination: function (request, file, cb) {
             /*if (verify.credentials(request.body.username,request.body.password)) {
@@ -25,7 +26,8 @@ var express         = require('express'),
         }
     }),
     upload      = multer({storage: storage}),
-    router          = express.Router();
+    router      = express.Router(),
+    baseDirectory = __dirname.slice(0, -14);
     
 router.get('/posts', function(req, res) {
     try {
@@ -112,27 +114,53 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
         
         var postId = id.id + 1;
         
-        var post = new Post({
-            id: postId,
-            title: req.body.title,
-            authorName: req.user.displayName,
-            authorId: req.user._id,
-            avatar: req.user.avatar,
-            content: req.body.content,
-            categories: req.body.categories,
-            imageHead: req.body.imageHead
-        });
+        function savePost () {
         
-        post.save(function(err, model) {
-            if (err) {
-                console.log(err);
-                res.status(500).send(err);
-            }
-            else {
-                console.log("A user has added another post to the database.");
-                res.send({success: true, redirect: "/blog/post/"+post.id});
-            }
-        });
+            var post = new Post({
+                id: postId,
+                title: req.body.title,
+                authorName: req.user.displayName,
+                authorId: req.user._id,
+                avatar: req.user.avatar,
+                content: req.body.content,
+                categories: req.body.categories,
+                imageHead: req.body.imageHead
+            });
+            
+            post.save(function(err, model) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).send(err);
+                }
+                else {
+                    console.log("A user has added another post to the database.");
+                    res.send({success: true, redirect: "/blog/post/"+post.id});
+                }
+            });
+        }
+        
+        if (req.body.imageHead) {
+            var regex = /^data:.+\/(.+);base64,(.*)$/,
+                matches = req.body.imageHead.match(regex),
+                ext = matches[1],
+                data = matches[2],
+                buffer = new Buffer(data, 'base64');
+            fs.mkdir(baseDirectory + '/public/postFiles/' + postId, function (err) {
+                if (err) {
+                    return res.notify('error', err, 'An Error Happened');
+                }
+                fs.writeFile(baseDirectory + '/public/postFiles/' + postId + '/headImage.' + ext, buffer, function (err) {
+                    if (err) {
+                        return res.notify('error', err, 'An Error Happened');
+                    }
+                    req.body.imageHead = '/postFiles/' + postId + '/headImage.' + ext;
+                    savePost();
+                });
+            });
+        } else {
+            savePost();
+        }
+    
     });
 });
 
