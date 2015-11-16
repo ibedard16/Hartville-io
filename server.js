@@ -86,7 +86,6 @@ try {
         if (req.query.size) {
             req.query.size = Number(req.query.size);
             
-            
             lwip.open(__dirname + '/public/userFiles/avatars/' + req.params.file, function (err, image) {
                 if (err) {
                     return res.send(err);
@@ -149,7 +148,32 @@ app.get('*', function(req, res) {
     res.set('Cache-Control', 'max-age=0').sendFile(__dirname + '/public/index.html');
 });
 
+function checkFilesExist (files) {
+    
+    fs.stat(files[0], function (err, stats) {
+        if (err) {
+            if (err.code === 'ENOENT') {
+                fs.mkdir(files[0], function (err) {
+                    if (err) {
+                        throw new Error (err);
+                    }
+                    if (files.length !== 1) {
+                        checkFilesExist(files.slice(1));
+                    }
+                });
+            } else {
+                throw new Error(err);
+            }
+        } else {
+            if (files.length !== 1) {
+                checkFilesExist(files.slice(1));
+            }
+        }   
+    });
+}
+
 http.createServer(app).listen(app.get('port'), app.get('IP'), function() {
+    checkFilesExist([__dirname + '/public/postFiles', __dirname + '/public/userFiles', __dirname + '/public/userFiles/avatars']);
     console.log('Server listening on port ' + app.get('port'));
     require('./server/helpers/minifyJavascript')();
 });
