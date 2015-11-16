@@ -10,10 +10,11 @@ table {
     }
     & tbody{
         >tr{
-            padding: 50px;
             > td {
             font-size: 1.1em;
             }  
         }
     }
+    margin: 5px;
+    overflow: scroll;
 }

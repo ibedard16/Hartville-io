@@ -11,7 +11,7 @@ app.controller('PostController', ['$scope', '$routeParams', '$filter', 'Post', '
 			}
 		} else {
 			$scope.post = data;
-			updatePageTitle($scope.post.title);
+			updatePageTitle($scope.post.title, 'Blog');
 			User.get({id:$scope.post.authorId}, function (data) {
     			$scope.author = data;
     		});
