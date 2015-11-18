@@ -5,12 +5,23 @@
 	</ol>
 	<div class="row">
 	    <div class="col-md-12">
+	        <div class="dialog brand text-center">
+	            <div class="title"><p>About the Spotlight</p></div>
+	            <div class="content">
+    	            <p>This is the Community Spotlight page, where we showcase things around Hartville that we think are cool.<br />
+    	            Got something cool you want us to showcase? Contact us!</p>
+	            </div>
+	        </div>
             <pagination class="centered" total-items="postCount" rotate="true" max-size="maxSize" ng-model="currentPage" boundary-links="true" direction-links="false" items-per-page="pageSize" ></pagination>
         </div>
 	</div>
     <div class="row">
         <div class="col-md-12">
             <post-preview-lg ng-repeat="post in posts" post="post"></post-preview-lg>
+            <div ng-show="posts.length === 0">
+                <h1>Nothing to Showcase</h1>
+                <p>Oh no! There doesn't appear to be anything cool around town for us to showcase!</p>
+            </div>
         </div> <!--end row-->
     </div> <!--end container -->
 </div>

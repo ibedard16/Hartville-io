@@ -112,7 +112,7 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
     Post.findOne().sort('-id').exec(function (err, id) {
         if (err) return res.status(500).send(err);
         
-        var postId = id.id + 1;
+        var postId = id ? id.id + 1 : 0;
         
         function savePost () {
         

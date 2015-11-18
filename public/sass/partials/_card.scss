@@ -30,16 +30,23 @@
       text-align: center;
       font-size: 1.3em;
       font-weight: $typeLight;
-      padding: 15px;
+      padding: 0;
       color: $colorBase;
       background-color: $colorAppbar;
       margin: 0px;
       border-radius: 3px 3px 0px 0px;
       > a {
-        color: $colorWhite;
+        border-radius: 3px 3px 0px 0px;
+        background-color: $colorAppbar;
+        color: $colorBackgroundDark;
         &:hover {
-          color: $colorBrandLight;
+          background-color: $colorStatusbar;
         }
+      }
+      > * {
+        display: block;
+        padding: 15px;
+        margin: 0;
       }
       &.user {
         text-align: left;
@@ -48,22 +55,32 @@
   & .button {
       width: 90px;
       margin-left: 10px;
+      color: $colorWhite;
     }
 }
 
 
 //Card Specific Colors
 .brand {
-  > .title {
+  & .title {
     background-color: $colorBrand;
     color: $colorWhite;
+    > a {
+      color: $colorWhite;
+    	padding: 15px;
+    	background-color: $colorBrand;
+    	&:hover {
+    	  color: $colorWhite !important;
+	      background-color: $colorBrandLight;
+    	}
+    }
   }
-  > .content{
+  & .content{
     & blockquote {
       border-left: 5px solid $colorBrand;
     }
   }
-  > .post-info {
+  & .post-info {
     > a {
       color: $colorBrand;
     }
@@ -71,19 +88,23 @@
   & .post-info-button {
       color: $colorBrand;
     }
-  > .button {
-    color: $colorBrand;
+  & .button {
+    color: $colorWhite;
   }
 }
 .accent {
   > .title {
     background-color: $colorAccent;
     color: $colorWhite;
-    > a{
-    &:hover {
-      color: $colorAccentLight;
+    > a {
+      color: $colorWhite;
+    	padding: 15px;
+    	background-color: $colorAccent;
+    	&:hover {
+    	  color: $colorWhite !important;
+	      background-color: $colorAccentDark;
+    	}
     }
-  }
   }
   > .content{
     & blockquote {
@@ -94,7 +115,7 @@
       color: $colorAccent;
     }
   > .button {
-    color: $colorAccent;
+    color: $colorWhite;
   }
 }
 .info {
@@ -201,4 +222,5 @@
 }
 
 article img {
-  max-width: 95%}
+  max-width: 95%
+}
