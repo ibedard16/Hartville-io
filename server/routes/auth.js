@@ -4,6 +4,7 @@ var User = require('../models/userSchema'),
     config = require('../config'),
     express = require("express"),
     gravatar = require("../helpers/gravatar"),
+    retreiveAndSaveAvatar = require("../helpers/retreiveAndSaveAvatar"),
     moment = require('moment'),
     router = express.Router();
     
@@ -55,26 +56,32 @@ router.post("/signup", function (req, res) {
         password = req.body.password;
         
     function saveUser () {
-        var avatar = gravatar.getAvatarByEmail(email);
-        
         var newUser = new User({
-            avatar: avatar,
             displayName: name,
             loginEmail: email,
             contactEmail: email,
             password: password,
             active: false,
             activateBy: moment().add(5, 'days').toDate()
-        });
-        
-        newUser.save(function (err) {
+        }),
+            avatar = gravatar.getAvatarByEmail(email);
+            
+        retreiveAndSaveAvatar(avatar, newUser._id, function (err, filename) {
             if (err) {
-                console.log(err);
-                return res.status(500).notify('error', err);
-            } else {
-                emailVerification.send(email);
-                res.notify('success', 'You have successfully signed up. To finish the process, please check your email to validate your account.', 'Success');
+                return res.status(500).send(err);
             }
+            
+            newUser.avatar = filename;
+            
+            newUser.save(function (err) {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).notify('error', err);
+                } else {
+                    emailVerification.send(email);
+                    res.notify('success', 'You have successfully signed up. To finish the process, please check your email to validate your account.', 'Success');
+                }
+            });
         });
     }
     
