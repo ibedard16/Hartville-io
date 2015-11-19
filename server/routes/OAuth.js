@@ -3,6 +3,7 @@ var externalRequest = require('request'),
     createSendToken = require('../helpers/createSendToken'),
     config = require('../config'),
     express = require("express"),
+    checkPermission = require('../middleware/checkPermission'),
     fs = require("fs"),
     baseDirectory = __dirname.slice(0,-13),
     router = express.Router();
@@ -55,7 +56,7 @@ function retreiveSaveAvatar (url, userId, cb) {
     });
 }
 
-router.post('/facebook', function (req, res) {
+function getFacebookProfile (req, cb) {
     var tokenUrl = 'https://graph.facebook.com/v2.4/oauth/access_token',
         apiUrl = 'https://graph.facebook.com/v2.4/me',
         tokenParams = {
@@ -67,7 +68,7 @@ router.post('/facebook', function (req, res) {
     
     externalRequest.post(tokenUrl, {qs: tokenParams}, function (err, response, accessToken) {
         
-        if (err) return res.send(err);
+        if (err) return cb(err);
         
         accessToken = JSON.parse(accessToken);
         
@@ -80,46 +81,18 @@ router.post('/facebook', function (req, res) {
             
             profile = JSON.parse(profile);
             
-            if (err) return res.send(err);
+            if (err) return cb(err);
             
             if (profile.error) {
-                return res.status(500).send(profile.error);
+                return cb(profile.error);
             }
             
-            User.getUser('facebookId', profile.id, function (err, existingUser) {
-                
-                if (err) return res.send(err);
-                
-                if (existingUser) {
-                    
-                    return createSendToken(existingUser, res);
-                    
-                } else {
-                    var newUser = new User({
-                        contactEmail: profile.email, 
-                        facebookId: profile.id,
-                        displayName: profile.name
-                    });
-                    retreiveSaveAvatar('https://graph.facebook.com/' + profile.id + '/picture?width=80&height=80', newUser._id, function (err, filename) {
-                        if (err) {
-                            return res.send(err);
-                        }
-                        newUser.avatar = filename;
-                        newUser.save(function (err) {
-                            if (err) {
-                                return res.send(err);
-                            } else {
-                                return createSendToken(newUser, res);
-                            }
-                        });
-                    });
-                }
-            });
+            cb(null, profile);
         });
     });
-});
+}
 
-router.post('/google', function (req, res) {
+function getGoogleProfile (req, cb) {
     var authUrl = 'https://accounts.google.com/o/oauth2/token',
         apiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect',
         params = {
@@ -135,7 +108,7 @@ router.post('/google', function (req, res) {
         form: params
     }, function (err, response, token) {
         
-        if (err) { return res.send(err);}
+        if (err) { return cb(err);}
         
         var accessToken = token.access_token,
             headers = {
@@ -146,48 +119,19 @@ router.post('/google', function (req, res) {
             json: true
         }, function (err, response, profile) {
             
-            if (err) {return res.send(err);}
+            if (err) {return cb(err);}
             
             if (profile.error) {
                 console.log(profile.error);
-                return res.status(500).send('An Error Happened!!!');
+                return cb(profile.error);
             }
             
-            User.getUser('googleId', profile.sub, function (err, foundUser) {
-                
-                if (err) {return res.send(err);}
-                
-                if (foundUser) {
-                    
-                    return createSendToken(foundUser, res);
-                    
-                } else {
-                    
-                    var newUser = new User({
-                        googleId: profile.sub,
-                        contactEmail: profile.email,
-                        displayName: profile.name
-                    });
-                    retreiveSaveAvatar(profile.picture, newUser._id, function (err, filename) {
-                        if (err) {
-                            return res.send(err);
-                        }
-                        newUser.avatar = filename;
-                        newUser.save(function (err) {
-                            if (err) {
-                                return res.send(err);
-                            } else {
-                                createSendToken(newUser, res);
-                            }
-                        });
-                    });
-                }
-            });
+            cb (null, profile);
         });
     });
-});
+}
 
-router.post('/github', function (req, res) {
+function getGithubProfile (req, cb) {
     var authUrl = 'https://github.com/login/oauth/access_token',
         apiUrl = 'https://api.github.com/user',
         params = {
@@ -207,7 +151,9 @@ router.post('/github', function (req, res) {
         }
     }, function (err, response, token) {
         
-        if (err) { return res.send(err);}
+        if (err) { return cb(err);}
+        
+        console.log('github token', token);
         
         var accessToken = JSON.parse(token).access_token;
         
@@ -221,51 +167,225 @@ router.post('/github', function (req, res) {
             }
         }, function (err, response, profile) {
             
-            if (err) {return res.send(err);}
+            if (err) {return cb(err);}
             
             profile = JSON.parse(profile);
             
             if (profile.error) {
                 console.log(profile.error);
-                return res.status(500).send('An Error Happened!!!');
+                return cb(err);
             }
             
-            User.getUser('githubId', profile.id, function (err, foundUser) {
-                
-                if (err) {return res.send(err);}
-                
-                if (foundUser) {
-                    
-                    return createSendToken(foundUser, res);
-                    
-                } else {
-                    
-                    var newUser = new User({
-                        githubId: profile.id,
-                        displayName: profile.login
-                    });
-                    
-                    if (profile.email) {
-                        newUser.contactEmail = profile.email;
-                    }
-                    
-                    retreiveSaveAvatar(profile.avatar_url, newUser._id, function (err, filename) {
-                        if (err) {
-                            return res.send(err);
-                        }
-                        newUser.avatar = filename;
-                        newUser.save(function (err) {
-                            if (err) {
-                                return res.send(err);
-                            } else {
-                                createSendToken(newUser, res);
-                            }
-                        });
-                    });
-                }
-            });
+            cb(null, profile);
         });
     });
+}
+
+router.post('/facebook', function (req, res) {
+    getFacebookProfile(req, function (err, profile) {
+        if (err) return res.status(500).send(err);
+        
+        User.getUser('facebookId', profile.id, function (err, existingUser) {
+            
+            if (err) return res.send(err);
+            
+            if (existingUser) {
+                
+                return createSendToken(existingUser, res);
+                
+            } else {
+                var newUser = new User({
+                    contactEmail: profile.email, 
+                    facebookId: profile.id,
+                    displayName: profile.name
+                });
+                retreiveSaveAvatar('https://graph.facebook.com/' + profile.id + '/picture?width=80&height=80', newUser._id, function (err, filename) {
+                    if (err) {
+                        return res.send(err);
+                    }
+                    newUser.avatar = filename;
+                    newUser.save(function (err) {
+                        if (err) {
+                            return res.send(err);
+                        } else {
+                            return createSendToken(newUser, res);
+                        }
+                    });
+                });
+            }
+        });
+    });
+});
+
+router.post('/google', function (req, res) {
+    getGoogleProfile(req, function (err, profile) {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        
+        User.getUser('googleId', profile.sub, function (err, foundUser) {
+            
+            if (err) {return res.status(500).send(err);}
+            
+            if (foundUser) {
+                
+                return createSendToken(foundUser, res);
+                
+            } else {
+                
+                var newUser = new User({
+                    googleId: profile.sub,
+                    contactEmail: profile.email,
+                    displayName: profile.name
+                });
+                retreiveSaveAvatar(profile.picture, newUser._id, function (err, filename) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    newUser.avatar = filename;
+                    newUser.save(function (err) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else {
+                            createSendToken(newUser, res);
+                        }
+                    });
+                });
+            }
+        });
+    });
+});
+
+router.post('/github', function (req, res) {
+    getGithubProfile(req, function (err, profile) {
+        if (err) {return res.status(500).send(err)}
+        
+        User.getUser('githubId', profile.id, function (err, foundUser) {
+            
+            if (err) {return res.status(500).send(err);}
+            
+            if (foundUser) {
+                
+                return createSendToken(foundUser, res);
+                
+            } else {
+                
+                var newUser = new User({
+                    githubId: profile.id,
+                    displayName: profile.login
+                });
+                
+                if (profile.email) {
+                    newUser.contactEmail = profile.email;
+                }
+                
+                retreiveSaveAvatar(profile.avatar_url, newUser._id, function (err, filename) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    newUser.avatar = filename;
+                    newUser.save(function (err) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        } else {
+                            createSendToken(newUser, res);
+                        }
+                    });
+                });
+            }
+        });
+    });
+});
+
+router.post('/binder/:provider', checkPermission('authenticated'), function (req, res) {
+    switch (req.params.provider) {
+        case 'google':
+            getGoogleProfile(req, function (err, profile) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                    
+                User.getUser('googleId', profile.sub, function (err, foundUser) {
+                    
+                    if (err) {return res.status(500).send(err);}
+                    
+                    if (foundUser) {
+                        
+                        return res.notify('error', 'That account has already been bound to a different user.');
+                        
+                    } else {
+                        
+                        req.user.googleId = profile.sub;
+                        
+                        req.user.save(function (err) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            } else {
+                                return res.notify('success', 'Account bound successfully');
+                            }
+                        });
+                    }
+                });
+            });
+            break;
+        case 'facebook':
+            getFacebookProfile(req, function (err, profile) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                    
+                User.getUser('facebookId', profile.id, function (err, foundUser) {
+                    
+                    if (err) {return res.status(500).send(err);}
+                    
+                    if (foundUser) {
+                        
+                        return res.notify('error', 'That account has already been bound to a different user.');
+                        
+                    } else {
+                        
+                        req.user.facebookId = profile.id;
+                        
+                        req.user.save(function (err) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            } else {
+                                return res.notify('success', 'Account bound successfully');
+                            }
+                        });
+                    }
+                });
+            });
+            break;
+        case 'github':
+            getGithubProfile(req, function (err, profile) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                User.getUser('githubId', profile.id, function (err, foundUser) {
+                    
+                    if (err) {return res.status(500).send(err);}
+                    
+                    if (foundUser) {
+                        return res.notify('error', 'That account has already been bound to a different user.');
+                    } else {
+                        
+                        req.user.githubId = profile.id;
+                        
+                        req.user.save(function (err) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            } else {
+                                return res.notify('success', 'Account bound successfully');
+                            }
+                        });
+                    }
+                });
+            });
+            break;
+        default:
+            res.notify('error', 'Provider not recognized.');
+    }
 });
 
 router.post('*', function(req, res) {

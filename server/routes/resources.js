@@ -168,12 +168,12 @@ router.get("/client_config", function (req, res) {
     res.send('app.constant("appConfig", ' + JSON.stringify(config.client_config) + ');');
 });
 
-router.get("/user", function (req, res) {
+router.get("/user", checkPermission(), function (req, res) {
     User.getUser('_id', req.query.id, function (err, user) {
         if (err) return res.send(err);
         
         if (!user) {
-            return res.send({
+            return res.status(404).send({
                 displayName: "User not found.",
                 bio: "This user was not found. We're not completely sure they ever existed."
             });
@@ -184,12 +184,18 @@ router.get("/user", function (req, res) {
             displayName: user.displayName,
             bio: user.bio
         };
+            
+        if (req.user) {
+            sentUser['googleBound'] = !!req.user.googleId;
+            sentUser['githubBound'] = !!req.user.githubId;
+            sentUser['facebookBound'] = !!req.user.facebookId;
+        }
         
         res.send(sentUser);
     });
 });
 
-router.post("/user", checkPermission(), function (req, res) {
+router.post("/user", checkPermission('authenticated'), function (req, res) {
     console.log(req.user);
     console.log(req.body);
     

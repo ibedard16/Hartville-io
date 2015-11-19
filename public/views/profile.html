@@ -28,6 +28,39 @@
 				</div>
 			</div>
 			
+			<!--Account Binding-->
+			<div class="col-md-12">
+				<h4>Bind Accounts</h4>
+				<p>Binding your other accounts will allow you to login to here through those accounts.</p>
+				<div class="form-group">
+					<button type="submit" class="button brand accent" ng-click="authenticate('googlebinder')" ng-disabled="(user.googleBound)" ng-class="{disabled: user.googleBound==true}">
+                        <div class="center">Bind Google</div>
+                        <paper-ripple fit></paper-ripple>
+                    </button>
+                    <div ng-show="user.googleBound" >
+                    	You have already bound this account to google your Google account.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="button brand" ng-click="authenticate('facebookbinder')" ng-disabled="(user.facebookBound)" ng-class="{disabled: user.facebookBound==true}">
+                        <div class="center">Bind Facebook</div>
+                        <paper-ripple fit></paper-ripple>
+                    </button>
+                    <div ng-show="user.facebookBound" >
+                    	You have already bound this account to your Facebook account.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="button brand" style="background-color:#000000" ng-click="authenticate('githubbinder')" ng-disabled="(user.githubBound)" ng-class="{disabled: user.githubBound==true}">
+                        <div class="center">Bind Github</div>
+                        <paper-ripple fit></paper-ripple>
+                    </button>
+                    
+                    <div ng-show="user.githubBound" >
+                    	You have already bound this account to your GitHub account.
+                    </div>
+                </div>
+			</div>
 			
 			<!--Submit/Reset-->
 			<div class="row">

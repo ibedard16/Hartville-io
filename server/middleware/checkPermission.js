@@ -5,7 +5,12 @@ var jwt     = require('jsonwebtoken'),
 module.exports = function (permission) {
     var returnedMiddleware = function (req, res, next) {
         if (!req.headers.authorization) {
-            return res.status(401).notify('warning', 'You must sign in first.', 'Not Signed In');
+            if (permission) {
+                return res.status(401).notify('warning', 'You must sign in first.', 'Not Signed In');
+            } else {
+                req.user = null;
+                return next();
+            }
         }
         
         var token = req.headers.authorization.split(' ')[1];
@@ -38,7 +43,7 @@ module.exports = function (permission) {
                     }
                 }
                 
-                if (!permission) {
+                if (!permission || permission === "authenticated") {
                     req.user = foundUser;
                 
                     return next();

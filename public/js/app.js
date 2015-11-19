@@ -109,7 +109,16 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', '$authProvid
 		
 		provider.redirectUri = window.location.origin + '/auth' + providerName;
 		
+		provider.url = 'OAuth/' + OAuth_providers[providerName].url;
+		console.log(provider.url);
+		
 		$authProvider[providerName](provider);
+		
+		provider.url = 'OAuth/binder/' + OAuth_providers[providerName].url.slice(6);
+		console.log(provider.url);
+		provider.name = providerName + 'binder';
+		
+		$authProvider.oauth2(provider);
 	}
 	
 	$provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
