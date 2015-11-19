@@ -4,57 +4,8 @@ var externalRequest = require('request'),
     config = require('../config'),
     express = require("express"),
     checkPermission = require('../middleware/checkPermission'),
-    fs = require("fs"),
-    baseDirectory = __dirname.slice(0,-13),
+    retreiveAndSaveAvatar = require('../helpers/retreiveAndSaveAvatar'),
     router = express.Router();
-
-const Imagemin = require('imagemin');
-
-function retreiveSaveAvatar (url, userId, cb) {
-    
-    externalRequest.head(url, function(err, res, body){
-        if (err) {
-            return cb(err);
-        }
-        
-        var fileExtension = '';
-        if (res.headers['content-type'].indexOf('image/') === 0) {
-            fileExtension = res.headers['content-type'].slice(6);
-        } else {
-            return cb({notification: {type: "error", body: "User's profile picture in unrecognized format. Please contact an administrator."}});
-        }
-        
-        var filename = 'userFiles/avatars/' + userId + '.' + fileExtension;
-        
-        externalRequest(url).pipe(fs.createWriteStream(baseDirectory + 'public/' + filename)).on('close', function (err) {
-            if (err) {
-                return cb(err);
-            }
-            var imageCompressor;
-            switch (fileExtension) {
-                case 'jpeg': 
-                    imageCompressor = 'jpegtran';
-                    break;
-                case 'png': 
-                    imageCompressor = 'optipng';
-                    break;
-                case 'gif':
-                    imageCompressor = 'gifsicle';
-                    break;
-            }
-            new Imagemin()
-                .src(baseDirectory + 'public/' + filename)
-                .dest(baseDirectory + 'public/userFiles/avatars')
-                .use(Imagemin[imageCompressor]())
-                .run(function (err, files) {
-                    if (err) {
-                        return cb(err);
-                    }
-                    return cb(null, filename);
-                });
-        });
-    });
-}
 
 function getFacebookProfile (req, cb) {
     var tokenUrl = 'https://graph.facebook.com/v2.4/oauth/access_token',
@@ -199,7 +150,7 @@ router.post('/facebook', function (req, res) {
                     facebookId: profile.id,
                     displayName: profile.name
                 });
-                retreiveSaveAvatar('https://graph.facebook.com/' + profile.id + '/picture?width=80&height=80', newUser._id, function (err, filename) {
+                retreiveAndSaveAvatar('https://graph.facebook.com/' + profile.id + '/picture?width=80&height=80', newUser._id, function (err, filename) {
                     if (err) {
                         return res.send(err);
                     }
@@ -238,7 +189,7 @@ router.post('/google', function (req, res) {
                     contactEmail: profile.email,
                     displayName: profile.name
                 });
-                retreiveSaveAvatar(profile.picture, newUser._id, function (err, filename) {
+                retreiveAndSaveAvatar(profile.picture, newUser._id, function (err, filename) {
                     if (err) {
                         return res.status(500).send(err);
                     }
@@ -279,7 +230,7 @@ router.post('/github', function (req, res) {
                     newUser.contactEmail = profile.email;
                 }
                 
-                retreiveSaveAvatar(profile.avatar_url, newUser._id, function (err, filename) {
+                retreiveAndSaveAvatar(profile.avatar_url, newUser._id, function (err, filename) {
                     if (err) {
                         return res.status(500).send(err);
                     }
