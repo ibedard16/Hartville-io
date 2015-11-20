@@ -1,90 +1,123 @@
-<div class="container container-form">
-    <form name="profileEdit">
-			
-		<div class="col-md-12">
-			<div class="page-header">
-				<h3>{{user.displayName}}</h3>
+<div class="container container-form padded">
+	<ol class="breadcrumb">
+		<li><a href="/">Home</a></li>
+		<li><a href="/blog/">Profile</a></li>
+	</ol>
+	<form name="profileEdit">
+		<div class="row">
+			<!--Avatar-->
+			<div class="col-sm-4">
+				<div class="dialog brand">
+					<div class="title"><p>Change Your Avatar</p></div>
+					<div class="content">
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="dialog brand">
+								    <div class="title"><p>Live</p></div>
+									<img ng-src="{{user.avatar}}"/>
+								</div>
+							</div>
+							<div class="col-xs-6">
+							    <div class="dialog " ng-class="{accent: !!user.newAvatar, brand: !user.newAvatar, disabled: !user.newAvatar}">
+								    <div class="title"><p>New</p></div>
+									<img ng-show="!!user.newAvatar" ng-src="{{user.newAvatar}}"/>
+									<img ng-hide="!!user.newAvatar" ng-src="{{user.avatar}}"/>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" ng-disabled="formDisabled" onchange="angular.element(this).scope().bindImage(this.files[0])">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Account Binding-->
+			<div class="col-sm-8">
+				<div class="dialog brand">
+					<div class="title"><p>Account Binding</p></div>
+					<div class="content">
+						<p class="text-centered">Binding this account to these OAuth2 providers will give you another way to login.</p>
+						<hr />
+						<div class="row">
+							<div class="col-sm-4 col-xs-12">
+								<button  class="button accent centered" ng-click="authenticate('googlebinder')" ng-disabled="(user.googleBound)" ng-class="{disabled: user.googleBound==true}">
+									<div class="center">Google</div>
+									<paper-ripple fit></paper-ripple>
+								</button>
+								<div ng-show="user.googleBound" class="text-centered">
+									This account is already bound to your Google account.
+								</div>
+								<button  ng-show="user.githubBound" class="button accent centered" ng-click="unbind('google')">
+									<div class="center">Unbind</div>
+									<paper-ripple fit></paper-ripple>
+								</button>
+								<hr class="visible-xs-block" />
+							</div>
+							<div class="col-sm-4 col-xs-12">
+								<button  class="button brand centered" ng-click="authenticate('facebookbinder')" ng-disabled="(user.facebookBound)" ng-class="{disabled: user.facebookBound==true}">
+									<div>Facebook</div>
+									<paper-ripple fit></paper-ripple>
+								</button>
+								<div ng-show="user.facebookBound" class="text-centered">
+									This account is already bound to your Facebook account.
+								</div>
+								<button  ng-show="user.githubBound" class="button brand centered" ng-click="unbind('facebook')">
+									<div class="center">Unbind</div>
+									<paper-ripple fit></paper-ripple>
+								</button>
+								<hr class="visible-xs-block" />
+							</div>
+							<div class="col-sm-4 col-xs-12">
+								<button class="button brand centered" style="background-color:#000000" ng-click="authenticate('githubbinder')" ng-disabled="(user.githubBound)" ng-class="{disabled: user.githubBound==true}">
+									<div class="center">Github</div>
+									<paper-ripple fit></paper-ripple>
+								</button>
+								<div ng-show="user.githubBound" class="text-centered">
+									This account is already bound to your GitHub account.
+								</div>
+								<button ng-show="user.githubBound" class="button brand centered" style="background-color:#000000" ng-click="unbind('github')">
+									<div class="center">Unbind</div>
+									<paper-ripple fit></paper-ripple>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-			
-			<!--Avatar-->
-			<div class="col-md-12">
-				<div class="col-md-1" style="margin:5px">
-				    <h4>Avatar</h4>
-					<img ng-src="{{user.avatar}}" style="padding:0;max-width:100px"/>
-				</div>
-				<div class="col-md-1" style="margin:5px" ng-show="!!user.newAvatar">
-				    <h4>New Avatar</h4>
-					<img ng-src="{{user.newAvatar}}" style="padding:0;max-width:100px"/>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="dialog brand">
+					<div class="title"><p>Edit Your Bio</p></div>
+					<div class="content">
+						<text-angular ng-model="user.bio" required name="bio" ta-disabled="formDisabled"></text-angular>
+					</div>
 				</div>
 			</div>
-			
-			<div class="col-md-12">
-				<div class="form-group">
-					<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" ng-disabled="formDisabled" onchange="angular.element(this).scope().bindImage(this.files[0])">
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+				<div class="dialog brand">
+					<div class="title"><p>Submit</p></div>
+					<div class="content">
+						<div class="centered" style="margin:0">
+							<!--Submit-->
+							<button type="submit" style="margin:0" ng-click="submit()" class="button raised success" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
+								<div class="center" fit>SUBMIT</div>
+								<paper-ripple fit></paper-ripple>
+							</button>
+							
+							<!--Cancel-->
+							<button ng-click="cancel()" style="margin:0" class="button raised warning" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
+								<div class="center" fit>CANCEL</div>
+								<paper-ripple fit></paper-ripple>
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			<!--Bio-->
-			<div class="col-md-12">
-				<h4>Bio</h4>
-				<div class="form-group">
-					<text-angular ng-model="user.bio" required name="bio" ta-disabled="formDisabled"></text-angular>
-				</div>
-			</div>
-			
-			<!--Account Binding-->
-			<div class="col-md-12">
-				<h4>Bind Accounts</h4>
-				<p>Binding your other accounts will allow you to login to here through those accounts.</p>
-				<div class="form-group">
-					<button type="submit" class="button brand accent" ng-click="authenticate('googlebinder')" ng-disabled="(user.googleBound)" ng-class="{disabled: user.googleBound==true}">
-                        <div class="center">Bind Google</div>
-                        <paper-ripple fit></paper-ripple>
-                    </button>
-                    <div ng-show="user.googleBound" >
-                    	You have already bound this account to google your Google account.
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="button brand" ng-click="authenticate('facebookbinder')" ng-disabled="(user.facebookBound)" ng-class="{disabled: user.facebookBound==true}">
-                        <div class="center">Bind Facebook</div>
-                        <paper-ripple fit></paper-ripple>
-                    </button>
-                    <div ng-show="user.facebookBound" >
-                    	You have already bound this account to your Facebook account.
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="button brand" style="background-color:#000000" ng-click="authenticate('githubbinder')" ng-disabled="(user.githubBound)" ng-class="{disabled: user.githubBound==true}">
-                        <div class="center">Bind Github</div>
-                        <paper-ripple fit></paper-ripple>
-                    </button>
-                    
-                    <div ng-show="user.githubBound" >
-                    	You have already bound this account to your GitHub account.
-                    </div>
-                </div>
-			</div>
-			
-			<!--Submit/Reset-->
-			<div class="row">
-				<div class="col-md-12">
-					
-					<!--Submit-->
-					<button type="submit" ng-click="submit()" class="button raised brand" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
-						<div class="center" fit>SUBMIT</div>
-						<paper-ripple fit></paper-ripple>
-					</button>
-					
-					<!--Cancel-->
-					<button ng-click="cancel()" class="button raised accent" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
-						<div class="center" fit>CANCEL</div>
-						<paper-ripple fit></paper-ripple>
-					</button>
-					
-				</div>
-			</div>
-			
+		</div>
 	</form>
 </div>

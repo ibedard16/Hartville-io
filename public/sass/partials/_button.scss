@@ -47,7 +47,7 @@
     }
   }
   &.disabled{
-    background-color: $colorStatusbar !important;
+    //background-color: $colorStatusbar !important;
     color: $colorDisabled;
   }
   &:hover {
@@ -198,7 +198,7 @@ button {
       color: $colorWhite;
   }
   &.disabled{
-      background-color: $colorStatusbar;
+      //background-color: $colorStatusbar;
       color: $colorDisabled;
   }
   &:hover{

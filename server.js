@@ -22,8 +22,8 @@ try {
 
     var app = express();
     
-    app.set('port', process.env.PORT || 8000);
-    app.set('IP', process.env.IP || '127.0.0.1');
+    app.set('port', process.env.PORT || 80);
+    app.set('IP', process.env.IP || '0.0.0.0');
     
     app.use(bodyParser.json({limit: '3mb'}));
 

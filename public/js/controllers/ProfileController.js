@@ -17,6 +17,14 @@ app.controller('ProfileController', ['$location', '$auth', '$scope', '$http', 'u
         $auth.authenticate(provider).then(bindingSuccess);
     };
     
+    $scope.unbind = function (provider) {
+        dBox.getConfirmation('Are you sure? You will not be able to log in with ' + provider + ' anymore.', function () {
+            User.save({unbind: provider}, {}, function (response) {
+                console.log(response);
+            });
+        });
+    };
+    
     $scope.submit = function () {
         User.save({}, {user: $scope.user}, function (response) {
             console.log(response);
