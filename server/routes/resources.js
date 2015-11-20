@@ -196,21 +196,43 @@ router.get("/user", checkPermission(), function (req, res) {
 });
 
 router.post("/user", checkPermission('authenticated'), function (req, res) {
-    console.log(req.user);
-    console.log(req.body);
     
-    req.user.bio = req.body.user.bio;
-    if (req.user.avatar !== req.body.user.avatar) {
-        res.notify('warning', 'At this time, users cannot update their profile photos. Sorry for the inconvenience, we are trying to fix this.');
+    function saveUser () {
+        req.user.save(function (err) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.notify('success', 'Your profile information has been updated.', 'Success');
+            }
+        });
     }
     
-    req.user.save(function (err) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.notify('success', 'Your profile information has been updated.', 'Success');
-        }
-    });
+    req.user.bio = req.body.user.bio;
+    
+    if (req.body.user.newAvatar) {
+        var regex = /^data:.+\/(.+);base64,(.*)$/,
+            matches = req.body.user.newAvatar.match(regex),
+            ext = matches[1],
+            data = matches[2],
+            buffer = new Buffer(data, 'base64');
+        fs.unlink(baseDirectory + '/public/' + req.user.avatar, function (err) {
+            if (err) {
+                return res.notify('error', err, 'An Error Happened');
+            }
+            
+            fs.writeFile(baseDirectory + '/public/userFiles/avatars/' + req.user._id + '.' + ext, buffer, function (err) {
+                if (err) {
+                    return res.notify('error', err, 'An Error Happened');
+                }
+                req.user.avatar = 'userFiles/avatars/' + req.user._id + '.' + ext;
+                
+                saveUser();
+            });
+            
+        });
+    } else {
+        saveUser();
+    }
 });
 
 module.exports = router;

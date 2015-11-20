@@ -7,20 +7,25 @@
 			</div>
 		</div>
 			
-			<!--Title-->
+			<!--Avatar-->
 			<div class="col-md-12">
-			    <h4 class=>Avatar</h4>
-				<img ng-src="{{user.avatar}}" class="col-md-1" style="padding:0;max-width:100px"/>
-				
-				<div class="col-md-11 form-group" > <!--style="position: absolute;margin: 0 25%;height: inherit;bottom: 0;"-->
-				    <div >
-    					<input ng-class="{'has-value': newPost.title.$viewValue}" id="avatarUrl" type="text" required name="avatar" ng-model="user.avatar" ng-disabled="formDisabled"/>
-    					<label for="avatarUrl">Url</label>
-					</div>
+				<div class="col-md-1" style="margin:5px">
+				    <h4>Avatar</h4>
+					<img ng-src="{{user.avatar}}" style="padding:0;max-width:100px"/>
+				</div>
+				<div class="col-md-1" style="margin:5px" ng-show="!!user.newAvatar">
+				    <h4>New Avatar</h4>
+					<img ng-src="{{user.newAvatar}}" style="padding:0;max-width:100px"/>
 				</div>
 			</div>
 			
-			<!--Content-->
+			<div class="col-md-12">
+				<div class="form-group">
+					<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" ng-disabled="formDisabled" onchange="angular.element(this).scope().bindImage(this.files[0])">
+				</div>
+			</div>
+			
+			<!--Bio-->
 			<div class="col-md-12">
 				<h4>Bio</h4>
 				<div class="form-group">

@@ -23,6 +23,15 @@ app.controller('ProfileController', ['$location', '$auth', '$scope', '$http', 'u
         });
     };
     
+    $scope.bindImage = function(file, dest) {
+		var	reader = new FileReader();
+		reader.onload = function(e){
+			$scope.user.newAvatar = e.target.result;
+			$scope.$apply();
+		};
+		reader.readAsDataURL(file);
+	};
+    
     $scope.cancel = function () {
         dBox.getConfirmation('Any changes you made will not be saved.', function () {
             $location.path('/');

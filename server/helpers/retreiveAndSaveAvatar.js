@@ -1,5 +1,3 @@
-console.log(__dirname.slice(0,-14));
-
 var externalRequest = require('request'),
     fs = require("fs"),
     baseDirectory = __dirname.slice(0,-14);
