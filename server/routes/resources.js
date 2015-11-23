@@ -196,7 +196,6 @@ router.get("/user", checkPermission(), function (req, res) {
 });
 
 router.post("/user", checkPermission('authenticated'), function (req, res) {
-    
     function saveUser () {
         req.user.save(function (err) {
             if (err) {
@@ -205,6 +204,36 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
                 res.notify('success', 'Your profile information has been updated.', 'Success');
             }
         });
+    }
+    
+    function cannotUnbind () {
+        res.notify('error', 'You cannot unbind your ' + req.query.unbind + ' account because it is the only way to log in to this account. Please add a password, bind a different account, or delete your account here.');
+    }
+    
+    if (req.query.unbind) {
+        var unbindAccount = function (provider) {
+            console.log('Unbinding ' + req.user.displayName + '\'s ' + provider + ' account.');
+            console.log(provider + 'Id');
+            req.user[provider + 'Id'] = undefined;
+            saveUser();
+        };
+        if (!!req.user.password) {
+            return unbindAccount(req.query.unbind);
+        } else {
+            var boundOAuthCount = 0;
+            for (var prop in config.client_config.OAuth_providers) {
+                if (req.user[prop + 'Id']) {
+                    boundOAuthCount += 1;
+                }
+            }
+            if (boundOAuthCount === 1 && !!req.user[req.query.unbind + 'Id']) {
+                return cannotUnbind();
+            } else if (!req.user[req.query.unbind + 'Id']) {
+                return res.notify('error', 'You have not even bound that OAuth provider to this account. We can\'t unbind it for you if it hasn\'t been bound in the first place!');
+            } else {
+                return unbindAccount(req.query.unbind);
+            }
+        }
     }
     
     req.user.bio = req.body.user.bio;

@@ -47,9 +47,9 @@
 									<paper-ripple fit></paper-ripple>
 								</button>
 								<div ng-show="user.googleBound" class="text-centered">
-									This account is already bound to your Google account.
+									This account is bound to your Google account.
 								</div>
-								<button  ng-show="user.githubBound" class="button accent centered" ng-click="unbind('google')">
+								<button  ng-show="user.googleBound" class="button accent centered" ng-click="unbind('google')">
 									<div class="center">Unbind</div>
 									<paper-ripple fit></paper-ripple>
 								</button>
@@ -61,9 +61,9 @@
 									<paper-ripple fit></paper-ripple>
 								</button>
 								<div ng-show="user.facebookBound" class="text-centered">
-									This account is already bound to your Facebook account.
+									This account is bound to your Facebook account.
 								</div>
-								<button  ng-show="user.githubBound" class="button brand centered" ng-click="unbind('facebook')">
+								<button  ng-show="user.facebookBound" class="button brand centered" ng-click="unbind('facebook')">
 									<div class="center">Unbind</div>
 									<paper-ripple fit></paper-ripple>
 								</button>
@@ -75,7 +75,7 @@
 									<paper-ripple fit></paper-ripple>
 								</button>
 								<div ng-show="user.githubBound" class="text-centered">
-									This account is already bound to your GitHub account.
+									This account is bound to your GitHub account.
 								</div>
 								<button ng-show="user.githubBound" class="button brand centered" style="background-color:#000000" ng-click="unbind('github')">
 									<div class="center">Unbind</div>

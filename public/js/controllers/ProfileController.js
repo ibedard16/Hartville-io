@@ -14,13 +14,16 @@ app.controller('ProfileController', ['$location', '$auth', '$scope', '$http', 'u
     }
     
     $scope.authenticate = function (provider) {
-        $auth.authenticate(provider).then(bindingSuccess);
+        $auth.authenticate(provider).catch(function (serverResponse) {
+            $scope.user[provider.slice(0, -6) + 'Bound'] = true;
+        });
     };
     
     $scope.unbind = function (provider) {
         dBox.getConfirmation('Are you sure? You will not be able to log in with ' + provider + ' anymore.', function () {
             User.save({unbind: provider}, {}, function (response) {
-                console.log(response);
+                $scope.user[provider + 'Bound'] = false;
+                $scope.$apply();
             });
         });
     };
