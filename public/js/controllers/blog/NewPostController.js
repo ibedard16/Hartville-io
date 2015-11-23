@@ -30,6 +30,10 @@ app.controller('NewPostController', ['$location', '$scope', 'Post', 'notificatio
 		savePost();
 	};
 	
+	if (!$scope.formInfo) {
+		$scope.formInfo = {};
+	}
+	
 	if (!$scope.formInfo.categories) {
 		$scope.formInfo.categories = [];
 	}
