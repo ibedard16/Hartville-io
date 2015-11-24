@@ -81,7 +81,7 @@ try {
     app.get('/userFiles/avatars/:file', function(req,res) {
         var filetype = req.params.file.slice(-3);
         if (filetype === 'peg') {
-            filetype === 'jpg';
+            filetype = 'jpg';
         }
         if (req.query.size) {
             req.query.size = Number(req.query.size);
