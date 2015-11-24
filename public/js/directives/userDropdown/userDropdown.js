@@ -4,7 +4,7 @@ app.directive('userDropdown', function () {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/directives/userDropdown/partials/user-dropdown.html',
-		controller: ['$scope', 'userProfile', 'dBox', function ($scope, userProfile, dBox) {
+		controller: ['$scope', '$location', 'userProfile', 'dBox', function ($scope, $location, userProfile, dBox) {
             $scope.showLogInMenu = function () {
                 dBox.openBox('login');
             };
@@ -21,6 +21,7 @@ app.directive('userDropdown', function () {
                         {text: 'Logout', click: function () {
                             dBox.getConfirmation('Do you really want to log out?', function () {
                                 userProfile.logout();
+                                $location.path('/');
                             });
                         }}
                     ];
