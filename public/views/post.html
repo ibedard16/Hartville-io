@@ -13,18 +13,25 @@
 				<div class="image crop-height">
 					 <img ng-src="{{post.imageHead}}" class="img-responsive" itemprop="image"/>
 				</div>
-				<div class="centered">by <a ng-href="/blog/author/{{post.authorId}}"><span itemprop="author">{{author.displayName}}</span> <img class="avatar-circle" ng-src="{{author.avatar}}?size=25" style="margin:0"/></a></div>
+				<div class="centered">by <span itemprop="author"><user-name user-id="post.authorId"></user-name></span></div>
 				<div class="content" itemprop="articleBody" ng-bind-html="post.content" prism-color>
 				</div>
 				<hr class="card-hr">
-				
 				<div>
+					<a ng-show="canEdit" ng-href="/blog/editPost/{{post.id}}">
+						<div type="button" class="post-info-button" style="float:left;left:15px">
+							<span class="fa fa-pencil"></span>
+						</div>
+					</a>
 					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
 						<span class="fa fa-info"></span>
 					</div>
 					<div collapse="isCollapsed">
 						<div class="post-info">
 							Posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+							<div ng-repeat="edit in post.edits">
+								Edited <em itemprop="dateCreated">{{edit.date | date:'MM/dd/yyyy @ h:mma'}}</em> by <user-name user-id="edit.authorId"></user-name>
+							</div>
 						</div>
 					</div>
 				</div>

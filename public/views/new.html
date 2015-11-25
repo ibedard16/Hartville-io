@@ -27,6 +27,12 @@
 				<div class="form-group">
 					<input type="file" name="imageHead" class="form-control" accept="image/*" id="imageHead" ng-disabled="formDisabled" onchange="angular.element(this).scope().bindImage(this.files[0], 'imageHead')">
 				</div>
+				<div>
+					<button ng-click="unbindImage('imageHead')" class="button raised brand" ng-disabled="formDisabled || !formInfo.imageHead" ng-class="{disabled: (formDisabled==true || !formInfo.imageHead)}">
+						<div class="center" fit>Remove Image</div>
+						<paper-ripple fit></paper-ripple>
+					</button>
+				</div>
 			</div>
 			
 			<!--Content-->

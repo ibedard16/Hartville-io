@@ -5,6 +5,10 @@ var postSchema = mongoose.Schema({
     title:      String,
     authorId:   String,
     date:       { type: Date, default: Date.now },
+    edits:      [{
+        date: Date,
+        authorId: String
+    }],
     content:    String,
     categories: [String],
     imageHead:  String

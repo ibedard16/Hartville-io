@@ -101,6 +101,26 @@ router.get('/posts', function(req, res) {
 
 router.post('/posts', checkPermission('canPost'), upload.single(), function(req, res) {
     
+    function postSaveSuccess (postId) {
+        res.send({success: true, redirect: "/blog/post/" + postId});
+    }
+    
+    function saveImage(imageString, postId, cb) {
+        var regex = /^data:.+\/(.+);base64,(.*)$/,
+            matches = req.body.imageHead.match(regex),
+            ext = matches[1],
+            data = matches[2],
+            buffer = new Buffer(data, 'base64');
+        fs.mkdir(baseDirectory + '/public/postFiles/' + postId, function () {
+            fs.writeFile(baseDirectory + '/public/postFiles/' + postId + '/headImage.' + ext, buffer, function (err) {
+                if (err) {
+                    return cb(err);
+                }
+                return cb(null, '/postFiles/' + postId + '/headImage.' + ext);
+            });
+        });
+    }
+    
     if (!req.body.title) {
         return res.status(400).notify('warning', 'The post cannot be published without a title.', 'Missing Title');
     }
@@ -109,19 +129,67 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
         return res.status(400).notify('warning', 'The post cannot be published without content.', 'No Content');
     }
     
+    if (req.query.updatePost) {
+        var postId = Number(req.query.updatePost);
+        return Post.findOne({id:postId}, function (err, post) {
+            function savePost(postToSave) {
+                postToSave.save(function(err, model) {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send(err);
+                    }
+                    else {
+                        postSaveSuccess(post.id);
+                    }
+                });
+            }
+            if (err) return res.status(500).send(err);
+            
+            if (req.user._id !== post.authorId && !req.user.permissions.setPermissions) {
+                return res.status(400).notify('error', 'You are not the author of that post, so you do not have the authority to edit it.');
+            }
+            
+            post.title = req.body.title;
+            post.content = req.body.content;
+            post.categories = req.body.categories;
+            post.edits.push({
+                date: Date.now(),
+                authorId: req.user._id
+            });
+            
+            if (req.body.imageHead !== post.imageHead) {
+                if (post.imageHead) {
+                    fs.unlinkSync(baseDirectory + '/public' + post.imageHead);
+                }
+                if (!req.body.imageHead) {
+                    post.imageHead = undefined;
+                    savePost(post);
+                } else {
+                    saveImage(req.body.imageHead, post.id, function (err, filename) {
+                        if (err) {
+                            res.status(500).notify('error', 'there was an error');
+                            throw new Error(err);
+                        }
+                        post.imageHead = filename;
+                        savePost(post);
+                    });
+                }
+            } else {
+                savePost(post);
+            }
+        });
+    }
+    
     Post.findOne().sort('-id').exec(function (err, id) {
         if (err) return res.status(500).send(err);
         
         var postId = id ? id.id + 1 : 0;
         
         function savePost () {
-        
             var post = new Post({
                 id: postId,
                 title: req.body.title,
-                authorName: req.user.displayName,
                 authorId: req.user._id,
-                avatar: req.user.avatar,
                 content: req.body.content,
                 categories: req.body.categories,
                 imageHead: req.body.imageHead
@@ -133,29 +201,20 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
                     res.status(500).send(err);
                 }
                 else {
-                    console.log("A user has added another post to the database.");
-                    res.send({success: true, redirect: "/blog/post/"+post.id});
+                    postSaveSuccess(post.id);
                 }
             });
         }
         
         if (req.body.imageHead) {
-            var regex = /^data:.+\/(.+);base64,(.*)$/,
-                matches = req.body.imageHead.match(regex),
-                ext = matches[1],
-                data = matches[2],
-                buffer = new Buffer(data, 'base64');
-            fs.mkdir(baseDirectory + '/public/postFiles/' + postId, function (err) {
+            saveImage(req.body.imageHead, postId, function (err, filename) {
                 if (err) {
-                    return res.notify('error', err, 'An Error Happened');
+                    res.status(500).notify('err', 'There was an error!');
+                    throw new Error(err);
                 }
-                fs.writeFile(baseDirectory + '/public/postFiles/' + postId + '/headImage.' + ext, buffer, function (err) {
-                    if (err) {
-                        return res.notify('error', err, 'An Error Happened');
-                    }
-                    req.body.imageHead = '/postFiles/' + postId + '/headImage.' + ext;
-                    savePost();
-                });
+                
+                req.body.imageHead = filename;
+                savePost();
             });
         } else {
             savePost();

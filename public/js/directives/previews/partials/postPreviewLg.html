@@ -2,9 +2,9 @@
 
 	<div class="title" itemprop="name"><a class="container-link" ng-href="/blog/post/{{ post.id }}">{{post.title}}</a></div>
 	<div class="image crop-height">
-		<img ng-src="{{post.imageHead}}" class="img-responsive" itemprop="image"/>
+		<img ng-src="{{post.imageHead}}" class="img-responsive" ng-class="{'ng-hide': !post.imageHead}" itemprop="image"/>
 	</div>
-	<div class="centered">by <a ng-href="/blog/author/{{post.authorId}}"><span itemprop="author">{{author.displayName}}</span> <img class="avatar-circle" ng-src="{{author.avatar}}?size=25" style="margin:0"/></a></div>
+	<div class="centered">by <span itemprop="author"><user-name user-id="post.authorId"></user-name></span></div>
 	<div class="content" ng-bind-html="post.content" prism-color itemprop="articleBody">
 	</div>
 	<hr class="card-hr">

@@ -1,13 +1,13 @@
 /*global app*/
 
-app.controller('NewPostController', ['$location', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', function($location, $scope, Post, notification, storageAvailable, dBox) {
+app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', function($location, $routeParams, $scope, Post, notification, storageAvailable, dBox) {
 	
 	if (storageAvailable('localStorage')){
-		var savePost = function () {localStorage.setItem('postBackup', JSON.stringify($scope.formInfo));};
+		var savePost = function () {localStorage.setItem('postEditbackup' + $routeParams.id, JSON.stringify($scope.formInfo));};
 		
-		if(localStorage.getItem('postBackup')) {
+		if(localStorage.getItem('postEditbackup' + $routeParams.id)) {
 			try {
-				$scope.formInfo = JSON.parse(localStorage.getItem('postBackup')); 
+				$scope.formInfo = JSON.parse(localStorage.getItem('postEditbackup' + $routeParams.id)); 
 				notification.info('Post recovered from Local Storage.', 'Post Backup Recovered');
 			} catch (e) {
 				notification.error('Post backup was found, but it could not be retrieved.', 'Post Backup Error');
@@ -34,13 +34,19 @@ app.controller('NewPostController', ['$location', '$scope', 'Post', 'notificatio
 	    $scope.formInfo[dest] = null;
 	    savePost();
 	};
-	
-	if (!$scope.formInfo) {
-		$scope.formInfo = {};
-	}
-	
-	if (!$scope.formInfo.categories) {
-		$scope.formInfo.categories = [];
+	console.log($scope);
+	if (angular.equals($scope.formInfo, {})) {
+    	Post.get({id:$routeParams.id}).$promise.then(function(data) {
+    		console.log(data);
+    		if (data.notification) {
+    			location.path('/');
+    		} else {
+    			$scope.formInfo = data;
+    			if (!$scope.formInfo.categories) {
+            		$scope.formInfo.categories = [];
+            	}
+    		}
+    	});
 	}
 	
 	$scope.bindTag = function (tag) {
@@ -54,11 +60,11 @@ app.controller('NewPostController', ['$location', '$scope', 'Post', 'notificatio
 	
 	$scope.submitForm = function() {
 		$scope.formDisabled = true;
-		Post.save({}, $scope.formInfo, function (response) {
+		Post.save({updatePost: $routeParams.id}, $scope.formInfo, function (response) {
 			if (response.success) {
-				notification.success('Post was successfully published!');
+				notification.success('Post was successfully updated!');
 				$scope.formInfo = {};
-				localStorage.removeItem('postBackup');
+				localStorage.removeItem('postEditbackup' + $routeParams.id);
 				$scope.formDisabled = false;
 				$location.path(response.redirect);
 			} else {
@@ -68,11 +74,12 @@ app.controller('NewPostController', ['$location', '$scope', 'Post', 'notificatio
     };
     
     $scope.resetPost = function () {
-    	dBox.getConfirmation('This will completely delete the post you are working on. You will never be able to recover it. Do you really want to do this?', function () {
+    	dBox.getConfirmation('This will discard the changes to the post you are currently working on. Do you really want to do this?', function () {
     		if (storageAvailable('localStorage')) {
-    			localStorage.removeItem('postBackup');
+    			localStorage.removeItem('postEditbackup' + $routeParams.id);
 	    	}
 	    	$scope.formInfo = {};
+	    	$location.path('/');
     	});
     };
 }]);
