@@ -2,6 +2,8 @@
 
 app.controller('NewPostController', ['$location', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', function($location, $scope, Post, notification, storageAvailable, dBox) {
 	
+	$scope.mode = 'new';
+	
 	if (storageAvailable('localStorage')){
 		var savePost = function () {localStorage.setItem('postBackup', JSON.stringify($scope.formInfo));};
 		

@@ -2,13 +2,17 @@
 
 app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', function($location, $routeParams, $scope, Post, notification, storageAvailable, dBox) {
 	
+	$scope.mode = 'edit';
+	
 	if (storageAvailable('localStorage')){
 		var savePost = function () {localStorage.setItem('postEditbackup' + $routeParams.id, JSON.stringify($scope.formInfo));};
 		
 		if(localStorage.getItem('postEditbackup' + $routeParams.id)) {
 			try {
-				$scope.formInfo = JSON.parse(localStorage.getItem('postEditbackup' + $routeParams.id)); 
-				notification.info('Post recovered from Local Storage.', 'Post Backup Recovered');
+				$scope.formInfo = JSON.parse(localStorage.getItem('postEditbackup' + $routeParams.id));
+				if ($scope.formInfo && angular.equals($scope.formInfo, {})) {
+					notification.info('Post recovered from Local Storage.', 'Post Backup Recovered');
+				}
 			} catch (e) {
 				notification.error('Post backup was found, but it could not be retrieved.', 'Post Backup Error');
 			}
@@ -35,7 +39,7 @@ app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Po
 	    savePost();
 	};
 	console.log($scope);
-	if (angular.equals($scope.formInfo, {})) {
+	if (!$scope.formInfo || angular.equals($scope.formInfo, {})) {
     	Post.get({id:$routeParams.id}).$promise.then(function(data) {
     		console.log(data);
     		if (data.notification) {
@@ -80,6 +84,22 @@ app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Po
 	    	}
 	    	$scope.formInfo = {};
 	    	$location.path('/');
+    	});
+    };
+    
+    $scope.deletePost = function () {
+    	dBox.getConfirmation('This will completely delete the post you are editing, no one will ever be able to read it again. Do you really want to do this?', function () {
+    		Post.save({deletePost: $routeParams.id}, {}, function (response) {
+				if (response.success) {
+					notification.warning('Post was deleted!');
+					$scope.formInfo = {};
+					localStorage.removeItem('postEditbackup' + $routeParams.id);
+					$scope.formDisabled = false;
+					$location.path('/');
+				} else {
+					$scope.formDisabled = false;
+				}
+			});
     	});
     };
 }]);

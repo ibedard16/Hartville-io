@@ -121,6 +121,17 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
         });
     }
     
+    if (req.query.deletePost) {
+        postId = Number(req.query.deletePost);
+        return Post.findOne({ id:postId }).remove(function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            
+            postSaveSuccess();
+        });
+    }
+    
     if (!req.body.title) {
         return res.status(400).notify('warning', 'The post cannot be published without a title.', 'Missing Title');
     }
@@ -129,8 +140,10 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
         return res.status(400).notify('warning', 'The post cannot be published without content.', 'No Content');
     }
     
+    var postId;
+    
     if (req.query.updatePost) {
-        var postId = Number(req.query.updatePost);
+        postId = Number(req.query.updatePost);
         return Post.findOne({id:postId}, function (err, post) {
             function savePost(postToSave) {
                 postToSave.save(function(err, model) {
@@ -183,7 +196,7 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
     Post.findOne().sort('-id').exec(function (err, id) {
         if (err) return res.status(500).send(err);
         
-        var postId = id ? id.id + 1 : 0;
+        postId = id ? id.id + 1 : 0;
         
         function savePost () {
             var post = new Post({

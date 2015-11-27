@@ -2,16 +2,11 @@
 	<div class="row">
 		
 		<div class="col-md-12">
-			<h1>New Post</h1>
+			<h1 ng-if="mode === 'new'">New Post</h1>
+			<h1 ng-if="mode === 'edit'">Edit Post</h1>
 		</div>
 
     <form name="newPost">
-			
-			<div class="col-md-12">
-				<div class="page-header">
-					<h3>Create Post</h3>
-				</div>
-			</div>
 			
 			<!--Title-->
 			<div class="col-md-12">
@@ -103,13 +98,19 @@
 					
 					<!--Submit-->
 					<button type="submit" ng-click="submitForm()" class="button raised brand" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
-						<div class="center" fit>SUBMIT</div>
+						<div class="center" fit><span ng-if="mode === 'new'">SUBMIT</span><span ng-if="mode === 'edit'">CONFIRM EDIT</span></div>
 						<paper-ripple fit></paper-ripple>
 					</button>
 					
 					<!--Reset-->
 					<button ng-click="resetPost()" class="button raised accent" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
-						<div class="center" fit>RESET</div>
+						<div class="center" fit><span ng-if="mode === 'new'">RESET</span><span ng-if="mode === 'edit'">CANCEL</span></div>
+						<paper-ripple fit></paper-ripple>
+					</button>
+					
+					<!--Delete-->
+					<button ng-click="deletePost()" class="button raised error" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
+						<div class="center" fit>Delete</div>
 						<paper-ripple fit></paper-ripple>
 					</button>
 					
