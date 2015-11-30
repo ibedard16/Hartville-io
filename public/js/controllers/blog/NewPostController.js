@@ -1,6 +1,8 @@
 /*global app*/
 
-app.controller('NewPostController', ['$location', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', function($location, $scope, Post, notification, storageAvailable, dBox) {
+app.controller('NewPostController', ['$location', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', 'pageRestriction', function($location, $scope, Post, notification, storageAvailable, dBox, pageRestriction) {
+	
+	pageRestriction('canPost');
 	
 	$scope.mode = 'new';
 	

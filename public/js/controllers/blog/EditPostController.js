@@ -1,6 +1,8 @@
 /*global app*/
 
-app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', function($location, $routeParams, $scope, Post, notification, storageAvailable, dBox) {
+app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Post', 'notification', 'storageAvailable', 'dBox', 'pageRestriction', function($location, $routeParams, $scope, Post, notification, storageAvailable, dBox, pageRestriction) {
+	
+	pageRestriction('canPost');
 	
 	$scope.mode = 'edit';
 	

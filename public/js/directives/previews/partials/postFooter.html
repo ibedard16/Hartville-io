@@ -12,7 +12,7 @@
 		    <div>
     			First posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
 			</div>
-			<div>
+			<div ng-show="post.edits.length > 0">
 				Last edited <em itemprop="dateCreated">{{post.edits[post.edits.length - 1].date | date:'MM/dd/yyyy @ h:mma'}}</em> by <user-name user-id="post.edits[post.edits.length - 1].authorId"></user-name>
 			</div>
 		</div>

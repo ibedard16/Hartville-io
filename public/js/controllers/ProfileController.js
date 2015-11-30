@@ -1,6 +1,8 @@
 /*global app*/
 
-app.controller('ProfileController', ['$location', '$auth', '$scope', '$http', 'userProfile', 'User', 'dBox', 'notification', function ($location, $auth, $scope, $http, userProfile, User, dBox, notification) {
+app.controller('ProfileController', ['$location', '$auth', '$scope', '$http', 'userProfile', 'User', 'dBox', 'notification', 'pageRestriction', function ($location, $auth, $scope, $http, userProfile, User, dBox, notification, pageRestriction) {
+    pageRestriction();
+    
     User.get({id:userProfile.info.sub}, function (response) {
         $scope.user = response;
         console.log($scope.user);

@@ -21,7 +21,6 @@ app.directive('userDropdown', function () {
                         {text: 'Logout', click: function () {
                             dBox.getConfirmation('Do you really want to log out?', function () {
                                 userProfile.logout();
-                                $location.path('/');
                             });
                         }}
                     ];
