@@ -10,22 +10,13 @@
     </div>
     <hr class="card-hr">
     <a ng-href="/blog/post/{{ post.id }}">
-        <div class="button">
+        <div class="button text-brand">
             <div class="center" fit>READ MORE</div>
             <paper-ripple fit></paper-ripple>
         </div>
     </a>
         
-    <div>
-        <div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
-            <span class="fa fa-info"></span>
-        </div>
-        <div collapse="!isCollapsed">
-            <div class="post-info">
-                Posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
-            </div>
-        </div>
-    </div>
+    <post-footer post="post"></post-footer>
     <span style="display:none !important" itemprop="url">/blog/post/{{post.id}}</span>
 
 </article>

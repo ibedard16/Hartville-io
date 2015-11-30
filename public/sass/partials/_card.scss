@@ -91,7 +91,7 @@
       color: $colorBrand;
     }
   }
-  & .post-info-button {
+  & .post-footer-button {
       color: $colorBrand;
     }
   & .button {
@@ -117,7 +117,7 @@
       border-left: 5px solid $colorAccent;
     }
   }
-  & .post-info-button {
+  & .post-footer-button {
       color: $colorAccent;
     }
   > .button {
@@ -134,7 +134,7 @@
       border-left: 5px solid $colorInfo;
     }
   }
-  & .post-info-button {
+  & .post-footer-button {
       color: $colorInfo;
     }
   > .button {
@@ -151,7 +151,7 @@
       border-left: 5px solid $colorWarning;
     }
   }
-  & .post-info-button {
+  & .post-footer-button {
       color: $colorWarning;
     }
   > .button {
@@ -168,7 +168,7 @@
       border-left: 5px solid $colorSuccess;
     }
   }
-  & .post-info-button {
+  & .post-footer-button {
       color: $colorSuccess;
     }
   > .button {
@@ -193,13 +193,13 @@
   text-align: center;
 }
 
-.post-info-button {
+.post-footer-button {
   font-size: 1.2em;
   color: $colorWhite;
   float: right;
   position: relative;
-  right: 15px;
   bottom: 33px;
+  padding-right: 15px;
 }
 
 .card-hr{

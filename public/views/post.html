@@ -17,24 +17,7 @@
 				<div class="content" itemprop="articleBody" ng-bind-html="post.content" prism-color>
 				</div>
 				<hr class="card-hr">
-				<div>
-					<a ng-show="canEdit" ng-href="/blog/editPost/{{post.id}}">
-						<div type="button" class="post-info-button" style="float:left;left:15px">
-							<span class="fa fa-pencil"></span>
-						</div>
-					</a>
-					<div type="button" class="post-info-button" ng-click="isCollapsed = !isCollapsed">
-						<span class="fa fa-info"></span>
-					</div>
-					<div collapse="isCollapsed">
-						<div class="post-info">
-							Posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
-							<div ng-repeat="edit in post.edits">
-								Edited <em itemprop="dateCreated">{{edit.date | date:'MM/dd/yyyy @ h:mma'}}</em> by <user-name user-id="edit.authorId"></user-name>
-							</div>
-						</div>
-					</div>
-				</div>
+				<post-footer post="post"></post-footer>
 				<span style="display:none !important" itemprop="url">/blog/post/{{post.id}}</span>
 			</article>
 			

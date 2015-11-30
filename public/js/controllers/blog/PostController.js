@@ -13,18 +13,7 @@ app.controller('PostController', ['$scope', '$routeParams', '$filter', 'Post', '
 			updatePageTitle($scope.post.title, 'Blog');
 			User.get({id:$scope.post.authorId}, function (data) {
 				$scope.author = data;
-				userProfile.watch(function () {
-					if (userProfile.loggedIn) {
-						if (userProfile.info.perms.indexOf('setPermissions') >= 0) {
-							$scope.canEdit = true;
-						} else if (userProfile.info.perms.indexOf('canPost') >= 0){
-							if (userProfile.info.sub === $scope.post.authorId) {
-	                    		$scope.canEdit = true;
-							}
-                		}
-					}
-    			});
-    		});
+			});
 		}
 	});
 }]);

@@ -17,13 +17,13 @@ module.exports = function (user, res) {
         }
     }
     
-    var expire = 10080;
+    var expire = 604800;
     
     if (user.permissions.canPost) {
-        expire = 4320;
+        expire = 259200;
     }
     if (user.permissions.setPermissions) {
-        expire = 1440;
+        expire = 86400;
     }
     
     var payload = {
@@ -34,7 +34,7 @@ module.exports = function (user, res) {
     };
     
     var token = jwt.sign(payload, config.JWT_SECRET, {
-        expiresInMinutes: expire
+        expiresIn: expire
     });
     
     res.status(200).send({

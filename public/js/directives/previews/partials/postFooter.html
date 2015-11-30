@@ -1,0 +1,20 @@
+<div>
+	<div type="button" class="post-footer-button" ng-click="isCollapsed = !isCollapsed">
+		<span class="fa fa-info"></span>
+	</div>
+	<a ng-show="canEdit" ng-href="/blog/editPost/{{post.id}}">
+		<div type="button" class="post-footer-button" >
+			<span class="fa fa-pencil"></span>
+		</div>
+	</a>
+	<div collapse="isCollapsed">
+		<div class="post-info">
+		    <div>
+    			First posted at <em itemprop="dateCreated">{{post.date | date:'MM/dd/yyyy @ h:mma'}}</em>
+			</div>
+			<div>
+				Last edited <em itemprop="dateCreated">{{post.edits[post.edits.length - 1].date | date:'MM/dd/yyyy @ h:mma'}}</em> by <user-name user-id="post.edits[post.edits.length - 1].authorId"></user-name>
+			</div>
+		</div>
+	</div>
+</div>
