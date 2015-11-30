@@ -2,7 +2,7 @@ var fs = require('fs');
 var compressor = require('node-minify');
 var config = require('../config');
 
-var baseDirectory = __dirname.slice(0,-15);
+var baseDirectory = __dirname.split('/').slice(0,-2).join('/');
 
 function makeAppConfig (cb) {
     fs.writeFile(baseDirectory + '/public/js/appConfig.js', 'app.constant("appConfig", ' + JSON.stringify(config.client_config) + ');', cb);

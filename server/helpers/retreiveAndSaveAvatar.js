@@ -1,6 +1,6 @@
 var externalRequest = require('request'),
     fs = require("fs"),
-    baseDirectory = __dirname.slice(0,-14);
+    baseDirectory = __dirname.split('/').slice(0,-2).join('/');
 
 const Imagemin = require('imagemin');
 
@@ -13,14 +13,15 @@ function retreiveAndSaveAvatar (url, userId, cb) {
         
         var fileExtension = '';
         if (res.headers['content-type'].indexOf('image/') === 0) {
-            fileExtension = res.headers['content-type'].slice(6);
+            fileExtension = res.headers['content-type'].split('/')[1];
+            console.log(fileExtension);
         } else {
             return cb({notification: {type: "error", body: "User's profile picture in unrecognized format. Please contact an administrator."}});
         }
         
         var filename = 'userFiles/avatars/' + userId + '.' + fileExtension;
         
-        externalRequest(url).pipe(fs.createWriteStream(baseDirectory + 'public/' + filename)).on('close', function (err) {
+        externalRequest(url).pipe(fs.createWriteStream(baseDirectory + '/public/' + filename)).on('close', function (err) {
             if (err) {
                 return cb(err);
             }
@@ -37,8 +38,8 @@ function retreiveAndSaveAvatar (url, userId, cb) {
                     break;
             }
             new Imagemin()
-                .src(baseDirectory + 'public/' + filename)
-                .dest(baseDirectory + 'public/userFiles/avatars')
+                .src(baseDirectory + '/public/' + filename)
+                .dest(baseDirectory + '/public/userFiles/avatars')
                 .use(Imagemin[imageCompressor]())
                 .run(function (err, files) {
                     if (err) {

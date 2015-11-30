@@ -109,7 +109,7 @@
 					</button>
 					
 					<!--Delete-->
-					<button ng-click="deletePost()" class="button raised error" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
+					<button ng-if="mode === 'edit'" ng-click="deletePost()" class="button raised error" ng-disabled="formDisabled" ng-class="{disabled: formDisabled==true}">
 						<div class="center" fit>Delete</div>
 						<paper-ripple fit></paper-ripple>
 					</button>

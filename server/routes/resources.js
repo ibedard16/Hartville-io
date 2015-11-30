@@ -27,7 +27,7 @@ var express         = require('express'),
     }),
     upload      = multer({storage: storage}),
     router      = express.Router(),
-    baseDirectory = __dirname.slice(0, -14);
+    baseDirectory = __dirname.split('/').slice(0,-2).join('/');
     
 router.get('/posts', function(req, res) {
     try {
