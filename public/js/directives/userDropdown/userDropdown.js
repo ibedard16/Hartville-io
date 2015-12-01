@@ -12,8 +12,8 @@ app.directive('userDropdown', function () {
             userProfile.watch(function () {
                 if (userProfile.loggedIn) {
                     $scope.loggedIn = true;
-                    $scope.menuName = userProfile.info.name;
-                    $scope.avatar = userProfile.info.pic;
+                    $scope.menuName = userProfile.info.displayName;
+                    $scope.avatar = userProfile.info.avatar;
                     $scope.dropdown = [
                         {text: 'Profile', href: '/profile'},
                         '',' ',

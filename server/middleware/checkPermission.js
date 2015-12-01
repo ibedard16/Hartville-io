@@ -63,10 +63,6 @@ module.exports = function (permission) {
                     return res.status(403).notify('warning', 'Our records indicate you are allowed to perform this action, but your session does not. Please log out and log back in before trying again.', 'Invalid Session Permission');
                 }
                 
-                if (decodedToken.name !== foundUser.displayName || decodedToken.pic !== foundUser.avatar) {
-                    return res.status(403).notify('error', 'Invalid session. Please log out and log back in before trying again.', 'Invalid session.');
-                }
-                
                 req.user = foundUser;
                 
                 next();

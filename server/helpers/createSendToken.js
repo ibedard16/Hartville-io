@@ -28,8 +28,6 @@ module.exports = function (user, res) {
     
     var payload = {
         perms: permissions,
-        name: user.displayName,
-        pic: user.avatar,
         sub: user._id
     };
     
