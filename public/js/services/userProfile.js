@@ -69,6 +69,7 @@ app.factory('userProfile', ['$window', '$auth', 'notification', 'User', function
                     triggerWatchers();
                 });
             } else {
+                user.initialized = true;
                 user.info = {};
                 user.loggedIn = false;
                 triggerWatchers();
