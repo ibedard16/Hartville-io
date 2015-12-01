@@ -19,6 +19,8 @@ app.factory('pageRestriction', ['$location', 'userProfile', 'notification', func
     			    notification.warning('You do not have the authority to view that page.');
                     return $location.path('/');
     			}
+            } else {
+                throw new Error('User is not on the same page when script was initialized.');
             }
         });
     };

@@ -3,7 +3,11 @@ app.factory('userProfile', ['$auth', 'notification', function($auth, notificatio
     var watchers = [];
     function triggerWatchers () {
         for (var i = 0; i < watchers.length; i++) {
-            watchers[i]();
+            try {
+                watchers[i]();
+            } catch (e) {
+                watchers.splice(i, 1);
+            }
         }
     }
     var user = {
