@@ -273,7 +273,15 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.notify('success', 'Your profile information has been updated.', 'Success');
+                if (req.body.user ) {
+                    if (req.body.newAvatar) {
+                        res.notify('success', 'Your profile information has been updated. You might need to refresh the website before your new avatar appears.', 'Success');
+                    } else {
+                        res.notify('success', 'Your profile information has been updated.');
+                    }
+                } else {
+                res.notify('warning', 'That account has been unbound.');
+                }
             }
         });
     }
@@ -284,8 +292,6 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
     
     if (req.query.unbind) {
         var unbindAccount = function (provider) {
-            console.log('Unbinding ' + req.user.displayName + '\'s ' + provider + ' account.');
-            console.log(provider + 'Id');
             req.user[provider + 'Id'] = undefined;
             saveUser();
         };
@@ -309,6 +315,7 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
     }
     
     req.user.bio = req.body.user.bio;
+    req.user.displayName = req.body.user.displayName;
     
     if (req.body.user.newAvatar) {
         var regex = /^data:.+\/(.+);base64,(.*)$/,

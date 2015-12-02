@@ -9,7 +9,6 @@ app.controller('SpotlightController', ['$scope', 'Post', '$http', function($scop
 		Post.get({limitTo:$scope.pageSize, skip:($scope.currentPage - 1)*$scope.pageSize, query: {categories: 'spotlight'}}, function(data) {
 			$scope.posts = data.posts;
 			$scope.postCount = Number(data.postCount);
-			console.log(data);
 		});
 	});
 }]);

@@ -35,7 +35,6 @@ angular.module('markdownFilter', ['truncate'])
                             iSliceB = iSliceA.slice(0, iSliceA.indexOf('>')+1);
                         pSlice = pSlice.replace(iSliceB, '');
                     }
-                    console.log(pSlice);
                     return $filter('characters')(pSlice,240); 
         } else {
                 return '';

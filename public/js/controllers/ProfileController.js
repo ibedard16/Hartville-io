@@ -25,6 +25,7 @@ app.controller('ProfileController', ['$location', '$auth', '$scope', '$http', 'u
         User.save({}, {user: $scope.user}, function (response) {
             userProfile.update();
             $location.path('/');
+            
         });
     };
     

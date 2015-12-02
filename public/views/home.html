@@ -1,15 +1,16 @@
 <div class="container padded">
-    <div ng-hide="posts.length === 0 && events.length === 0">
-        <h1>Recent News</h1><hr>
+    <div ng-hide="posts.length === 0 && events.length === 0" >
+        <h1>Recent News</h1>
+        <hr>
         <div class="row">
-            <div ng-show="posts.length === 0"><p>No recent news to show!</p></div>
-            <post-preview-lg class="col-md-12 fadeInUp" ng-show="posts.length === 1" post="posts[0]"></post-preview-lg>
-            <div class="col-sm-12 col-lg-6 fadeInUp" ng-hide="posts.length === 1" ng-repeat="post in posts | orderBy: '-date' | limitTo: 2">
+            <div ng-if="posts.length === 0"><p>No recent news to show!</p></div>
+            <post-preview-lg class="col-md-12 fadeInUp" ng-if="posts.length === 1" post="posts[0]"></post-preview-lg>
+            <div class="col-sm-12 col-lg-6 fadeInUp" ng-if="posts.length > 1" ng-repeat="post in posts | orderBy: '-date' | limitTo: 2">
                 <post-preview-md post='post'></post-preview-md>
             </div> <!--end column-->
         </div> <!--end row-->
         
-        <div ng-show="events.length > 0" class="fadeInUp">
+        <div ng-if="events.length > 0" class="fadeInUp">
             <h1><a href="/events">Events</a></h1><hr>
             
             <div class="row">
@@ -20,7 +21,7 @@
             </div> <!--end row-->
         </div>
         
-        <div ng-hide="posts.length <= 2">
+        <div ng-if="posts.length > 2">
             <h1> More News</h1><hr> 
         
             <div class="row">
@@ -30,7 +31,7 @@
             </div> <!--end row-->
         </div>
     </div>
-    <div ng-show="posts.length === 0 && events.length === 0">
+    <div ng-if="posts.length === 0 && events.length === 0">
         <h1>Nothing to show!</h1>
         <p>There is no news today, and we're not sure if there ever was any.</p>
     </div>

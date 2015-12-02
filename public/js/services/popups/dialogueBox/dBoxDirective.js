@@ -22,7 +22,6 @@ app.directive('dialogueBox', ['$http', '$templateCache', '$compile', 'dBox', fun
 						dBox.close();
 						callback();
 					};
-					console.log('opening box');
 					box.openBox('js/services/popups/dialogueBox/boxes/confirm.html');
 				},
 				

@@ -9,7 +9,6 @@ app.factory('dBox', ['$rootScope', 'notification', function ($rootScope, notific
 			if ($rootScope.dialogueBoxActive) {
 				return;
 			}
-			console.log('dBox opened');
 			switch (type) {
 				case 'login':
 					box.open('js/services/popups/dialogueBox/boxes/login.html');

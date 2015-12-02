@@ -11,7 +11,6 @@ app.factory('externalAuthIntercept', function () {
                 
                 return config;
             } catch(e) {
-                console.log(e);
                 return config;
             }
             

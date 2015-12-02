@@ -86,6 +86,18 @@
 					</div>
 				</div>
 			</div>
+			<!--Name Changing-->
+			<div class="col-sm-8">
+				<div class="dialog brand">
+					<div class="title"><p>Display Name</p></div>
+					<div class="content">
+						<p class="text-centered">This is the name that appears whenever you do something on the website. If you change it here, it will update on all comments <span ng-if="user.perms.indexOf('canPost') >= 0"> and blog posts </span> that you have made here.</p>
+						<div class="form-group">
+							<input ng-model="user.displayName"/>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">

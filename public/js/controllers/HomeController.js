@@ -6,7 +6,6 @@ app.controller('HomeController', ['$scope', 'Event', 'Post', function($scope, Ev
 	});
 	//Events
 	Event.get(function (events) {
-		console.log(events);
 		$scope.events = events;
 	});
 }]);

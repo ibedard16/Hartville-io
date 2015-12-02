@@ -40,10 +40,9 @@ app.controller('EditPostController', ['$location', '$routeParams', '$scope', 'Po
 	    $scope.formInfo[dest] = null;
 	    savePost();
 	};
-	console.log($scope);
+	
 	if (!$scope.formInfo || angular.equals($scope.formInfo, {})) {
     	Post.get({id:$routeParams.id}).$promise.then(function(data) {
-    		console.log(data);
     		if (data.notification) {
     			location.path('/');
     		} else {

@@ -3,7 +3,6 @@
 app.controller('LoginController', ['$scope', '$auth', 'notification', 'dBox', 'userProfile', function ($scope, $auth, notification, dBox, userProfile) {
 
     function logInSuccess (serverResponse) {
-        console.log(serverResponse);
         notification.info('You are now logged in!','Success');
         userProfile.update();
         dBox.close();
