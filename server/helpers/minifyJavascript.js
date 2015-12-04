@@ -2,14 +2,12 @@ var fs = require('fs');
 var compressor = require('node-minify');
 var config = require('../config');
 
-var baseDirectory = __dirname.split('/').slice(0,-2).join('/');
-
 function makeAppConfig (cb) {
-    fs.writeFile(baseDirectory + '/public/js/appConfig.js', 'app.constant("appConfig", ' + JSON.stringify(config.client_config) + ');', cb);
+    fs.writeFile(config.baseDirectory + '/public/js/appConfig.js', 'app.constant("appConfig", ' + JSON.stringify(config.client_config) + ');', cb);
 }
 
 function getVendorFiles (cb) {
-    fs.readFile(baseDirectory + '/public/js/vendorFiles.txt', 'utf8', function (err, data) {
+    fs.readFile(config.baseDirectory + '/public/js/vendorFiles.txt', 'utf8', function (err, data) {
         if (err) {
             return cb(err);
         }
@@ -23,7 +21,7 @@ function getVendorFiles (cb) {
 
 function getFilesInDirectory (directory, cb) {
     var returnedFiles = [];
-    fs.readdir(baseDirectory + '/' + directory, function (err, files) {
+    fs.readdir(config.baseDirectory + '/' + directory, function (err, files) {
         if (err) {
             return cb(err);
         }
@@ -83,7 +81,7 @@ function minifyJavascript () {
                             throw new Error (err);
                         }
                         min = '// Vendor Liscenses located @ ' + config.APP_URL + 'vendorLiscenses.txt\n\n' + min;
-                        fs.writeFile(baseDirectory + '/public/app.min.js', min, function (err) {
+                        fs.writeFile(config.baseDirectory + '/public/app.min.js', min, function (err) {
                             if (err) {
                                 throw new Error (err);
                             }

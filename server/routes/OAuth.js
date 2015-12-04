@@ -1,6 +1,7 @@
 var externalRequest = require('request'),
     User = require('../models/userSchema'),
     createSendToken = require('../helpers/createSendToken'),
+    notify = require('../helpers/notify'),
     config = require('../config'),
     express = require("express"),
     checkPermission = require('../middleware/checkPermission'),
@@ -262,7 +263,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
                     
                     if (foundUser) {
                         
-                        return res.notify('error', 'That account has already been bound to a different user.');
+                        return notify(res, 'error', 'That account has already been bound to a different user.');
                         
                     } else {
                         
@@ -272,7 +273,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
                             if (err) {
                                 return res.status(500).send(err);
                             } else {
-                                return res.notify('success', 'Account bound successfully');
+                                return notify(res, 'success', 'Account bound successfully');
                             }
                         });
                     }
@@ -291,7 +292,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
                     
                     if (foundUser) {
                         
-                        return res.notify('error', 'That account has already been bound to a different user.');
+                        return notify(res, 'error', 'That account has already been bound to a different user.');
                         
                     } else {
                         
@@ -301,7 +302,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
                             if (err) {
                                 return res.status(500).send(err);
                             } else {
-                                return res.notify('success', 'Account bound successfully');
+                                return notify(res, 'success', 'Account bound successfully');
                             }
                         });
                     }
@@ -318,7 +319,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
                     if (err) {return res.status(500).send(err);}
                     
                     if (foundUser) {
-                        return res.notify('error', 'That account has already been bound to a different user.');
+                        return notify(res, 'error', 'That account has already been bound to a different user.');
                     } else {
                         
                         req.user.githubId = profile.id;
@@ -327,7 +328,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
                             if (err) {
                                 return res.status(500).send(err);
                             } else {
-                                return res.notify('success', 'Account bound successfully');
+                                return notify(res, 'success', 'Account bound successfully');
                             }
                         });
                     }
@@ -335,7 +336,7 @@ router.post('/binder/:provider', checkPermission('authenticated'), function (req
             });
             break;
         default:
-            res.notify('error', 'Provider not recognized.');
+            notify(res, 'error', 'Provider not recognized.');
     }
 });
 

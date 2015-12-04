@@ -4,7 +4,8 @@ var _               = require('lodash'),
     nodemailer      = require('nodemailer'),
     smtpTransport   = require('nodemailer-smtp-transport'),
     fs              = require('fs'),
-    User            = require('../models/userSchema');
+    User            = require('../models/userSchema'),
+    notify          = require('./notify');
     
 var model = {
     verifyUrl: config.APP_URL + 'validateemail?token=',
@@ -56,7 +57,7 @@ exports.handler = function (req, res) {
                 console.log(err);
                 return res.status(500);
             } else {
-                return res.notify('success', 'You may now log in.', 'Account Verified');
+                return notify(res, 'success', 'You may now log in.', 'Account Verified');
             }
         });
     }
@@ -95,12 +96,12 @@ exports.handler = function (req, res) {
                 console.log(Date.now());
                 if (foundUser.activateBy <= Date.now()) {
                     foundUser.remove();
-                    return res.notify('error', 'You waited more than 5 days to activate your account, so your account information was deleted from our records. You must re-create your account in order to log in.', 'Expired Account');
+                    return notify(res, 'error', 'You waited more than 5 days to activate your account, so your account information was deleted from our records. You must re-create your account in order to log in.', 'Expired Account');
                 } else {
                     return activateUser(foundUser);
                 }
             } else {
-                res.notify('warning', 'You have already verefied your account. You may log in now.', 'Email Already Verified');
+                notify(res, 'warning', 'You have already verefied your account. You may log in now.', 'Email Already Verified');
             }
         });
     });

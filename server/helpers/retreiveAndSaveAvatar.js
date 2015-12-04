@@ -1,6 +1,6 @@
 var externalRequest = require('request'),
     fs = require("fs"),
-    baseDirectory = __dirname.split('/').slice(0,-2).join('/');
+    config = require("../config");
 
 const Imagemin = require('imagemin');
 
@@ -21,7 +21,7 @@ function retreiveAndSaveAvatar (url, userId, cb) {
         
         var filename = 'userFiles/avatars/' + userId + '.' + fileExtension;
         
-        externalRequest(url).pipe(fs.createWriteStream(baseDirectory + '/public/' + filename)).on('close', function (err) {
+        externalRequest(url).pipe(fs.createWriteStream(config.baseDirectory + '/public/' + filename)).on('close', function (err) {
             if (err) {
                 return cb(err);
             }
@@ -38,8 +38,8 @@ function retreiveAndSaveAvatar (url, userId, cb) {
                     break;
             }
             new Imagemin()
-                .src(baseDirectory + '/public/' + filename)
-                .dest(baseDirectory + '/public/userFiles/avatars')
+                .src(config.baseDirectory + '/public/' + filename)
+                .dest(config.baseDirectory + '/public/userFiles/avatars')
                 .use(Imagemin[imageCompressor]())
                 .run(function (err, files) {
                     if (err) {

@@ -1,8 +1,8 @@
 var express         = require('express'),
     Post            = require('../models/postSchema'),
     checkPermission = require('../middleware/checkPermission'),
-    Author          = require('../models/authorSchema'),
     User            = require('../models/userSchema'),
+    notify          = require('../helpers/notify'),
     multer          = require('multer'),
     config          = require('../config'),
     fs              = require('fs'),
@@ -26,8 +26,7 @@ var express         = require('express'),
         }
     }),
     upload      = multer({storage: storage}),
-    router      = express.Router(),
-    baseDirectory = __dirname.split('/').slice(0,-2).join('/');
+    router      = express.Router();
     
 router.get('/posts', function(req, res) {
     try {
@@ -111,8 +110,8 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
             ext = matches[1],
             data = matches[2],
             buffer = new Buffer(data, 'base64');
-        fs.mkdir(baseDirectory + '/public/postFiles/' + postId, function () {
-            fs.writeFile(baseDirectory + '/public/postFiles/' + postId + '/headImage.' + ext, buffer, function (err) {
+        fs.mkdir(config.baseDirectory + '/public/postFiles/' + postId, function () {
+            fs.writeFile(config.baseDirectory + '/public/postFiles/' + postId + '/headImage.' + ext, buffer, function (err) {
                 if (err) {
                     return cb(err);
                 }
@@ -172,7 +171,7 @@ router.post('/posts', checkPermission('canPost'), upload.single(), function(req,
             
             if (req.body.imageHead !== post.imageHead) {
                 if (post.imageHead) {
-                    fs.unlinkSync(baseDirectory + '/public' + post.imageHead);
+                    fs.unlinkSync(config.baseDirectory + '/public' + post.imageHead);
                 }
                 if (!req.body.imageHead) {
                     post.imageHead = undefined;
@@ -275,19 +274,19 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
             } else {
                 if (req.body.user ) {
                     if (req.body.newAvatar) {
-                        res.notify('success', 'Your profile information has been updated. You might need to refresh the website before your new avatar appears.', 'Success');
+                        notify(res, 'success', 'Your profile information has been updated. You might need to refresh the website before your new avatar appears.', 'Success');
                     } else {
-                        res.notify('success', 'Your profile information has been updated.');
+                        notify(res, 'success', 'Your profile information has been updated.');
                     }
                 } else {
-                res.notify('warning', 'That account has been unbound.');
+                notify(res, 'warning', 'That account has been unbound.');
                 }
             }
         });
     }
     
     function cannotUnbind () {
-        res.notify('error', 'You cannot unbind your ' + req.query.unbind + ' account because it is the only way to log in to this account. Please add a password, bind a different account, or delete your account here.');
+        notify(res, 'error', 'You cannot unbind your ' + req.query.unbind + ' account because it is the only way to log in to this account. Please add a password, bind a different account, or delete your account here.');
     }
     
     if (req.query.unbind) {
@@ -307,7 +306,7 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
             if (boundOAuthCount === 1 && !!req.user[req.query.unbind + 'Id']) {
                 return cannotUnbind();
             } else if (!req.user[req.query.unbind + 'Id']) {
-                return res.notify('error', 'You have not even bound that OAuth provider to this account. We can\'t unbind it for you if it hasn\'t been bound in the first place!');
+                return notify(res, 'error', 'You have not even bound that OAuth provider to this account. We can\'t unbind it for you if it hasn\'t been bound in the first place!');
             } else {
                 return unbindAccount(req.query.unbind);
             }
@@ -323,14 +322,14 @@ router.post("/user", checkPermission('authenticated'), function (req, res) {
             ext = matches[1],
             data = matches[2],
             buffer = new Buffer(data, 'base64');
-        fs.unlink(baseDirectory + '/public/' + req.user.avatar, function (err) {
+        fs.unlink(config.baseDirectory + '/public/' + req.user.avatar, function (err) {
             if (err) {
-                return res.notify('error', err, 'An Error Happened');
+                return notify(res, 'error', err, 'An Error Happened');
             }
             
-            fs.writeFile(baseDirectory + '/public/userFiles/avatars/' + req.user._id + '.' + ext, buffer, function (err) {
+            fs.writeFile(config.baseDirectory + '/public/userFiles/avatars/' + req.user._id + '.' + ext, buffer, function (err) {
                 if (err) {
-                    return res.notify('error', err, 'An Error Happened');
+                    return notify(res, 'error', err, 'An Error Happened');
                 }
                 req.user.avatar = 'userFiles/avatars/' + req.user._id + '.' + ext;
                 

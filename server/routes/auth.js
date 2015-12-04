@@ -1,6 +1,7 @@
 var User = require('../models/userSchema'),
     emailVerification = require('../helpers/emailVerification'),
     createSendToken = require('../helpers/createSendToken'),
+    notify = require('../helpers/notify'),
     config = require('../config'),
     express = require("express"),
     gravatar = require("../helpers/gravatar"),
@@ -79,7 +80,7 @@ router.post("/signup", function (req, res) {
                     return res.status(500).notify('error', err);
                 } else {
                     emailVerification.send(email);
-                    res.notify('success', 'You have successfully signed up. To finish the process, please check your email to validate your account.', 'Success');
+                    notify(res, 'success', 'You have successfully signed up. To finish the process, please check your email to validate your account.', 'Success');
                 }
             });
         });

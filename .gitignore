@@ -2,7 +2,7 @@ node_modules
 public/vendor
 server/database/databaseConnect.js
 server/database/verifyCredentials.js
-server/config.js
+server/customConfig.js
 commit command
 public/postFiles
 public/userFiles/avatars
